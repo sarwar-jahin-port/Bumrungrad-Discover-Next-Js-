@@ -123,7 +123,7 @@ export default function ClinicCenters() {
         >
           {clinicImages?.map((sc, i) => (
             <SwiperSlide key={i}>
-              <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30">
+              <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/10">
                 <div>
                   <Image
                     height={500}
