@@ -1,21 +1,23 @@
-import React from 'react'
-import MedicalRecords from './_comp/medicalRecords'
+import React from "react";
+import MedicalRecords from "./_comp/medicalRecords";
+import ProtectedRoute from "@/components/shared/ProtectedRoute";
 
 export const metadata = {
-  title: 'Bumrungrad Hospital: Explore The Accreditation & Awards',
-  description: "Discover Bumrungrad International Hospital's Accolades. Elevate your health journey with excellence at our hospital. Explore now! #BumrungradHospital",
+  title: "Bumrungrad Hospital: Explore The Accreditation & Awards",
+  description:
+    "Discover Bumrungrad International Hospital's Accolades. Elevate your health journey with excellence at our hospital. Explore now! #BumrungradHospital",
   alternates: {
-    canonical: 'https://discoverinternationalmedicalservice.com/medical-record',
+    canonical: "https://discoverinternationalmedicalservice.com/medical-record",
   },
-  charset: 'utf-8',
+  charset: "utf-8",
 };
 
 const page = () => {
   return (
-    <div>
+    <ProtectedRoute>
       <MedicalRecords />
-    </div>
-  )
-}
+    </ProtectedRoute>
+  );
+};
 
-export default page
+export default page;

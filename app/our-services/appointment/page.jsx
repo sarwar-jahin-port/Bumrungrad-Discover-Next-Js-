@@ -27,6 +27,7 @@ import { sendEmails } from "@/helpers/mail/sendMail";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeysWithRemoveKeys } from "@/helpers/objectKeyFormat";
+import ProtectedRoute from "@/components/shared/ProtectedRoute";
 
 const customStyles = {
   day: {
@@ -264,7 +265,9 @@ export default function Appointment() {
       };
 
       // Append all fields to FormData
-      Object.entries(fields).forEach(([key, value]) =>  formData.append(key, value));
+      Object.entries(fields).forEach(([key, value]) =>
+        formData.append(key, value)
+      );
 
       // Send API request
       const apiResponse = await fetch(
@@ -277,7 +280,6 @@ export default function Appointment() {
       setLoader(false);
 
       const data = await apiResponse.json();
-   
 
       if (data.status === 200) {
         // toast.success("Please check your email or spam box!");
@@ -285,14 +287,14 @@ export default function Appointment() {
         localStorage.removeItem("Doctor_specialty");
         // setLoader(false);
       } else {
-       toast.error("Failed to book appointment");
-       return
+        toast.error("Failed to book appointment");
+        return;
       }
 
       // upload image
       setLoader(true);
       const uploadImage = data?.passport ? data?.passport : "link not provided";
-      const uploadImage2 =  data?.medicalReport1
+      const uploadImage2 = data?.medicalReport1
         ? data?.medicalReport1
         : "link not provided";
       const uploadImage3 = data?.medicalReport2
@@ -340,11 +342,14 @@ export default function Appointment() {
       setLoader(false);
 
       if (emailResponse.messageId && responseClient.messageId) {
-        toast.success("We have received your request. Our representative will reach you shortly!", {
-          position: "top-center",
-          style: { borderRadius: "20px" },
-          duration: 5000,
-        });
+        toast.success(
+          "We have received your request. Our representative will reach you shortly!",
+          {
+            position: "top-center",
+            style: { borderRadius: "20px" },
+            duration: 5000,
+          }
+        );
 
         if (typeof window !== "undefined") {
           localStorage.removeItem("doctor_name");
@@ -367,7 +372,7 @@ export default function Appointment() {
     { before: today }, // This will disable today and all previous dates
   ];
   return (
-    <>
+    <ProtectedRoute>
       <div className="md:p-10 my-5 md:my-10 md:container md:mx-auto lg:flex lg:flex-col lg:items-center">
         <h1 className="text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
           Book Appointment
@@ -1373,6 +1378,6 @@ export default function Appointment() {
           </div>
         </div>
       </div>
-    </>
+    </ProtectedRoute>
   );
 }

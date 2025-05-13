@@ -11,6 +11,17 @@ const AuthContextProvider = ({ children }) => {
   const [isAdd, setIsAdd] = useState(false);
   const [access_token, setAccess_Token] = useState(null);
 
+  // Check auth status on load
+  useEffect(() => {
+    const token = localStorage.getItem("Access_Token");
+    const userInfo = localStorage.getItem("User_Details");
+
+    if (token && userInfo) {
+      setAuth(JSON.parse(userInfo));
+      setAccess_Token(token);
+    }
+  }, []);
+
   useEffect(() => {
     const fetchAuth = async () => {
       try {
