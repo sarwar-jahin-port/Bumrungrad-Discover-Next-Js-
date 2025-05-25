@@ -1,15 +1,18 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import TextField from "@mui/material/TextField";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { IoSearchOutline } from "react-icons/io5";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
 import notFoundAnim from "@/public/assets/anim/notfound.json";
 import Image from "next/image";
-import { CardLoaders, ClinicCenterCardSkeleton } from "@/components/ui/cardload";
-
+import {
+  CardLoaders,
+  ClinicCenterCardSkeleton,
+} from "@/components/ui/cardload";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
 export default function ViewAllCenters() {
   const [loader, setLoader] = useState(false);
@@ -22,7 +25,8 @@ export default function ViewAllCenters() {
 
   useEffect(() => {
     setLoader(true);
-    let url = "https://api.discoverinternationalmedicalservice.com/api/get/centers";
+    let url =
+      "https://api.discoverinternationalmedicalservice.com/api/get/centers";
 
     if (searchValue !== "") {
       url = `https://api.discoverinternationalmedicalservice.com/api/search/center/${searchValue}`;
@@ -101,7 +105,6 @@ export default function ViewAllCenters() {
   };
   return (
     <div className="p-5 my-5 md:container md:mx-auto">
-    
       <div className="flex justify-between items-center">
         <h1 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
           Clinic & Centers: {slides?.length}
@@ -125,7 +128,12 @@ export default function ViewAllCenters() {
         </div>
       </div>
       {loader ? (
-        <CardLoaders Component={ClinicCenterCardSkeleton} cardLength={15} gridNumber={5} speed="speed" />
+        <CardLoaders
+          Component={ClinicCenterCardSkeleton}
+          cardLength={15}
+          gridNumber={5}
+          speed="speed"
+        />
       ) : (
         <div>
           {curentSlide?.length > 0 ? (
@@ -138,7 +146,7 @@ export default function ViewAllCenters() {
                 >
                   <div>
                     <Image
-                    height={300}
+                      height={300}
                       width={300}
                       className="min-h-full w-full object-cover"
                       src={sc?.cover_photo}
@@ -178,7 +186,10 @@ export default function ViewAllCenters() {
                     >
                       See More
                     </Link>
-                    <a href={'#'} className="mt-1 hidden text-white px-1 py-1 rounded-full bg-blue">
+                    <a
+                      href={"#"}
+                      className="mt-1 hidden text-white px-1 py-1 rounded-full bg-blue"
+                    >
                       <ArrowOutwardIcon />
                     </a>
                   </div>

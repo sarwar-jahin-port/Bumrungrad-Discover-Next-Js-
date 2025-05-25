@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "@next/third-parties": "^14.2.14",
     "date-fns": "^3.6.0",
     "jose": "^5.9.2",
-    "lottie-react": "^2.4.0",
+    "lottie-react": "^2.4.1",
     "mui-tel-input": "^6.0.0",
     "next": "14.2.7",
     "nodemailer": "^6.9.15",
@@ -34,6 +34,7 @@
     "swiper": "^11.1.12"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.7",
     "postcss": "^8",

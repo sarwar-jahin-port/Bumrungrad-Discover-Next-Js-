@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { TextField } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -13,7 +14,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 // import Loader from '../../shared/Loader/Loader'
 import { FaArrowUp } from "react-icons/fa";
 import notFoundAnim from "@/public/assets/anim/notfound.json";
-import Lottie from "lottie-react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -23,7 +23,7 @@ import Link from "next/link";
 import { IoSearchOutline } from "react-icons/io5";
 import Image from "next/image";
 import { CardLoaders } from "@/components/ui/cardload";
-
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 export default function FindDoctor() {
   const [advanceBox, setAdvanceBox] = useState(false);
   const [loader, setLoader] = useState(false);

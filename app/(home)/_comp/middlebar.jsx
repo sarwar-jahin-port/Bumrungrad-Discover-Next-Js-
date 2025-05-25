@@ -1,5 +1,4 @@
-'use client';
-
+"use client";
 
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,7 +14,6 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import apoointDoctor from "@/public/assets/appointment doctor.jpg";
 import healthScrenning from "@/public/assets/health Screnning.jpg";
 import Image from "next/image";
-
 
 export default function MiddleBar() {
   const [open, setOpen] = React.useState(false);
@@ -88,18 +86,18 @@ export default function MiddleBar() {
               </button>
             </div>
             <div className="flex mt-5 gap-2">
-              <div  className="relative group">
+              <div className="relative group">
                 <Link href="/check-up">
                   <div className="absolute z-10 top-0 h-[100%] w-full bg-black/20 rounded-lg"></div>
                   <div className="absolute bottom-0 z-30 w-full bg-blue rounded-bl-lg rounded-br-lg">
                     <h2 className="text-white md:font-medium text-sm md:text-xl text-center p-1 md:py-3">
-                      Health <br/> Screnning
+                      Health <br /> Screening
                     </h2>
                   </div>
 
                   <Image
-                  height={300}
-                  width={1000}
+                    height={300}
+                    width={1000}
                     src={healthScrenning}
                     alt="Bumrungrad International Hospital"
                     srcset=""
@@ -109,16 +107,16 @@ export default function MiddleBar() {
                 </Link>
               </div>
               <div className="relative">
-                <Link href="/our-services/appointment" >
+                <Link href="/our-services/appointment">
                   <div className="absolute z-10 top-0 h-[100%] w-full bg-black/20 rounded-lg"></div>
                   <div className="absolute bottom-0 z-30 w-full bg-blue rounded-bl-lg rounded-br-lg">
                     <h2 className=" md:font-medium text-white text-sm md:text-xl text-center p-1 md:py-3">
-                      Doctor <br/> Schedule
+                      Doctor <br /> Schedule
                     </h2>
                   </div>
                   <Image
-                  height={400}
-                  width={1000}
+                    height={400}
+                    width={1000}
                     src={apoointDoctor}
                     effect="blur"
                     alt="Bumrungrad International Hospital"

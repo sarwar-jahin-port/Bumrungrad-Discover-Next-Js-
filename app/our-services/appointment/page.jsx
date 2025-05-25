@@ -529,7 +529,7 @@ export default function Appointment() {
                 </div>
                 <p className="text-blue font-semibold py-2.5 text-center">
                   *Select a Speciality. <br />
-                  *Select a Doctor or Write Symtopms.
+                  *Select a Doctor or Write Symptoms.
                 </p>
                 <div className="flex justify-center">
                   <button

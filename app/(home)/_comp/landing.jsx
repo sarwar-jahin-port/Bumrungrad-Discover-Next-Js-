@@ -33,10 +33,10 @@ const Landing = () => {
             Hospital
           </h1>
           <p>
-            <strong>Bumrungrad International Hospital</strong> is Southeast Asia's largest
-            private hospital and Thailand’s first JCI-accredited facility,
-            serving 1.1M+ patients annually, including 600K+ international
-            guests.
+            <strong>Bumrungrad International Hospital</strong> is Southeast
+            Asia's largest private hospital and Thailand’s first JCI-accredited
+            facility, serving 1.1M+ patients annually, including 600K+
+            international guests.
           </p>
 
           <div className="flex gap-4 mt-5">
