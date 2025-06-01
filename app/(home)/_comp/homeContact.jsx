@@ -30,7 +30,7 @@ export default function HomeContact() {
       office: "Uttara Office",
       building: "Sector-13, House: 01",
       floor: "Janapadd Road",
-      house: "Opposite of Bata Showroom",
+      house: "Besides Bata Showroom",
       city: "Uttara, Dhaka-1230",
       phone1: "+8801977284861",
       phone2: "+8801601284300",

@@ -44,7 +44,7 @@ const Landing = () => {
               onClick={handleAppointment}
               className="w-full text-sm md:w-fit px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Doctor Appoinment
+              Doctor Appointment
             </button>
             <button
               onClick={handleHealthScreen}

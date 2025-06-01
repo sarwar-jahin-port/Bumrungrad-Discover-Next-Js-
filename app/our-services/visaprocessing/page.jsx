@@ -234,7 +234,7 @@ const VisaProcessing = () => {
             {/* info card */}
             <section className="">
               <h5 className=" text-lg text-semibold  mt-5 font-semibold text-blue">
-                Patient Infromation
+                Patient Information
               </h5>
               <Divider />
 

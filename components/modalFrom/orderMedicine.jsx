@@ -105,7 +105,7 @@ const OrderMedicine = () => {
           defaultCountry='TH'
           className='w-[100%]'
         />
-        <p className='text-blue text-sm'>*Please Add Your Whatsapp Number</p>
+        <p className='text-blue text-sm'>*Please Add Your WhatsApp Number</p>
         <TextField
           placeholder='Your Email'
           type='email'

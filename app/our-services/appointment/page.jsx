@@ -617,16 +617,16 @@ export default function Appointment() {
                         <MenuItem value="Evening">
                           Afternoon (12:00 pm - 06:00 pm)
                         </MenuItem>
-                        <MenuItem value="Night">
+                        {/* <MenuItem value="Night">
                           Night (06:00 pm - 12:00 am)
-                        </MenuItem>
+                        </MenuItem> */}
                       </Select>
                     </FormControl>
                     <p className="text-sm mt-1.5 text-blue text-right">
                       *Required
                     </p>
                     <p className="font-semibold my-2.5 text-blue">
-                      First Prefarable Time
+                      First Preferable Time
                     </p>
                     <TextField
                       type="time"
@@ -652,16 +652,16 @@ export default function Appointment() {
                         <MenuItem value="Evening">
                           Afternoon (12:00 pm - 06:00 pm)
                         </MenuItem>
-                        <MenuItem value="Night">
+                        {/* <MenuItem value="Night">
                           Night (06:00 pm - 12:00 am)
-                        </MenuItem>
+                        </MenuItem> */}
                       </Select>
                     </FormControl>
                     <p className="text-sm mt-1.5 text-blue text-right">
                       *Required
                     </p>
                     <p className="font-semibold my-2.5 text-blue">
-                      Second Prefarable Time
+                      Second Preferable Time
                     </p>
                     <TextField
                       type="time"
@@ -804,7 +804,7 @@ export default function Appointment() {
                     </div>
                   )}
                   <h5 className=" text-lg text-semibold  mt-5 font-semibold text-blue">
-                    Patient Infromation
+                    Patient Information
                   </h5>
                   {!activeYourSelf && (
                     <h1 className="text-red font-semibold my-2.5">
@@ -903,7 +903,7 @@ export default function Appointment() {
                       />
                     </div>
                     <div>
-                      <p className="mb-2.5">Whatsapp Number(Required)</p>
+                      <p className="mb-2.5">WhatsApp Number(Required)</p>
                       <MuiTelInput
                         defaultCountry="TH"
                         value={phone ? phone : phone}
@@ -972,7 +972,7 @@ export default function Appointment() {
                     <p className="mb-2.5">Medical Description</p>
                     <TextField
                       className="capitalize"
-                      placeholder="MEDICAl CORNCERN OR REQUEST(OPTIONAL)"
+                      placeholder="MEDICAl CONCERN OR REQUEST(OPTIONAL)"
                       fullWidth
                       multiline
                       rows={5}

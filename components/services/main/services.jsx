@@ -14,60 +14,54 @@ import { usePathname, useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
 import AirtTcket from "../airtTcket";
 import AirPickup from "../airPickup";
-import moneyTransfer from '@/public/assets/service_logo/bro4.png'
-import languageImage from '@/public/assets/service_logo/bro.png'
-import accommodation from '@/public/assets/service_logo/bro2.png'
-import hospitalAdmission from '@/public/assets/service_logo/bro5.png'
+import moneyTransfer from "@/public/assets/service_logo/bro4.png";
+import languageImage from "@/public/assets/service_logo/bro.png";
+import accommodation from "@/public/assets/service_logo/bro2.png";
+import hospitalAdmission from "@/public/assets/service_logo/bro5.png";
 import Arrival from "../arrival";
 import LangugeInterpreter from "../languge";
 
-
-
 export default function Services({ handaleOpen, getData }) {
-  const {auth} = useAuth()
+  const { auth } = useAuth();
   const path = usePathname();
   const router = useRouter();
 
-const handleClick = (s, i, id) => {
-  // If the 'pageTo' property exists, navigate to that page
-  if (s?.pageTo) {
-    return router.push(s.pageTo);
-  }
+  const handleClick = (s, i, id) => {
+    // If the 'pageTo' property exists, navigate to that page
+    if (s?.pageTo) {
+      return router.push(s.pageTo);
+    }
 
-  // Handle specific case for "Language Interpreter"
-  if (s?.name === "Language Interpreter") {
+    // Handle specific case for "Language Interpreter"
+    if (s?.name === "Language Interpreter") {
+      handaleOpen(id);
+      getData(s);
+      return;
+    }
+
+    // If the user is not authenticated, redirect to login
+    if (!auth) {
+      return router.push("/login");
+    }
+
+    // Default case: handle opening and data fetching
     handaleOpen(id);
     getData(s);
-    return;
-  }
-
-  // If the user is not authenticated, redirect to login
-  if (!auth) {
-    return router.push('/login');
-  }
-
-  // Default case: handle opening and data fetching
-  handaleOpen(id);
-  getData(s);
-};
-
-
+  };
 
   return (
     <div className="p-5 md:p-10 my-10 md:my-20 md:container md:mx-auto">
-      {
-        path == '/our-services' ? (
-          <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-            Our Services
-          </h2>
-        ) : (
-          <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue text-center">
-        Our Complete Services for Patients at
-        Bumrungrad International Hospital
-      </h2>
-        )
-      }
-     
+      {path == "/our-services" ? (
+        <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
+          Our Services
+        </h2>
+      ) : (
+        <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue text-center">
+          Our Complete Services for Patients at Bumrungrad International
+          Hospital
+        </h2>
+      )}
+
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 mt-5 md:mt-10">
         {services.map((s, i, id) => (
           <button
@@ -87,7 +81,6 @@ const handleClick = (s, i, id) => {
   );
 }
 
-
 const services = [
   {
     name: "Schedule Doctor Appointment",
@@ -103,7 +96,7 @@ const services = [
     pageTo: "/our-services/visaprocessing",
     alt: "Bumrungrad International Hospital",
     description:
-      "We’re make getting your Thailand visa simple and stress-free. From figuring out what you need to managing the paperwork, our team has you covered. Let us handle the details so you can get excited about your trip!",
+      "We make getting your Thailand visa simple and stress-free. From understanding the requirements to managing the paperwork, our team has you covered. Let us handle the details so you can focus on your trip.",
   },
   {
     id: 3,
@@ -112,7 +105,7 @@ const services = [
     pageTo: "/our-services/order-medicine",
     alt: "Bumrungrad International Hospital",
     description:
-      "Enjoy a simple and efficient way to order your medicine from Thailand. Our service manages the details for you, making sure your medication arrives as expected.",
+      "Enjoy a simple and efficient way to order your medication from Thailand. Our service takes care of all the details to ensure your medicine arrives as expected.",
   },
   {
     name: "Medical Records",
@@ -120,7 +113,7 @@ const services = [
     pageTo: "/our-services/medical-record",
     alt: "Bumrungrad International Hospital",
     description:
-      'We want to support you every step of the way. That’s why we offer a clear and easy-to-understand treatment plan along with a detailed cost estimate for critical care. Our friendly approach ensures you have all the information you need, so you can focus on your health without any added stress.'
+      "We support you every step of the way by offering a clear, easy-to-understand treatment plan along with a detailed cost estimate for critical care. Our friendly approach ensures you have all the information you need to focus on your health—without added stress.",
   },
   {
     name: "Telemedicine",
@@ -128,7 +121,7 @@ const services = [
     pageTo: "/our-services/telemedicine",
     alt: "Bumrungrad International Hospital",
     description:
-      "Experience expert medical consultations from Bumrungrad Hospital through our telemedicine service. We make connecting with top doctors easy and accessible from home.",
+      "Access expert medical consultations from Bumrungrad Hospital through our telemedicine service. We make it easy and convenient to connect with top doctors from the comfort of your home.",
   },
   {
     id: 2,
@@ -137,7 +130,7 @@ const services = [
     form: <AirAmbulanceForm />,
     alt: "Bumrungrad International Hospital",
     description:
-      "We’re here to help in emergencies with fast and reliable air ambulance service. Our experienced team ensures you’re transported safely and comfortably to top hospitals.",
+      "We’re here to assist in emergencies with fast and reliable air ambulance service. Our experienced team ensures safe and comfortable transportation to leading hospitals.",
   },
   {
     id: 7,
@@ -146,7 +139,7 @@ const services = [
     form: <AirtTcket />,
     alt: "Bumrungrad International Hospital",
     description:
-      "Book your Thailand air ticket booking for treatment effortlessly with us. We offer daily options, competitive pricing, and seamless service, ensuring a smooth, professional, and stress-free experience.",
+      "Effortlessly book your flight to Thailand for medical treatment. We offer daily options, competitive pricing, and seamless service for a smooth and stress-free experience.",
   },
   {
     id: 8,
@@ -155,7 +148,7 @@ const services = [
     form: <AirPickup />,
     alt: "Bumrungrad International Hospital",
     description:
-      "We’re here to make your airport journey as smooth as possible. Our team will handle pick-up and drop-off, so you can relax and enjoy a comfortable ride to your accommodation.",
+      "We make your airport journey smooth and comfortable. Our team will handle pick-up and dropoff, so you can relax on your way to or from the hospital.",
   },
   {
     name: "Admission On Arrival",
@@ -163,7 +156,7 @@ const services = [
     form: <Arrival />,
     alt: "Bumrungrad International Hospital",
     description:
-      "We’re make your arrival as smooth and stress-free as possible. From quick online pre-registration to personal help from our team, we’re committed to making sure you settle in comfortably and start your care without any hassle.",
+      "We make your arrival smooth and stress-free. With quick online pre-registration and personal support from our team, we ensure you settle in comfortably and begin your care without delay.",
   },
   {
     name: "Thai Local Accommodation",
@@ -171,7 +164,7 @@ const services = [
     pageTo: "http://wa.me/+66948382910",
     alt: "Bumrungrad International Hospital",
     description:
-      "We offer your airport pick-up and drop-off is simple and relaxed. From the airport to your Thai accommodation, we make every step of your journey comfortable.",
+      "We provide convenient airport pick-up and drop-off, ensuring a relaxed and stress-free journeyfrom the airport to your Thai accommodation.",
   },
   {
     name: "Language Interpreter",
@@ -179,7 +172,7 @@ const services = [
     form: <LangugeInterpreter />,
     alt: "Bumrungrad International Hospital",
     description:
-      "Our language interpreters are here to make your conversations seamless and stress-free. We ensure accurate and easy communication every time.",
+      "Our interpreters ensure seamless and stress-free communication. We support accurate, easy conversations in your language, helping you feel confident throughout your care.",
   },
   {
     name: "Transfer Money for Treatment",
@@ -187,7 +180,6 @@ const services = [
     pageTo: "http://wa.me/+66948382910",
     alt: "Bumrungrad International Hospital",
     description:
-      "We simplify transferring funds for your medical treatment. Our process ensures your money reaches its destination quickly and securely, so you can focus on your care.",
+      "We simplify international fund transfers for your medical care. Our secure and efficient process ensures your money reaches the hospital quickly, so you can focus on your recovery.",
   },
- 
 ];

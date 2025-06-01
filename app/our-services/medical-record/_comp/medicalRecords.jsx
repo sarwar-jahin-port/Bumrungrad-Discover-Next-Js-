@@ -11,13 +11,12 @@ import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
 
-
 const MedicalRecords = () => {
   const { auth } = useAuth();
   const userDetails = auth;
   const [loader, setLoader] = useState();
   const [passport, setPassport] = useState("");
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [hnNum, setHnNum] = useState("");
   const [caseSummary, setCaseSummary] = useState("");
   const navigate = useRouter();
@@ -34,7 +33,9 @@ const MedicalRecords = () => {
       caseSummary,
     };
 
-    Object.entries(fields).forEach(([key, value]) => formData.append(key, value));
+    Object.entries(fields).forEach(([key, value]) =>
+      formData.append(key, value)
+    );
 
     try {
       setLoader(true);
@@ -58,33 +59,62 @@ const MedicalRecords = () => {
         //   },
         // });
 
-        const uploadDoc = data?.passport ?  data?.passport : "Link not found"; ;
-        
+        const uploadDoc = data?.passport ? data?.passport : "Link not found";
+
         setLoader(true);
-        const send_admin_mails = await sendEmails(admin_mails,`Medical Records - ${auth?.email}`, comapanyMailBody(formatKeys({name: auth?.firstName, email: auth?.email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
+        const send_admin_mails = await sendEmails(
+          admin_mails,
+          `Medical Records - ${auth?.email}`,
+          comapanyMailBody(
+            formatKeys({
+              name: auth?.firstName,
+              email: auth?.email,
+              hnNum: hnNum,
+              case_summary: caseSummary,
+              passport: uploadDoc,
+            }),
+            "Medical Records"
+          )
+        );
         setLoader(false);
 
         setLoader(true);
-        const send_client_mails = await sendEmails(auth?.email,`Medical Records`, comapanyMailBody(formatKeys({name: auth?.firstName, email: auth?.email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
+        const send_client_mails = await sendEmails(
+          auth?.email,
+          `Medical Records`,
+          comapanyMailBody(
+            formatKeys({
+              name: auth?.firstName,
+              email: auth?.email,
+              hnNum: hnNum,
+              case_summary: caseSummary,
+              passport: uploadDoc,
+            }),
+            "Medical Records"
+          )
+        );
         setLoader(false);
 
         if (send_admin_mails.messageId && send_client_mails.messageId) {
-          toast.success("We have received your request. Our representative will reach you shortly!", {
-            position: "top-center",
-            style: { borderRadius: "20px" },
-            duration: 5000,
-          });
-        form.reset();
-         navigate.push("/");
-        setLoader(false);
-        }else{
+          toast.success(
+            "We have received your request. Our representative will reach you shortly!",
+            {
+              position: "top-center",
+              style: { borderRadius: "20px" },
+              duration: 5000,
+            }
+          );
+          form.reset();
+          navigate.push("/");
+          setLoader(false);
+        } else {
           toast.error("Something went wrong - Mail not sent", {
             position: "top-center",
             duration: 4000,
             style: {
               color: "red",
             },
-          })
+          });
         }
       } else {
         setLoader(false);
@@ -102,21 +132,18 @@ const MedicalRecords = () => {
     }
   };
 
-  useEffect(()=>{
-    if(userDetails){
-      setName(`${userDetails?.firstName} ${userDetails?.lastName}` || "")
+  useEffect(() => {
+    if (userDetails) {
+      setName(`${userDetails?.firstName} ${userDetails?.lastName}` || "");
     }
-  },[userDetails])
+  }, [userDetails]);
   return (
     <>
       <div className="md:my-10 md:p-10 mx-5 md:container md:mx-auto   lg:w-1/2  shadow-xl rounded-xl p-5 ">
         <h1 className="text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
           Medical Records
         </h1>
-        <form
-          onSubmit={addPatient}
-          className="mt-3 mb-2 w-full"
-        >
+        <form onSubmit={addPatient} className="mt-3 mb-2 w-full">
           <div className="mb-2 flex flex-col">
             <div>
               <p className="mb-2 font-semibold text-sm">
@@ -164,11 +191,21 @@ const MedicalRecords = () => {
           <button
             disabled={loader || !name || !passport || !hnNum || !caseSummary}
             type="submit"
-            className={`${loader || !name || !passport || !hnNum || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
+            className={`${
+              loader || !name || !passport || !hnNum || !caseSummary
+                ? "bg-white text-black border"
+                : "bg-blue text-white"
+            } btn_primary`}
           >
-           {
-            loader ? <Loader className="animate-spin" stroke={loader ? "black" : "white"} fill={loader ? "black" : "white"} /> : "Submit"
-           }
+            {loader ? (
+              <Loader
+                className="animate-spin"
+                stroke={loader ? "black" : "white"}
+                fill={loader ? "black" : "white"}
+              />
+            ) : (
+              "Submit"
+            )}
           </button>
         </form>
       </div>

@@ -32,10 +32,13 @@ const AirtTcket = () => {
     formData.append("country", country);
     formData.append("destination", destination);
 
-    fetch("https://api.discoverinternationalmedicalservice.com/api/add/air/ticket", {
-      method: "POST",
-      body: formData,
-    })
+    fetch(
+      "https://api.discoverinternationalmedicalservice.com/api/add/air/ticket",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
@@ -142,7 +145,7 @@ const AirtTcket = () => {
 
         <div className="mt-5 flex flex-col items-center">
           <p className="font-semibold text-blue text-center">
-            If you need Hotel Accomodation please contact us via WhatsApp
+            If you need Hotel Accommodation please contact us via WhatsApp
           </p>
           <a
             href="http://wa.me/+8801847284867"

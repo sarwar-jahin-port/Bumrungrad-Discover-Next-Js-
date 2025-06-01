@@ -20,13 +20,13 @@ export const mailBody = (data) => {
                   font-family: Arial, sans-serif;
                   background-color: #b7b7b7;
                   margin: 0;
-                  padding: 20px;
+                  padding: 10px;
               }
               .container {
                   max-width: 100%;
                   margin: 0;
                   background-color: #fff;
-                  padding: 20px;
+                  padding: 10px;
                   border-radius: 8px;
                   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
               }
@@ -96,7 +96,7 @@ export const comapanyMailBody = (data, mail_title) => {
               }
               .header {
                   background-color: #D9D9D9;
-                  padding: 20px;
+                  padding: 10px;
                   text-align: center;
               }
               .logo-container {
@@ -117,7 +117,7 @@ export const comapanyMailBody = (data, mail_title) => {
               }
               .form-data {
                   background-color: #F8F6F6;
-                  padding: 20px;
+                  padding: 10px;
                   border-radius: 5px;
                   margin-bottom: 20px;
               }
@@ -143,7 +143,7 @@ export const comapanyMailBody = (data, mail_title) => {
               }
               .footer {
                   background-color: #D9D9D9;
-                  padding: 20px;
+                  padding: 10px;
                   text-align: center;
                   font-size: 14px;
                   color: #666;
@@ -191,13 +191,13 @@ export const comapanyMailBody = (data, mail_title) => {
                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                 <tr>
                     <td align="left" width="33.33%">
-                    <img src="https://i.ibb.co/GvMDFj09/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                     <td align="center" width="33.33%">
-                    <img src="https://i.ibb.co/Xg4Wjn7/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                     <td align="right" width="33.33%">
-                    <img src="https://i.ibb.co/xtnHNXwx/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                 </tr>
 </table>
@@ -219,8 +219,32 @@ export const comapanyMailBody = (data, mail_title) => {
 
               <!-- Footer -->
               <div class="footer">
-                  <p>If you have any questions or need further assistance, please don't hesitate to contact us at <a href="mailto:support@bumrungraddiscover.com">support@bumrungraddiscover.com</a></p>
-                  <p>Thank you for choosing Bumrungrad International Hospital!</p>
+                 <table class="footer-table" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                    <td style="font-weight: bold; color: #333;">
+                        An Independent Entity Working in Association with 
+                        <span style="color: #a88960;">Bumrungrad International</span>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="color: #555;">
+                        If you have any questions or need further assistance, please don't hesitate to contact us at
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                         <a href="mailto:support@bumrungraddiscover.com">✉ support@bumrungraddiscover.com</a>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="color: #a88960; padding-top: 4px;">
+                        Thank you for choosing Bumrungrad International Hospital!
+                    </td>
+                    </tr>
+                </table>
+
+
+
                   <!--  
                   <div class="contact-info">
                       <div class="office">
@@ -305,7 +329,7 @@ export const userMailBody = (data, mail_title) => {
               }
               .header {
                   background-color: #D9D9D9;
-                  padding: 20px;
+                  padding: 10px;
                   text-align: center;
               }
               .logo-container {
@@ -326,7 +350,7 @@ export const userMailBody = (data, mail_title) => {
               }
               .form-data {
                   background-color: #F8F6F6;
-                  padding: 20px;
+                  padding: 10px;
                   border-radius: 5px;
                   margin-bottom: 20px;
               }
@@ -351,12 +375,26 @@ export const userMailBody = (data, mail_title) => {
                   width: 30%;
               }
               .footer {
-                  background-color: #D9D9D9;
-                  padding: 20px;
-                  text-align: center;
-                  font-size: 14px;
-                  color: #666;
-              }
+                    background-color: #D9D9D9;
+                    padding: 10px 0; /* Reduced vertical padding */
+                    text-align: center;
+                    font-size: 14px;
+                    color: #666;
+                }
+                .footer-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                .footer-table td {
+                    padding: 4px 0; /* Consistent padding */
+                }
+                .footer-table a {
+                    color: #a88960;
+                    text-decoration: none;
+                }
+                .footer-table a:hover {
+                    text-decoration: underline;
+                }
               .contact-info {
                   display: flex;
                   flex-wrap: wrap;
@@ -396,13 +434,13 @@ export const userMailBody = (data, mail_title) => {
                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
                 <td align="left" width="33.33%">
-                <img src="https://i.ibb.co/GvMDFj09/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
+                <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
                 </td>
                 <td align="center" width="33.33%">
-                <img src="https://i.ibb.co/Xg4Wjn7/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
+                <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
                 </td>
                 <td align="right" width="33.33%">
-                <img src="https://i.ibb.co/xtnHNXwx/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
+                <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
                 </td>
             </tr>
 </table>
@@ -424,8 +462,32 @@ export const userMailBody = (data, mail_title) => {
 
               <!-- Footer -->
               <div class="footer">
-                  <p>If you have any questions or need further assistance, please don't hesitate to contact us at <a href="mailto:support@bumrungraddiscover.com">support@bumrungraddiscover.com</a></p>
-                  <p>Thank you for choosing Bumrungrad International Hospital!</p>
+                  <table class="footer-table" cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                        <td style="font-weight: bold; color: #333;">
+                            An Independent Entity Working in Association with 
+                            <span style="color: #a88960;">Bumrungrad International</span>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="color: #555;">
+                            If you have any questions or need further assistance, please don't hesitate to contact us at
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                             <a href="mailto:support@bumrungraddiscover.com">✉ support@bumrungraddiscover.com</a>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td style="color: #a88960; padding-top: 4px;">
+                            Thank you for choosing Bumrungrad International Hospital!
+                        </td>
+                        </tr>
+                    </table>
+
+
+
                   
                   <!--
                   <div class="contact-info">
@@ -523,7 +585,7 @@ export const mailBodyMedicine = (data, mail_title) => {
               }
               .header {
                   background-color: #D9D9D9;
-                  padding: 20px;
+                  padding: 10px;
                   text-align: center;
               }
               .logo-container {
@@ -544,7 +606,7 @@ export const mailBodyMedicine = (data, mail_title) => {
               }
               .patient-info {
                   background-color: #f5f5f5;
-                  padding: 20px;
+                  padding: 10px;
                   border-radius: 5px;
                   margin-bottom: 20px;
               }
@@ -570,7 +632,7 @@ export const mailBodyMedicine = (data, mail_title) => {
               }
               .footer {
                   background-color: #D9D9D9;
-                  padding: 20px;
+                  padding: 10px;
                   text-align: center;
                   font-size: 14px;
                   color: #666;
@@ -618,13 +680,13 @@ export const mailBodyMedicine = (data, mail_title) => {
                   <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                 <tr>
                     <td align="left" width="33.33%">
-                    <img src="https://i.ibb.co/GvMDFj09/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum.png" alt="Bumrungrad International Hospital" width="180" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                     <td align="center" width="33.33%">
-                    <img src="https://i.ibb.co/Xg4Wjn7/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-dis.png" alt="Bumrungrad Discover" width="150" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                     <td align="right" width="33.33%">
-                    <img src="https://i.ibb.co/xtnHNXwx/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
+                    <img src="https://api.discoverinternationalmedicalservice.com/public/upload/site/bum-v.png" alt="Vitalife" width="120" style="display: block; max-width: 100%; height: auto; border: 0;">
                     </td>
                 </tr>
     </table>
@@ -671,8 +733,31 @@ export const mailBodyMedicine = (data, mail_title) => {
 
               <!-- Footer -->
               <div class="footer">
-                  <p>If you have any questions or need further assistance, please don't hesitate to contact us at <a href="mailto:support@bumrungraddiscover.com">support@bumrungraddiscover.com</a></p>
-                  <p>Thank you for choosing Bumrungrad International Hospital!</p>
+                 <table class="footer-table" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td style="font-weight: bold; color: #333;">
+        An Independent Entity Working in Association with 
+        <span style="color: #a88960;">Bumrungrad International</span>
+      </td>
+    </tr>
+    <tr>
+      <td style="color: #555;">
+        If you have any questions or need further assistance, please don't hesitate to contact us at
+      </td>
+    </tr>
+    <tr>
+      <td>
+         <a href="mailto:support@bumrungraddiscover.com">✉ support@bumrungraddiscover.com</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="color: #a88960; padding-top: 4px;">
+        Thank you for choosing Bumrungrad International Hospital!
+      </td>
+    </tr>
+  </table>
+
+
                   
                   <!-- 
                   <div class="contact-info">

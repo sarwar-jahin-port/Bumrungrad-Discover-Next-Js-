@@ -325,14 +325,14 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='my-2.5 font-semibold text-blue'>
-                                    Whatsapp Number
+                                    WhatsApp Number
                                 </p>
                                 <TextField
                                     type='text'
                                     required
                                     value={phoneNumber}
                                     id='outlined-basic'
-                                    placeholder='Enter Whatsapp Number'
+                                    placeholder='Enter WhatsApp Number'
                                     variant='outlined'
                                     fullWidth
                                     onChange={(e) =>

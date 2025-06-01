@@ -1,10 +1,12 @@
 export const metadata = {
-  title: 'Learn About Bumrungrad Hospital: Excellence in Healthcare',
-  description: "Explore Bumrungrad International Hospital's excellence in healthcare. Discover cutting-edge services and compassionate care for your well-being.",
+  title: "Learn About Bumrungrad Hospital: Excellence in Healthcare",
+  description:
+    "Explore Bumrungrad International Hospital's excellence in healthcare. Discover cutting-edge services and compassionate care for your well-being.",
   alternates: {
-    canonical: 'https://discoverinternationalmedicalservice.com/about-bumrungrad',
+    canonical:
+      "https://discoverinternationalmedicalservice.com/about-bumrungrad",
   },
-  charset: 'utf-8',
+  charset: "utf-8",
 };
 
 import React from "react";
@@ -15,7 +17,6 @@ import inovationsimg from "@/public/assets/about_bumrungrad/bumrungrad_owned (2)
 import careingimg from "@/public/assets/about_bumrungrad/bumrungrad_owned (3).png";
 import Link from "next/link";
 import Image from "next/image";
-
 
 const Bumrungrad = () => {
   return (
@@ -41,9 +42,10 @@ const Bumrungrad = () => {
           Internationally accredited multispecialty hospital Bumrungrad has been
           listed on the Thai Stock Exchange since 1989. At
           <Link
-            className="font-semibold text-blue underline"
+            className="font-semibold text-blue underline "
             href="https://discoverinternationalmedicalservice.com/"
           >
+            {" "}
             Bumrungrad International Hospital
           </Link>
           , one of the largest private hospitals in Southeast Asia, more than
@@ -114,6 +116,7 @@ const Bumrungrad = () => {
               className="font-semibold text-blue underline"
               href="https://discoverinternationalmedicalservice.com/"
             >
+              {" "}
               Bumrungrad International Hospital
             </Link>
             . International board certificates from the United States, United
@@ -192,6 +195,7 @@ const Bumrungrad = () => {
               className="font-semibold text-blue underline"
               href="https://discoverinternationalmedicalservice.com/"
             >
+              {" "}
               Bumrungrad International Hospital
             </Link>
             excels. The Precision Medicine department at Bumrungrad has grown,
@@ -241,6 +245,7 @@ const Bumrungrad = () => {
               href="https://discoverims.com/"
               className="font-semibold underline text-blue"
             >
+              {" "}
               Bumrungrad International
             </Link>
             Airport Representative Office at Suvarnabhumi Airport offers
