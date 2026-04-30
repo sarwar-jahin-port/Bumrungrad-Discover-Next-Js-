@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import airimg from "@/public/assets/service_logo/Bumrungrad  Hospital-air_ambulance.png";
@@ -101,7 +101,7 @@ export default function DhakaOffices() {
     {
       name: "Thai Local Accommodation",
       img: accommodation,
-      pageTo: "http://wa.me/+66948382910",
+      pageTo: "http://wa.me/+66948283651",
       alt: "Bumrungrad International Hospital",
       description:
         "We help you find comfortable and safe accommodation near the hospital, making your stay in Thailand relaxing and convenient.",
@@ -117,7 +117,7 @@ export default function DhakaOffices() {
     {
       name: "Transfer Money for Treatment",
       img: moneyTransfer,
-      pageTo: "http://wa.me/+66948382910",
+      pageTo: "http://wa.me/+66948283651",
       alt: "Bumrungrad International Hospital",
       description:
         "We assist in transferring money for your medical treatment, making sure your payment reaches the hospital safely and quickly.",
@@ -168,115 +168,115 @@ export default function DhakaOffices() {
   ];
 
   const referralOffices = [
-  {
-    name: "Bumrungrad Hospital Referral Office Dhanmondi",
-    address:
-      "Rupayan Prime Tower, Plot No: 02 (9th Floor), Road No: 07, Green Road, Dhanmondi, Dhaka-1205, Bangladesh",
-    phone: "+880 1847 28 4860, +880 1847 28 4863",
-    email: [
-      {
-        label: "support@bumrungraddiscover.com",
-        href: "mailto:support@bumrungraddiscover.com",
-      },
-      {
-        label: "dhanmondi@bumrungraddiscover.com",
-        href: "mailto:dhanmondi@bumrungraddiscover.com",
-      },
-    ],
-    website: [
-      { label: "discoverims.com", href: "https://discoverims.com" },
-      {
-        label: "discoverinternationalmedicalservice.com",
-        href: "https://discoverinternationalmedicalservice.com/",
-      },
-    ],
-    mapLink:
-      "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Office/@23.7455115,90.3850626,15z/data=!4m6!3m5!1s0x3755b91b29851709:0xc3d50a2ecf8fad9a!8m2!3d23.7455115!4d90.3850626!16s%2Fg%2F11g1xxhlz1?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-    mapLabel: "Bumrungrad Hospital Dhaka Office",
-  },
-  {
-    name: "Bumrungrad Hospital Referral Office Banani",
-    address:
-      "Alamin Park Panorama (Infront of Banani Block -C Park), Lift-5, House 105, Road 13/A, Block - C, Banani, Dhaka - 1213",
-    phone: "+8801847284868, +8801977284862",
-    email: [
-      {
-        label: "banani@bumrungraddiscover.com",
-        href: "mailto:banani@bumrungraddiscover.com",
-      },
-      {
-        label: "support@bumrungraddiscover.com",
-        href: "mailto:support@bumrungraddiscover.com",
-      },
-    ],
-    website: [
-      { label: "discoverims.com", href: "https://discoverims.com" },
-      {
-        label: "discoverinternationalmedicalservice.com",
-        href: "https://discoverinternationalmedicalservice.com/",
-      },
-    ],
-    mapLink:
-      "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Bangladesh+-+Banani+Branch/@23.7638509,90.3837837,14z/data=!4m6!3m5!1s0x3755c72e25bd9c23:0x3d32da1eea1d8b1c!8m2!3d23.7914367!4d90.4035711!16s%2Fg%2F11lrn54v4s?coh=164777&shorturl=1&entry=tts&g_ep=EgoyMDI0MDkyOS4wIPu8ASoASAFQAw%3D%3D",
-    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-    mapLabel: "Bumrungrad Hospital Dhaka Bangladesh - Banani Branch",
-  },
-  {
-    name: "Bumrungrad Hospital Referral Office Uttara",
-    address:
-      "Oasis Oliveira, Lift-02, House-01, Road-1/A, Sonargaon Janapad Road, Sector-13, Uttara, Dhaka, Bangladesh",
-    phone: "+8801977284861, +8801601284300",
-    email: [
-      {
-        label: "uttara@bumrungraddiscover.com",
-        href: "mailto:uttara@bumrungraddiscover.com",
-      },
-      {
-        label: "support@bumrungraddiscover.com",
-        href: "mailto:support@bumrungraddiscover.com",
-      },
-    ],
-    website: [
-      { label: "discoverims.com", href: "https://discoverims.com" },
-      {
-        label: "discoverinternationalmedicalservice.com",
-        href: "https://discoverinternationalmedicalservice.com/",
-      },
-    ],
-    mapLink:
-      "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Uttara+Office/@23.8742122,90.3928182,15z/data=!4m6!3m5!1s0x3755c52a06df3939:0x5865aa1fbf242113!8m2!3d23.8742151!4d90.3928172!16s%2Fg%2F11tgcb0n45?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-    mapLabel: "Bumrungrad International Hospital Uttara Office",
-  },
-  {
-    name: "Bumrungrad Hospital Referral Office Chittagong Agrabad",
-    address:
-      "Daar E Shahidi Building 3rd Floor, (Lift-3), Opposite of Ethnological Museum 69, Agrabad C/A. Chittagong.",
-    phone: "+8801973-284836, +8801973-284862",
-    email: [
-      {
-        label: "ctg@bumrungraddiscover.com",
-        href: "mailto:ctg@bumrungraddiscover.com",
-      },
-      {
-        label: "support@bumrungraddiscover.com",
-        href: "mailto:support@bumrungraddiscover.com",
-      },
-    ],
-    website: [
-      { label: "discoverims.com", href: "https://discoverims.com" },
-      {
-        label: "discoverinternationalmedicalservice.com",
-        href: "https://discoverinternationalmedicalservice.com/",
-      },
-    ],
-    mapLink:
-      "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Bangladesh+-+Representative+Office+in+Agrabad+,+Chittagong/@22.3271702,91.8144269,17z/data=!3m1!4b1!4m6!3m5!1s0x30acd9b23e4a2043:0x4d00aafa2c904ae3!8m2!3d22.3271702!4d91.8144269!16s%2Fg%2F11t5t0krzw?authuser=0&entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-    mapLabel: "Bumrungrad International Hospital Chittagong",
-  },
-];
+    {
+      name: "Bumrungrad Hospital Referral Office Dhanmondi",
+      address:
+        "Rupayan Prime Tower, Plot No: 02 (9th Floor), Road No: 07, Green Road, Dhanmondi, Dhaka-1205, Bangladesh",
+      phone: "+880 1847 28 4860, +880 1847 28 4863",
+      email: [
+        {
+          label: "support@bumrungraddiscover.com",
+          href: "mailto:support@bumrungraddiscover.com",
+        },
+        {
+          label: "dhanmondi@bumrungraddiscover.com",
+          href: "mailto:dhanmondi@bumrungraddiscover.com",
+        },
+      ],
+      website: [
+        { label: "discoverims.com", href: "https://discoverims.com" },
+        {
+          label: "discoverinternationalmedicalservice.com",
+          href: "https://discoverinternationalmedicalservice.com/",
+        },
+      ],
+      mapLink:
+        "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Office/@23.7455115,90.3850626,15z/data=!4m6!3m5!1s0x3755b91b29851709:0xc3d50a2ecf8fad9a!8m2!3d23.7455115!4d90.3850626!16s%2Fg%2F11g1xxhlz1?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+      mapLabel: "Bumrungrad Hospital Dhaka Office",
+    },
+    {
+      name: "Bumrungrad Hospital Referral Office Banani",
+      address:
+        "Alamin Park Panorama (Infront of Banani Block -C Park), Lift-5, House 105, Road 13/A, Block - C, Banani, Dhaka - 1213",
+      phone: "+8801847284868, +8801977284862",
+      email: [
+        {
+          label: "banani@bumrungraddiscover.com",
+          href: "mailto:banani@bumrungraddiscover.com",
+        },
+        {
+          label: "support@bumrungraddiscover.com",
+          href: "mailto:support@bumrungraddiscover.com",
+        },
+      ],
+      website: [
+        { label: "discoverims.com", href: "https://discoverims.com" },
+        {
+          label: "discoverinternationalmedicalservice.com",
+          href: "https://discoverinternationalmedicalservice.com/",
+        },
+      ],
+      mapLink:
+        "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Bangladesh+-+Banani+Branch/@23.7638509,90.3837837,14z/data=!4m6!3m5!1s0x3755c72e25bd9c23:0x3d32da1eea1d8b1c!8m2!3d23.7914367!4d90.4035711!16s%2Fg%2F11lrn54v4s?coh=164777&shorturl=1&entry=tts&g_ep=EgoyMDI0MDkyOS4wIPu8ASoASAFQAw%3D%3D",
+      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+      mapLabel: "Bumrungrad Hospital Dhaka Bangladesh - Banani Branch",
+    },
+    {
+      name: "Bumrungrad Hospital Referral Office Uttara",
+      address:
+        "Oasis Oliveira, Lift-02, House-01, Road-1/A, Sonargaon Janapad Road, Sector-13, Uttara, Dhaka, Bangladesh",
+      phone: "+8801977284861, +8801601284300",
+      email: [
+        {
+          label: "uttara@bumrungraddiscover.com",
+          href: "mailto:uttara@bumrungraddiscover.com",
+        },
+        {
+          label: "support@bumrungraddiscover.com",
+          href: "mailto:support@bumrungraddiscover.com",
+        },
+      ],
+      website: [
+        { label: "discoverims.com", href: "https://discoverims.com" },
+        {
+          label: "discoverinternationalmedicalservice.com",
+          href: "https://discoverinternationalmedicalservice.com/",
+        },
+      ],
+      mapLink:
+        "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Uttara+Office/@23.8742122,90.3928182,15z/data=!4m6!3m5!1s0x3755c52a06df3939:0x5865aa1fbf242113!8m2!3d23.8742151!4d90.3928172!16s%2Fg%2F11tgcb0n45?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+      mapLabel: "Bumrungrad International Hospital Uttara Office",
+    },
+    {
+      name: "Bumrungrad Hospital Referral Office Chittagong Agrabad",
+      address:
+        "Daar E Shahidi Building 3rd Floor, (Lift-3), Opposite of Ethnological Museum 69, Agrabad C/A. Chittagong.",
+      phone: "+8801973-284836, +8801973-284862",
+      email: [
+        {
+          label: "ctg@bumrungraddiscover.com",
+          href: "mailto:ctg@bumrungraddiscover.com",
+        },
+        {
+          label: "support@bumrungraddiscover.com",
+          href: "mailto:support@bumrungraddiscover.com",
+        },
+      ],
+      website: [
+        { label: "discoverims.com", href: "https://discoverims.com" },
+        {
+          label: "discoverinternationalmedicalservice.com",
+          href: "https://discoverinternationalmedicalservice.com/",
+        },
+      ],
+      mapLink:
+        "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Bangladesh+-+Representative+Office+in+Agrabad+,+Chittagong/@22.3271702,91.8144269,17z/data=!3m1!4b1!4m6!3m5!1s0x30acd9b23e4a2043:0x4d00aafa2c904ae3!8m2!3d22.3271702!4d91.8144269!16s%2Fg%2F11t5t0krzw?authuser=0&entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+      mapLabel: "Bumrungrad International Hospital Chittagong",
+    },
+  ];
 
   function handleAppointment() {
     if (auth) {

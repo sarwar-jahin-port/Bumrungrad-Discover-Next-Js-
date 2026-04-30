@@ -14,60 +14,54 @@ import { usePathname, useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
 import AirtTcket from "../airtTcket";
 import AirPickup from "../airPickup";
-import moneyTransfer from '@/public/assets/service_logo/bro4.png'
-import languageImage from '@/public/assets/service_logo/bro.png'
-import accommodation from '@/public/assets/service_logo/bro2.png'
-import hospitalAdmission from '@/public/assets/service_logo/bro5.png'
+import moneyTransfer from "@/public/assets/service_logo/bro4.png";
+import languageImage from "@/public/assets/service_logo/bro.png";
+import accommodation from "@/public/assets/service_logo/bro2.png";
+import hospitalAdmission from "@/public/assets/service_logo/bro5.png";
 import Arrival from "../arrival";
 import LangugeInterpreter from "../languge";
 
-
-
 export default function Services({ handaleOpen, getData }) {
-  const {auth} = useAuth()
+  const { auth } = useAuth();
   const path = usePathname();
   const router = useRouter();
 
-const handleClick = (s, i, id) => {
-  // If the 'pageTo' property exists, navigate to that page
-  if (s?.pageTo) {
-    return router.push(s.pageTo);
-  }
+  const handleClick = (s, i, id) => {
+    // If the 'pageTo' property exists, navigate to that page
+    if (s?.pageTo) {
+      return router.push(s.pageTo);
+    }
 
-  // Handle specific case for "Language Interpreter"
-  if (s?.name === "Language Interpreter") {
+    // Handle specific case for "Language Interpreter"
+    if (s?.name === "Language Interpreter") {
+      handaleOpen(id);
+      getData(s);
+      return;
+    }
+
+    // If the user is not authenticated, redirect to login
+    if (!auth) {
+      return router.push("/login");
+    }
+
+    // Default case: handle opening and data fetching
     handaleOpen(id);
     getData(s);
-    return;
-  }
-
-  // If the user is not authenticated, redirect to login
-  if (!auth) {
-    return router.push('/login');
-  }
-
-  // Default case: handle opening and data fetching
-  handaleOpen(id);
-  getData(s);
-};
-
-
+  };
 
   return (
     <div className="p-5 md:p-10 my-10 md:my-20 md:container md:mx-auto">
-      {
-        path == '/our-services' ? (
-          <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-            Our Services
-          </h2>
-        ) : (
-          <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue text-center">
-        Our Complete Services for Patients at
-        Bumrungrad International Hospital
-      </h2>
-        )
-      }
-     
+      {path == "/our-services" ? (
+        <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
+          Our Services
+        </h2>
+      ) : (
+        <h2 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue text-center">
+          Our Complete Services for Patients at Bumrungrad International
+          Hospital
+        </h2>
+      )}
+
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5 mt-5 md:mt-10">
         {services.map((s, i, id) => (
           <button
@@ -86,7 +80,6 @@ const handleClick = (s, i, id) => {
     </div>
   );
 }
-
 
 const services = [
   {
@@ -120,7 +113,7 @@ const services = [
     pageTo: "/our-services/medical-record",
     alt: "Bumrungrad International Hospital",
     description:
-      'We want to support you every step of the way. That’s why we offer a clear and easy-to-understand treatment plan along with a detailed cost estimate for critical care. Our friendly approach ensures you have all the information you need, so you can focus on your health without any added stress.'
+      "We want to support you every step of the way. That’s why we offer a clear and easy-to-understand treatment plan along with a detailed cost estimate for critical care. Our friendly approach ensures you have all the information you need, so you can focus on your health without any added stress.",
   },
   {
     name: "Telemedicine",
@@ -168,7 +161,7 @@ const services = [
   {
     name: "Thai Local Accommodation",
     img: accommodation,
-    pageTo: "http://wa.me/+66948382910",
+    pageTo: "http://wa.me/+66948283651",
     alt: "Bumrungrad International Hospital",
     description:
       "We offer your airport pick-up and drop-off is simple and relaxed. From the airport to your Thai accommodation, we make every step of your journey comfortable.",
@@ -184,10 +177,9 @@ const services = [
   {
     name: "Transfer Money for Treatment",
     img: moneyTransfer,
-    pageTo: "http://wa.me/+66948382910",
+    pageTo: "http://wa.me/+66948283651",
     alt: "Bumrungrad International Hospital",
     description:
       "We simplify transferring funds for your medical treatment. Our process ensures your money reaches its destination quickly and securely, so you can focus on your care.",
   },
- 
 ];
