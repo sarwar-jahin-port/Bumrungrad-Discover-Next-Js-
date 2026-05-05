@@ -16,12 +16,15 @@ import { menuItems } from "./menuItems";
 import { useRouter } from "next/navigation";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import useAuth from "@/helpers/hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
+import BookAppointmentModal from "@/components/shared/BookAppointmentModal";
 
 const Topbar = () => {
     const { auth, setAuth, setIsAdd } = useAuth();
     const [open, setOpen] = useState(false);
+    const [appointmentOpen, setAppointmentOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState({
         status: false,
         index: "",
@@ -186,12 +189,13 @@ const Topbar = () => {
                 </div>
                 {/* link and button  */}
                 <div className='flex gap-4'>
+                    {/*
+                    Sign In / Profile dropdown — temporarily hidden, replaced with Book an Appointment.
                     <div className='relative group hidden md:block'>
                         <PersonIcon
                             sx={{ fontSize: "28px" }}
                             className='text-blue cursor-pointer'
-                        />{" "}
-                        {/* </Link> */}
+                        />
                         <div className='hidden group-hover:block duration-300 ease-linear bg-white absolute z-50 min-w-[120px] md:min-w-[150px] rounded shadow-xl'>
                             <div className='flex flex-col p-2 rounded gap-2 text-sm'>
                                 {auth ? (
@@ -225,6 +229,15 @@ const Topbar = () => {
                             </div>
                         </div>
                     </div>
+                    */}
+                    <button
+                        onClick={() => setAppointmentOpen(true)}
+                        className='text-blue hover:scale-110 duration-300 ease-linear'
+                        aria-label='Book an Appointment'
+                        title='Book an Appointment'
+                    >
+                        <CalendarMonthIcon sx={{ fontSize: "28px" }} />
+                    </button>
                     <div className='flex gap-4 items-center'>
                         <a href='mailto:support@discoverinternationalmedicalservice.com'>
                             <EmailIcon
@@ -284,6 +297,10 @@ const Topbar = () => {
                 </ul>
             </section>
             <Divider />
+            <BookAppointmentModal
+                open={appointmentOpen}
+                onClose={() => setAppointmentOpen(false)}
+            />
         </nav>
     );
 };

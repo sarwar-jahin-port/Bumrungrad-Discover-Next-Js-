@@ -1,13 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import useAuth from "@/helpers/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import BookAppointmentModal from "@/components/shared/BookAppointmentModal";
 
 const Landing = () => {
   const { auth } = useAuth();
   const router = useRouter();
+  const [appointmentOpen, setAppointmentOpen] = useState(false);
 
   function handleAppointment() {
     if (auth) {
@@ -17,11 +19,7 @@ const Landing = () => {
     }
   }
   function handleHealthScreen() {
-    if (auth) {
-      router.push("/check-up");
-    } else {
-      router.push("/login");
-    }
+    setAppointmentOpen(true);
   }
 
   return (
@@ -64,6 +62,10 @@ const Landing = () => {
           />
         </div>
       </div>
+      <BookAppointmentModal
+        open={appointmentOpen}
+        onClose={() => setAppointmentOpen(false)}
+      />
     </section>
   );
 };
