@@ -17,6 +17,7 @@ export default function ContactForm() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "",
         message: "",
     });
 
@@ -46,6 +47,7 @@ export default function ContactForm() {
                 setFormData({
                     name: "",
                     email: "",
+                    phone: "",
                     message: "",
                 });
             }
@@ -91,6 +93,17 @@ export default function ContactForm() {
                         label='Enter Email'
                         variant='outlined'
                         name='user_email'
+                        required
+                    />
+                    <TextField
+                        type='tel'
+                        value={formData.phone}
+                        onChange={(e) =>
+                            setFormData({ ...formData, phone: e.target.value })
+                        }
+                        label='Enter Phone Number'
+                        variant='outlined'
+                        name='user_phone'
                         required
                     />
                     <TextField
