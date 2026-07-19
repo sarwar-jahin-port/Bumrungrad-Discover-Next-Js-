@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import { TextField, FormControl, MenuItem, Select } from "@mui/material";
@@ -54,7 +54,7 @@ export default function CheckUp() {
     //get packages
     useEffect(() => {
         fetch(
-            "https://api.discoverinternationalmedicalservice.com/api/get/sub/package",
+            "http://127.0.0.1:8000/api/get/sub/package",
         )
             .then((res) => res.json())
             .then((data) => setPackages(data?.data));
@@ -63,7 +63,7 @@ export default function CheckUp() {
     //get speacilities
     useEffect(() => {
         fetch(
-            "https://api.discoverinternationalmedicalservice.com/api/get/specialty",
+            "http://127.0.0.1:8000/api/get/specialty",
         )
             .then((res) => res.json())
             .then((data) => setSelectDepartment(data?.response?.data));
@@ -87,7 +87,7 @@ export default function CheckUp() {
             const queryParams = `specialty=${specialty}`;
             // Create the base URL
             const baseUrl =
-                "https://api.discoverinternationalmedicalservice.com/api/search/doctor";
+                "http://127.0.0.1:8000/api/search/doctor";
             // Create the final URL by appending the query string if it's not empty
             const finalUrl = queryParams
                 ? `${baseUrl}?${queryParams}`
@@ -144,7 +144,7 @@ export default function CheckUp() {
             // Send POST request
             setLoader(true);
             const response = await fetch(
-                "https://api.discoverinternationalmedicalservice.com/api/add/health/check_up",
+                "http://127.0.0.1:8000/api/add/health/check_up",
                 {
                     method: "POST",
                     body: formData,

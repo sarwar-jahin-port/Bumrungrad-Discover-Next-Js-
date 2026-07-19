@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { admin_mails } from "@/constant";
 import useAuth from "@/helpers/hooks/useAuth";
@@ -42,7 +42,7 @@ const Arrival = () => {
             // Send POST request
             setLoader(true);
             const response = await fetch(
-                "https://api.discoverinternationalmedicalservice.com/api/add/new-admission",
+                "http://127.0.0.1:8000/api/add/new-admission",
                 {
                     method: "POST",
                     body: _formData,

@@ -1,4 +1,4 @@
-import React from 'react'
+﻿import React from 'react'
 import { TextField } from '@mui/material'
 import { useState } from 'react'
 const AirPickup = () => {
@@ -19,7 +19,7 @@ const AirPickup = () => {
     formData.append('air_ticket', airTicketFile)
     formData.append('passenger', passenger)
 
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/air/pickup', {
+    fetch('http://127.0.0.1:8000/api/add/air/pickup', {
       method: 'POST',
       body: formData,
     })

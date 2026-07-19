@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { MuiTelInput } from "mui-tel-input";
@@ -64,7 +64,7 @@ const SendQuery = () => {
     try {
       setLoader(true);
       const response = await fetch(
-        "https://api.discoverinternationalmedicalservice.com/api/add/question",
+        "http://127.0.0.1:8000/api/add/question",
         {
           method: "POST",
           body: formData,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Button, TextField } from '@mui/material'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
@@ -68,7 +68,7 @@ const OrderMedicine = () => {
     formData.append('email', email)
     formData.append('prescription', prescriptionImg)
     formData.append('medicines', JSON.stringify(medicArr))
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/order/medicine', {
+    fetch('http://127.0.0.1:8000/api/add/order/medicine', {
       method: 'POST',
       body: formData,
     })

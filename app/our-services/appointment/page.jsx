@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   FormControl,
@@ -170,7 +170,7 @@ export default function Appointment() {
   //get speacilities
   useEffect(() => {
     fetch(
-      "https://api.discoverinternationalmedicalservice.com/api/get/specialty"
+      "http://127.0.0.1:8000/api/get/specialty"
     )
       .then((res) => res.json())
       .then((data) => setSpecialities(data?.response?.data));
@@ -179,7 +179,7 @@ export default function Appointment() {
   useEffect(() => {
     if (specialty) {
       fetch(
-        `https://api.discoverinternationalmedicalservice.com/api/get/selected/sub/specialty/${specialty}`
+        `http://127.0.0.1:8000/api/get/selected/sub/specialty/${specialty}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -200,7 +200,7 @@ export default function Appointment() {
       const queryParams = `specialty=${specialty}&sub_specialty=${subSpecialty}`;
       // Create the base URL
       const baseUrl =
-        "https://api.discoverinternationalmedicalservice.com/api/search/doctor";
+        "http://127.0.0.1:8000/api/search/doctor";
       // Create the final URL by appending the query string if it's not empty
       const finalUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
       // Fetch data from the API
@@ -268,7 +268,7 @@ export default function Appointment() {
 
       // Send API request
       const apiResponse = await fetch(
-        "https://api.discoverinternationalmedicalservice.com/api/add/doctor/appointment",
+        "http://127.0.0.1:8000/api/add/doctor/appointment",
         {
           method: "POST",
           body: formData,

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Divider, TextField } from "@mui/material";
 import React, { useState } from "react";
@@ -39,7 +39,7 @@ export default function Login() {
 
     try {
       const response = await fetch(
-        "https://api.discoverinternationalmedicalservice.com/api/login",
+        "http://127.0.0.1:8000/api/login",
         {
           method: "POST",
           body: loginData,
@@ -58,7 +58,7 @@ export default function Login() {
         const setTokenOnServer = await userTokenSet(data?.msg?.token);
 
         if (setTokenOnServer.success == "success") {
-          toast.success("Login Successful ✌️", {
+          toast.success("Login Successful âœŒï¸", {
             duration: 5000,
             position: "top-center",
             style: {
@@ -73,7 +73,7 @@ export default function Login() {
         }
 
         if (setTokenOnServer.error == "error") {
-          toast.error("Something went wrong 😱😱", {
+          toast.error("Something went wrong ðŸ˜±ðŸ˜±", {
             duration: 5000,
             style: {
               padding: "20px",
@@ -82,7 +82,7 @@ export default function Login() {
           });
         }
       } else {
-        toast.error("Credential didn't match with our record! 😱😱", {
+        toast.error("Credential didn't match with our record! ðŸ˜±ðŸ˜±", {
           duration: 5000,
           style: {
             padding: "20px",
@@ -92,7 +92,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong. Please try again. 😱😱", {
+      toast.error("Something went wrong. Please try again. ðŸ˜±ðŸ˜±", {
         duration: 5000,
         style: {
           padding: "20px",

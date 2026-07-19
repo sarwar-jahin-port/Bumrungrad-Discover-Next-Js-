@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
@@ -21,10 +21,10 @@ export default function Packages() {
 
   useEffect(() => {
     setLoader(true)
-    let url = 'https://api.discoverinternationalmedicalservice.com/api/get/package'
+    let url = 'http://127.0.0.1:8000/api/get/package'
 
     if (searchValue !== '') {
-      url = `https://api.discoverinternationalmedicalservice.com/api/search/package/${searchValue}`
+      url = `http://127.0.0.1:8000/api/search/package/${searchValue}`
     }
 
     fetch(url)

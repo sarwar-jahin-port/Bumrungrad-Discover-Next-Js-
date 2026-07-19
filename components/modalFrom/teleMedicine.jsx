@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { Divider, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
@@ -57,7 +57,7 @@ const TeleMedicine = () => {
     formData.append('interpreter', interpreter)
     formData.append('specificConcern', specificConcern)
 
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/tele/medicine', {
+    fetch('http://127.0.0.1:8000/api/add/tele/medicine', {
       method: 'POST',
       body: formData,
     })

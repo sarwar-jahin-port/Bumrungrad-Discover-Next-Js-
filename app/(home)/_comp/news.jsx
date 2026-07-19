@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -15,7 +15,7 @@ export default function News() {
 
   useEffect(() => {
     setLoader(true)
-    fetch('https://api.discoverinternationalmedicalservice.com/api/get/news')
+    fetch('http://127.0.0.1:8000/api/get/news')
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {

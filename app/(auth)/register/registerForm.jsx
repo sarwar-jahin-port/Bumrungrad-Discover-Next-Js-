@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import {
   Divider,
@@ -80,7 +80,7 @@ export default function Register() {
         SetErrors(null);
 
         const res = await fetch(
-          "https://api.discoverinternationalmedicalservice.com/api/register",
+          "http://127.0.0.1:8000/api/register",
           {
             method: "POST",
             body: formData,

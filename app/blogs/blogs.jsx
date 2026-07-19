@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { Divider } from "@mui/material";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -16,7 +16,7 @@ const AllBlogs = () => {
   // Fetch blog data when component mounts or page changes
   const fetchBlogs = (page) => {
     setLoader(true); // Set loader to true when fetching new data
-    fetch(`https://api.discoverinternationalmedicalservice.com/api/get-all-blogs?page=${page}`)
+    fetch(`http://127.0.0.1:8000/api/get-all-blogs?page=${page}`)
       .then((res) => res.json())
       .then((resData) => {
         if (resData.status === 200) {

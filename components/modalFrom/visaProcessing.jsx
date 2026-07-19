@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import personImg from '../../../assets/Bumrungrad  Hospital_Abdus Samad.jpg'
 import PersonIcon from '@mui/icons-material/Person'
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'
@@ -79,7 +79,7 @@ const VisaProcessing = () => {
     formData.append('driveLink1', driveLink1)
     formData.append('driveLink2', driveLink2)
 
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/visa/precessing', {
+    fetch('http://127.0.0.1:8000/api/add/visa/precessing', {
       method: 'POST',
       body: formData,
     })

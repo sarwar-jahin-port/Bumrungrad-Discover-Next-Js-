@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import useAuth from "@/helpers/hooks/useAuth";
 import React, { useEffect, useState } from "react";
@@ -76,7 +76,7 @@ export default function User() {
 
             setUpdateLoading(true);
             const response = await fetch(
-                `https://api.discoverinternationalmedicalservice.com/api/profile-update/${auth?.id}`,
+                `http://127.0.0.1:8000/api/profile-update/${auth?.id}`,
                 {
                     method: "POST",
                     body: _formData,
@@ -118,7 +118,7 @@ export default function User() {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `https://api.discoverinternationalmedicalservice.com/api/personal/appointment/${auth?.id}`,
+                    `http://127.0.0.1:8000/api/personal/appointment/${auth?.id}`,
                     {
                         method: "GET",
                         headers: {

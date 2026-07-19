@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
@@ -102,7 +102,7 @@ export default function FindDoctor() {
   //get speacilities
   useEffect(() => {
     fetch(
-      "https://api.discoverinternationalmedicalservice.com/api/get/specialty"
+      "http://127.0.0.1:8000/api/get/specialty"
     )
       .then((res) => res.json())
       .then((data) => setSpecialities(data?.response?.data));
@@ -112,7 +112,7 @@ export default function FindDoctor() {
   useEffect(() => {
     if (speacility) {
       fetch(
-        `https://api.discoverinternationalmedicalservice.com/api/get/selected/sub/specialty/${speacility}`
+        `http://127.0.0.1:8000/api/get/selected/sub/specialty/${speacility}`
       )
         .then((res) => res.json())
         .then((data) => setSubSpecialities(data?.response?.data));
@@ -128,7 +128,7 @@ export default function FindDoctor() {
       const queryParams = `name=${docName}&specialty=${speacility}&sub_specialty=${subSpeacility}&lang=${lang}&gender=${gender}&shift=${time}&day=${day}`;
       // Create the base URL
       const baseUrl =
-        "https://api.discoverinternationalmedicalservice.com/api/search/doctor";
+        "http://127.0.0.1:8000/api/search/doctor";
       // Create the final URL by appending the query string if it's not empty
       const finalUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
       // Fetch data from the API

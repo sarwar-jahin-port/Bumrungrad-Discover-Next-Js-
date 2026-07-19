@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import { MenuItem, Select, TextField } from "@mui/material";
@@ -44,7 +44,7 @@ const AirtTcket = () => {
         try {
             setLoader(true);
             const response = await fetch(
-                "https://api.discoverinternationalmedicalservice.com/api/add/air/ticket",
+                "http://127.0.0.1:8000/api/add/air/ticket",
                 {
                     method: "POST",
                     body: formData,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 
 import { TextField } from '@mui/material'
 const AirAmbulanceForm = () => {
@@ -21,7 +21,7 @@ const AirAmbulanceForm = () => {
     formData.append('summary', caseSummary)
     formData.append('description', briflyDiscusion)
 
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/air/ambulance', {
+    fetch('http://127.0.0.1:8000/api/add/air/ambulance', {
       method: 'POST',
       body: formData,
     })

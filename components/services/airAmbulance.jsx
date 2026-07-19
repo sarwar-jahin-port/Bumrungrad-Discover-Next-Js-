@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 
@@ -37,7 +37,7 @@ const AirAmbulanceForm = () => {
         try {
             setLoader(true);
             const response = await fetch(
-                "https://api.discoverinternationalmedicalservice.com/api/add/air/ambulance",
+                "http://127.0.0.1:8000/api/add/air/ambulance",
                 {
                     method: "POST",
                     body: formData,

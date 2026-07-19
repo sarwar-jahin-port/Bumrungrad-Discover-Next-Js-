@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import { Button, TextField } from "@mui/material";
@@ -75,7 +75,7 @@ const OrderMedicine = () => {
         try {
             setLoader(true);
             const response = await fetch(
-                "https://api.discoverinternationalmedicalservice.com/api/add/order/medicine",
+                "http://127.0.0.1:8000/api/add/order/medicine",
                 {
                     method: "POST",
                     body: formData,

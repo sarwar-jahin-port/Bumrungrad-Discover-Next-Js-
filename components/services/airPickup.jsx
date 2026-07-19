@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { TextField } from "@mui/material";
@@ -32,7 +32,7 @@ const AirPickup = () => {
 
         setLoader(true);
         const response = await fetch(
-            "https://api.discoverinternationalmedicalservice.com/api/add/air/pickup",
+            "http://127.0.0.1:8000/api/add/air/pickup",
             {
                 method: "POST",
                 body: formData,

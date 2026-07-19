@@ -1,91 +1,136 @@
+// `header`/`name` values are next-intl message keys (see messages/en.json, messages/bn.json
+// under the "nav" namespace), resolved via useTranslations("nav") in topbar.jsx — not literal
+// display text.
 export const menuItems = [
   {
-    header: 'Home',
+    header: 'home',
     link: '/',
   },
   {
-    header: 'Our Services',
+    header: 'ourServices',
     link: '/our-services',
+    // 3-column mega menu per the client redesign spec (doc §1.3, Pillars A/B/C).
+    // Items without a dedicated page yet fall back to /our-services (where the
+    // existing tile grid can still surface them) rather than a dead link;
+    // several get dedicated pages/forms in later phases (see plan phases 2, 6).
+    megaColumns: [
+      {
+        title: 'pillarDirectMedical',
+        items: [
+          { name: 'doctorAppointment', link: '/our-services/appointment' },
+          { name: 'healthScreeningItem', link: '/check-up' },
+          { name: 'telemedicine', link: '/our-services/telemedicine' },
+          { name: 'medicalConsultancy', link: '/our-services' },
+          { name: 'directAdmission', link: '/our-services' },
+        ],
+      },
+      {
+        title: 'pillarTravelLogistics',
+        items: [
+          { name: 'visaProcessing', link: '/our-services/visaprocessing' },
+          { name: 'airTicket', link: '/our-services' },
+          { name: 'airportPickDrop', link: '/our-services' },
+          { name: 'hotelBooking', link: 'http://wa.me/+66948283651' },
+        ],
+      },
+      {
+        title: 'pillarPatientSupport',
+        items: [
+          { name: 'medicalRecords', link: '/our-services/medical-record' },
+          { name: 'orderMedicine', link: '/our-services/order-medicine' },
+          { name: 'languageInterpreter', link: '/our-services' },
+          { name: 'fundTransfer', link: 'http://wa.me/+66948283651' },
+          { name: 'emergencySupport', link: '/our-services' },
+          { name: 'postTreatmentSupport', link: '/our-services' },
+        ],
+      },
+    ],
   },
   {
-    header: 'Blogs',
+    header: 'blogs',
     link: '/blogs',
   },
-
   {
-    header: 'Insurance',
+    header: 'insurance',
     childs: [
       {
-        name: 'We Accept',
+        name: 'insuranceWeAccept',
         link: '/insurance-we-accept',
       },
       {
-        name: 'Good Vibes',
+        name: 'insuranceGoodVibes',
         link: '/insurance-goodVibes',
       },
       {
-        name: 'Packages & Promotion',
+        name: 'insurancePackagePromotion',
         link: '/insurance-package-promotion',
       },
     ],
   },
   {
-    header: 'Clinic & Centers',
+    header: 'clinicCenters',
     link: '/clinic-centers',
   },
   {
-    header: 'Health Screening',
+    header: 'healthScreening',
     link: '/check-up',
   },
   {
-    header: 'Packages',
+    header: 'packages',
     link: '/packages',
   },
+  // Added per client doc §1.2 — previously missing from the nav entirely.
   {
-    header: 'About',
+    header: 'doctors',
+    link: '/doctors',
+  },
+  // Added per client doc §1.2 — links into /our-services for now (opens the
+  // existing Air Ambulance form there); gets its own landing page in a later
+  // phase, at which point this link target will be swapped.
+  {
+    header: 'airAmbulance',
+    link: '/our-services',
+  },
+  // Added per client doc §1.2. Only "Blog & News" is wired today — Patient
+  // Stories and Hospital Information Repository (doc §3.5) don't have pages
+  // yet and will be added here once that phase ships, so this dropdown
+  // doesn't contain dead links in the meantime.
+  {
+    header: 'healthInfo',
     childs: [
       {
-        name: 'Bumrungrad',
+        name: 'healthInfoBlogNews',
+        link: '/blogs',
+      },
+    ],
+  },
+  {
+    header: 'about',
+    childs: [
+      {
+        name: 'aboutBumrungrad',
         link: '/about-bumrungrad',
       },
       {
-        name: 'Vision & Mision',
+        name: 'aboutVisionMission',
         link: '/about-vision-and-misson',
       },
       {
-        name: 'Factsheet',
+        name: 'aboutFactsheet',
         link: '/about-factsheet',
       },
       {
-        name: 'Accreditation & Awards',
+        name: 'aboutAccreditation',
         link: '/about-accreditation',
       },
       {
-        name: 'Bumrungrad & Foundation',
+        name: 'aboutFoundation',
         link: '/about-foundation',
       },
     ],
   },
   {
-    header: 'Contact',
+    header: 'contact',
     link: '/contact-us',
-    // childs: [
-    //   {
-    //     name: 'Locate Us',
-    //     link: '/contact_us',
-    //   },
-    //   {
-    //     name: 'Hospital Information',
-    //     link: '/',
-    //   },
-    //   {
-    //     name: 'Direction & Taxi',
-    //     link: '/',
-    //   },
-    //   {
-    //     name: 'Ambulance',
-    //     link: '/',
-    //   },
-    // ],
   },
 ]

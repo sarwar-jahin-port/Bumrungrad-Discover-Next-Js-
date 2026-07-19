@@ -7,6 +7,8 @@ import SideBar from "@/components/shared/sidebar";
 import { Toaster } from "react-hot-toast";
 import GoogleTagManage from "@/components/ui/googleTagManage";
 import SiteTitleManage from "@/components/ui/siteTitleManage";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 // import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,9 +21,12 @@ export const metadata = {
     "Bumrungrad Hospital for International Patients - Provides comprehensive care in various specialties, including cardiology, oncology, orthopedics, neurosurgery, pediatrics, women's health, and cosmetic surgery.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       {/* <Head> */}
       <meta
         name="google-site-verification"
@@ -35,15 +40,17 @@ export default function RootLayout({ children }) {
       <GoogleTagManage />
       <SiteTitleManage/>
       <body className={inter.className}>
-        <AuthContextProvider>
-          <Topbar />
-          <Toaster position="top-center" reverseOrder={false} />
-          <main>{children}</main>
-          <div className="fixed right-2 top-1/2 z-50">
-            <SideBar />
-          </div>
-          <BottomBar />
-        </AuthContextProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <AuthContextProvider>
+            <Topbar />
+            <Toaster position="top-center" reverseOrder={false} />
+            <main>{children}</main>
+            <div className="fixed right-2 top-1/2 z-50">
+              <SideBar />
+            </div>
+            <BottomBar />
+          </AuthContextProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

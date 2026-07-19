@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+﻿import React, { useState } from 'react'
 import { TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
@@ -29,7 +29,7 @@ const MedicalRecords = () => {
     formData.append('caseSummary', caseSummary)
     formData.append('hnNum', hnNum)
 
-    fetch('https://api.discoverinternationalmedicalservice.com/api/add/medical/report', {
+    fetch('http://127.0.0.1:8000/api/add/medical/report', {
       method: 'POST',
       body: formData,
     })

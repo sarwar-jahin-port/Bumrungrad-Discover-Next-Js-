@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+﻿import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import { useEffect } from "react";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -32,7 +32,7 @@ const AirtTcket = () => {
     formData.append("country", country);
     formData.append("destination", destination);
 
-    fetch("https://api.discoverinternationalmedicalservice.com/api/add/air/ticket", {
+    fetch("http://127.0.0.1:8000/api/add/air/ticket", {
       method: "POST",
       body: formData,
     })

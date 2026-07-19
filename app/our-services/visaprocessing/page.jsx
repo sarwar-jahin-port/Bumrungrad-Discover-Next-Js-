@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import personImg from "@/public/assets/Bumrungrad  Hospital_Abdus Samad.jpg";
@@ -88,7 +88,7 @@ const VisaProcessing = () => {
 
         setLoader(true);
         const res = await fetch(
-            "https://api.discoverinternationalmedicalservice.com/api/add/visa/precessing",
+            "http://127.0.0.1:8000/api/add/visa/precessing",
             {
                 method: "POST",
                 body: formData,
