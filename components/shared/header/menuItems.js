@@ -30,7 +30,7 @@ export const menuItems = [
           { name: 'visaProcessing', link: '/our-services/visaprocessing' },
           { name: 'airTicket', link: '/our-services' },
           { name: 'airportPickDrop', link: '/our-services' },
-          { name: 'hotelBooking', link: 'http://wa.me/+66948283651' },
+          { name: 'hotelBooking', link: '/our-services' },
         ],
       },
       {

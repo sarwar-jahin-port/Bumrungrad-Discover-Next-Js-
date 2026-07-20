@@ -36,12 +36,12 @@ const INTERACTION_BADGES = {
   page: {
     label: "Full Form",
     icon: ArticleIcon,
-    className: "bg-blue-gray-50 text-blue-gray-700",
+    className: "bg-ash/20 text-black/70",
   },
   whatsapp: {
     label: "WhatsApp",
     icon: WhatsAppIcon,
-    className: "bg-green-50 text-green-700",
+    className: "bg-green/10 text-green",
   },
 };
 
@@ -179,6 +179,23 @@ const services = [
       "Experience expert medical consultations from Bumrungrad Hospital through our telemedicine service. We make connecting with top doctors easy and accessible from home.",
   },
   {
+    name: "Medical Consultancy",
+    // TODO: placeholder icon (reused telemedicine image) — swap for a
+    // dedicated Medical Consultancy asset once one is provided.
+    img: teleMedicine,
+    form: (
+      <UnifiedInboundForm
+        image={teleMedicine}
+        imageAlt="Medical Consultancy"
+        endpoint="http://127.0.0.1:8000/api/add/medical-consultancy"
+      />
+    ),
+    interactionType: "popup",
+    alt: "Bumrungrad International Hospital",
+    description:
+      "Specialized evaluation support from our clinical team to help guide your treatment options before you commit to a plan.",
+  },
+  {
     id: 2,
     name: "Air Ambulance Service",
     img: airimg,
@@ -232,11 +249,17 @@ const services = [
   {
     name: "Thai Local Accommodation",
     img: accommodation,
-    pageTo: "http://wa.me/+66948283651",
-    interactionType: "whatsapp",
+    form: (
+      <UnifiedInboundForm
+        image={accommodation}
+        imageAlt="Thai Local Accommodation"
+        endpoint="http://127.0.0.1:8000/api/add/lodging-booking"
+      />
+    ),
+    interactionType: "popup",
     alt: "Bumrungrad International Hospital",
     description:
-      "We offer your airport pick-up and drop-off is simple and relaxed. From the airport to your Thai accommodation, we make every step of your journey comfortable.",
+      "Extended stay hotel and apartment booking near your treatment center. Tell us your dates and we'll arrange comfortable lodging for you and your companions.",
   },
   {
     name: "Language Interpreter",
@@ -246,6 +269,23 @@ const services = [
     alt: "Bumrungrad International Hospital",
     description:
       "Our language interpreters are here to make your conversations seamless and stress-free. We ensure accurate and easy communication every time.",
+  },
+  {
+    name: "Emergency Desk",
+    // TODO: placeholder icon (reused air ambulance image) — swap for a
+    // dedicated Emergency Desk asset once one is provided.
+    img: airimg,
+    form: (
+      <UnifiedInboundForm
+        image={airimg}
+        imageAlt="Emergency Desk"
+        endpoint="http://127.0.0.1:8000/api/add/emergency-desk"
+      />
+    ),
+    interactionType: "popup",
+    alt: "Bumrungrad International Hospital",
+    description:
+      "24/7 emergency support portal. Reach our on-call team immediately for urgent medical coordination and guidance.",
   },
   {
     name: "Transfer Money for Treatment",

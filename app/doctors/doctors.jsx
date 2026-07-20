@@ -519,14 +519,20 @@ export default function FindDoctor() {
                     key={i}
                   >
                     <div className="relative">
-                      <Image
-                        height={300}
-                        width={1000}
-                        src={d.cover_photo}
-                        alt="Bumrungrad International Hospital"
-                        loading="lazy"
-                        className="max-sm:h-full max-sm:w-full md:h-[350px]  w-full rounded-tl-xl rounded-tr-xl"
-                      />
+                      {d.cover_photo ? (
+                        <Image
+                          height={300}
+                          width={1000}
+                          src={d.cover_photo}
+                          alt="Bumrungrad International Hospital"
+                          loading="lazy"
+                          className="max-sm:h-full max-sm:w-full md:h-[350px]  w-full rounded-tl-xl rounded-tr-xl"
+                        />
+                      ) : (
+                        <div className="max-sm:h-full max-sm:w-full md:h-[350px] w-full rounded-tl-xl rounded-tr-xl bg-cream flex items-center justify-center text-black/30 text-sm">
+                          No photo available
+                        </div>
+                      )}
                       <div>
                         <Link
                           href={`/doctors/${d?.slug}`}

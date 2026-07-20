@@ -1,27 +1,50 @@
-
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { Divider } from "@mui/material";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import { useRouter } from "next/navigation";
-import { DoctorSkeleton } from "@/components/ui/cardload";
 import Image from "next/image";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import LanguageIcon from "@mui/icons-material/Language";
+import SchoolIcon from "@mui/icons-material/School";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import ScienceIcon from "@mui/icons-material/Science";
+import ArticleIcon from "@mui/icons-material/Article";
+import { DoctorSkeleton } from "@/components/ui/cardload";
 
+const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-export default function DoctorInfo({params}) {
+const Chip = ({ children }) => (
+  <span className="inline-block rounded-full border border-blue/20 bg-blue/5 text-blue text-sm px-3.5 py-1.5">
+    {children}
+  </span>
+);
+
+const CredentialSection = ({ icon: Icon, title, items, render }) =>
+  items?.length > 0 ? (
+    <div>
+      <p className="flex items-center gap-2 text-lg font-semibold text-blue mb-2.5">
+        <Icon fontSize="small" />
+        {title}
+      </p>
+      <ul className="flex flex-col gap-1.5">
+        {items.map((item, i) => (
+          <li key={i} className="flex items-start gap-2 text-sm lg:text-base text-black/80">
+            <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue shrink-0" />
+            {render(item)}
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : null;
+
+export default function DoctorInfo({ params }) {
   const navigate = useRouter();
   const [loader, setLoader] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const [doctor, setDoctor] = useState({});
 
-  const goAppointMent = (doctor) => {
+  const goAppointment = (doctor) => {
     localStorage.setItem("doctor_name", JSON.stringify(doctor?.name));
     localStorage.setItem("Doctor_specialty", JSON.stringify(doctor?.specialty));
     navigate.push("/our-services/appointment");
@@ -29,260 +52,199 @@ export default function DoctorInfo({params}) {
 
   useEffect(() => {
     setLoader(true);
-    fetch(
-      `https://api.discoverinternationalmedicalservice.com/api/search/doctor/${params.slug}`
-    )
+    fetch(`http://127.0.0.1:8000/api/search/doctor/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
-        if (data.response.status === 200) {
+        if (data?.response?.status === 200) {
           setDoctor(data.response.data);
-          setLoader(false);
         } else {
-          setLoader(false);
+          setNotFound(true);
         }
+        setLoader(false);
+      })
+      .catch(() => {
+        setNotFound(true);
+        setLoader(false);
       });
   }, [params.slug]);
-  return (
-    <div>
-      {loader ? (
+
+  if (loader) {
+    return (
+      <div className="p-5 my-5 md:container md:mx-auto">
         <DoctorSkeleton />
-      ) : (
-        <section>
-         
-          <div className="doctor-bg">
-            <div className="md:flex p-5 md:p-10 md:container md:mx-auto">
-              <div className="flex flex-col justify-center">
+      </div>
+    );
+  }
+
+  if (notFound) {
+    return (
+      <div className="p-5 my-16 md:container md:mx-auto text-center">
+        <h1 className="text-xl md:text-2xl font-bold text-blue">Doctor Not Found</h1>
+        <p className="mt-2.5 text-black/50">
+          We couldn't find the doctor profile you're looking for. It may have been moved or is no longer available.
+        </p>
+      </div>
+    );
+  }
+
+  const scheduleByDay = WEEKDAYS.map((day) => ({
+    day,
+    entries: (doctor?.day || [])
+      .map((d, i) => (d === day ? i : null))
+      .filter((i) => i !== null)
+      .map((i) => ({
+        shift: doctor.shift?.[i],
+        arrival: doctor.arrival?.[i],
+        leave: doctor.leave?.[i],
+        location: doctor.location?.[i],
+      })),
+  }));
+  const hasSchedule = scheduleByDay.some((d) => d.entries.length > 0);
+
+  return (
+    <div className="flex flex-col bg-white">
+      {/* Zone 1 + 2: photo, name, specialty, sub-specialty, languages */}
+      <div className="bg-cream">
+        <div className="p-5 py-10 md:py-14 md:container md:mx-auto flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-12">
+          <div className="flex flex-col shrink-0 w-full md:w-[300px]">
+            <div className="relative w-full aspect-[4/5] rounded-t-xl overflow-hidden shadow-md">
+              {doctor?.cover_photo ? (
                 <Image
-                  width={1000}
-                  height={500}
-                  src={doctor?.cover_photo}
-                  alt="Bumrungrad International Hospital"
-                  className="h-[370px] md:h-[400px] lg:h-[450px] w-full md:w-[300px] lg:w-[350px] rounded-tl-xl rounded-tr-xl"
+                  fill
+                  src={doctor.cover_photo}
+                  alt={doctor?.name || "Doctor"}
+                  className="object-cover"
+                  priority
                 />
-                <button
-                  onClick={() => goAppointMent(doctor)}
-                  className="bg-blue text-white py-2.5 w-full rounded-bl-xl rounded-br-xl"
-                >
-                  <EventAvailableIcon />
-                  <span className="capitalize ml-2.5">Appointment</span>
-                </button>
-              </div>
-              {/* right side  */}
-              <div className="flex-1 text-blue lg:text-center p-5">
-                <p className="text-xl md:text-3xl lg:text-5xl font-bold">
-                  {doctor?.name}
-                </p>
-                <div>
-                  <p className="font-semibold mt-5 text-xl md:text-2xl lg:text-3xl capitalize">
-                    Expertise
-                  </p>
-                  <Divider className="!my-2.5" />
-                  <p className="text-xl">{doctor?.specialty}</p>
+              ) : (
+                <div className="w-full h-full bg-white flex items-center justify-center text-black/30 text-sm">
+                  No photo available
                 </div>
-                {doctor?.sub_specialty?.length > 0 && (
-                  <div>
-                    <p className="font-semibold mt-5 text-xl md:text-2xl lg:text-3xl capitalize">
-                      Specialty
-                    </p>
-                    <Divider className="!my-2.5" />
-                    <ul className="">
-                      {doctor?.sub_specialty?.map((ss, i) => (
-                        <li key={i} className="text-xl">
-                          {ss}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <div>
-                  <p className="font-semibold mt-5 text-xl md:text-2xl lg:text-3xl capitalize">
-                    Language
-                  </p>
-                  <Divider className="!my-2.5" />
-                  <ul className="">
-                    {doctor?.lang?.map((ss, i) => (
-                      <li key={i} className="text-xl">
-                        {ss}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              )}
             </div>
+            <button
+              onClick={() => goAppointment(doctor)}
+              className="flex items-center justify-center gap-2 bg-blue text-white font-semibold py-3 rounded-b-xl hover:opacity-90 transition-opacity"
+            >
+              <EventAvailableIcon fontSize="small" />
+              Book Appointment
+            </button>
           </div>
 
-          {/* qualifications  */}
-          <div className="p-5 md:p-10 md:container md:mx-auto lg:flex max-sm:gap-4 md:gap-6 xl:gap-8">
-            <div className="lg:w-1/2 flex flex-col gap-5 md:gap-10 max-sm:px-5">
-              <div className="">
-                {doctor?.schools?.length > 0 && (
-                  <>
-                    <p className="text-xl md:text-2xl text-blue font-semibold">
-                      Medical School:
-                    </p>
-                    <ul className="mt-2.5 md:mt-5">
-                      {doctor?.schools?.map((ms, i) => (
-                        <li key={i} className="text-xl list-disc">
-                          {ms?.school}
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )}
-
-                {doctor?.school && (
-                  <li className="mt-1 list-disc">{doctor?.school}</li>
-                )}
-              </div>
-              {doctor?.certificates?.length > 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Certifications:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.certificates?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.certificate.split("-")}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.trainings?.length > 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                  Trainings:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.trainings?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.training}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.interests?.length !== 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Interests:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.interests?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.Interest.split("-")}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.experiences?.length !== 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Experiences:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.experiences?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.experience}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.fellowships?.length !== 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Fellowships:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.fellowships?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.fellowship}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.researches?.length !== 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Researches:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.researches?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.research}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {doctor?.article?.length !== 0 && (
-                <div className="">
-                  <p className="text-xl md:text-2xl text-blue font-semibold">
-                    Articles:
-                  </p>
-                  <ul className="mt-2.5 md:mt-5">
-                    {doctor?.article?.map((dc, i) => (
-                      <li key={i} className="mt-1 list-disc">
-                        {dc?.article}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            {doctor?.day?.length > 0 && (
-              <div className="mt-5 md:mt-10 lg:mt-0 lg:w-1/2">
-                <p className="mb-5 text-xl md:text-2xl text-blue font-semibold">
-                  Schedules:
-                </p>
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead className="bg-blue">
-                      <TableRow>
-                        <TableCell className="!text-white">Day</TableCell>
-                        <TableCell className="!text-white" align="center">
-                          Arrival
-                        </TableCell>
-                        <TableCell className="!text-white" align="center">
-                          Leave
-                        </TableCell>
-                        <TableCell className="!text-white" align="center">
-                          Shift
-                        </TableCell>
-                        <TableCell className="!text-white" align="center">
-                          Location
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {doctor?.day?.map((day, i) => (
-                        <TableRow key={i}>
-                          <TableCell>{day}</TableCell>
-                          <TableCell align="center">
-                            {doctor?.arrival?.[i]}
-                          </TableCell>
-                          <TableCell align="center">
-                            {doctor?.leave?.[i]}
-                          </TableCell>
-                          <TableCell align="center">
-                            {doctor?.shift?.[i]}
-                          </TableCell>
-                          <TableCell align="center">
-                            {doctor?.location?.[i]}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+          <div className="flex-1 flex flex-col justify-center gap-4">
+            <h1 className="text-2xl md:text-4xl font-bold text-blue leading-tight">
+              {doctor?.name}
+            </h1>
+            {doctor?.specialty && (
+              <p className="flex items-center gap-2 text-black/70">
+                <LocalHospitalIcon fontSize="small" className="text-gold" />
+                {doctor.specialty}
+              </p>
+            )}
+            {doctor?.sub_specialty?.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {doctor.sub_specialty.map((ss, i) => (
+                  <Chip key={i}>{ss}</Chip>
+                ))}
               </div>
             )}
+            {doctor?.lang?.length > 0 && (
+              <p className="flex items-center gap-2 text-black/70">
+                <LanguageIcon fontSize="small" className="text-gold" />
+                {doctor.lang.join(", ")}
+              </p>
+            )}
           </div>
+        </div>
+      </div>
+
+      <div className="p-5 py-10 md:py-14 md:container md:mx-auto flex flex-col gap-10">
+        {/* Zone 3: calendar-grid schedule */}
+        {hasSchedule && (
+          <section>
+            <h2 className="text-lg md:text-xl font-bold text-blue mb-4">Weekly Schedule</h2>
+            <div className="overflow-x-auto">
+              <div className="grid grid-flow-col auto-cols-[160px] gap-3 min-w-max">
+                {scheduleByDay.map(({ day, entries }) => (
+                  <div
+                    key={day}
+                    className={`rounded-lg border p-3 flex flex-col gap-2 ${
+                      entries.length > 0 ? "border-blue/20 bg-blue/5" : "border-ash/20 bg-white"
+                    }`}
+                  >
+                    <p className={`text-sm font-semibold ${entries.length > 0 ? "text-blue" : "text-black/40"}`}>
+                      {day}
+                    </p>
+                    {entries.length > 0 ? (
+                      entries.map((e, i) => (
+                        <div key={i} className="bg-white rounded p-2 border border-blue/10 flex flex-col gap-0.5">
+                          <p className="text-xs font-semibold text-gold uppercase">{e.shift}</p>
+                          <p className="text-xs text-black/70">{e.arrival} - {e.leave}</p>
+                          {e.location && <p className="text-xs text-black/50">{e.location}</p>}
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-xs text-black/30">Not available</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Credentials */}
+        <section className="grid md:grid-cols-2 gap-x-10 gap-y-8">
+          <CredentialSection
+            icon={SchoolIcon}
+            title="Medical School"
+            items={doctor?.schools}
+            render={(ms) => ms?.school}
+          />
+          <CredentialSection
+            icon={WorkspacePremiumIcon}
+            title="Board Certifications"
+            items={doctor?.certificates}
+            render={(c) => c?.certificate}
+          />
+          <CredentialSection
+            icon={SchoolIcon}
+            title="Trainings"
+            items={doctor?.trainings}
+            render={(t) => t?.training}
+          />
+          <CredentialSection
+            icon={ScienceIcon}
+            title="Interests"
+            items={doctor?.interests}
+            render={(it) => it?.Interest}
+          />
+          <CredentialSection
+            icon={WorkspacePremiumIcon}
+            title="Experience"
+            items={doctor?.experiences}
+            render={(e) => e?.experience}
+          />
+          <CredentialSection
+            icon={WorkspacePremiumIcon}
+            title="Fellowships"
+            items={doctor?.fellowships}
+            render={(f) => f?.fellowship}
+          />
+          <CredentialSection
+            icon={ScienceIcon}
+            title="Research"
+            items={doctor?.researches}
+            render={(r) => r?.research}
+          />
+          <CredentialSection
+            icon={ArticleIcon}
+            title="Articles"
+            items={doctor?.article}
+            render={(a) => a?.article}
+          />
         </section>
-      )}
+      </div>
     </div>
   );
 }

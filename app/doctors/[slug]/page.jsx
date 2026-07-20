@@ -5,11 +5,14 @@ export async function generateMetadata({ params }) {
 
   // Fetch doctor data based on the slug
   const doctor = await fetch(
-    `https://api.discoverinternationalmedicalservice.com/api/search/doctor/${slug}`
+    `http://127.0.0.1:8000/api/search/doctor/${slug}`
   )
     .then((res) => res.json())
-    .then((data) => data.response.data);
+    .then((data) => data?.response?.data);
 
+  if (!doctor) {
+    return { title: 'Doctor Profile - Bumrungrad Hospital' };
+  }
 
   return {
     title: doctor?.name,
