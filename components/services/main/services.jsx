@@ -8,7 +8,6 @@ import hotelReservation from "@/public/assets/service_logo/Bumrungrad  Hospital_
 import orderMedicine from "@/public/assets/service_logo/Bumrungrad  Hospital_order_medicine.png";
 import teleMedicine from "@/public/assets/service_logo/Bumrungrad  Hospital_telemedicine.png";
 import medicalRecords from "@/public/assets/service_logo/Bumrungrad  Hospital_medical_records.png";
-import AirAmbulanceForm from "../airAmbulance";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
@@ -199,8 +198,8 @@ const services = [
     id: 2,
     name: "Air Ambulance Service",
     img: airimg,
-    form: <AirAmbulanceForm />,
-    interactionType: "popup",
+    pageTo: "/air-ambulance",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
     description:
       "We’re here to help in emergencies with fast and reliable air ambulance service. Our experienced team ensures you’re transported safely and comfortably to top hospitals.",

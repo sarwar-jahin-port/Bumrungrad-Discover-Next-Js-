@@ -14,11 +14,11 @@ const SinglePackage = ({p}) => {
           effect="blur"
           alt="Bumrungrad International Hospital"
         />
-        : <div className="w-full h-[210px] bg-gray-200"></div>
+        : <div className="w-full h-[210px] bg-cream"></div>
       }
       <div className="p-2.5 h-[210px]">
         <p className="font-semibold text-blue md:text-xl">{p?.title}</p>
-        <p className="pb-5 mt-2.5">{p?.description.slice(0, 160)} ... </p>
+        <p className="pb-5 mt-2.5">{p?.description?.slice(0, 160)} ... </p>
       </div>
       <Link
         href={`/packages/sub-packages/${p.slug}`}

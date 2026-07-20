@@ -84,12 +84,10 @@ export const menuItems = [
     header: 'doctors',
     link: '/doctors',
   },
-  // Added per client doc §1.2 — links into /our-services for now (opens the
-  // existing Air Ambulance form there); gets its own landing page in a later
-  // phase, at which point this link target will be swapped.
+  // Added per client doc §1.2 (doc §3.4 for the dedicated landing page).
   {
     header: 'airAmbulance',
-    link: '/our-services',
+    link: '/air-ambulance',
   },
   // Added per client doc §1.2. Only "Blog & News" is wired today — Patient
   // Stories and Hospital Information Repository (doc §3.5) don't have pages

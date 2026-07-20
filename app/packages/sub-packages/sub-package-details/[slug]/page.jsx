@@ -17,8 +17,27 @@ import { sendEmails } from "@/helpers/mail/sendMail";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
 
+const ListAccordion = ({ title, items, renderItem, defaultOpen = false }) =>
+    items?.length > 0 ? (
+        <details className="group border border-ash/20 rounded-lg" open={defaultOpen}>
+            <summary className="cursor-pointer list-none flex items-center justify-between p-4 font-semibold text-blue">
+                {title}
+                <span className="transition-transform group-open:rotate-180">▾</span>
+            </summary>
+            <ul className="px-4 pb-4 flex flex-col gap-2">
+                {items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm lg:text-base text-black/80">
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue shrink-0" />
+                        {renderItem(item)}
+                    </li>
+                ))}
+            </ul>
+        </details>
+    ) : null;
+
 const ChildPackageDetails = ({ params }) => {
     const [loader, setLoader] = useState(false);
+    const [notFound, setNotFound] = useState(false);
     const [postloader, setPostLoader] = useState(false);
     const router = useRouter();
     const { auth } = useAuth();
@@ -44,10 +63,11 @@ const ChildPackageDetails = ({ params }) => {
     }, [auth]);
 
     const handleClickOpen = (data) => {
-        setOpen(true);
         if (!auth) {
             router.push("/login");
+            return;
         }
+        setOpen(true);
         setPackagePrice(data.price);
         setPackageName(data.title);
     };
@@ -70,7 +90,7 @@ const ChildPackageDetails = ({ params }) => {
 
         setPostLoader(true);
         const response = await fetch(
-            "https://api.discoverinternationalmedicalservice.com/api/add/package/booking",
+            "http://127.0.0.1:8000/api/add/package/booking",
             {
                 method: "POST",
                 body: formData,
@@ -131,115 +151,137 @@ const ChildPackageDetails = ({ params }) => {
     useEffect(() => {
         setLoader(true);
         fetch(
-            `https://api.discoverinternationalmedicalservice.com/api/get/sub/package/${params.slug}`,
+            `http://127.0.0.1:8000/api/get/sub/package/${params.slug}`,
         )
             .then((res) => res.json())
             .then((data) => {
                 if (data.status === 200) {
                     setChildDetailsPackage(data?.data);
-                    setLoader(false);
+                } else {
+                    setNotFound(true);
                 }
+                setLoader(false);
+            })
+            .catch(() => {
+                setNotFound(true);
                 setLoader(false);
             });
     }, [params.slug]);
-    
+
+    if (loader) {
+        return (
+            <section className='mx-5 md:container md:mx-auto py-10'>
+                <div className='flex flex-col gap-5 lg:flex-row animate-pulse'>
+                    <div className='lg:w-1/2 space-y-4'>
+                        <div className='h-8 bg-[#DFE2F4]/90 w-3/4 rounded'></div>
+                        <div className='mt-5 grid md:grid-cols-2 lg:grid-cols-1 gap-2.5'>
+                            <div className='h-6 bg-[#DFE2F4]/90 w-1/2 rounded'></div>
+                            <div className='h-6 bg-[#DFE2F4]/90 w-3/4 rounded'></div>
+                        </div>
+                    </div>
+                    <div className='lg:w-1/2'>
+                        <div className='w-full max-h-[40vh] bg-[#DFE2F4] rounded h-64'></div>
+                        <div className='px-4 my-4 py-2 bg-[#DFE2F4]/90 w-32 h-10 rounded mt-5'></div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    if (notFound) {
+        return (
+            <section className='mx-5 md:container md:mx-auto py-16 text-center'>
+                <h1 className="text-xl md:text-2xl font-bold text-blue">Package Not Found</h1>
+                <p className="mt-2.5 text-black/50">
+                    We couldn't find the package you're looking for. It may have been moved or is no longer available.
+                </p>
+            </section>
+        );
+    }
+
     return (
         <div>
             <section className='mx-5 md:container md:mx-auto py-10'>
-                {loader ? (
-                    <div>
-                        <div className='flex flex-col gap-5 lg:flex-row animate-pulse'>
-                            {/* Image skeleton */}
-                            <div className='lg:w-1/2'>
-                                <div className='w-full max-h-[40vh] bg-[#DFE2F4] rounded h-64'></div>
-                                <div className='px-4 my-4 py-2 bg-[#DFE2F4]/90 w-32 h-10 rounded mt-5'></div>
-                            </div>
-
-                            {/* Text skeleton */}
-                            <div className='lg:w-1/2 space-y-4'>
-                                <div className='h-8 bg-[#DFE2F4]/90 w-3/4 rounded'></div>
-                                <div className='mt-5 grid md:grid-cols-2 lg:grid-cols-1 gap-2.5'>
-                                    <div className='h-6 bg-[#DFE2F4]/90 w-1/2 rounded'></div>
-                                    <div className='h-6 bg-[#DFE2F4]/90 w-3/4 rounded'></div>
-
-                                    <ul className='space-y-2'>
-                                        <div className='h-6 bg-[#DFE2F4]/90 w-1/4 rounded'></div>
-                                        <li className='h-6 bg-[#DFE2F4]/90 w-3/4 rounded ml-5'></li>
-                                        <li className='h-6 bg-[#DFE2F4]/90 w-3/4 rounded ml-5'></li>
-                                    </ul>
-
-                                    <div className='h-6 bg-[#DFE2F4]/90 w-1/2 rounded'></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Content skeleton */}
-                        <div className='mt-5'>
-                            <div className='h-48 bg-[#DFE2F4] rounded'></div>
-                        </div>
+                <div className='flex flex-col gap-8 lg:flex-row-reverse'>
+                    <div className='lg:w-1/2'>
+                        {childDetailsPackage?.cover_photo ? (
+                            <Image
+                                height={400}
+                                width={400}
+                                src={childDetailsPackage.cover_photo}
+                                className='w-full max-h-[40vh] object-cover rounded-xl shadow-md'
+                                alt='Bumrungrad International Hospital'
+                            />
+                        ) : (
+                            <div className='w-full h-[300px] bg-cream rounded-xl'></div>
+                        )}
+                        <button
+                            onClick={() =>
+                                handleClickOpen(childDetailsPackage)
+                            }
+                            className='px-4 my-4 py-2.5 bg-blue w-fit text-white rounded-lg font-semibold hover:opacity-90 transition-opacity'
+                        >
+                            Book Now
+                        </button>
                     </div>
-                ) : (
-                    <div>
-                        <div className='flex flex-col gap-5 lg:flex-row'>
-                            <div className='lg:w-1/2'>
-                                <Image
-                                    height={400}
-                                    width={400}
-                                    src={childDetailsPackage?.cover_photo}
-                                    className='w-full max-h-[40vh] rounded'
-                                    alt='Bumrungrad International Hospital'
-                                />
-                                <button
-                                    onClick={() =>
-                                        handleClickOpen(childDetailsPackage)
-                                    }
-                                    className='px-4 my-4 py-2 bg-blue w-fit text-white rounded font-semibold'
-                                >
-                                    Book Package
-                                </button>
+                    <div className='lg:w-1/2 flex flex-col gap-5'>
+                        <h1 className='text-[24px] md:text-[28px] font-semibold text-blue'>
+                            {childDetailsPackage?.title}
+                        </h1>
+                        {childDetailsPackage?.id && (
+                            <p className='text-sm text-black/60'>
+                                Package ID: #{childDetailsPackage.id}
+                            </p>
+                        )}
+                        {childDetailsPackage?.price && (
+                            <p className='text-2xl md:text-3xl font-bold text-blue'>
+                                {Number(childDetailsPackage.price).toLocaleString()} THB
+                            </p>
+                        )}
+                        {childDetailsPackage?.location && (
+                            <p className='text-base'>
+                                <span className='text-blue font-semibold'>Location: </span>
+                                {childDetailsPackage.location}
+                            </p>
+                        )}
+                        {(childDetailsPackage?.shift1 || childDetailsPackage?.shift2) && (
+                            <div>
+                                <p className='text-blue font-semibold mb-1'>Available Shifts</p>
+                                <ul className='list-disc ml-5'>
+                                    {childDetailsPackage?.shift1 && <li>{childDetailsPackage.shift1}</li>}
+                                    {childDetailsPackage?.shift2 && <li>{childDetailsPackage.shift2}</li>}
+                                </ul>
                             </div>
-                            <div className='lg:w-1/2'>
-                                <h5 className='text-[24px] md:text-[28px] font-semibold text-blue'>
-                                    {childDetailsPackage?.title}
-                                </h5>
-                                <div className='mt-5 grid md:grid-cols-2 lg:grid-cols-1 gap-2.5'>
-                                    <h5 className='text-[18px] md:text-[24px] font-semibold'>
-                                        <span className='text-blue'>
-                                            Price:
-                                        </span>
-                                        {childDetailsPackage?.price} THB
-                                    </h5>
-                                    {childDetailsPackage?.shift1 && (
-                                        <ul className='text-[18px] md:text-[24px] list-disc'>
-                                            <p className='text-blue font-semibold'>
-                                                Shift:
-                                            </p>
-                                            <li className='ml-5'>
-                                                {childDetailsPackage?.shift1}
-                                            </li>
-                                            <li className='ml-5'>
-                                                {childDetailsPackage?.shift1}
-                                            </li>
-                                        </ul>
-                                    )}
+                        )}
 
-                                    <h5 className='text-[18px] md:text-[24px]'>
-                                        <span className='text-blue font-semibold'>
-                                            Location: <br />
-                                        </span>
-                                        {childDetailsPackage?.location}.
-                                    </h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='mt-5'>
-                            <div
-                                id='blog_desc'
-                                dangerouslySetInnerHTML={{
-                                    __html: childDetailsPackage?.content,
-                                }}
+                        <div className="flex flex-col gap-3">
+                            <ListAccordion
+                                title="Package Inclusions"
+                                items={childDetailsPackage?.inclusions}
+                                renderItem={(item) => item?.inclusion}
+                                defaultOpen
+                            />
+                            <ListAccordion
+                                title="Package Exclusions"
+                                items={childDetailsPackage?.exclusions}
+                                renderItem={(item) => item?.exclusion}
+                            />
+                            <ListAccordion
+                                title="Terms & Conditions"
+                                items={childDetailsPackage?.conditions}
+                                renderItem={(item) => item?.condition}
                             />
                         </div>
+                    </div>
+                </div>
+                {childDetailsPackage?.content && (
+                    <div className='mt-8'>
+                        <div
+                            id='blog_desc'
+                            dangerouslySetInnerHTML={{
+                                __html: childDetailsPackage?.content,
+                            }}
+                        />
                     </div>
                 )}
             </section>

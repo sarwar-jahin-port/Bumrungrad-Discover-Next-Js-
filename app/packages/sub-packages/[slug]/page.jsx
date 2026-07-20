@@ -11,7 +11,7 @@ const ChildPackage = ({params}) => {
 
   useEffect(() => {
     setLoader(true);
-    fetch(`https://api.discoverinternationalmedicalservice.com/api/get/sub/packages/${params.slug}`)
+    fetch(`http://127.0.0.1:8000/api/get/sub/packages/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
@@ -65,13 +65,17 @@ const ChildPackage = ({params}) => {
                     key={i}
                     className="flex flex-col justify-between gap-5 shadow"
                   >
-                    <Image
-                    height={400}
-                      width={400}
-                      src={cp?.cover_photo}
-                      alt="Bumrungrad International Hospital"
-                      effect="blur"
-                    />
+                    {cp?.cover_photo ? (
+                      <Image
+                        height={400}
+                        width={400}
+                        src={cp.cover_photo}
+                        alt="Bumrungrad International Hospital"
+                        effect="blur"
+                      />
+                    ) : (
+                      <div className="w-full h-[400px] bg-cream"></div>
+                    )}
                     <div className="p-2.5">
                       <p className="font-semibold text-blue md:text-xl">
                         {cp?.title}
@@ -80,6 +84,11 @@ const ChildPackage = ({params}) => {
                       <p className="mt-2.5">
                         <span className="font-semibold">Location:</span> {cp?.location}.
                       </p>
+                      {cp?.price && (
+                        <p className="mt-1 text-blue font-bold">
+                          {Number(cp.price).toLocaleString()} THB
+                        </p>
+                      )}
                     </div>
                     <Link
                       href={`/packages/sub-packages/sub-package-details/${cp?.slug}`}
