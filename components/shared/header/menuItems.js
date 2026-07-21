@@ -89,16 +89,21 @@ export const menuItems = [
     header: 'airAmbulance',
     link: '/air-ambulance',
   },
-  // Added per client doc §1.2. Only "Blog & News" is wired today — Patient
-  // Stories and Hospital Information Repository (doc §3.5) don't have pages
-  // yet and will be added here once that phase ships, so this dropdown
-  // doesn't contain dead links in the meantime.
+  // Added per client doc §1.2, §3.5.
   {
     header: 'healthInfo',
     childs: [
       {
         name: 'healthInfoBlogNews',
         link: '/blogs',
+      },
+      {
+        name: 'healthInfoPatientStories',
+        link: '/patient-stories',
+      },
+      {
+        name: 'healthInfoHospitalRepository',
+        link: '/hospital-information',
       },
     ],
   },

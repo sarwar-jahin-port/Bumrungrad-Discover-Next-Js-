@@ -12,6 +12,7 @@ export default function News() {
   const path = usePathname()
   const [newsData, setNewsData] = useState()
   const [loader, setLoader] = useState()
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     setLoader(true)
@@ -27,22 +28,43 @@ export default function News() {
       })
   }, [])
 
-  const sanitizedNews = path === '/news' ? newsData : newsData?.slice(0,4)
+  const searchedNews =
+    path === '/news' && search
+      ? newsData?.filter((d) =>
+          d?.newsTitle?.toLowerCase().includes(search.toLowerCase()),
+        )
+      : newsData
+
+  const sanitizedNews = path === '/news' ? searchedNews : searchedNews?.slice(0,4)
   const cardNumber = path === '/news' ? 3 : 4
   const cardLength = path === '/news' ? 15 : 4
 
   return (
     <div className='p-5 md:p-10 md:container md:mx-auto'>
-      <div className='flex justify-between items-center'>
+      <div className='flex flex-col md:flex-row justify-between md:items-center gap-4'>
         <h2 className='capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue'>
           Bumrungrad News
         </h2>
        {
-         path !== '/news' && <Link href='/news' className='text-blue hover:text-blue-700 px-4 border py-1 hover:bg-blue hover:text-white transition duration-300'>View All</Link>
+         path === '/news' ? (
+           <input
+             type='text'
+             value={search}
+             onChange={(e) => setSearch(e.target.value)}
+             placeholder='Search news by title...'
+             className='border border-ash/40 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue md:w-72'
+           />
+         ) : (
+           <Link href='/news' className='text-blue hover:text-blue-700 px-4 border py-1 hover:bg-blue hover:text-white transition duration-300'>View All</Link>
+         )
        }
       </div>
       {loader ? (
         <CardLoaders Component={NewsCardSkeleton} cardLength={cardLength} gridNumber={cardNumber} speed='slow' />
+      ) : sanitizedNews?.length === 0 ? (
+        <p className='my-10 text-center text-black/60'>
+          No news found{search ? ` for "${search}"` : ''}.
+        </p>
       ) : (
         <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-4 mt-5 md:mt-10'>
           {sanitizedNews?.map((d, i) => (

@@ -16,7 +16,7 @@ const BlogDetailsPage = ({params}) => {
   // get data
   useEffect(() => {
     setLoader(true);
-    fetch(`https://api.discoverinternationalmedicalservice.com/api/get/blogs/${params.slug}`)
+    fetch(`http://127.0.0.1:8000/api/get/blogs/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
         setBlog(data?.data);

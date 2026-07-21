@@ -1,49 +1,32 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import packageimg from "@/public/assets/insurance/Bumrungrad  Hospital_Packages-Promotion1.png";
 import weacceptimg from "@/public/assets/insurance/Bumrungrad  Hospital_We-Accept-Active2.png";
 import goodvibesimg from "@/public/assets/insurance/Bumrungrad  Hospital_Good-Vibes-2023.png";
-import img1 from "@/public/assets/insurance/Bumrungrad  Hospital_Allianz-Ayudhya1.jpg";
 
 import Image from "next/image";
 
 const WeAccept = () => {
-  const questionsAns = [
-    {
-      question: "Thailand Company Direct Billing Contracts",
-      datas: [
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-      ],
-    },
-    {
-      question: "Thailand Company Direct Billing Contracts",
-      datas: [
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-        {
-          ans: "Allianz Ayudhya General Insurance",
-          img: img1,
-        },
-      ],
-    },
-  ];
+  const [providers, setProviders] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/get/insurance-providers")
+      .then((res) => res.json())
+      .then((data) => {
+        setProviders(data.status === 200 ? data.data : []);
+        setLoader(false);
+      })
+      .catch(() => setLoader(false));
+  }, []);
+
+  const grouped = providers.reduce((acc, p) => {
+    acc[p.category] = acc[p.category] || [];
+    acc[p.category].push(p);
+    return acc;
+  }, {});
+  const categories = Object.entries(grouped);
+
   return (
     <section className="mx-5 md:container md:mx-auto">
       <div className="h-[20vh] md:h-[30vh] lg:h-[50vh] insurance-back relative flex justify-center items-center">
@@ -54,9 +37,20 @@ const WeAccept = () => {
       </div>
 
       <div className="mx-10 my-10">
-        {questionsAns?.map((questionans, i) => (
-          <OneWeAccept key={i} i={i} questionans={questionans} />
-        ))}
+        {loader ? (
+          <div className="flex flex-col gap-2 animate-pulse">
+            <div className="h-12 bg-[#DFE2F4]/90 rounded"></div>
+            <div className="h-12 bg-[#DFE2F4]/90 rounded"></div>
+          </div>
+        ) : categories.length === 0 ? (
+          <p className="text-center text-black/60">
+            Insurance provider list is being finalized and will appear here shortly.
+          </p>
+        ) : (
+          categories.map(([category, items], i) => (
+            <OneWeAccept key={category} i={i} category={category} items={items} />
+          ))
+        )}
       </div>
       <div className=" my-10 bg-cream">
         <div className="flex justify-center flex-wrap p-10">
@@ -114,9 +108,7 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 
-const OneWeAccept = (props) => {
-  const { question, datas, i } = props.questionans;
-
+const OneWeAccept = ({ category, items, i }) => {
   const [open, setOpen] = React.useState(0);
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
   return (
@@ -129,30 +121,39 @@ const OneWeAccept = (props) => {
               className="bg-blue p-3"
               onClick={() => handleOpen(i)}
             >
-              <p className="text-white text-sm">{question}</p>
+              <p className="text-white text-sm">{category}</p>
             </AccordionHeader>
           </div>
 
           <AccordionBody>
-            {datas?.map((data, i) => (
-              <div key={i}>
-                <div className="flex justify-evenly items-center h-[150px]">
+            {items?.map((provider) => (
+              <div key={provider.id}>
+                <a
+                  href={provider.reference_url || undefined}
+                  target={provider.reference_url ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className={`flex justify-evenly items-center h-[150px] ${
+                    provider.reference_url ? "hover:bg-cream/50" : ""
+                  }`}
+                >
                   <div className="">
                     <p className="text-blue font-semibold text-sm">
-                      {data?.ans}
+                      {provider.name}
                     </p>
                   </div>
-                  <div className="">
-                    <Image
-                      height={200}
-                      width={200}
-                      src={data?.img}
-                      alt="Bumrungrad International Hospital"
-                      className="h-[120px]"
-                      srcset=""
-                    />
-                  </div>
-                </div>
+                  {provider.logo && (
+                    <div className="">
+                      <Image
+                        height={200}
+                        width={200}
+                        src={provider.logo}
+                        alt={provider.name}
+                        className="h-[120px] object-contain"
+                        srcset=""
+                      />
+                    </div>
+                  )}
+                </a>
 
                 <hr className="w-[1000px] mx-auto" />
               </div>

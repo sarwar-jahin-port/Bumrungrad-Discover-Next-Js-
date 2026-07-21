@@ -16,6 +16,8 @@ import Packages from "@/components/packages/packages";
 import BookingModal from "@/components/services/main/bookingModal";
 import SpecificOffer from "./_comp/specificOffer";
 import BumrungradAccrediation from "./_comp/bumrungradAccrediation";
+import PerformanceMetrics from "./_comp/performanceMetrics";
+import MasterAppointmentForm from "./_comp/masterAppointmentForm";
 
 export const metadata = {
     name: "google-site-verification",
@@ -49,7 +51,9 @@ export default function Home() {
                 <OnlineConsultation />
                 <WhyUs />
                 <BumrungradAccrediation />
+                <PerformanceMetrics />
                 <Testimonial />
+                <MasterAppointmentForm />
                 <News />
                 <InsurancePartners />
                 <Faq />

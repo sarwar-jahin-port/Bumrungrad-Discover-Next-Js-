@@ -1,62 +1,71 @@
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import Image from "next/image";
 import React from "react";
+import { IoMdCheckmarkCircle } from "react-icons/io";
+import { MdVerified } from "react-icons/md";
+
+const REASONS = [
+  {
+    title: "Global Healthcare Excellence",
+    desc: "Exceptional medical services trusted by patients from over 190 countries.",
+  },
+  {
+    title: "Over 40 Specialized Departments & Centers",
+    desc: "Access to specialists across cardiology, oncology, neurology, orthopedics, and more.",
+  },
+  {
+    title: "Advanced Medical Technology & Experienced Doctors",
+    desc: "Robotic surgery, advanced imaging, and AI-assisted diagnostics, backed by 1,200+ internationally trained doctors.",
+  },
+  {
+    title: "JCI Accreditation",
+    desc: "The gold standard in global healthcare accreditation, ensuring rigorous patient safety and care quality.",
+  },
+  {
+    title: "International Patient Support",
+    desc: "Personalized assistance with travel, visas, accommodation, and multilingual interpreters.",
+  },
+  {
+    title: "World-Class Care",
+    desc: "Expert medical teams and cutting-edge technology within a state-of-the-art facility.",
+  },
+];
 
 export default function WhyUs() {
-  const data = [
-    {
-      title: "Global Healthcare Excellence",
-      desc: "Recognized as a global leader in healthcare, Bumrungrad International Hospital provides exceptional medical services to patients from over 190 countries. With a reputation for excellence, it combines advanced medical treatments with patient-centered care to ensure the highest standards of healthcare.",
-    },
-    {
-      title: "Over 40 Specialized Departments & Centers",
-      desc: "Bumrungrad offers an extensive range of over 40 specialized departments, ensuring that patients have access to experts in every field, from cardiology and oncology to neurology and orthopedics. Each department is staffed with highly trained professionals who provide individualized, specialized care to address complex medical needs.",
-    },
-    {
-      title: "Advanced Medical Technology & Experienced Doctors",
-      desc: "Bumrungrad is at the forefront of medical innovation, utilizing cutting-edge technology such as robotic surgery, advanced imaging systems, and AI-assisted diagnostics to enhance the accuracy and effectiveness of treatments. The hospital’s team of over 1,200 doctors—many of whom have received international training and certifications—bring a wealth of experience, ensuring world-class expertise in treating various conditions.",
-    },
-    {
-      title: "JCI Accreditation",
-      desc: "Bumrungrad is accredited by the Joint Commission International (JCI), the gold standard in global healthcare accreditation. This certification reflects the hospital’s commitment to maintaining the highest standards of patient safety, care quality, and operational excellence. JCI accreditation ensures that every patient receives care that adheres to the most rigorous international standards.",
-    },
-    {
-      title: "International Patient Support",
-      desc: "With a comprehensive range of services tailored for international patients, Bumrungrad ensures a smooth healthcare journey from start to finish. The hospital offers personalized assistance with travel arrangements, visas, accommodation, and financial matters. Multilingual staff and interpreters are available to make sure communication is seamless, while a dedicated International Patient Services team ensures that all logistical and medical needs are met",
-    },
-    {
-      title: "World-Class Care",
-      desc: "As one of the leading hospitals in Southeast Asia, Bumrungrad delivers world-class healthcare that rivals top medical institutions worldwide. Patients benefit from the combination of expert medical teams, cutting-edge technology, and compassionate care, all within a state-of-the-art facility designed for comfort and healing. Whether it’s routine procedures or complex surgeries, Bumrungrad ensures that every patient receives the highest quality of care possible.",
-    },
-  ];
   return (
-    <div className="mx-5 my-10 md:my-20 md:container md:mx-auto flex flex-col gap-5 md:gap-10">
-      <h5 className="text-center text-2xl md:text-4xl font-semibold text-blue">
-        World-Class Care Awaits: <br /> Bumrungrad International Hospital
-        Partnership
+    <div className="mx-5 my-10 md:my-20 md:container md:mx-auto">
+      <h5 className="text-center text-2xl md:text-4xl font-semibold text-blue mb-10">
+        Why Choose Discover Bangladesh
       </h5>
-      <p className="text-center font-bold">
-        DMIS (discover international medical service ) has formed a strategic
-        partnership with Bumrungrad International Hospital to bring world-class
-        healthcare services. This collaboration aims to provide patients in the
-        region with access to advanced medical expertise, cutting-edge
-        technology, and personalized care.
-      </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {data.map((d, i) => (
-          <div
-            key={i}
-            className="flex flex-col gap-4 items-center p-8 shadow rounded"
-          >
-            <CheckCircleOutlineIcon
-              className="text-green"
-              style={{ fontSize: "48px" }}
-            />
-            <h5 className="font-semibold text-blue text-xl text-center">
-              {d.title}
-            </h5>
-            <p className="text-center">{d.desc}</p>
+      <div className="flex flex-col lg:flex-row-reverse gap-10 items-center">
+        <div className="lg:w-1/2 w-full">
+          <Image
+            height={600}
+            width={600}
+            src="https://i.ibb.co/v1jKX0V/Bumrungrad-hospital-Hero.png"
+            alt="Bumrungrad International Hospital"
+            className="rounded-xl w-full"
+          />
+        </div>
+        <div className="lg:w-1/2 w-full flex flex-col gap-5">
+          <div className="flex items-start gap-2.5 bg-cream rounded-lg p-4">
+            <MdVerified className="text-blue text-2xl shrink-0 mt-0.5" />
+            <p className="font-semibold text-blue">
+              Authorized Bumrungrad International Hospital Referral Office |
+              Discover Bangladesh CO. LTD.
+            </p>
           </div>
-        ))}
+          <ul className="flex flex-col gap-4">
+            {REASONS.map((reason) => (
+              <li key={reason.title} className="flex items-start gap-2.5">
+                <IoMdCheckmarkCircle className="text-green text-xl mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-semibold">{reason.title}</p>
+                  <p className="text-sm text-black/70">{reason.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

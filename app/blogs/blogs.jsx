@@ -12,11 +12,14 @@ const AllBlogs = () => {
   const [totalPages, setTotalPages] = useState(1); // Total pages state
   const [nextPageUrl, setNextPageUrl] = useState(null); // URL for next page
   const [prevPageUrl, setPrevPageUrl] = useState(null); // URL for previous page
+  const [search, setSearch] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
-  // Fetch blog data when component mounts or page changes
-  const fetchBlogs = (page) => {
+  // Fetch blog data when component mounts, page changes, or search changes
+  const fetchBlogs = (page, searchTerm) => {
     setLoader(true); // Set loader to true when fetching new data
-    fetch(`http://127.0.0.1:8000/api/get-all-blogs?page=${page}`)
+    const query = searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : "";
+    fetch(`http://127.0.0.1:8000/api/get-all-blogs?page=${page}${query}`)
       .then((res) => res.json())
       .then((resData) => {
         if (resData.status === 200) {
@@ -25,6 +28,11 @@ const AllBlogs = () => {
           setTotalPages(Math.ceil(resData.data?.total / resData.data?.per_page)); // Calculate total pages
           setNextPageUrl(resData?.data?.next_page_url);
           setPrevPageUrl(resData?.data?.prev_page_url);
+        } else {
+          setAllBlogData([]);
+          setTotalPages(1);
+          setNextPageUrl(null);
+          setPrevPageUrl(null);
         }
         setLoader(false); // Stop loader regardless of response
       })
@@ -34,10 +42,16 @@ const AllBlogs = () => {
       });
   };
 
-  // Fetch initial data when the component mounts
+  // Fetch initial data when the component mounts, page changes, or search is applied
   useEffect(() => {
-    fetchBlogs(currentPage);
-  }, [currentPage]);
+    fetchBlogs(currentPage, search);
+  }, [currentPage, search]);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
+    setSearch(searchInput);
+  };
 
   return (
     <div className="p-5 md:p-10 md:container md:mx-auto">
@@ -45,6 +59,34 @@ const AllBlogs = () => {
         <h1 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
           Bumrungrad Health Blogs
         </h1>
+        <form onSubmit={handleSearchSubmit} className="mt-5 flex gap-2 max-w-md">
+          <input
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search blogs by title..."
+            className="flex-1 border border-ash/40 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue text-white rounded text-sm font-semibold hover:opacity-90"
+          >
+            Search
+          </button>
+          {search && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearchInput("");
+                setSearch("");
+                setCurrentPage(1);
+              }}
+              className="px-4 py-2 border border-ash/40 rounded text-sm hover:bg-cream"
+            >
+              Clear
+            </button>
+          )}
+        </form>
         <div className="my-5">
           <Divider />
         </div>
@@ -52,6 +94,10 @@ const AllBlogs = () => {
 
       {loader ? (
         <CardLoader cardLength={15} gridNumber={3} speed="slow" /> // Skeleton loader
+      ) : allBlogData?.length === 0 ? (
+        <p className="my-10 text-center text-black/60">
+          No blogs found{search ? ` for "${search}"` : ""}.
+        </p>
       ) : (
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 my-10">
           {allBlogData?.map((d, i) => (
