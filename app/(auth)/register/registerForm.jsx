@@ -15,8 +15,10 @@ import { AiFillEye } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 export default function Register() {
+  const t = useTranslations("auth.register");
   const navigate = useRouter();
   //yes or no
   const [yes, setYes] = useState(true);
@@ -55,7 +57,7 @@ export default function Register() {
 
   const handaleRegister = async () => {
     if (password !== confirmPassword) {
-      SetError("Your Confirm Password Didn't Match");
+      SetError(t("passwordMismatch"));
       setLoader(false);
     } else {
       const formData = new FormData();
@@ -89,7 +91,7 @@ export default function Register() {
         setLoader(false);
 
         if (res?.status !== 200) {
-          toast.error("Something went wrong", {
+          toast.error(t("errorToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -105,7 +107,7 @@ export default function Register() {
         const jsonData = await res.json();
 
         if (jsonData?.err) {
-          toast.error("Something went wrong", {
+          toast.error(t("errorToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -118,7 +120,7 @@ export default function Register() {
         }
 
         if (jsonData?.data?.token) {
-          toast.success("Your Registration is Successfull", {
+          toast.success(t("successToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -139,31 +141,31 @@ export default function Register() {
         {/* first-card */}
         <section className="">
           <h5 className="mb-4 text-xl md:text-3xl text-semibold font-semibold text-blue">
-            Register for premium health care services!
+            {t("heading")}
           </h5>
           <Divider />
           <div className="grid md:grid-cols-2 gap-4 mt-5 md:mt-10">
             <div>
-              <p className="mb-2.5">Enter First Name</p>
+              <p className="mb-2.5">{t("enterFirstName")}</p>
               <TextField
                 onChange={(e) => setfirstname(e.target.value)}
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
               />
             </div>
             <div>
               <div>
-                <p className="mb-2.5">Enter Last Name</p>
+                <p className="mb-2.5">{t("enterLastName")}</p>
                 <TextField
                   onChange={(e) => setLastName(e.target.value)}
                   fullWidth
-                  placeholder="Required"
+                  placeholder={t("required")}
                 />
               </div>
             </div>
 
             <FormControl fullWidth>
-              <p className="mb-2.5">Select Citizenship(Required)</p>
+              <p className="mb-2.5">{t("selectCitizenship")}</p>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -178,30 +180,30 @@ export default function Register() {
               </Select>
             </FormControl>
             <FormControl fullWidth>
-              <p className="mb-2.5">Select Gender(Required)</p>
+              <p className="mb-2.5">{t("selectGender")}</p>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <MenuItem value="Male">Male</MenuItem>
-                <MenuItem value="Female">Female</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
+                <MenuItem value="Male">{t("male")}</MenuItem>
+                <MenuItem value="Female">{t("female")}</MenuItem>
+                <MenuItem value="Other">{t("other")}</MenuItem>
               </Select>
             </FormControl>
             <div>
-              <p className="mb-2.5">Enter Email(Required)</p>{" "}
+              <p className="mb-2.5">{t("enterEmail")}</p>{" "}
               {errors?.email && <p className="text-red">{errors?.email[0]}</p>}
               <TextField
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
                 type="email"
                 onChange={(e) => setPataientEmail(e.target.value)}
               />
             </div>
             <div>
-              <p className="mb-2.5">Enter Phone Number(Required)</p>
+              <p className="mb-2.5">{t("enterPhone")}</p>
               <MuiTelInput
                 defaultCountry="TH"
                 value={phone}
@@ -210,7 +212,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <p className="mb-2.5">Enter Date of Birth(Required)</p>
+              <p className="mb-2.5">{t("enterDob")}</p>
               <TextField
                 fullWidth
                 type="date"
@@ -218,7 +220,7 @@ export default function Register() {
               />
             </div>
             <div>
-              <p className="mb-2.5">Passport Copy(Optional)</p>
+              <p className="mb-2.5">{t("passportCopy")}</p>
               <TextField
                 fullWidth
                 type="file"
@@ -231,7 +233,7 @@ export default function Register() {
 
         {/* second card  */}
         <section>
-          <h5 className="mt-5">Are you in Thailand?</h5>
+          <h5 className="mt-5">{t("areYouInThailand")}</h5>
           <div className="flex gap-2 mt-2.5 mb-5">
             <button
               className={`px-5 py-2 rounded ${
@@ -239,7 +241,7 @@ export default function Register() {
               }`}
               onClick={() => setYes(true)}
             >
-              Yes
+              {t("yes")}
             </button>
             <button
               className={`px-5 py-2 rounded ${
@@ -249,12 +251,12 @@ export default function Register() {
                 setYes(false);
               }}
             >
-              No
+              {t("no")}
             </button>
           </div>
           {yes === false && (
             <FormControl fullWidth>
-              <p className="mb-2.5">Select Country(Required)</p>
+              <p className="mb-2.5">{t("selectCountry")}</p>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -275,12 +277,12 @@ export default function Register() {
         {/* password card  */}
         <section className="md:grid md:grid-cols-2 gap-4">
           <div>
-            <p className="mb-2.5">Enter Password</p>
+            <p className="mb-2.5">{t("enterPassword")}</p>
             <div className=" flex relative">
               <TextField
                 type={inputType}
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button onClick={toggleVisibility}>
@@ -289,12 +291,12 @@ export default function Register() {
             </div>
           </div>
           <div>
-            <p className="mt-3 md:mt-0 mb-2.5">Confirm Password</p>
+            <p className="mt-3 md:mt-0 mb-2.5">{t("confirmPassword")}</p>
             <div className="mt-3 md:mt-0  flex relative">
               <TextField
                 type={inputType1}
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
               <button onClick={toggleVisibility1}>
@@ -336,14 +338,14 @@ export default function Register() {
             {loader ? (
               <Loader className="animate-spin" stroke="black" color="black" />
             ) : (
-              "Register"
+              t("registerBtn")
             )}
           </button>
         </div>
         <p className="mt-4 text-center">
-          Already have an account?{" "}
+          {t("alreadyHaveAccount")}{" "}
           <Link href={"/login"} className="underline text-blue">
-            Please Login
+            {t("pleaseLogin")}
           </Link>{" "}
         </p>
       </div>

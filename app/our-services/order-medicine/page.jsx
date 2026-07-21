@@ -5,12 +5,14 @@ import medicineImg from "@/public/assets/service_logo/Bumrungrad  Hospital_order
 import whatsapp from "@/public/assets/Bumrungrad  Hospital_whatsapp.png";
 import Image from "next/image";
 import UnifiedInboundForm from "@/components/shared/UnifiedInboundForm";
+import { useTranslations } from "next-intl";
 
 const OrderMedicine = () => {
+    const t = useTranslations("ourServices.orderMedicine");
     return (
         <div className='mt-5 mb-10 py-5 px-5 md:px-10 md:container md:mx-auto lg:w-2/3 shadow-xl rounded-xl'>
             <h1 className='text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue'>
-                Order Medicine
+                {t("heading")}
             </h1>
             <div className='mt-5'>
                 <UnifiedInboundForm
@@ -24,7 +26,7 @@ const OrderMedicine = () => {
             </div>
             <div className='mt-6'>
                 <p className='text-blue font-semibold'>
-                    Or, if you want to send your prescription directly
+                    {t("orText")}
                 </p>
                 <a
                     href='http://wa.me/+8801847284860'
@@ -40,7 +42,7 @@ const OrderMedicine = () => {
                         className='h-[40px]'
                     />
                     <span className='text-blue font-semibold'>
-                        Send image in Whatsapp
+                        {t("sendWhatsapp")}
                     </span>
                 </a>
             </div>

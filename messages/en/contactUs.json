@@ -1,0 +1,43 @@
+{
+  "form": {
+    "heading": "Contact Us",
+    "enterName": "Enter Name",
+    "enterEmail": "Enter Email",
+    "enterPhone": "Enter Phone Number",
+    "enterMessage": "Enter Message",
+    "submit": "Submit",
+    "successToast": "We have received your request. Our representative will reach you shortly!",
+    "errorToast": "Something went wrong"
+  },
+  "locateUs": "Locate us",
+  "offices": [
+    {
+      "office": "Dhanmondi Office",
+      "building": "Rupayan Prime Tower",
+      "floor": "10th Floor (Lift-9)",
+      "house": "House:02,Road: 07, Green Road",
+      "city": "Dhanmondi, Dhaka-1205"
+    },
+    {
+      "office": "Banani Office",
+      "building": "Alamin Park Panorama (Beside Banani Post Office),",
+      "floor": "8th Floor (Lift-5)",
+      "house": "Road 13/A, Block - C, House 105,",
+      "city": "Banani, Dhaka - 1213,"
+    },
+    {
+      "office": "Uttara Office",
+      "building": "Sector-13, House: 01",
+      "floor": "Janapadd Road",
+      "house": "Opposite of Bata Showroom",
+      "city": "Uttara, Dhaka-1230"
+    },
+    {
+      "office": "Chattogram Office",
+      "building": "Daar E Shahidi Building",
+      "floor": "3rd Floor, (Lift-3)",
+      "house": "House:69, Agrabad C/A",
+      "city": "Chattogram-4100"
+    }
+  ]
+}

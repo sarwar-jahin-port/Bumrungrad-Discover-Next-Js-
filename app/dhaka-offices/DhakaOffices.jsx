@@ -17,266 +17,119 @@ import ContactCardImg from "@/public/assets/Bumrungrad  Hospital_contact_card.pn
 import { useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
+
+// Images stay in code; localized name/description come from messages (same order).
+const SERVICE_IMAGES = [
+  appointment, hotelReservation, orderMedicine, medicalRecords, teleMedicine,
+  airimg, airticket, airpickup, hospitalAdmission, accommodation, languageImage, moneyTransfer,
+];
+const SERVICE_PAGE_TO = [
+  "/our-services/appointment", "/our-services/visaprocessing", "/our-services/order-medicine",
+  "/our-services/medical-record", "/our-services/telemedicine", undefined, undefined, undefined,
+  undefined, "http://wa.me/+66948283651", undefined, "http://wa.me/+66948283651",
+];
+
+const CONTACT_CARD_MAPS = [
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.05224193445!2d90.3824876761062!3d23.745516388962468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b91b29851709%3A0xc3d50a2ecf8fad9a!2sBumrungrad%20Hospital%20Dhaka%20Office!5e0!3m2!1sen!2sbd!4v1692206329747!5m2!1sen!2sbd",
+  "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29212.303573866055!2d90.3837837!3d23.7638509!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c72e25bd9c23%3A0x3d32da1eea1d8b1c!2sBumrungrad%20Hospital%20Bangladesh%20%7C%20Patient%20Support%20Center%20In%20Gulshan%20Dhaka%20%7C%20Book%20Your%20Doctor%20Appointment%20at%20Bumrungrad!5e0!3m2!1sen!2ssg!4v1692561871626!5m2!1sen!2ssg",
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.434392452508!2d90.3928183!3d23.874210400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c52a06df3939%3A0x5865aa1fbf242113!2sBumrungrad%20International%20Hospital%20Uttara%20Office!5e0!3m2!1sen!2ssg!4v1692561953360!5m2!1sen!2ssg",
+  "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d939716.4091297725!2d90.5450213!3d23.0689941!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd9b23e4a2043%3A0x4d00aafa2c904ae3!2zQnVtcnVuZ3JhZCBJbnRlcm5hdGlvbmFsIEhvc3BpdGFsIFJlZmVycmFsIE9mZmljZS1DaGF0dGFncmFtIC4vLyDgpqzgpr7gpq7gprDgp4Hgpqjgppfgp43gprDgpqYg4KaH4Kao4KeN4Kaf4Ka-4Kaw4Kao4KeN4Kav4Ka-4Ka24Kao4Ka-4KayIOCmueCmvuCmuOCmquCmvuCmpOCmvuCmsiDgprDgp4fgpqvgpr7gprDgp4fgprIg4KaF4Kar4Ka_4Ka4IOCmmuCmn-CnjeCmn-Cml-CnjeCmsOCmvuCmrg!5e0!3m2!1sen!2ssg!4v1692561993428!5m2!1sen!2ssg",
+];
+const CONTACT_CARD_PHONES = [
+  { phone1: "+8801847284860", phone2: "+8801324418100" },
+  { phone1: "+8801977284860", phone2: "+8801847284862" },
+  { phone1: "+8801977284861", phone2: "+8801601284300" },
+  { phone1: "+8801847284863", phone2: "+8801847284862" },
+];
+
+// Directory data (address/phone/email/website/map link/fanpage) kept in code —
+// these are factual reference records, not narrative UI copy.
+const REFERRAL_OFFICE_DATA = [
+  {
+    address: "Rupayan Prime Tower, Plot No: 02 (9th Floor), Road No: 07, Green Road, Dhanmondi, Dhaka-1205, Bangladesh",
+    phone: "+880 1847 28 4860, +880 1847 28 4863",
+    email: [
+      { label: "support@bumrungraddiscover.com", href: "mailto:support@bumrungraddiscover.com" },
+      { label: "dhanmondi@bumrungraddiscover.com", href: "mailto:dhanmondi@bumrungraddiscover.com" },
+    ],
+    website: [
+      { label: "discoverims.com", href: "https://discoverims.com" },
+      { label: "discoverinternationalmedicalservice.com", href: "https://discoverinternationalmedicalservice.com/" },
+    ],
+    mapLink: "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Office/@23.7455115,90.3850626,15z/data=!4m6!3m5!1s0x3755b91b29851709:0xc3d50a2ecf8fad9a!8m2!3d23.7455115!4d90.3850626!16s%2Fg%2F11g1xxhlz1?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+    mapLabel: "Bumrungrad Hospital Dhaka Office",
+  },
+  {
+    address: "Alamin Park Panorama (Infront of Banani Block -C Park), Lift-5, House 105, Road 13/A, Block - C, Banani, Dhaka - 1213",
+    phone: "+8801847284868, +8801977284862",
+    email: [
+      { label: "banani@bumrungraddiscover.com", href: "mailto:banani@bumrungraddiscover.com" },
+      { label: "support@bumrungraddiscover.com", href: "mailto:support@bumrungraddiscover.com" },
+    ],
+    website: [
+      { label: "discoverims.com", href: "https://discoverims.com" },
+      { label: "discoverinternationalmedicalservice.com", href: "https://discoverinternationalmedicalservice.com/" },
+    ],
+    mapLink: "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Bangladesh+-+Banani+Branch/@23.7638509,90.3837837,14z/data=!4m6!3m5!1s0x3755c72e25bd9c23:0x3d32da1eea1d8b1c!8m2!3d23.7914367!4d90.4035711!16s%2Fg%2F11lrn54v4s?coh=164777&shorturl=1&entry=tts&g_ep=EgoyMDI0MDkyOS4wIPu8ASoASAFQAw%3D%3D",
+    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+    mapLabel: "Bumrungrad Hospital Dhaka Bangladesh - Banani Branch",
+  },
+  {
+    address: "Oasis Oliveira, Lift-02, House-01, Road-1/A, Sonargaon Janapad Road, Sector-13, Uttara, Dhaka, Bangladesh",
+    phone: "+8801977284861, +8801601284300",
+    email: [
+      { label: "uttara@bumrungraddiscover.com", href: "mailto:uttara@bumrungraddiscover.com" },
+      { label: "support@bumrungraddiscover.com", href: "mailto:support@bumrungraddiscover.com" },
+    ],
+    website: [
+      { label: "discoverims.com", href: "https://discoverims.com" },
+      { label: "discoverinternationalmedicalservice.com", href: "https://discoverinternationalmedicalservice.com/" },
+    ],
+    mapLink: "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Uttara+Office/@23.8742122,90.3928182,15z/data=!4m6!3m5!1s0x3755c52a06df3939:0x5865aa1fbf242113!8m2!3d23.8742151!4d90.3928172!16s%2Fg%2F11tgcb0n45?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+    mapLabel: "Bumrungrad International Hospital Uttara Office",
+  },
+  {
+    address: "Daar E Shahidi Building 3rd Floor, (Lift-3), Opposite of Ethnological Museum 69, Agrabad C/A. Chittagong.",
+    phone: "+8801973-284836, +8801973-284862",
+    email: [
+      { label: "ctg@bumrungraddiscover.com", href: "mailto:ctg@bumrungraddiscover.com" },
+      { label: "support@bumrungraddiscover.com", href: "mailto:support@bumrungraddiscover.com" },
+    ],
+    website: [
+      { label: "discoverims.com", href: "https://discoverims.com" },
+      { label: "discoverinternationalmedicalservice.com", href: "https://discoverinternationalmedicalservice.com/" },
+    ],
+    mapLink: "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Bangladesh+-+Representative+Office+in+Agrabad+,+Chittagong/@22.3271702,91.8144269,17z/data=!3m1!4b1!4m6!3m5!1s0x30acd9b23e4a2043:0x4d00aafa2c904ae3!8m2!3d22.3271702!4d91.8144269!16s%2Fg%2F11t5t0krzw?authuser=0&entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
+    fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
+    mapLabel: "Bumrungrad International Hospital Chittagong",
+  },
+];
 
 export default function DhakaOffices() {
+  const t = useTranslations("dhakaOffices");
   const { auth } = useAuth();
   const router = useRouter();
-  const services = [
-    {
-      name: "Schedule Doctor Appointment",
-      img: appointment,
-      pageTo: "/our-services/appointment",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We help you book appointments with top doctors at Bumrungrad Hospital, so you get the care you need quickly.",
-    },
-    {
-      name: "Thailand Visa Processing",
-      img: hotelReservation,
-      pageTo: "/our-services/visaprocessing",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We make getting your Thailand visa easy, handling all the paperwork so you can focus on your treatment.",
-    },
-    {
-      id: 3,
-      name: "Order Medicine",
-      img: orderMedicine,
-      pageTo: "/our-services/order-medicine",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We help you order medicine from Thailand and ensure it arrives safely and on time for your treatment.",
-    },
-    {
-      name: "Medical Records",
-      img: medicalRecords,
-      pageTo: "/our-services/medical-record",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We assist with transferring your medical records to Bumrungrad Hospital, making sure your doctors have all the information.",
-    },
-    {
-      name: "Telemedicine",
-      img: teleMedicine,
-      pageTo: "/our-services/telemedicine",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "You can connect with expert doctors at Bumrungrad through telemedicine for consultations and follow-up care, no matter where you are.",
-    },
-    {
-      id: 2,
-      name: "Air Ambulance Service",
-      img: airimg,
 
-      alt: "Bumrungrad International Hospital",
-      description:
-        "If you need urgent medical care, we arrange fast and safe air ambulance transport to Bumrungrad International Hospital.",
-    },
-    {
-      id: 7,
-      name: "Air Ticket",
-      img: airticket,
+  const services = t.raw("services").map((s, i) => ({
+    ...s,
+    img: SERVICE_IMAGES[i],
+    pageTo: SERVICE_PAGE_TO[i],
+    alt: "Bumrungrad International Hospital",
+  }));
 
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We help you book international flights to Thailand for medical treatment, ensuring smooth and affordable travel.",
-    },
-    {
-      id: 8,
-      name: "Airport Transfer Service",
-      img: airpickup,
+  const ContactCards = t.raw("contactCards").map((cc, i) => ({
+    ...cc,
+    ...CONTACT_CARD_PHONES[i],
+    map: CONTACT_CARD_MAPS[i],
+  }));
 
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We provide airport pick-up and drop-off services, making your travel to and from the hospital easy and comfortable.",
-    },
-    {
-      name: "Admission On Arrival",
-      img: hospitalAdmission,
-
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We assist with your direct hospital admission upon arrival, so you can start your treatment without any delays.",
-    },
-    {
-      name: "Thai Local Accommodation",
-      img: accommodation,
-      pageTo: "http://wa.me/+66948283651",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We help you find comfortable and safe accommodation near the hospital, making your stay in Thailand relaxing and convenient.",
-    },
-    {
-      name: "Language Interpreter",
-      img: languageImage,
-
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We provide language interpreters to help you communicate easily with your doctors and medical team during your treatment.",
-    },
-    {
-      name: "Transfer Money for Treatment",
-      img: moneyTransfer,
-      pageTo: "http://wa.me/+66948283651",
-      alt: "Bumrungrad International Hospital",
-      description:
-        "We assist in transferring money for your medical treatment, making sure your payment reaches the hospital safely and quickly.",
-    },
-  ];
-
-  const ContactCards = [
-    {
-      office: "Dhanmondi Office",
-      building: "Rupayan Prime Tower",
-      floor: "10th Floor (Lift-9)",
-      house: "House:02,Road: 07, Green Road",
-      city: "Dhanmondi, Dhaka-1205",
-      phone1: "+8801847284860",
-      phone2: "+8801324418100",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.05224193445!2d90.3824876761062!3d23.745516388962468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b91b29851709%3A0xc3d50a2ecf8fad9a!2sBumrungrad%20Hospital%20Dhaka%20Office!5e0!3m2!1sen!2sbd!4v1692206329747!5m2!1sen!2sbd",
-    },
-    {
-      office: "Banani Office",
-      building: "Alamin Park Panorama (Beside Banani Post Office),",
-      floor: "8th Floor (Lift-5)",
-      house: "Road 13/A, Block - C, House 105,",
-      city: "Banani, Dhaka - 1213,",
-      phone1: "+8801977284860",
-      phone2: "+8801847284862",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d29212.303573866055!2d90.3837837!3d23.7638509!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c72e25bd9c23%3A0x3d32da1eea1d8b1c!2sBumrungrad%20Hospital%20Bangladesh%20%7C%20Patient%20Support%20Center%20In%20Gulshan%20Dhaka%20%7C%20Book%20Your%20Doctor%20Appointment%20at%20Bumrungrad!5e0!3m2!1sen!2ssg!4v1692561871626!5m2!1sen!2ssg",
-    },
-    {
-      office: "Uttara Office",
-      building: "Sector-13, House: 01",
-      floor: "Janapadd Road",
-      house: "Opposite of Bata Showroom",
-      city: "Uttara, Dhaka-1230",
-      phone1: "+8801977284861",
-      phone2: "+8801601284300",
-      map: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3648.434392452508!2d90.3928183!3d23.874210400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c52a06df3939%3A0x5865aa1fbf242113!2sBumrungrad%20International%20Hospital%20Uttara%20Office!5e0!3m2!1sen!2ssg!4v1692561953360!5m2!1sen!2ssg",
-    },
-    {
-      office: "Chattogram Office",
-      building: "Daar E Shahidi Building",
-      floor: "3rd Floor, (Lift-3)",
-      house: "House:69, Agrabad C/A",
-      city: "Chattogram-4100",
-      phone1: "+8801847284863",
-      phone2: "+8801847284862",
-      map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d939716.4091297725!2d90.5450213!3d23.0689941!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd9b23e4a2043%3A0x4d00aafa2c904ae3!2zQnVtcnVuZ3JhZCBJbnRlcm5hdGlvbmFsIEhvc3BpdGFsIFJlZmVycmFsIE9mZmljZS1DaGF0dGFncmFtIC4vLyDgpqzgpr7gpq7gprDgp4Hgpqjgppfgp43gprDgpqYg4KaH4Kao4KeN4Kaf4Ka-4Kaw4Kao4KeN4Kav4Ka-4Ka24Kao4Ka-4KayIOCmueCmvuCmuOCmquCmvuCmpOCmvuCmsiDgprDgp4fgpqvgpr7gprDgp4fgprIg4KaF4Kar4Ka_4Ka4IOCmmuCmn-CnjeCmn-Cml-CnjeCmsOCmvuCmrg!5e0!3m2!1sen!2ssg!4v1692561993428!5m2!1sen!2ssg",
-    },
-  ];
-
-  const referralOffices = [
-    {
-      name: "Bumrungrad Hospital Referral Office Dhanmondi",
-      address:
-        "Rupayan Prime Tower, Plot No: 02 (9th Floor), Road No: 07, Green Road, Dhanmondi, Dhaka-1205, Bangladesh",
-      phone: "+880 1847 28 4860, +880 1847 28 4863",
-      email: [
-        {
-          label: "support@bumrungraddiscover.com",
-          href: "mailto:support@bumrungraddiscover.com",
-        },
-        {
-          label: "dhanmondi@bumrungraddiscover.com",
-          href: "mailto:dhanmondi@bumrungraddiscover.com",
-        },
-      ],
-      website: [
-        { label: "discoverims.com", href: "https://discoverims.com" },
-        {
-          label: "discoverinternationalmedicalservice.com",
-          href: "https://discoverinternationalmedicalservice.com/",
-        },
-      ],
-      mapLink:
-        "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Office/@23.7455115,90.3850626,15z/data=!4m6!3m5!1s0x3755b91b29851709:0xc3d50a2ecf8fad9a!8m2!3d23.7455115!4d90.3850626!16s%2Fg%2F11g1xxhlz1?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-      mapLabel: "Bumrungrad Hospital Dhaka Office",
-    },
-    {
-      name: "Bumrungrad Hospital Referral Office Banani",
-      address:
-        "Alamin Park Panorama (Infront of Banani Block -C Park), Lift-5, House 105, Road 13/A, Block - C, Banani, Dhaka - 1213",
-      phone: "+8801847284868, +8801977284862",
-      email: [
-        {
-          label: "banani@bumrungraddiscover.com",
-          href: "mailto:banani@bumrungraddiscover.com",
-        },
-        {
-          label: "support@bumrungraddiscover.com",
-          href: "mailto:support@bumrungraddiscover.com",
-        },
-      ],
-      website: [
-        { label: "discoverims.com", href: "https://discoverims.com" },
-        {
-          label: "discoverinternationalmedicalservice.com",
-          href: "https://discoverinternationalmedicalservice.com/",
-        },
-      ],
-      mapLink:
-        "https://www.google.com/maps/place/Bumrungrad+Hospital+Dhaka+Bangladesh+-+Banani+Branch/@23.7638509,90.3837837,14z/data=!4m6!3m5!1s0x3755c72e25bd9c23:0x3d32da1eea1d8b1c!8m2!3d23.7914367!4d90.4035711!16s%2Fg%2F11lrn54v4s?coh=164777&shorturl=1&entry=tts&g_ep=EgoyMDI0MDkyOS4wIPu8ASoASAFQAw%3D%3D",
-      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-      mapLabel: "Bumrungrad Hospital Dhaka Bangladesh - Banani Branch",
-    },
-    {
-      name: "Bumrungrad Hospital Referral Office Uttara",
-      address:
-        "Oasis Oliveira, Lift-02, House-01, Road-1/A, Sonargaon Janapad Road, Sector-13, Uttara, Dhaka, Bangladesh",
-      phone: "+8801977284861, +8801601284300",
-      email: [
-        {
-          label: "uttara@bumrungraddiscover.com",
-          href: "mailto:uttara@bumrungraddiscover.com",
-        },
-        {
-          label: "support@bumrungraddiscover.com",
-          href: "mailto:support@bumrungraddiscover.com",
-        },
-      ],
-      website: [
-        { label: "discoverims.com", href: "https://discoverims.com" },
-        {
-          label: "discoverinternationalmedicalservice.com",
-          href: "https://discoverinternationalmedicalservice.com/",
-        },
-      ],
-      mapLink:
-        "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Uttara+Office/@23.8742122,90.3928182,15z/data=!4m6!3m5!1s0x3755c52a06df3939:0x5865aa1fbf242113!8m2!3d23.8742151!4d90.3928172!16s%2Fg%2F11tgcb0n45?entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-      mapLabel: "Bumrungrad International Hospital Uttara Office",
-    },
-    {
-      name: "Bumrungrad Hospital Referral Office Chittagong Agrabad",
-      address:
-        "Daar E Shahidi Building 3rd Floor, (Lift-3), Opposite of Ethnological Museum 69, Agrabad C/A. Chittagong.",
-      phone: "+8801973-284836, +8801973-284862",
-      email: [
-        {
-          label: "ctg@bumrungraddiscover.com",
-          href: "mailto:ctg@bumrungraddiscover.com",
-        },
-        {
-          label: "support@bumrungraddiscover.com",
-          href: "mailto:support@bumrungraddiscover.com",
-        },
-      ],
-      website: [
-        { label: "discoverims.com", href: "https://discoverims.com" },
-        {
-          label: "discoverinternationalmedicalservice.com",
-          href: "https://discoverinternationalmedicalservice.com/",
-        },
-      ],
-      mapLink:
-        "https://www.google.com/maps/place/Bumrungrad+International+Hospital+Bangladesh+-+Representative+Office+in+Agrabad+,+Chittagong/@22.3271702,91.8144269,17z/data=!3m1!4b1!4m6!3m5!1s0x30acd9b23e4a2043:0x4d00aafa2c904ae3!8m2!3d22.3271702!4d91.8144269!16s%2Fg%2F11t5t0krzw?authuser=0&entry=ttu&g_ep=EgoyMDI1MDQwNy4wIKXMDSoASAFQAw%3D%3D",
-      fanpage: "https://www.facebook.com/bumrungraddhakaoffice",
-      mapLabel: "Bumrungrad International Hospital Chittagong",
-    },
-  ];
+  const referralOffices = t.raw("referralOfficeNames").map((name, i) => ({
+    name,
+    ...REFERRAL_OFFICE_DATA[i],
+  }));
 
   function handleAppointment() {
     if (auth) {
@@ -298,40 +151,35 @@ export default function DhakaOffices() {
         <div className="absolute top-0 h-full w-full bg-black/60"></div>
         <div className="text-white z-10">
           <h1 className="uppercase md:text-xl text-center font-bold">
-            Experience World-Class Healthcare with Bumrungrad International
-            Hospital - Dhaka Office
+            {t("heroHeading")}
           </h1>
           <p className="text-sm md:text-base text-center my-4 md:my-8">
-            Discover International Medical Service (DIMS) is the official
-            representative and International Referral Office for Bumrungrad
-            Hospital Dhaka Office. We connect Bangladeshi patients with
-            world-class healthcare at Bumrungrad International Hospital in
-            Thailand.
+            {t("heroText")}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <button
               onClick={handleAppointment}
               className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Doctor Appoinment
+              {t("doctorAppointment")}
             </button>
             <button
               onClick={handleHealthScreen}
               className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Health Screening
+              {t("healthScreening")}
             </button>
             <a
               href="/doctors"
               className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Find Doctor
+              {t("findDoctor")}
             </a>
             <a
               href="/send-query"
               className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Send Querey
+              {t("sendQuery")}
             </a>
           </div>
         </div>
@@ -339,13 +187,10 @@ export default function DhakaOffices() {
 
       <div className="mt-5 md:mt-10">
         <h2 className="text-xl font-semibold">
-          Your Journey to Health Starts Here at Bumrungrad Hospital
+          {t("journeyHeading")}
         </h2>
         <p className="mt-4">
-          Start your journey to exceptional healthcare at Bumrungrad Hospital
-          Bangkok. Our top-notch facilities and dedicated team are committed to
-          providing the best care possible, making every step of your healthcare
-          journey seamless and supportive.
+          {t("journeyText")}
         </p>
 
         <p className="mt-4">
@@ -355,57 +200,40 @@ export default function DhakaOffices() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            DIMS (Discover International Medical Service)
+            {t("dimsLinkText")}
           </Link>{" "}
-          is a trusted name in providing seamless medical assistance and
-          facilitation services to individuals seeking world-class healthcare
-          solutions abroad. Our mission is to guide patients through the
-          complexities of medical travel, ensuring easy access to Bumrungrad
-          Hospital and top doctors across the globe.
+          {t("dimsP1After")}
         </p>
 
         <p className="mt-4">
-          We specialize in coordinating treatments, consultations, and aftercare
-          for a wide range of medical conditions. In collaboration with leading
-          hospitals like Bumrungrad Hospital, we make sure patients receive the
-          highest standard of healthcare, no matter where they are located. Our
-          extensive network of international referral offices in countries such
-          as Bangladesh, Bahrain, Cambodia, Chad, China, East Africa, Ethiopia,
-          Hong Kong, Indonesia, Kenya, Kuwait, Laos, Mongolia, Myanmar, Nepal,
-          Pakistan, UAE, and Vietnam ensures that patients worldwide can easily
-          access the right medical expertise. If you have any questions or need
-          assistance with any step of the process, please feel free to ask in
-          the{" "}
+          {t("dimsP2Before")}{" "}
           <Link
             href="https://api.whatsapp.com/send/?phone=%2B66948382910&text&type=phone_number&app_absent=0"
             className="text-blue underline font-semibold"
             target="_blank"
           >
-            Live Chat.
+            {t("liveChatLink")}
           </Link>{" "}
-          We are here to help you plan your journey to world-class healthcare.
+          {t("dimsP2After")}
         </p>
 
         <div className="mt-8">
           <h2 className="text-xl font-semibold text-blue">
-            Access Bumrungrad Hospital Through Our Dhaka Referral Offices
+            {t("referralOfficesHeading")}
           </h2>
           <p className="mt-4">
             {" "}
-            Below is a list of our of Bumrungrad Hospital overseas Dhaka
-            Referral offices. These offices will assist you in every way
-            possible to ensure you receive the information and support you need.
-            Contact us directly at one of our international Referral offices.
+            {t("referralOfficesIntro")}
           </p>
 
           <div className="mt-5 grid gap-5 md:grid-cols-2">
             {referralOffices.map((office, index) => (
               <div key={index}>
                 <h5 className="font-semibold text-blue">{office.name}</h5>
-                <p className="mt-2">Address: {office.address}</p>
-                <p className="mt-2">Phone: {office.phone}</p>
+                <p className="mt-2">{t("addressLabel")} {office.address}</p>
+                <p className="mt-2">{t("phoneLabel")} {office.phone}</p>
                 <p className="mt-2">
-                  Email:{" "}
+                  {t("emailLabel")}{" "}
                   {office.email.map((mail, i) => (
                     <span key={i}>
                       <Link
@@ -419,7 +247,7 @@ export default function DhakaOffices() {
                   ))}
                 </p>
                 <p className="mt-2">
-                  Website:{" "}
+                  {t("websiteLabel")}{" "}
                   {office.website.map((site, i) => (
                     <span key={i}>
                       <Link
@@ -435,7 +263,7 @@ export default function DhakaOffices() {
                   ))}
                 </p>
                 <p className="mt-2">
-                  Google Map Location:{" "}
+                  {t("mapLabel")}{" "}
                   <Link
                     href={office.mapLink}
                     className="text-blue-600 underline"
@@ -446,7 +274,7 @@ export default function DhakaOffices() {
                   </Link>
                 </p>
                 <p className="mt-2">
-                  Fanpage:{" "}
+                  {t("fanpageLabel")}{" "}
                   <Link
                     href={office.fanpage}
                     className="text-blue-600 underline"
@@ -462,7 +290,7 @@ export default function DhakaOffices() {
 
           <div className="mt-5 grid gap-5 md:grid-cols-4">
             <div>
-              <h5 className="text-blue font-semibold mt-8">Visa Officer</h5>
+              <h5 className="text-blue font-semibold mt-8">{t("visaOfficerHeading")}</h5>
               <ul className="mt-4">
                 <li>
                   Mr Shahriyar:{" "}
@@ -495,7 +323,7 @@ export default function DhakaOffices() {
             </div>
 
             <div>
-              <h5 className="text-blue font-semibold mt-8">Reservation</h5>
+              <h5 className="text-blue font-semibold mt-8">{t("reservationHeading")}</h5>
               <ul className="mt-4">
                 <li>
                   Mr Abdus Samad:{" "}
@@ -510,7 +338,7 @@ export default function DhakaOffices() {
             </div>
 
             <div>
-              <h5 className="text-blue font-semibold mt-8">Support Mail</h5>
+              <h5 className="text-blue font-semibold mt-8">{t("supportMailHeading")}</h5>
               <p className="mt-4">
                 <a
                   href="mailto:support@bumrungraddiscover.com"
@@ -522,7 +350,7 @@ export default function DhakaOffices() {
             </div>
 
             <div>
-              <h5 className="text-blue font-semibold mt-8">Website</h5>
+              <h5 className="text-blue font-semibold mt-8">{t("websiteHeading")}</h5>
               <p className="mt-4">
                 <Link
                   href="https://discoverinternationalmedicalservice.com/"
@@ -530,7 +358,7 @@ export default function DhakaOffices() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Bumrungrad International Hospital
+                  {t("linkText")}
                 </Link>
               </p>
             </div>
@@ -540,16 +368,13 @@ export default function DhakaOffices() {
 
       <div className="mt-10 md:mt-20">
         <p className="text-center font-semibold text-xl text-blue">
-          Our Complete Services for Patients at Bumrungrad International
-          Hospital
+          {t("servicesHeading")}
         </p>
         <p className="text-center my-5 md:my-10">
-          At Discover International Medical Service (DIMS), We provide a wide
-          range of services for patients visiting Bumrungrad International
-          Hospital. Here’s a quick overview of what we can help you with:
+          {t("servicesIntro")}
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-2.5">
-          {services.map((s, i, id) => (
+          {services.map((s, i) => (
             <div
               key={i}
               className="cursor-pointer flex flex-col gap-4 items-center md:hover:scale-105 shadow md:hover:shadow-lg md:hover:shadow-blue duration-300 ease-linear p-4 rounded"
@@ -566,18 +391,10 @@ export default function DhakaOffices() {
 
       <div className="mt-10 md:mt-20">
         <p className="font-semibold text-xl text-blue text-center">
-          Lets make your medical trip to Bumrungrad a seamless experience!
+          {t("closingHeading")}
         </p>
         <p className="my-5 md:my-10 text-center">
-          At DIMS, We are committed to providing you with seamless access to the
-          best healthcare at Bumrungrad International Hospital. Whether you are
-          seeking treatment for a chronic condition, undergoing surgery, or just
-          looking for a second opinion, Our team is here to guide you every step
-          of the way. Our goal is to simplify the process of medical travel,
-          handling the logistics so that you can focus on your health and
-          recovery. By partnering with Bumrungrad International Hospital, we
-          ensure that you receive the highest quality care in one of the world's
-          Top medical destinations.
+          {t("closingText")}
         </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {ContactCards.map((cc, i) => (

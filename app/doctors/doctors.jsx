@@ -23,8 +23,10 @@ import Link from "next/link";
 import { IoSearchOutline } from "react-icons/io5";
 import Image from "next/image";
 import { CardLoaders } from "@/components/ui/cardload";
+import { useTranslations } from "next-intl";
 
 export default function FindDoctor() {
+  const t = useTranslations("doctors.findDoctor");
   const [advanceBox, setAdvanceBox] = useState(false);
   const [loader, setLoader] = useState(false);
   const [showData, setshowData] = useState(15);
@@ -57,6 +59,8 @@ export default function FindDoctor() {
     setDocName(name);
   };
 
+  // `name` is the API filter value (kept in English); the display label is
+  // translated separately via t(`weekdays.${name}`) etc. at render time.
   const weekdays = [
     { name: "Saturday" },
     { name: "Sunday" },
@@ -159,13 +163,13 @@ export default function FindDoctor() {
       <div id="finddoctor" className="flex items-center">
         <div className="container mx-5 md:mx-auto max-sm:p4 p-6 md:p-12 rounded-xl bg-white shadow-xl md:w-1/2 lg:w-1/3">
           <h1 className="text-xl md:text-3xl font-semibold text-blue text-center">
-            Find A Doctor
+            {t("title")}
           </h1>
           <div className="flex flex-col gap-4 mt-5 md:mt-10">
             <div className="flex">
               <TextField
                 id="outlined-basic"
-                label="Enter Doctor Name"
+                label={t("enterDoctorName")}
                 variant="outlined"
                 fullWidth
                 onChange={(e) => setName(e.target.value)}
@@ -180,13 +184,13 @@ export default function FindDoctor() {
             </div>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">
-                Select Speacility
+                {t("selectSpeciality")}
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={speacility}
-                label="Select Speacility"
+                label={t("selectSpeciality")}
                 onChange={(e) => setSpeacility(e.target.value)}
               >
                 {specialties?.map((s, i) => (
@@ -199,13 +203,13 @@ export default function FindDoctor() {
 
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">
-                Select Sub Speacility
+                {t("selectSubSpeciality")}
               </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={subSpeacility}
-                label="Select Sub Speacility"
+                label={t("selectSubSpeciality")}
                 onChange={(e) => setSubSpeacility(e.target.value)}
                 disabled={subSpecialties?.length === 0}
               >
@@ -221,7 +225,7 @@ export default function FindDoctor() {
               onClick={() => setAdvanceBox(!advanceBox)}
               className="bg-blue rounded px-4 py-3 text-white hidden md:flex justify-between"
             >
-              Advance Search
+              {t("advanceSearch")}
               {advanceBox ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             </button>
 
@@ -229,7 +233,7 @@ export default function FindDoctor() {
               onClick={handleClickOpen}
               className="md:hidden bg-blue rounded px-4 py-3 text-white flex justify-between"
             >
-              More Serach
+              {t("moreSearch")}
               {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
             </button>
           </div>
@@ -250,71 +254,71 @@ export default function FindDoctor() {
           id="alert-dialog-title"
           className="text-center text-blue !font-semibold"
         >
-          {"Your Preferences"}
+          {t("yourPreferences")}
         </DialogTitle>
         <DialogContent>
           <form className="py-1.5">
             <div className="grid gap-4 md:grid-cols-2">
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("language")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={lang}
-                  label="Language"
+                  label={t("language")}
                   onChange={(e) => setLang(e.target.value)}
                 >
                   {languages.map((l, i) => (
                     <MenuItem value={l.name} key={i}>
-                      {l.name}
+                      {t(`languages.${l.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Day</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("day")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={day}
-                  label="Day"
+                  label={t("day")}
                   onChange={(e) => setDay(e.target.value)}
                 >
                   {weekdays.map((w, i) => (
                     <MenuItem value={w.name} key={i}>
-                      {w.name}
+                      {t(`weekdays.${w.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Time</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("time")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={time}
-                  label="Time"
+                  label={t("time")}
                   onChange={(e) => setTime(e.target.value)}
                 >
-                  {times.map((t, i) => (
-                    <MenuItem key={i} value={t.name}>
-                      {t.name}
+                  {times.map((tm, i) => (
+                    <MenuItem key={i} value={tm.name}>
+                      {t(`times.${tm.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("gender")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={gender}
-                  label="Gender"
+                  label={t("gender")}
                   onChange={(e) => setGender(e.target.value)}
                 >
                   {genders.map((g, i) => (
                     <MenuItem value={g.name} key={i}>
-                      {g.name}
+                      {t(`genders.${g.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
@@ -328,7 +332,7 @@ export default function FindDoctor() {
             variant="contained"
             className="!bg-blue !shadow-none"
           >
-            Close
+            {t("close")}
           </Button>
         </DialogActions>
       </Dialog>
@@ -344,72 +348,72 @@ export default function FindDoctor() {
             </button>
             <div className="grid gap-4 md:grid-cols-2">
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Language</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("language")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={lang}
-                  label="Language"
+                  label={t("language")}
                   onChange={(e) => setLang(e.target.value)}
                 >
                   {languages.map((l, i) => (
                     <MenuItem value={l.name} key={i}>
-                      {l.name}
+                      {t(`languages.${l.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Day</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("day")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={day}
-                  label="Day"
+                  label={t("day")}
                   onChange={(e) => setDay(e.target.value)}
                 >
                   {weekdays.map((w, i) => (
                     <MenuItem value={w.name} key={i}>
-                      {w.name}
+                      {t(`weekdays.${w.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Time</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("time")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={time}
-                  label="Time"
+                  label={t("time")}
                   onChange={(e) => setTime(e.target.value)}
                 >
-                  {times.map((t, i) => (
-                    <MenuItem key={i} value={t.name}>
-                      {t.name}
+                  {times.map((tm, i) => (
+                    <MenuItem key={i} value={tm.name}>
+                      {t(`times.${tm.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                <InputLabel id="demo-simple-select-label">{t("gender")}</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={gender}
-                  label="Gender"
+                  label={t("gender")}
                   onChange={(e) => setGender(e.target.value)}
                 >
                   {genders.map((g, i) => (
                     <MenuItem value={g.name} key={i}>
-                      {g.name}
+                      {t(`genders.${g.name}`)}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             </div>
             <button className="px-4 py-2 bg-blue border border-blue hover:bg-white hover:text-blue duration-300 ease-linear mt-4 rounded flex items-center gap-5 text-white">
-              Clear Filters
+              {t("clearFilters")}
               <CachedIcon />
             </button>
           </form>
@@ -424,7 +428,7 @@ export default function FindDoctor() {
       query?.schedule ||
       query?.gender ? (
         <div className="mx-5 mt-10 md:container md:mx-auto">
-          <p className="text-lg md:text-xl font-semibold">Filters:</p>
+          <p className="text-lg md:text-xl font-semibold">{t("filtersLabel")}</p>
           <div className="flex flex-wrap gap-1 mt-5">
             {docName && (
               <button
@@ -508,8 +512,8 @@ export default function FindDoctor() {
           {doctors?.length > 0 ? (
             <div>
               <p className="max-sm:pt-5 md:pt-10 text-xl md:text-2xl font-semibold">
-                Found <span className="text-blue">{doctors?.length}</span>{" "}
-                Doctor
+                {t("found")} <span className="text-blue">{doctors?.length}</span>{" "}
+                {t("doctorWord")}
               </p>
 
               <div className="grid grid-cols-1 place-items-center  md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-5 my-5">
@@ -530,7 +534,7 @@ export default function FindDoctor() {
                         />
                       ) : (
                         <div className="max-sm:h-full max-sm:w-full md:h-[350px] w-full rounded-tl-xl rounded-tr-xl bg-cream flex items-center justify-center text-black/30 text-sm">
-                          No photo available
+                          {t("noPhoto")}
                         </div>
                       )}
                       <div>
@@ -540,7 +544,7 @@ export default function FindDoctor() {
                           target="_blank"
                         >
                           <button className="bg-blue text-sm md:text-base text-white  absolute bottom-0 rounded-tl-xl rounded-tr-xl px-2 md:px-6 py-2">
-                            View Profile
+                            {t("viewProfile")}
                           </button>
                         </Link>
                       </div>
@@ -562,7 +566,7 @@ export default function FindDoctor() {
             <div className="min-h-[40vh] shadow-xl rounded p-5 mb-2.5">
               <Lottie style={style} animationData={notFoundAnim} loop={true} />
               <p className="text-xl font-semibold text-blue text-center">
-                No Doctor Found
+                {t("noDoctorFound")}
               </p>
             </div>
           )}
@@ -576,7 +580,7 @@ export default function FindDoctor() {
               onClick={handalelessData}
               className="border border-blue bg-blue hover:bg-white hover:text-blue rounded-full text-sm md:text-base text-white px-2 md:px-6 py-2"
             >
-              View Less
+              {t("viewLess")}
             </button>
           )}
 
@@ -585,7 +589,7 @@ export default function FindDoctor() {
             className="border border-blue bg-blue hover:bg-white hover:text-blue rounded-full text-sm md:text-base text-white   px-2 md:px-6 py-2"
             disabled={showData === doctors?.length}
           >
-            View More
+            {t("viewMore")}
           </button>
         </div>
       )}

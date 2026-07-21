@@ -2,12 +2,11 @@
 
 import React, { useEffect, useState } from 'react'
 import Marquee from 'react-fast-marquee'
-
-const FALLBACK_TEXT =
-  'We are the Official Information & Representative Office for Bumrungrad, helping to coordinate all medical treatments and check-ups for FREE.'
+import { useTranslations } from 'next-intl'
 
 const Disclaimer = () => {
-  const [tickerText, setTickerText] = useState(FALLBACK_TEXT)
+  const t = useTranslations('home.disclaimer')
+  const [tickerText, setTickerText] = useState(t('fallback'))
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/get/site-settings')

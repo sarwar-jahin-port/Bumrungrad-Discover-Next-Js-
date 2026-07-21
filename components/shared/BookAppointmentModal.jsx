@@ -14,8 +14,10 @@ import { AiFillEye } from "react-icons/ai";
 import CloseIcon from "@mui/icons-material/Close";
 import toast from "react-hot-toast";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 export default function BookAppointmentModal({ open, onClose }) {
+  const t = useTranslations("bookAppointmentModal");
   const [yes, setYes] = useState(true);
   const [loader, setLoader] = useState(false);
   const [error, SetError] = useState("");
@@ -73,7 +75,7 @@ export default function BookAppointmentModal({ open, onClose }) {
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
-      SetError("Your Confirm Password Didn't Match");
+      SetError(t("passwordMismatch"));
       setLoader(false);
     } else {
       const formData = new FormData();
@@ -107,7 +109,7 @@ export default function BookAppointmentModal({ open, onClose }) {
         setLoader(false);
 
         if (res?.status !== 200) {
-          toast.error("Something went wrong", {
+          toast.error(t("errorToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -120,7 +122,7 @@ export default function BookAppointmentModal({ open, onClose }) {
         const jsonData = await res.json();
 
         if (jsonData?.err) {
-          toast.error("Something went wrong", {
+          toast.error(t("errorToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -133,7 +135,7 @@ export default function BookAppointmentModal({ open, onClose }) {
         }
 
         if (jsonData?.data?.token) {
-          toast.success("Your Appointment Request is Submitted Successfully", {
+          toast.success(t("successToast"), {
             position: "top-center",
             style: {
               padding: "20px",
@@ -170,34 +172,34 @@ export default function BookAppointmentModal({ open, onClose }) {
 
         <div className="p-4 md:p-6 max-h-[90vh] overflow-y-auto">
           <h5 className="mb-3 text-base md:text-xl font-semibold text-blue pr-8">
-            Book an Appointment
+            {t("heading")}
           </h5>
           <Divider />
 
           <div className="grid md:grid-cols-2 gap-3 mt-4">
             <div>
-              <p className="mb-1 text-sm">First Name</p>
+              <p className="mb-1 text-sm">{t("firstName")}</p>
               <TextField
                 size="small"
                 value={firstname}
                 onChange={(e) => setfirstname(e.target.value)}
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
               />
             </div>
             <div>
-              <p className="mb-1 text-sm">Last Name</p>
+              <p className="mb-1 text-sm">{t("lastName")}</p>
               <TextField
                 size="small"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
               />
             </div>
 
             <FormControl fullWidth size="small">
-              <p className="mb-1 text-sm">Citizenship (Required)</p>
+              <p className="mb-1 text-sm">{t("citizenship")}</p>
               <Select
                 value={citizenship}
                 onChange={(e) => setCitizenship(e.target.value)}
@@ -210,32 +212,32 @@ export default function BookAppointmentModal({ open, onClose }) {
               </Select>
             </FormControl>
             <FormControl fullWidth size="small">
-              <p className="mb-1 text-sm">Gender (Required)</p>
+              <p className="mb-1 text-sm">{t("gender")}</p>
               <Select
                 value={gender}
                 onChange={(e) => setGender(e.target.value)}
               >
-                <MenuItem value="Male">Male</MenuItem>
-                <MenuItem value="Female">Female</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
+                <MenuItem value="Male">{t("male")}</MenuItem>
+                <MenuItem value="Female">{t("female")}</MenuItem>
+                <MenuItem value="Other">{t("other")}</MenuItem>
               </Select>
             </FormControl>
             <div>
-              <p className="mb-1 text-sm">Email (Required)</p>
+              <p className="mb-1 text-sm">{t("email")}</p>
               {errors?.email && (
                 <p className="text-red text-xs">{errors?.email[0]}</p>
               )}
               <TextField
                 size="small"
                 fullWidth
-                placeholder="Required"
+                placeholder={t("required")}
                 type="email"
                 value={pataientEmail}
                 onChange={(e) => setPataientEmail(e.target.value)}
               />
             </div>
             <div>
-              <p className="mb-1 text-sm">Phone Number (Required)</p>
+              <p className="mb-1 text-sm">{t("phone")}</p>
               <MuiTelInput
                 size="small"
                 defaultCountry="TH"
@@ -245,7 +247,7 @@ export default function BookAppointmentModal({ open, onClose }) {
               />
             </div>
             <div>
-              <p className="mb-1 text-sm">Date of Birth (Required)</p>
+              <p className="mb-1 text-sm">{t("dob")}</p>
               <TextField
                 size="small"
                 fullWidth
@@ -255,7 +257,7 @@ export default function BookAppointmentModal({ open, onClose }) {
               />
             </div>
             <div>
-              <p className="mb-1 text-sm">Passport Copy (Optional)</p>
+              <p className="mb-1 text-sm">{t("passportCopy")}</p>
               <input
                 type="file"
                 value={passport}
@@ -266,7 +268,7 @@ export default function BookAppointmentModal({ open, onClose }) {
           </div>
 
           <div className="mt-4">
-            <p className="text-sm font-medium">Are you in Thailand?</p>
+            <p className="text-sm font-medium">{t("areYouInThailand")}</p>
             <div className="flex gap-2 mt-1.5 mb-3">
               <button
                 type="button"
@@ -275,7 +277,7 @@ export default function BookAppointmentModal({ open, onClose }) {
                 }`}
                 onClick={() => setYes(true)}
               >
-                Yes
+                {t("yes")}
               </button>
               <button
                 type="button"
@@ -284,12 +286,12 @@ export default function BookAppointmentModal({ open, onClose }) {
                 }`}
                 onClick={() => setYes(false)}
               >
-                No
+                {t("no")}
               </button>
             </div>
             {yes === false && (
               <FormControl fullWidth size="small">
-                <p className="mb-1 text-sm">Country (Required)</p>
+                <p className="mb-1 text-sm">{t("country")}</p>
                 <Select
                   value={country}
                   className="mb-3"
@@ -307,13 +309,13 @@ export default function BookAppointmentModal({ open, onClose }) {
 
           <div className="md:grid md:grid-cols-2 gap-3 mt-2">
             <div>
-              <p className="mb-1 text-sm">Password</p>
+              <p className="mb-1 text-sm">{t("password")}</p>
               <div className="flex relative">
                 <TextField
                   size="small"
                   type={inputType}
                   fullWidth
-                  placeholder="Required"
+                  placeholder={t("required")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -323,13 +325,13 @@ export default function BookAppointmentModal({ open, onClose }) {
               </div>
             </div>
             <div>
-              <p className="mt-2 md:mt-0 mb-1 text-sm">Confirm Password</p>
+              <p className="mt-2 md:mt-0 mb-1 text-sm">{t("confirmPassword")}</p>
               <div className="flex relative">
                 <TextField
                   size="small"
                   type={inputType1}
                   fullWidth
-                  placeholder="Required"
+                  placeholder={t("required")}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -375,7 +377,7 @@ export default function BookAppointmentModal({ open, onClose }) {
               {loader ? (
                 <Loader className="animate-spin" stroke="black" color="black" />
               ) : (
-                "Submit"
+                t("submit")
               )}
             </button>
           </div>

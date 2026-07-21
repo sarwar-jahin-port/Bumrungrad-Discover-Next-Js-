@@ -1,0 +1,74 @@
+{
+  "heading": "Welcome to Bumrungrad Discover – Your Privacy Matters",
+  "introText": "We are committed to protecting your privacy and ensuring that your personal information is handled in a safe and responsible manner. This Privacy Policy outlines the types of personal information we collect, how we use and protect that information, and your rights regarding your personal data.",
+
+  "collectHeading": "Welcome to Bumrungrad Discover – Your Privacy Matters",
+  "collectIntro": "We may collect and process the following types of personal information:",
+  "collectItems": [
+    "Personal Identification Information: Name, email address, phone number, and postal address.",
+    "Health Information: Medical history, current health conditions, and details of treatment received or required.",
+    "Travel Information: Passport details, visa information, travel itinerary, and accommodation details.",
+    "Payment Information: Credit card details, billing address, and other payment-related information.",
+    "Technical Data: IP address, browser type, operating system, and browsing behavior on our website."
+  ],
+
+  "useHeading": "How We Use Your Information",
+  "useIntro": "We use the collected information for the following purposes:",
+  "useItems": [
+    "To provide medical referral services to Bumrungrad International Hospital.",
+    "To assist with visa processing, air tickets, air ambulance, and airport pickups",
+    "To schedule doctor appointments and arrange telemedicine consultations.",
+    "To order and deliver medications.",
+    "To respond to your inquiries and provide customer support.",
+    "To send you updates, promotional materials, and other information related to our services.",
+    "To improve our website and services."
+  ],
+
+  "sharingHeading": "Sharing Your Information",
+  "sharingIntro": "We may share your personal information with:",
+  "sharingItem1After": "International Hospital to arrange medical services.",
+  "sharingItem2": "Travel agencies, airlines, and other service providers for travel arrangements.",
+  "sharingItem3": "Payment processors to facilitate transactions.",
+  "sharingItem4": "Government authorities if required by law or necessary for visa and travel arrangements.",
+  "sharingItem5Before": "Our affiliates and partners to improve our",
+  "ourServiceLinkText": "Our Service",
+  "sharingItem6": "We do not sell or rent your personal information to third parties.",
+  "linkText": "Bumrungrad International Hospital",
+
+  "securityHeading": "Data Security",
+  "securityText": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, loss, or destruction. These measures include encryption, secure servers, and restricted access to personal information.",
+
+  "rightsHeading": "Your Rights",
+  "rightsIntro": "You have the following rights regarding your personal information:",
+  "rightsItems": [
+    "Access: You can request access to your personal information and obtain a copy of it.",
+    "Correction: You can request correction of any inaccurate or incomplete personal information.",
+    "Deletion: You can request deletion of your personal information, subject to certain conditions.",
+    "Objection: You can object to the processing of your personal information under certain circumstances.",
+    "Restriction: You can request restrictions on the processing of your personal information under certain conditions.",
+    "Portability: You can request the transfer of your personal information to another party."
+  ],
+  "rightsContactBefore": "To exercise any of these rights, please",
+  "contactLinkText": "Contact",
+  "rightsContactAfter": "us at",
+
+  "cookiesHeading": "Cookies and Tracking Technologies",
+  "cookiesText": "Our website uses cookies and similar tracking technologies to enhance your browsing experience and analyze website traffic. You can set your browser to refuse cookies, but this may affect your ability to use certain features of our website.",
+
+  "changesHeading": "Changes to This Privacy Policy",
+  "changesText": "We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the updated policy on our website. Your continued use of our services after the changes take effect constitutes your acceptance of the revised policy.",
+
+  "contactHeading": "Contact Us",
+  "contactText": "If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:",
+  "companyName": "Bumrungrad Discover",
+  "emailLabel": "Email :",
+  "phoneLabel": "Phone :",
+  "addressHeading": "Address :",
+
+  "contactCards": [
+    { "office": "Dhanmondi Office", "building": "Rupayan Prime Tower", "floor": "10th Floor (Lift-9)", "house": "House:02,Road: 07, Green Road", "city": "Dhanmondi, Dhaka-1205" },
+    { "office": "Banani Office", "building": "Alamin Park Panorama (Beside Banani Post Office),", "floor": "8th Floor (Lift-5)", "house": "Road 13/A, Block - C, House 105,", "city": "Banani, Dhaka - 1213," },
+    { "office": "Uttara Office", "building": "Sector-13, House: 01", "floor": "Janapadd Road", "house": "Opposite of Bata Showroom", "city": "Uttara, Dhaka-1230" },
+    { "office": "Chattogram Office", "building": "Daar E Shahidi Building", "floor": "3rd Floor, (Lift-3)", "house": "House:69, Agrabad C/A", "city": "Chattogram-4100" }
+  ]
+}

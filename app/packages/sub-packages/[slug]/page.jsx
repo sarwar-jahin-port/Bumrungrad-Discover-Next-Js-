@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const ChildPackage = ({params}) => {
+  const t = useTranslations("packagesPages.childPackage");
   const [loader, setLoader] = useState();
   const [childPackage, setChildPackage] = useState([]);
 
@@ -57,7 +59,7 @@ const ChildPackage = ({params}) => {
           {childPackage?.length > 0 ? (
             <>
               <h2 className="md:ml-8 text-xl font-semibold md:text-2xl lg:text-3xl capitalize text-blue">
-                our packages
+                {t("heading")}
               </h2>
               <div className="md:ml-8 my-10 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {childPackage.map((cp, i) => (
@@ -82,7 +84,7 @@ const ChildPackage = ({params}) => {
                       </p>
 
                       <p className="mt-2.5">
-                        <span className="font-semibold">Location:</span> {cp?.location}.
+                        <span className="font-semibold">{t("locationLabel")}</span> {cp?.location}.
                       </p>
                       {cp?.price && (
                         <p className="mt-1 text-blue font-bold">
@@ -96,7 +98,7 @@ const ChildPackage = ({params}) => {
                       target="_blank"
                     >
                       <RemoveRedEyeIcon />
-                      <span className="capitalize">View Package</span>
+                      <span className="capitalize">{t("viewPackage")}</span>
                     </Link>
                   </div>
                 ))}
@@ -104,7 +106,7 @@ const ChildPackage = ({params}) => {
             </>
           ) : (
             <p className="min-h-[80vh] flex justify-center items-center text-3xl text-red font-semibold">
-              No Data Found
+              {t("noData")}
             </p>
           )}
         </div>

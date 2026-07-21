@@ -10,8 +10,10 @@ import toast from "react-hot-toast";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import { formatKeys } from "@/helpers/objectKeyFormat";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 export default function CheckUp() {
+    const t = useTranslations("checkUp");
     // const auth = JSON.parse(localStorage.getItem('User_Details'))
     const { auth } = useAuth();
     const navigate = useRouter();
@@ -176,7 +178,7 @@ export default function CheckUp() {
                 setLoader(false);
 
                 if (mailResponse.messageId && clientMailResponse.messageId) {
-                    toast.success("Check Up Mail Sent Successfully", {
+                    toast.success(t("successToast"), {
                         duration: 4000,
                         style: {
                             padding: "20px",
@@ -185,11 +187,11 @@ export default function CheckUp() {
                     });
                     navigate.push("/");
                 } else {
-                    toast.error("Something went wrong,Mail not sent");
+                    toast.error(t("errorToastMailFailed"));
                 }
             } else {
                 setLoader(false);
-                toast.error("Something went wrong");
+                toast.error(t("errorToast"));
             }
         } catch (error) {
             setLoader(false);
@@ -203,7 +205,7 @@ export default function CheckUp() {
         <>
             <div className='px-5 py-3  md:container md:mx-auto'>
                 <h1 className='text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue mt-8'>
-                    Health Screening Appointment
+                    {t("heading")}
                 </h1>
                 <div className='mx-auto my-10  lg:w-1/2'>
                     <div className='flex justify-center mx-10 items-center'>
@@ -231,7 +233,7 @@ export default function CheckUp() {
                         <div className='mt-10'>
                             <div>
                                 <p className='mb-2.5 font-semibold'>
-                                    Preferred Health Packages*
+                                    {t("preferredPackage")}
                                 </p>
                                 <FormControl fullWidth>
                                     <Select
@@ -251,7 +253,7 @@ export default function CheckUp() {
                             <div className='mt-2.5 font-semibold'>
                                 <p className='mb-2.5 font-semibold'>
                                     {" "}
-                                    Select Speciality
+                                    {t("selectSpeciality")}
                                 </p>
                                 <FormControl fullWidth>
                                     <Select
@@ -270,7 +272,7 @@ export default function CheckUp() {
                             </div>
 
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Preferred Doctor</p>
+                                <p className='mb-2.5'>{t("preferredDoctor")}</p>
                                 <FormControl fullWidth>
                                     <Select
                                         labelId='demo-simple-select-label'
@@ -288,7 +290,7 @@ export default function CheckUp() {
                             </div>
                             <div className='mt-2.5 font-semibold'>
                                 <p className='mb-2.5'>
-                                    Preferred Appointment Date*
+                                    {t("preferredDate")}
                                 </p>
                                 <TextField
                                     type='date'
@@ -302,7 +304,7 @@ export default function CheckUp() {
                             </div>
                             <div className='mt-2.5 font-semibold'>
                                 <p className='mb-2.5'>
-                                    Preferred Appointment Time*
+                                    {t("preferredTime")}
                                 </p>
                                 <TextField
                                     type='time'
@@ -316,11 +318,11 @@ export default function CheckUp() {
                             </div>
                             <div className='mt-2.5 font-semibold'>
                                 <p className='mb-2.5'>
-                                    State Your Medical Concern or Request
+                                    {t("medicalConcern")}
                                 </p>
                                 <TextField
                                     type='text'
-                                    placeholder='Enter Request'
+                                    placeholder={t("enterRequest")}
                                     fullWidth
                                     defaultValue={medicalConcern}
                                     onChange={(e) =>
@@ -330,11 +332,11 @@ export default function CheckUp() {
                             </div>
                             <div className='mt-2.5 font-semibold'>
                                 <p className='mb-2.5'>
-                                    Hospital Number (if available)
+                                    {t("hospitalNumber")}
                                 </p>
                                 <TextField
                                     type='text'
-                                    placeholder='Enter HN Number'
+                                    placeholder={t("enterHnNumber")}
                                     fullWidth
                                     defaultValue={HnNumber}
                                     onChange={(e) =>
@@ -360,7 +362,7 @@ export default function CheckUp() {
                                         }
                                         onClick={handleClick}
                                     >
-                                        Next
+                                        {t("next")}
                                     </button>
                                 </div>
                             </div>
@@ -370,11 +372,11 @@ export default function CheckUp() {
                         <div className='mt-10'>
                             <div>
                                 <p className='mb-2.5 font-semibold'>
-                                    Patient Name*
+                                    {t("patientName")}
                                 </p>
                                 <TextField
                                     type='text'
-                                    placeholder='Enter Name'
+                                    placeholder={t("enterName")}
                                     required
                                     fullWidth
                                     defaultValue={patientName}
@@ -385,28 +387,27 @@ export default function CheckUp() {
                             </div>
                             <div className='mt-2.5 font-semibold'>
                                 <FormControl fullWidth>
-                                    <p className='mb-2.5'>Gender*</p>
+                                    <p className='mb-2.5'>{t("gender")}</p>
                                     <Select
                                         labelId='demo-simple-select-label'
                                         id='demo-simple-select'
                                         value={gender}
                                         required
                                         defaultValue={gender}
-                                        placeholder='Select Gender'
                                         onChange={(e) =>
                                             setGender(e.target.value)
                                         }
                                     >
-                                        <MenuItem value='Male'>Male</MenuItem>
+                                        <MenuItem value='Male'>{t("male")}</MenuItem>
                                         <MenuItem value='Female'>
-                                            Female
+                                            {t("female")}
                                         </MenuItem>
-                                        <MenuItem value='Other'>Other</MenuItem>
+                                        <MenuItem value='Other'>{t("other")}</MenuItem>
                                     </Select>
                                 </FormControl>
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Date Of Birth*</p>
+                                <p className='mb-2.5'>{t("dob")}</p>
                                 <TextField
                                     type='date'
                                     required
@@ -416,10 +417,10 @@ export default function CheckUp() {
                                 />
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Email*</p>
+                                <p className='mb-2.5'>{t("email")}</p>
                                 <TextField
                                     type='email'
-                                    placeholder='Enter Email'
+                                    placeholder={t("enterEmail")}
                                     required
                                     fullWidth
                                     defaultValue={email}
@@ -427,10 +428,10 @@ export default function CheckUp() {
                                 />
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Phone*</p>
+                                <p className='mb-2.5'>{t("phone")}</p>
                                 <TextField
                                     type='text'
-                                    placeholder='Enter Phone Number'
+                                    placeholder={t("enterPhone")}
                                     required
                                     fullWidth
                                     defaultValue={phone}
@@ -438,10 +439,10 @@ export default function CheckUp() {
                                 />
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>National Origin*</p>
+                                <p className='mb-2.5'>{t("nationalOrigin")}</p>
                                 <TextField
                                     type='text'
-                                    placeholder='Enter Nationality'
+                                    placeholder={t("enterNationality")}
                                     required
                                     fullWidth
                                     defaultValue={nationality}
@@ -451,7 +452,7 @@ export default function CheckUp() {
                                 />
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Passport*</p>
+                                <p className='mb-2.5'>{t("passport")}</p>
                                 <TextField
                                     type='file'
                                     placeholder='Enter Nationality'
@@ -464,7 +465,7 @@ export default function CheckUp() {
                                 />
                             </div>
                             <div className='mt-2.5 font-semibold'>
-                                <p className='mb-2.5'>Others Document</p>
+                                <p className='mb-2.5'>{t("otherDocument")}</p>
                                 <TextField
                                     type='file'
                                     // placeholder='Enter Nationality'
@@ -486,7 +487,7 @@ export default function CheckUp() {
                                         } `}
                                         onClick={handleClickprevious}
                                     >
-                                        Previous
+                                        {t("previous")}
                                     </button>
 
                                     <button
@@ -512,7 +513,7 @@ export default function CheckUp() {
                                             passport === ""
                                         }
                                     >
-                                        {loader ? <Loader stroke={'black'} color="black" className='animate-spin' /> : "Submit"}
+                                        {loader ? <Loader stroke={'black'} color="black" className='animate-spin' /> : t("submit")}
                                     </button>
                                 </div>
                             </div>

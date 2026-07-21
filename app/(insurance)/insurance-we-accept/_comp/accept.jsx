@@ -5,8 +5,10 @@ import weacceptimg from "@/public/assets/insurance/Bumrungrad  Hospital_We-Accep
 import goodvibesimg from "@/public/assets/insurance/Bumrungrad  Hospital_Good-Vibes-2023.png";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const WeAccept = () => {
+  const t = useTranslations("insurance.weAccept");
   const [providers, setProviders] = useState([]);
   const [loader, setLoader] = useState(true);
 
@@ -32,7 +34,7 @@ const WeAccept = () => {
       <div className="h-[20vh] md:h-[30vh] lg:h-[50vh] insurance-back relative flex justify-center items-center">
         <div className="absolute top-0 h-full w-full bg-black/60"></div>
         <h1 className="uppercase text-xl text-center md:text-2xl lg:text-3xl font-bold text-white z-10">
-          Insurance
+          {t("title")}
         </h1>
       </div>
 
@@ -44,7 +46,7 @@ const WeAccept = () => {
           </div>
         ) : categories.length === 0 ? (
           <p className="text-center text-black/60">
-            Insurance provider list is being finalized and will appear here shortly.
+            {t("emptyMessage")}
           </p>
         ) : (
           categories.map(([category, items], i) => (

@@ -16,6 +16,7 @@ import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import { sendEmails } from "@/helpers/mail/sendMail";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 const ListAccordion = ({ title, items, renderItem, defaultOpen = false }) =>
     items?.length > 0 ? (
@@ -36,6 +37,7 @@ const ListAccordion = ({ title, items, renderItem, defaultOpen = false }) =>
     ) : null;
 
 const ChildPackageDetails = ({ params }) => {
+    const t = useTranslations("packagesPages.details");
     const [loader, setLoader] = useState(false);
     const [notFound, setNotFound] = useState(false);
     const [postloader, setPostLoader] = useState(false);
@@ -134,7 +136,7 @@ const ChildPackageDetails = ({ params }) => {
                 sendEmailsResponse?.messageId &&
                 sendEmailsResponse2?.messageId
             ) {
-                toast.success("We have received your request. Our representative will reach you shortly!", {
+                toast.success(t("successToast"), {
                     position: "top-center",
                     style: { borderRadius: "20px" },
                     duration: 5000,
@@ -143,7 +145,7 @@ const ChildPackageDetails = ({ params }) => {
             }
         } else {
             setPostLoader(false);
-            toast.error("Something went wrong");
+            toast.error(t("errorToast"));
         }
     };
 
@@ -191,9 +193,9 @@ const ChildPackageDetails = ({ params }) => {
     if (notFound) {
         return (
             <section className='mx-5 md:container md:mx-auto py-16 text-center'>
-                <h1 className="text-xl md:text-2xl font-bold text-blue">Package Not Found</h1>
+                <h1 className="text-xl md:text-2xl font-bold text-blue">{t("notFoundTitle")}</h1>
                 <p className="mt-2.5 text-black/50">
-                    We couldn't find the package you're looking for. It may have been moved or is no longer available.
+                    {t("notFoundText")}
                 </p>
             </section>
         );
@@ -221,7 +223,7 @@ const ChildPackageDetails = ({ params }) => {
                             }
                             className='px-4 my-4 py-2.5 bg-blue w-fit text-white rounded-lg font-semibold hover:opacity-90 transition-opacity'
                         >
-                            Book Now
+                            {t("bookNow")}
                         </button>
                     </div>
                     <div className='lg:w-1/2 flex flex-col gap-5'>
@@ -230,7 +232,7 @@ const ChildPackageDetails = ({ params }) => {
                         </h1>
                         {childDetailsPackage?.id && (
                             <p className='text-sm text-black/60'>
-                                Package ID: #{childDetailsPackage.id}
+                                {t("packageId", { id: childDetailsPackage.id })}
                             </p>
                         )}
                         {childDetailsPackage?.price && (
@@ -240,13 +242,13 @@ const ChildPackageDetails = ({ params }) => {
                         )}
                         {childDetailsPackage?.location && (
                             <p className='text-base'>
-                                <span className='text-blue font-semibold'>Location: </span>
+                                <span className='text-blue font-semibold'>{t("locationLabel")}</span>
                                 {childDetailsPackage.location}
                             </p>
                         )}
                         {(childDetailsPackage?.shift1 || childDetailsPackage?.shift2) && (
                             <div>
-                                <p className='text-blue font-semibold mb-1'>Available Shifts</p>
+                                <p className='text-blue font-semibold mb-1'>{t("availableShifts")}</p>
                                 <ul className='list-disc ml-5'>
                                     {childDetailsPackage?.shift1 && <li>{childDetailsPackage.shift1}</li>}
                                     {childDetailsPackage?.shift2 && <li>{childDetailsPackage.shift2}</li>}
@@ -256,18 +258,18 @@ const ChildPackageDetails = ({ params }) => {
 
                         <div className="flex flex-col gap-3">
                             <ListAccordion
-                                title="Package Inclusions"
+                                title={t("inclusions")}
                                 items={childDetailsPackage?.inclusions}
                                 renderItem={(item) => item?.inclusion}
                                 defaultOpen
                             />
                             <ListAccordion
-                                title="Package Exclusions"
+                                title={t("exclusions")}
                                 items={childDetailsPackage?.exclusions}
                                 renderItem={(item) => item?.exclusion}
                             />
                             <ListAccordion
-                                title="Terms & Conditions"
+                                title={t("terms")}
                                 items={childDetailsPackage?.conditions}
                                 renderItem={(item) => item?.condition}
                             />
@@ -295,7 +297,7 @@ const ChildPackageDetails = ({ params }) => {
                 >
                     <DialogTitle id='alert-dialog-title'>
                         <div className='flex justify-between relative'>
-                            <h1 className='font-semibold'>Package Booking</h1>
+                            <h1 className='font-semibold'>{t("bookingTitle")}</h1>
                             <button
                                 onClick={handleClose}
                                 size='small'
@@ -309,11 +311,11 @@ const ChildPackageDetails = ({ params }) => {
                         <div className='p-4'>
                             <div>
                                 <p className='mb-1.5 font-semibold text-blue'>
-                                    Package Name
+                                    {t("packageName")}
                                 </p>
                                 <TextField
                                     id='outlined-basic'
-                                    placeholder='Enter Package Name'
+                                    placeholder={t("enterPackageName")}
                                     variant='outlined'
                                     value={packageName}
                                     fullWidth
@@ -322,12 +324,12 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='mb-1.5 font-semibold text-blue'>
-                                    Package Price
+                                    {t("packagePrice")}
                                 </p>
                                 <TextField
                                     id='outlined-basic'
                                     type='number'
-                                    placeholder='Enter Package Price'
+                                    placeholder={t("enterPackagePrice")}
                                     variant='outlined'
                                     value={packagePrice}
                                     fullWidth
@@ -336,11 +338,11 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='my-2.5 font-semibold text-blue'>
-                                    Patient Name
+                                    {t("patientName")}
                                 </p>
                                 <TextField
                                     id='outlined-basic'
-                                    placeholder=' Enter Patient Name'
+                                    placeholder={t("enterPatientName")}
                                     variant='outlined'
                                     fullWidth
                                     value={patientName}
@@ -351,11 +353,11 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='my-2.5 font-semibold text-blue'>
-                                    HN Number
+                                    {t("hnNumber")}
                                 </p>
                                 <TextField
                                     id='outlined-basic'
-                                    placeholder=' Enter HN Number'
+                                    placeholder={t("enterHnNumber")}
                                     variant='outlined'
                                     required
                                     fullWidth
@@ -367,14 +369,14 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='my-2.5 font-semibold text-blue'>
-                                    Whatsapp Number
+                                    {t("whatsappNumber")}
                                 </p>
                                 <TextField
                                     type='text'
                                     required
                                     value={phoneNumber}
                                     id='outlined-basic'
-                                    placeholder='Enter Whatsapp Number'
+                                    placeholder={t("enterWhatsappNumber")}
                                     variant='outlined'
                                     fullWidth
                                     onChange={(e) =>
@@ -384,14 +386,14 @@ const ChildPackageDetails = ({ params }) => {
                             </div>
                             <div>
                                 <p className='my-2.5 font-semibold text-blue'>
-                                    Email
+                                    {t("email")}
                                 </p>
                                 <TextField
                                     required
                                     value={email}
                                     type='email'
                                     id='outlined-basic'
-                                    placeholder='Enter Email'
+                                    placeholder={t("enterEmail")}
                                     variant='outlined'
                                     fullWidth
                                     onChange={(e) =>
@@ -415,7 +417,7 @@ const ChildPackageDetails = ({ params }) => {
                                         fill='black'
                                     />
                                 ) : (
-                                    "Book Now"
+                                    t("bookNow")
                                 )}
                             </button>
                         </div>

@@ -11,9 +11,11 @@ import { admin_mails } from "@/constant";
 import { comapanyMailBody, mailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 // import { useNavigate } from 'react-router-dom'
 
 const SendQuery = () => {
+  const t = useTranslations("sendQuery");
   const [loader, setLoader] = useState();
   const [inquery, setInquery] = useState("");
   const [doctorName, setDoctorName] = useState("");
@@ -75,7 +77,7 @@ const SendQuery = () => {
       const get_response = await response.json();
 
       if (get_response.status !== 200) {
-        toast.success("Something went wrong, please try again", {
+        toast.success(t("errorToast"), {
           duration: 5000,
           style: {
             color: "red",
@@ -96,7 +98,7 @@ const SendQuery = () => {
 
         if (send_admin_mail.messageId) {
           toast.success(
-            "We have received your request. Our representative will reach you shortly!",
+            t("successToast"),
             {
               position: "top-center",
               style: { borderRadius: "20px" },
@@ -115,7 +117,7 @@ const SendQuery = () => {
   return (
     <section className="md:container md:mx-auto">
       <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-blue my-5 ">
-        Left Us Your Query !
+        {t("heading")}
       </h1>
       <div className="md mb-14">
         <div className="shadow-xl rounded-xl md:p-5">
@@ -124,7 +126,7 @@ const SendQuery = () => {
               <div className="grid md:grid-cols-2 gap-2.5">
                 <div>
                   <p className="mb-2.5 font-semibold text-sm">
-                    Type of Inquiry*
+                    {t("typeOfInquiry")}
                   </p>
                   <TextField
                     onChange={(e) => setInquery(e.target.value)}
@@ -134,7 +136,7 @@ const SendQuery = () => {
                 </div>
                 <div className="">
                   <p className="mb-2.5 font-semibold text-sm">
-                    Enter The Doctor's Name or Surname*
+                    {t("doctorNameLabel")}
                   </p>
                   <TextField
                     onChange={(e) => setDoctorName(e.target.value)}
@@ -144,7 +146,7 @@ const SendQuery = () => {
                 </div>
                 <div className="">
                   <p className="mb-2.5 font-semibold text-sm">
-                    Condition or Treatment of Interest*
+                    {t("treatmentInterest")}
                   </p>
                   <TextField
                     onChange={(e) => setTreatmentInterest(e.target.value)}
@@ -164,7 +166,7 @@ const SendQuery = () => {
               </div> */}
 
               <div className="mt-4">
-                <p className="mb-2.5 font-semibold text-sm">Your Question *</p>
+                <p className="mb-2.5 font-semibold text-sm">{t("yourQuestion")}</p>
                 <TextField
                   onChange={(e) => setQuestion(e.target.value)}
                   fullWidth
@@ -176,16 +178,16 @@ const SendQuery = () => {
               <div className="grid md:grid-cols-2 gap-2.5">
                 <div className="mt-4">
                   <p className="mb-2.5 font-semibold text-sm">
-                    Hospital Number*
+                    {t("hospitalNumber")}
                   </p>
                   <TextField
                     onChange={(e) => setHospitalNumber(e.target.value)}
                     fullWidth
-                    placeholder="Example : HN12345678"
+                    placeholder={t("hospitalNumberPlaceholder")}
                   />
                 </div>
                 <div className="mt-4">
-                  <p className="mb-2.5 font-semibold text-sm">First Name*</p>
+                  <p className="mb-2.5 font-semibold text-sm">{t("firstName")}</p>
                   <TextField
                     onChange={(e) => setFirstName(e.target.value)}
                     fullWidth
@@ -193,7 +195,7 @@ const SendQuery = () => {
                   />
                 </div>
                 <div className="mt-4">
-                  <p className="mb-2.5 font-semibold text-sm">Last Name*</p>
+                  <p className="mb-2.5 font-semibold text-sm">{t("lastName")}</p>
                   <TextField
                     onChange={(e) => setLastName(e.target.value)}
                     fullWidth
@@ -201,17 +203,17 @@ const SendQuery = () => {
                   />
                 </div>
                 <div className="mt-4">
-                  <p className="mb-2.5 font-semibold text-sm">Email*</p>
+                  <p className="mb-2.5 font-semibold text-sm">{t("email")}</p>
                   <TextField
                     onChange={(e) => setEmail(e.target.value)}
                     fullWidth
-                    placeholder="Ex : example123@gmail.com"
+                    placeholder={t("emailPlaceholder")}
                     required
                   />
                 </div>
                 <div className="mt-4">
                   <p className="mb-2.5 font-semibold text-sm">
-                    Enter WhatsApp Number*
+                    {t("whatsappNumber")}
                   </p>
                   <MuiTelInput
                     value={phoneNumber}
@@ -223,18 +225,18 @@ const SendQuery = () => {
               </div>
               <div className="mt-6 grid  md:grid-cols-2 gap-4">
                 <div>
-                  <p className="mb-2.5 font-semibold text-sm">Date of Birth*</p>
+                  <p className="mb-2.5 font-semibold text-sm">{t("dob")}</p>
                   <TextField
                     onChange={(e) => setDOB(e.target.value)}
                     type="date"
                     fullWidth
-                    placeholder="Please Enter the Date of Birth"
+                    placeholder={t("dobPlaceholder")}
                   />
                 </div>
                 <div>
                   <FormControl fullWidth>
                     <p className="mb-2.5 font-semibold text-sm">
-                      Select Gender*
+                      {t("selectGender")}
                     </p>
                     <Select
                       labelId="demo-simple-select-label"
@@ -243,16 +245,16 @@ const SendQuery = () => {
                       required
                       onChange={(e) => setGender(e.target.value)}
                     >
-                      <MenuItem value="Male">Male</MenuItem>
-                      <MenuItem value="Female">Female</MenuItem>
-                      <MenuItem value="Other">Other</MenuItem>
+                      <MenuItem value="Male">{t("male")}</MenuItem>
+                      <MenuItem value="Female">{t("female")}</MenuItem>
+                      <MenuItem value="Other">{t("other")}</MenuItem>
                     </Select>
                   </FormControl>
                 </div>
                 <div>
                   <FormControl fullWidth>
                     <p className="mb-2.5 font-semibold text-sm">
-                      Select Citizenship*
+                      {t("selectCitizenship")}
                     </p>
                     <Select
                       labelId="demo-simple-select-label"
@@ -271,7 +273,7 @@ const SendQuery = () => {
                 </div>
                 <div>
                   <p className="mb-2.5 font-semibold text-sm">
-                    Country of Residence*
+                    {t("countryOfResidence")}
                   </p>
                   <TextField
                     id="filled-select-currency-native"
@@ -282,7 +284,7 @@ const SendQuery = () => {
                     SelectProps={{
                       native: true,
                     }}
-                    helperText="Please select your country"
+                    helperText={t("selectCountryHelper")}
                   >
                     {countries.map((option) => (
                       <option key={option} value={option}>
@@ -309,7 +311,7 @@ const SendQuery = () => {
                       className="animate-spin"
                     />
                   ) : (
-                    "Submit"
+                    t("submit")
                   )}
                 </button>
               </div>

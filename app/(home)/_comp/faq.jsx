@@ -19,8 +19,10 @@ import { admin_mails } from "@/constant";
 import { natioNalities } from "@/public/data/country";
 import {  userMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 export default function Faq() {
+    const t = useTranslations("home.faq");
     const [expanded, setExpanded] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [errors, setErrors] = React.useState(null);
@@ -43,7 +45,7 @@ export default function Faq() {
             if (!fields[key]) {
                 setErrors((prev) => ({
                     ...prev,
-                    [key]: "This field is required",
+                    [key]: t("requiredField"),
                 }));
                 isValid = false;
             }
@@ -65,7 +67,7 @@ export default function Faq() {
             )
             setLoading(false);
             if(response?.messageId){
-                toast.success("We have received your request. Our representative will reach you shortly!", {
+                toast.success(t("successToast"), {
                     position: "top-center",
                     style: { borderRadius: "20px" },
                     duration: 5000,
@@ -82,7 +84,7 @@ export default function Faq() {
                     date: "",
                 });
             }else{
-                toast.error("Something went wrong", {
+                toast.error(t("errorToast"), {
                     position: "top-center",
                     style: {
                         padding: "16px",
@@ -105,48 +107,7 @@ export default function Faq() {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const faq = [
-        {
-            question: "How do I make an appointment at Bumrungrad International Hospital?",
-            answer: "As a Medical Tourism Facilitator, we can help you book an appointment at Bumrungrad International Hospital. Simply contact us, and we’ll handle all the scheduling for you, ensuring that you receive the care you need at a convenient time. Alternatively, appointments can be booked directly through the hospital's website or by contacting their International Patient Services.",
-        },
-        {
-            question: "Where is Bumrungrad Hospital located and what is nearby?",
-            answer: "Bumrungrad International Hospital is located at 33 Sukhumvit 3 (Soi Nana Nua), Wattana, Bangkok, Thailand. It’s situated in a central area of Bangkok, close to luxury hotels, restaurants, shopping malls, and other services that are convenient for international patients and their families.",
-        },
-        {
-            question: "What is the cost of my treatment at Bumrungrad International Hospital?",
-            answer: "The cost of your treatment will depend on the medical services you require. As facilitators, we work closely with Bumrungrad to provide a detailed cost estimate based on your medical needs. Contact us, and we’ll arrange a personalized treatment plan with a transparent cost estimate.",
-        },
-        {
-            question: "What is the International Referral Office and what kind of services do they provide?",
-            answer: "The International Referral Office at Bumrungrad Hospital supports international patients by coordinating appointments, treatments, and travel logistics. They assist with medical inquiries, communication between doctors, and provide follow-up support. As your facilitator, we collaborate with this office to ensure a smooth experience throughout your treatment journey.",
-        },
-        {
-            question: "Will there be someone at Bumrungrad International Hospital who speaks my language?",
-            answer: "Yes, Bumrungrad has over 200 professional interpreters covering a wide range of languages. You will be assisted in your preferred language throughout your healthcare journey to ensure clear communication at every step.",
-        },
-        {
-            question: "What are the accommodation options near Bumrungrad International Hospital?",
-            answer: "There are several accommodation options near the hospital, including hotels and serviced apartments. As your Medical Tourism Facilitator, we can help arrange accommodation to suit your needs, ensuring you and your family are comfortable during your stay.",
-        },
-        {
-            question: "How do I pay for my treatment at Bumrungrad International Hospital if I do not have International Health Insurance?",
-            answer: "If you don’t have international health insurance, payment options include cash, major credit cards, and bank transfers. Bumrungrad also offers financial counseling, and we can assist you in exploring the best payment methods to suit your situation.",
-        },
-        {
-            question: "Does Bumrungrad International Hospital provide transportation services for international patients?",
-            answer: "Yes, the hospital provides airport pickup services and local transportation for international patients. As your facilitator, we can coordinate these services for you, ensuring a smooth transition from the airport to your accommodation and the hospital.",
-        },
-        {
-            question: "How do I obtain a visa for medical treatment at Bumrungrad International Hospital?",
-            answer: "We work directly with Bumrungrad to provide a visa support letter for patients traveling for medical treatment. Our team will guide you through the visa application process and help ensure all necessary documents are prepared.",
-        },
-        {
-            question: "How do I get in contact with a Bumrungrad Support Specialist?",
-            answer: "You can either reach out directly to Bumrungrad’s Support Specialists via their website or phone, or you can contact us, and we will coordinate all communications on your behalf to ensure you receive prompt assistance.",
-        },
-    ];
+    const faq = t.raw("items");
      
     
 
@@ -157,8 +118,7 @@ export default function Faq() {
                 className='md:w-1/2 flex flex-col gap-5 shadow p-8 max-sm:p-3 rounded max-h-fit'
             >
                 <p className='text-xl md:text-2xl font-semibold text-blue'>
-                    Get a second medical opinion at Bumrungrad International
-                    Hospital
+                    {t("formTitle")}
                 </p>
                 <div className='grid md:grid-cols-2 gap-5'>
                     <div className='flex flex-col gap-1'>
@@ -171,7 +131,7 @@ export default function Faq() {
                                 })
                             }
                             fullWidth
-                            label='Enter Name(as on passport)'
+                            label={t("name")}
                             required
                         />
                         {errors?.name && (
@@ -181,7 +141,7 @@ export default function Faq() {
                     <div>
                         <TextField
                             fullWidth
-                            label='Enter Email'
+                            label={t("email")}
                             required
                             type='email'
                             value={formData.email}
@@ -199,12 +159,12 @@ export default function Faq() {
                     <div>
                         <FormControl fullWidth>
                             <InputLabel id='demo-simple-select-label'>
-                                Select Gender
+                                {t("selectGender")}
                             </InputLabel>
                             <Select
                                 labelId='demo-simple-select-label'
                                 id='demo-simple-select'
-                                label='Select Gender'
+                                label={t("selectGender")}
                                 value={formData.gender}
                                 onChange={(e) =>
                                     setFormData({
@@ -213,9 +173,9 @@ export default function Faq() {
                                     })
                                 }
                             >
-                                <MenuItem value={'male'}>Male</MenuItem>
-                                <MenuItem value={'female'}>Female</MenuItem>
-                                <MenuItem value={'other'}>Other</MenuItem>
+                                <MenuItem value={'male'}>{t("male")}</MenuItem>
+                                <MenuItem value={'female'}>{t("female")}</MenuItem>
+                                <MenuItem value={'other'}>{t("other")}</MenuItem>
                             </Select>
                         </FormControl>
                         {errors?.gender && (
@@ -225,7 +185,7 @@ export default function Faq() {
                     <div>
                         <FormControl fullWidth>
                             <InputLabel id='demo-simple-select-label'>
-                                Select Nationality
+                                {t("selectNationality")}
                             </InputLabel>
                             <Select
                                 value={formData.nationality}
@@ -238,7 +198,7 @@ export default function Faq() {
                                 labelId='demo-simple-select-label'
                                 id='demo-simple-select'
 
-                                label='Select Nationality'
+                                label={t("selectNationality")}
                             >
                               {
                                 natioNalities.map((item, index) => (
@@ -257,7 +217,7 @@ export default function Faq() {
                     <div>
                         <TextField
                             fullWidth
-                            label='Phone Number'
+                            label={t("phone")}
                             type='number'
                             value={formData.phone}
                             onChange={(e) =>
@@ -295,7 +255,7 @@ export default function Faq() {
                 <div>
                     <TextField
                         fullWidth
-                        label='Enter Subject'
+                        label={t("subject")}
                         required
                         value={formData.subject}
                         onChange={(e) =>
@@ -314,7 +274,7 @@ export default function Faq() {
                         multiline
                         rows={4}
                         fullWidth
-                        label='Enter Message'
+                        label={t("message")}
                         required
                         value={formData.message}
                         onChange={(e) =>
@@ -335,12 +295,12 @@ export default function Faq() {
                     className='bg-blue flex items-center justify-center hover:bg-white px-4 py-2 hover:text-blue text-white border border-blue font-semibold rounded duration-300 ease-linear'
                     type='button'
                 >
-                    {loading ? <Loader fill='white' stroke='white' className='animate-spin' /> : "Submit"}
+                    {loading ? <Loader fill='white' stroke='white' className='animate-spin' /> : t("submit")}
                 </button>
             </form>
             <div className='md:w-1/2'>
                 <p className='text-xl md:text-2xl font-semibold text-blue'>
-                    Help & FAQs
+                    {t("helpTitle")}
                 </p>
                 <div className='mt-5'>
                     {faq.map((f, i) => (

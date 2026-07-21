@@ -10,8 +10,11 @@ import { sendEmails } from "@/helpers/mail/sendMail";
 import { admin_mails } from "@/constant";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 const AirPickup = () => {
+    const t = useTranslations("common");
+    const tForm = useTranslations("ourServices.airPickup");
     const { auth } = useAuth();
     const [loader, setLoader] = useState();
     const [appointmentfile, setAppointmentfile] = useState("");
@@ -86,7 +89,7 @@ const AirPickup = () => {
 
             if (send_mails.messageId && send_mail_client.messageId) {
                 toast.success(
-                    "We have received your request. Our representative will reach you shortly!",
+                    t("successToast"),
                     {
                         position: "top-center",
                         style: { borderRadius: "20px" },
@@ -97,7 +100,7 @@ const AirPickup = () => {
                 window.location.reload();
             }
         } else {
-            toast.error("Airport Transfer request failed!");
+            toast.error(tForm("errorToast"));
         }
     };
     return (
@@ -109,7 +112,7 @@ const AirPickup = () => {
                 <div className='mb-2 flex flex-col gap-6'>
                     <div className='mt-2'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Patient Appointment File
+                            {tForm("appointmentFile")}
                         </p>
                         <TextField
                             type='file'
@@ -122,7 +125,7 @@ const AirPickup = () => {
                     </div>
                     <div className='mt-2'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Air Ticket Copy
+                            {tForm("airTicketCopy")}
                         </p>
                         <TextField
                             type='file'
@@ -135,7 +138,7 @@ const AirPickup = () => {
                     </div>
                     <div className='mt-2'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Number of Passenger
+                            {tForm("numberOfPassenger")}
                         </p>
                         <TextField
                             type='number'
@@ -161,7 +164,7 @@ const AirPickup = () => {
                             fill='black'
                         />
                     ) : (
-                        "Submit"
+                        t("submit")
                     )}
                 </button>
             </form>

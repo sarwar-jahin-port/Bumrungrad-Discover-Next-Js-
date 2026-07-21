@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineCloudUpload } from "react-icons/ai";
+import { useTranslations } from "next-intl";
 
 const FieldGroup = ({ title, children }) => (
   <fieldset className="border border-ash/30 rounded-lg p-5">
@@ -18,13 +19,13 @@ const Label = ({ children }) => (
 const inputClass =
   "w-full border border-ash/40 rounded px-3 py-2 focus:outline-none focus:border-blue bg-white";
 
-const FileField = ({ label, file, onChange }) => (
+const FileField = ({ label, placeholder, file, onChange }) => (
   <div>
     <Label>{label}</Label>
     <label className="flex items-center gap-2 border border-dashed border-ash/50 rounded px-3 py-2 cursor-pointer hover:bg-cream/50">
       <AiOutlineCloudUpload className="text-blue text-xl shrink-0" />
       <span className="text-sm text-black/70 truncate">
-        {file ? file.name : "Choose a file..."}
+        {file ? file.name : placeholder}
       </span>
       <input type="file" className="hidden" onChange={onChange} />
     </label>
@@ -32,6 +33,7 @@ const FileField = ({ label, file, onChange }) => (
 );
 
 const MasterAppointmentForm = () => {
+  const t = useTranslations("home.masterForm");
   const [specialties, setSpecialties] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [packages, setPackages] = useState([]);
@@ -103,7 +105,7 @@ const MasterAppointmentForm = () => {
       const data = await response.json();
       setLoader(false);
       if (data.status === 200) {
-        toast.success("Your appointment request has been submitted. Our team will contact you shortly.");
+        toast.success(t("successToast"));
         setFullName("");
         setWhatsapp("");
         setEmail("");
@@ -121,29 +123,27 @@ const MasterAppointmentForm = () => {
         setClinicalRecords(null);
         e.target.reset();
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t("errorToast"));
       }
     } catch (error) {
       setLoader(false);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("errorToast"));
     }
   };
 
   return (
     <div className="mx-5 my-10 md:my-20 md:container md:mx-auto">
       <h2 className="text-center text-2xl md:text-4xl font-semibold text-blue mb-3">
-        Book Your Appointment
+        {t("heading")}
       </h2>
       <p className="text-center text-black/70 mb-10 max-w-2xl mx-auto">
-        Tell us about your medical needs and preferred schedule, and our
-        international patient coordination team will confirm your
-        appointment with Bumrungrad International Hospital.
+        {t("subtitle")}
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-4xl mx-auto">
-        <FieldGroup title="Your Contact Information">
+        <FieldGroup title={t("contactInfo")}>
           <div>
-            <Label>Full Name *</Label>
+            <Label>{t("fullName")}</Label>
             <input
               type="text"
               required
@@ -153,7 +153,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>WhatsApp Number *</Label>
+            <Label>{t("whatsapp")}</Label>
             <input
               type="tel"
               required
@@ -163,7 +163,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Email Address *</Label>
+            <Label>{t("email")}</Label>
             <input
               type="email"
               required
@@ -173,7 +173,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Country of Origin *</Label>
+            <Label>{t("countryOrigin")}</Label>
             <input
               type="text"
               required
@@ -183,7 +183,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Country of Residence *</Label>
+            <Label>{t("countryResidence")}</Label>
             <input
               type="text"
               required
@@ -193,36 +193,39 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Patient Status *</Label>
+            <Label>{t("patientStatus")}</Label>
             <div className="flex gap-3 mt-1">
-              {["New Case File Entry", "Returning Case Record"].map((option) => (
+              {[
+                { value: "New Case File Entry", label: t("newCase") },
+                { value: "Returning Case Record", label: t("returningCase") },
+              ].map((option) => (
                 <button
                   type="button"
-                  key={option}
-                  onClick={() => setCaseType(option)}
+                  key={option.value}
+                  onClick={() => setCaseType(option.value)}
                   className={`px-3 py-2 rounded text-sm border ${
-                    caseType === option
+                    caseType === option.value
                       ? "bg-blue text-white border-blue"
                       : "bg-white text-black border-ash/40"
                   }`}
                 >
-                  {option}
+                  {option.label}
                 </button>
               ))}
             </div>
           </div>
         </FieldGroup>
 
-        <FieldGroup title="Medical Details">
+        <FieldGroup title={t("medicalDetails")}>
           <div>
-            <Label>Target Medical Specialty *</Label>
+            <Label>{t("specialty")}</Label>
             <select
               required
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
               className={inputClass}
             >
-              <option value="">Select a specialty</option>
+              <option value="">{t("selectSpecialty")}</option>
               {specialties.map((s) => (
                 <option key={s.id} value={s.name}>
                   {s.name}
@@ -231,13 +234,13 @@ const MasterAppointmentForm = () => {
             </select>
           </div>
           <div>
-            <Label>Preferred Physician (optional)</Label>
+            <Label>{t("physician")}</Label>
             <select
               value={doctor}
               onChange={(e) => setDoctor(e.target.value)}
               className={inputClass}
             >
-              <option value="">No preference</option>
+              <option value="">{t("noPreference")}</option>
               {doctors.map((d) => (
                 <option key={d.id} value={d.name}>
                   {d.name}
@@ -246,9 +249,9 @@ const MasterAppointmentForm = () => {
             </select>
           </div>
           <div>
-            <Label>Intended Screening/Diagnostic Package (optional)</Label>
+            <Label>{t("package")}</Label>
             <select value={pkg} onChange={(e) => setPkg(e.target.value)} className={inputClass}>
-              <option value="">No package selected</option>
+              <option value="">{t("noPackage")}</option>
               {packages.map((p) => (
                 <option key={p.id} value={p.title}>
                   {p.title}
@@ -257,7 +260,7 @@ const MasterAppointmentForm = () => {
             </select>
           </div>
           <div className="md:col-span-2">
-            <Label>Medical Concern / Symptoms *</Label>
+            <Label>{t("concern")}</Label>
             <textarea
               required
               rows={4}
@@ -268,9 +271,9 @@ const MasterAppointmentForm = () => {
           </div>
         </FieldGroup>
 
-        <FieldGroup title="Scheduling">
+        <FieldGroup title={t("scheduling")}>
           <div>
-            <Label>Primary Desired Appointment Date *</Label>
+            <Label>{t("primaryDate")}</Label>
             <input
               type="date"
               required
@@ -280,7 +283,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Secondary Backup Appointment Date *</Label>
+            <Label>{t("backupDate")}</Label>
             <input
               type="date"
               required
@@ -290,7 +293,7 @@ const MasterAppointmentForm = () => {
             />
           </div>
           <div>
-            <Label>Patient Date of Birth *</Label>
+            <Label>{t("dob")}</Label>
             <input
               type="date"
               required
@@ -301,14 +304,16 @@ const MasterAppointmentForm = () => {
           </div>
         </FieldGroup>
 
-        <FieldGroup title="Documents">
+        <FieldGroup title={t("documents")}>
           <FileField
-            label="Passport Document Scan *"
+            label={t("passport")}
+            placeholder={t("chooseFile")}
             file={passport}
             onChange={(e) => setPassport(e.target.files[0])}
           />
           <FileField
-            label="Previous Clinical Records *"
+            label={t("clinicalRecords")}
+            placeholder={t("chooseFile")}
             file={clinicalRecords}
             onChange={(e) => setClinicalRecords(e.target.files[0])}
           />
@@ -319,7 +324,7 @@ const MasterAppointmentForm = () => {
           disabled={loader}
           className="px-6 py-3 bg-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-60 w-fit mx-auto"
         >
-          {loader ? "Submitting..." : "Submit Appointment Request"}
+          {loader ? t("submitting") : t("submit")}
         </button>
       </form>
     </div>

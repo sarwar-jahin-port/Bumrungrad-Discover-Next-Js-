@@ -8,14 +8,11 @@ import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { IoMdCheckmarkCircle } from "react-icons/io";
 import { FaLock, FaUserMd, FaArrowRight } from "react-icons/fa";
 import toast from "react-hot-toast";
-
-const BULLET_POINTS = [
-  "Comprehensive Patient Care Assistance",
-  "Specialized Ground Repositioning Support",
-  "24/7 Dedicated Care Coordination Network",
-];
+import { useTranslations } from "next-intl";
 
 const Landing = () => {
+  const t = useTranslations("home.landing");
+  const BULLET_POINTS = [t("bullet1"), t("bullet2"), t("bullet3")];
   const { auth } = useAuth();
   const router = useRouter();
   const [appointmentOpen, setAppointmentOpen] = useState(false);
@@ -64,16 +61,16 @@ const Landing = () => {
       const data = await response.json();
       setSubmitLoader(false);
       if (data.status === 200) {
-        toast.success("Thank you! Our team will reach out to you shortly.");
+        toast.success(t("successToast"));
         setPatientName("");
         setWhatsapp("");
         setMedicalConcern("");
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t("errorToast"));
       }
     } catch (error) {
       setSubmitLoader(false);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("errorToast"));
     }
   };
 
@@ -97,15 +94,15 @@ const Landing = () => {
               </span>
               <div>
                 <h2 className="text-lg md:text-xl font-bold text-blue leading-tight">
-                  Get Free Consultation
+                  {t("formTitle")}
                 </h2>
-                <p className="text-xs text-ash">Our care team replies within minutes</p>
+                <p className="text-xs text-ash">{t("formSubtitle")}</p>
               </div>
             </div>
             <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
               <div>
                 <label className="text-xs font-semibold uppercase tracking-wide text-blue/70 mb-1 block">
-                  Full Name *
+                  {t("fullName")}
                 </label>
                 <input
                   type="text"
@@ -117,7 +114,7 @@ const Landing = () => {
               </div>
               <div>
                 <label className="text-xs font-semibold uppercase tracking-wide text-blue/70 mb-1 block">
-                  WhatsApp Number *
+                  {t("whatsapp")}
                 </label>
                 <input
                   type="tel"
@@ -129,7 +126,7 @@ const Landing = () => {
               </div>
               <div>
                 <label className="text-xs font-semibold uppercase tracking-wide text-blue/70 mb-1 block">
-                  Medical Concern *
+                  {t("medicalConcern")}
                 </label>
                 <textarea
                   required
@@ -144,13 +141,13 @@ const Landing = () => {
                 disabled={submitLoader}
                 className="group px-4 py-3 bg-blue text-white rounded-lg font-semibold shadow-md shadow-blue/20 hover:bg-gold transition-colors disabled:opacity-60 flex items-center justify-center gap-2"
               >
-                {submitLoader ? "Submitting..." : "Get Free Consultation"}
+                {submitLoader ? t("submitting") : t("submit")}
                 {!submitLoader && (
                   <FaArrowRight className="text-xs transition-transform group-hover:translate-x-1" />
                 )}
               </button>
               <p className="flex items-center justify-center gap-1.5 text-xs text-ash">
-                <FaLock className="text-[10px]" /> Your information stays confidential
+                <FaLock className="text-[10px]" /> {t("confidential")}
               </p>
             </form>
           </div>
@@ -158,7 +155,7 @@ const Landing = () => {
 
         <div className="lg:w-1/2 w-full flex flex-col gap-5 md:gap-6">
           <h1 className="text-xl md:text-3xl lg:text-4xl text-blue font-extrabold">
-            Your Gateway to Advanced Healthcare
+            {t("heading")}
           </h1>
           <ul className="flex flex-col gap-3">
             {BULLET_POINTS.map((point) => (
@@ -181,13 +178,13 @@ const Landing = () => {
               onClick={handleAppointment}
               className="w-full text-sm md:w-fit px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Doctor Appoinment
+              {t("doctorAppointment")}
             </button>
             <button
               onClick={handleHealthScreen}
               className="w-full text-sm md:w-fit px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded"
             >
-              Health Screening
+              {t("healthScreening")}
             </button>
           </div>
         </div>

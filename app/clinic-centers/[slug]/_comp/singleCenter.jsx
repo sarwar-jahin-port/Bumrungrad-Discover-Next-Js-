@@ -12,6 +12,7 @@ import MapIcon from "@mui/icons-material/Map";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { ClinicCenterSkeleton } from "@/components/ui/cardload";
 import UnifiedInboundForm from "@/components/shared/UnifiedInboundForm";
+import { useTranslations } from "next-intl";
 
 const SectionCard = ({ icon: Icon, eyebrow, title, children, id }) => (
   <section
@@ -52,6 +53,7 @@ const EmptyNote = ({ children }) => (
 );
 
 export default function SingleCenter({ params }) {
+  const t = useTranslations("clinicCenters.singleCenter");
   const [loader, setLoader] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [center, setCenter] = useState({});
@@ -86,11 +88,10 @@ export default function SingleCenter({ params }) {
     return (
       <div className="p-5 my-16 md:container md:mx-auto text-center">
         <h1 className="text-xl md:text-2xl font-bold text-blue">
-          Center Not Found
+          {t("notFoundTitle")}
         </h1>
         <p className="mt-2.5 text-black/50">
-          We couldn't find the clinical center you're looking for. It may have
-          been moved or is no longer available.
+          {t("notFoundText")}
         </p>
       </div>
     );
@@ -115,7 +116,7 @@ export default function SingleCenter({ params }) {
               />
             ) : (
               <div className="w-full h-full bg-white flex items-center justify-center text-black/30 text-sm">
-                No image available
+                {t("noImage")}
               </div>
             )}
           </div>
@@ -133,13 +134,13 @@ export default function SingleCenter({ params }) {
               {center?.operational_hours && (
                 <span className="inline-flex items-center gap-1.5 bg-white text-black/70 text-sm rounded-full px-3.5 py-1.5 shadow-sm">
                   <AccessTimeIcon fontSize="small" className="text-gold" />
-                  Hours listed below
+                  {t("hoursListed")}
                 </span>
               )}
               {center?.whatsapp_hotline && (
                 <span className="inline-flex items-center gap-1.5 bg-white text-black/70 text-sm rounded-full px-3.5 py-1.5 shadow-sm">
                   <WhatsAppIcon fontSize="small" className="text-green" />
-                  Direct hotline available
+                  {t("directHotline")}
                 </span>
               )}
             </div>
@@ -148,7 +149,7 @@ export default function SingleCenter({ params }) {
               className="mt-3 inline-flex items-center justify-center gap-2 w-fit bg-blue text-white font-semibold px-6 py-3 rounded-lg hover:opacity-90 transition-opacity"
             >
               <CalendarMonthIcon fontSize="small" />
-              Request an Appointment
+              {t("requestAppointment")}
             </a>
           </div>
         </div>
@@ -156,7 +157,7 @@ export default function SingleCenter({ params }) {
 
       <div className="p-5 py-10 md:py-14 md:container md:mx-auto flex flex-col gap-6 md:gap-8">
         {/* Stage 1: Narrative Summary */}
-        <SectionCard icon={InfoOutlinedIcon} eyebrow="Overview" title="About This Center">
+        <SectionCard icon={InfoOutlinedIcon} eyebrow={t("overviewEyebrow")} title={t("aboutTitle")}>
           {hasNarrative ? (
             <>
               {center?.description && (
@@ -183,25 +184,25 @@ export default function SingleCenter({ params }) {
               )}
             </>
           ) : (
-            <EmptyNote>More information about this center is coming soon.</EmptyNote>
+            <EmptyNote>{t("aboutEmpty")}</EmptyNote>
           )}
         </SectionCard>
 
         {/* Stage 2: Scope of Care */}
-        <SectionCard icon={HealingIcon} eyebrow="Scope of Care" title="What We Treat">
+        <SectionCard icon={HealingIcon} eyebrow={t("scopeEyebrow")} title={t("whatWeTreatTitle")}>
           {center?.conditions?.length > 0 ? (
             <TagList items={center.conditions} field="condition" />
           ) : (
-            <EmptyNote>The list of conditions treated here is coming soon.</EmptyNote>
+            <EmptyNote>{t("conditionsEmpty")}</EmptyNote>
           )}
         </SectionCard>
 
         {/* Stage 3: Diagnostics & Interventions */}
-        <SectionCard icon={BiotechIcon} eyebrow="Capabilities" title="Diagnostics & Interventions">
+        <SectionCard icon={BiotechIcon} eyebrow={t("capabilitiesEyebrow")} title={t("diagnosticsTitle")}>
           {center?.treatments?.length > 0 ? (
             <TagList items={center.treatments} field="treatment" />
           ) : (
-            <EmptyNote>The list of diagnostics and interventions offered here is coming soon.</EmptyNote>
+            <EmptyNote>{t("diagnosticsEmpty")}</EmptyNote>
           )}
         </SectionCard>
 
@@ -216,10 +217,10 @@ export default function SingleCenter({ params }) {
             </span>
             <div>
               <p className="text-xs font-semibold tracking-wide uppercase text-white/70">
-                Get Started
+                {t("getStartedEyebrow")}
               </p>
               <h2 className="text-lg md:text-xl font-bold text-white">
-                Request an Appointment at This Center
+                {t("requestAtCenter")}
               </h2>
             </div>
           </div>
@@ -233,7 +234,7 @@ export default function SingleCenter({ params }) {
         </section>
 
         {/* Stage 5: Clear Direct Office Contacts */}
-        <SectionCard icon={MapIcon} eyebrow="Visit Us" title="Office Contact Details">
+        <SectionCard icon={MapIcon} eyebrow={t("visitUsEyebrow")} title={t("officeContactTitle")}>
           {center?.operational_hours || center?.whatsapp_hotline || center?.floor_map ? (
             <div className="grid md:grid-cols-2 gap-6 items-start">
               {center?.floor_map && (
@@ -251,7 +252,7 @@ export default function SingleCenter({ params }) {
                   <div>
                     <p className="flex items-center gap-2 font-semibold text-blue mb-1.5">
                       <AccessTimeIcon fontSize="small" />
-                      Operational Hours
+                      {t("operationalHours")}
                     </p>
                     <p className="text-sm lg:text-base whitespace-pre-line text-black/80">
                       {center.operational_hours}
@@ -266,13 +267,13 @@ export default function SingleCenter({ params }) {
                     className="inline-flex items-center gap-2 w-fit bg-green text-white font-semibold px-4 py-2.5 rounded-lg hover:opacity-90 transition-opacity"
                   >
                     <WhatsAppIcon fontSize="small" />
-                    Chat on WhatsApp
+                    {t("chatWhatsapp")}
                   </a>
                 )}
               </div>
             </div>
           ) : (
-            <EmptyNote>Direct office contact details are coming soon.</EmptyNote>
+            <EmptyNote>{t("officeContactEmpty")}</EmptyNote>
           )}
         </SectionCard>
       </div>

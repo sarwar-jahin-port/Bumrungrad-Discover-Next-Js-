@@ -17,17 +17,19 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const PackagePromotion = () => {
+  const t = useTranslations("insurance.packagePromotion");
   const questionsAns = [
     {
-      question: "Virtual Book Medical Assistance Company",
+      question: t("virtualBook"),
       img: virtualBookImg,
       url: "https://bumrungrad.aflip.in/good_vibes_EN.html?utm_source=poster&utm_medium=qrcode&utm_campaign=flipbook-good-vibes-EN-for-17-aug-23",
       target: "_blank",
     },
     {
-      question: "Insurance Health Fair Promotion 2023",
+      question: t("healthFair"),
       img: fairpromotionImg,
     },
     {
@@ -52,7 +54,7 @@ const PackagePromotion = () => {
       <div className="h-[20vh] md:h-[30vh] lg:h-[50vh] insurance-packagePromotion relative flex justify-center items-center">
         <div className="absolute top-0 h-full w-full bg-black/60"></div>
         <h1 className="uppercase text-xl text-center md:text-2xl lg:text-3xl font-bold text-white z-10">
-          Insurance Packages and Promotion 2024
+          {t("title")}
         </h1>
       </div>
       <div className="mx-10 my-10">

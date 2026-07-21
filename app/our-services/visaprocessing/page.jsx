@@ -9,23 +9,25 @@ import { FormControl, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import { countries } from "@/public/data/country";
 import UnifiedInboundForm from "@/components/shared/UnifiedInboundForm";
+import { useTranslations } from "next-intl";
 
 const VisaProcessing = () => {
+    const t = useTranslations("ourServices.visaProcessing");
     const [country, setCountry] = useState("");
 
     return (
         <>
             <section className='mx-5 md:container md:mx-auto pb-10'>
                 <h1 className='text-xl md:text-2xl lg:text-3xl font-semibold text-blue my-5 text-center'>
-                    Process Your Visa
+                    {t("heading")}
                 </h1>
                 {/* second card  */}
                 <section className=''>
                     <p className='my-5 text-xl text-blue font-semibold'>
-                        Where are you from?
+                        {t("whereAreYouFrom")}
                     </p>
                     <FormControl fullWidth className='md:!w-1/2'>
-                        <p className='my-2.5'>Select Country(Required)</p>
+                        <p className='my-2.5'>{t("selectCountry")}</p>
                         <Select
                             labelId='demo-simple-select-label'
                             id='demo-simple-select'

@@ -6,17 +6,18 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PlaceIcon from "@mui/icons-material/Place";
+import { useTranslations } from "next-intl";
 
 const HUB_CITIES = ["Dhaka", "Chattogram"];
 
-const HubCard = ({ city, hub }) => (
+const HubCard = ({ city, hub, t }) => (
   <div className="flex flex-col gap-4 rounded-xl border border-ash/30 shadow-lg p-6 bg-white">
     <div>
       <p className="text-xs font-semibold uppercase tracking-wide text-gold">
-        Emergency Hub
+        {t("emergencyHub")}
       </p>
       <h3 className="text-xl md:text-2xl font-bold text-blue">
-        {city} District Operation Line
+        {t("districtOperationLine", { city })}
       </h3>
     </div>
 
@@ -88,13 +89,14 @@ const HubCard = ({ city, hub }) => (
       </div>
     ) : (
       <p className="text-sm text-black/60">
-        Hub details for {city} are being finalized and will appear here shortly.
+        {t("hubFallback", { city })}
       </p>
     )}
   </div>
 );
 
 const AirAmbulanceLanding = () => {
+  const t = useTranslations("airAmbulance.landing");
   const [hubs, setHubs] = useState([]);
   const [loader, setLoader] = useState(true);
 
@@ -113,22 +115,20 @@ const AirAmbulanceLanding = () => {
       <div className="py-14 md:py-20 bg-blue relative flex justify-center items-center text-center px-5">
         <div className="text-white z-10 max-w-3xl">
           <p className="text-gold font-semibold uppercase tracking-wide text-sm">
-            24/7 Emergency Transport
+            {t("eyebrow")}
           </p>
           <h1 className="text-2xl md:text-4xl font-bold mt-2">
-            Air Ambulance Emergency Service
+            {t("heading")}
           </h1>
           <p className="mt-4 text-sm md:text-base text-white/90">
-            Fast, coordinated air ambulance transport to Bumrungrad
-            International Hospital, dispatched through our dedicated Dhaka
-            and Chattogram operation hubs.
+            {t("intro")}
           </p>
         </div>
       </div>
 
       <div className="mx-5 md:container md:mx-auto py-10 md:py-16">
         <h2 className="text-xl md:text-2xl font-bold text-blue mb-6">
-          Our Emergency Deployment Hubs
+          {t("hubsHeading")}
         </h2>
 
         {loader ? (
@@ -140,7 +140,7 @@ const AirAmbulanceLanding = () => {
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
             {HUB_CITIES.map((city) => (
-              <HubCard key={city} city={city} hub={hubs.find((h) => h.city === city)} />
+              <HubCard key={city} city={city} hub={hubs.find((h) => h.city === city)} t={t} />
             ))}
           </div>
         )}
@@ -148,12 +148,10 @@ const AirAmbulanceLanding = () => {
         <div className="mt-14 md:mt-20 grid md:grid-cols-2 gap-10 items-start">
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-blue">
-              Request Emergency Transport
+              {t("requestHeading")}
             </h2>
             <p className="mt-3 text-sm md:text-base text-black/70">
-              Fill out the form below with your travel details and a member
-              of our emergency coordination team will reach out to you
-              shortly to confirm your air ambulance transport.
+              {t("requestText")}
             </p>
           </div>
           <div className="rounded-xl border border-ash/30 shadow-lg p-6 bg-white">

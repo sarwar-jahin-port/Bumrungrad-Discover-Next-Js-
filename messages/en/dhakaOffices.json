@@ -1,0 +1,65 @@
+{
+  "heroHeading": "Experience World-Class Healthcare with Bumrungrad International Hospital - Dhaka Office",
+  "heroText": "Discover International Medical Service (DIMS) is the official representative and International Referral Office for Bumrungrad Hospital Dhaka Office. We connect Bangladeshi patients with world-class healthcare at Bumrungrad International Hospital in Thailand.",
+  "doctorAppointment": "Doctor Appoinment",
+  "healthScreening": "Health Screening",
+  "findDoctor": "Find Doctor",
+  "sendQuery": "Send Querey",
+
+  "journeyHeading": "Your Journey to Health Starts Here at Bumrungrad Hospital",
+  "journeyText": "Start your journey to exceptional healthcare at Bumrungrad Hospital Bangkok. Our top-notch facilities and dedicated team are committed to providing the best care possible, making every step of your healthcare journey seamless and supportive.",
+  "dimsLinkText": "DIMS (Discover International Medical Service)",
+  "dimsP1After": "is a trusted name in providing seamless medical assistance and facilitation services to individuals seeking world-class healthcare solutions abroad. Our mission is to guide patients through the complexities of medical travel, ensuring easy access to Bumrungrad Hospital and top doctors across the globe.",
+  "dimsP2Before": "We specialize in coordinating treatments, consultations, and aftercare for a wide range of medical conditions. In collaboration with leading hospitals like Bumrungrad Hospital, we make sure patients receive the highest standard of healthcare, no matter where they are located. Our extensive network of international referral offices in countries such as Bangladesh, Bahrain, Cambodia, Chad, China, East Africa, Ethiopia, Hong Kong, Indonesia, Kenya, Kuwait, Laos, Mongolia, Myanmar, Nepal, Pakistan, UAE, and Vietnam ensures that patients worldwide can easily access the right medical expertise. If you have any questions or need assistance with any step of the process, please feel free to ask in the",
+  "liveChatLink": "Live Chat.",
+  "dimsP2After": "We are here to help you plan your journey to world-class healthcare.",
+
+  "referralOfficesHeading": "Access Bumrungrad Hospital Through Our Dhaka Referral Offices",
+  "referralOfficesIntro": "Below is a list of our of Bumrungrad Hospital overseas Dhaka Referral offices. These offices will assist you in every way possible to ensure you receive the information and support you need. Contact us directly at one of our international Referral offices.",
+  "addressLabel": "Address:",
+  "phoneLabel": "Phone:",
+  "emailLabel": "Email:",
+  "websiteLabel": "Website:",
+  "mapLabel": "Google Map Location:",
+  "fanpageLabel": "Fanpage:",
+
+  "visaOfficerHeading": "Visa Officer",
+  "reservationHeading": "Reservation",
+  "supportMailHeading": "Support Mail",
+  "websiteHeading": "Website",
+  "linkText": "Bumrungrad International Hospital",
+
+  "servicesHeading": "Our Complete Services for Patients at Bumrungrad International Hospital",
+  "servicesIntro": "At Discover International Medical Service (DIMS), We provide a wide range of services for patients visiting Bumrungrad International Hospital. Here’s a quick overview of what we can help you with:",
+  "services": [
+    { "name": "Schedule Doctor Appointment", "description": "We help you book appointments with top doctors at Bumrungrad Hospital, so you get the care you need quickly." },
+    { "name": "Thailand Visa Processing", "description": "We make getting your Thailand visa easy, handling all the paperwork so you can focus on your treatment." },
+    { "name": "Order Medicine", "description": "We help you order medicine from Thailand and ensure it arrives safely and on time for your treatment." },
+    { "name": "Medical Records", "description": "We assist with transferring your medical records to Bumrungrad Hospital, making sure your doctors have all the information." },
+    { "name": "Telemedicine", "description": "You can connect with expert doctors at Bumrungrad through telemedicine for consultations and follow-up care, no matter where you are." },
+    { "name": "Air Ambulance Service", "description": "If you need urgent medical care, we arrange fast and safe air ambulance transport to Bumrungrad International Hospital." },
+    { "name": "Air Ticket", "description": "We help you book international flights to Thailand for medical treatment, ensuring smooth and affordable travel." },
+    { "name": "Airport Transfer Service", "description": "We provide airport pick-up and drop-off services, making your travel to and from the hospital easy and comfortable." },
+    { "name": "Admission On Arrival", "description": "We assist with your direct hospital admission upon arrival, so you can start your treatment without any delays." },
+    { "name": "Thai Local Accommodation", "description": "We help you find comfortable and safe accommodation near the hospital, making your stay in Thailand relaxing and convenient." },
+    { "name": "Language Interpreter", "description": "We provide language interpreters to help you communicate easily with your doctors and medical team during your treatment." },
+    { "name": "Transfer Money for Treatment", "description": "We assist in transferring money for your medical treatment, making sure your payment reaches the hospital safely and quickly." }
+  ],
+
+  "closingHeading": "Lets make your medical trip to Bumrungrad a seamless experience!",
+  "closingText": "At DIMS, We are committed to providing you with seamless access to the best healthcare at Bumrungrad International Hospital. Whether you are seeking treatment for a chronic condition, undergoing surgery, or just looking for a second opinion, Our team is here to guide you every step of the way. Our goal is to simplify the process of medical travel, handling the logistics so that you can focus on your health and recovery. By partnering with Bumrungrad International Hospital, we ensure that you receive the highest quality care in one of the world's Top medical destinations.",
+
+  "contactCards": [
+    { "office": "Dhanmondi Office", "building": "Rupayan Prime Tower", "floor": "10th Floor (Lift-9)", "house": "House:02,Road: 07, Green Road", "city": "Dhanmondi, Dhaka-1205" },
+    { "office": "Banani Office", "building": "Alamin Park Panorama (Beside Banani Post Office),", "floor": "8th Floor (Lift-5)", "house": "Road 13/A, Block - C, House 105,", "city": "Banani, Dhaka - 1213," },
+    { "office": "Uttara Office", "building": "Sector-13, House: 01", "floor": "Janapadd Road", "house": "Opposite of Bata Showroom", "city": "Uttara, Dhaka-1230" },
+    { "office": "Chattogram Office", "building": "Daar E Shahidi Building", "floor": "3rd Floor, (Lift-3)", "house": "House:69, Agrabad C/A", "city": "Chattogram-4100" }
+  ],
+
+  "referralOfficeNames": [
+    "Bumrungrad Hospital Referral Office Dhanmondi",
+    "Bumrungrad Hospital Referral Office Banani",
+    "Bumrungrad Hospital Referral Office Uttara",
+    "Bumrungrad Hospital Referral Office Chittagong Agrabad"
+  ]
+}

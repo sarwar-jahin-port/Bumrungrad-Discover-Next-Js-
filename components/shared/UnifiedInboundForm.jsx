@@ -13,6 +13,7 @@ import { TextField } from "@mui/material";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 const UnifiedInboundForm = ({
     image,
@@ -24,6 +25,8 @@ const UnifiedInboundForm = ({
     requireAuth = false,
     onSuccess,
 }) => {
+    const t = useTranslations("common");
+    const tForm = useTranslations("ourServices.unifiedForm");
     const [fullName, setFullName] = useState("");
     const [whatsapp, setWhatsapp] = useState("");
     const [loader, setLoader] = useState(false);
@@ -51,7 +54,7 @@ const UnifiedInboundForm = ({
 
             if (data.status === 200) {
                 toast.success(
-                    "We have received your request. Our representative will reach you shortly!",
+                    t("successToast"),
                     {
                         position: "top-center",
                         style: { borderRadius: "20px" },
@@ -64,10 +67,10 @@ const UnifiedInboundForm = ({
             } else {
                 const errorMessage =
                     data?.errors && Object.values(data.errors).flat()[0];
-                toast.error(errorMessage || "Something went wrong");
+                toast.error(errorMessage || t("errorToast"));
             }
         } catch (err) {
-            toast.error("Something went wrong");
+            toast.error(t("errorToast"));
         } finally {
             setLoader(false);
         }
@@ -101,23 +104,23 @@ const UnifiedInboundForm = ({
 
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <div>
-                    <p className='mb-2 font-semibold text-sm'>Full Name</p>
+                    <p className='mb-2 font-semibold text-sm'>{t("fullName")}</p>
                     <TextField
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        placeholder='Enter your full name'
+                        placeholder={tForm("fullNamePlaceholder")}
                         fullWidth
                         required
                     />
                 </div>
                 <div>
                     <p className='mb-2 font-semibold text-sm'>
-                        WhatsApp Mobile Number
+                        {t("whatsappNumber")}
                     </p>
                     <TextField
                         value={whatsapp}
                         onChange={(e) => setWhatsapp(e.target.value)}
-                        placeholder='e.g. +66 12 345 6789'
+                        placeholder={tForm("whatsappPlaceholder")}
                         fullWidth
                         required
                     />
@@ -138,7 +141,7 @@ const UnifiedInboundForm = ({
                             fill={loader ? "black" : "white"}
                         />
                     ) : (
-                        "Submit"
+                        t("submit")
                     )}
                 </button>
             </form>

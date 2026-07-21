@@ -11,6 +11,7 @@ import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import ScienceIcon from "@mui/icons-material/Science";
 import ArticleIcon from "@mui/icons-material/Article";
 import { DoctorSkeleton } from "@/components/ui/cardload";
+import { useTranslations } from "next-intl";
 
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -39,6 +40,7 @@ const CredentialSection = ({ icon: Icon, title, items, render }) =>
   ) : null;
 
 export default function DoctorInfo({ params }) {
+  const t = useTranslations("doctors.singleDoctor");
   const navigate = useRouter();
   const [loader, setLoader] = useState(false);
   const [notFound, setNotFound] = useState(false);
@@ -79,9 +81,9 @@ export default function DoctorInfo({ params }) {
   if (notFound) {
     return (
       <div className="p-5 my-16 md:container md:mx-auto text-center">
-        <h1 className="text-xl md:text-2xl font-bold text-blue">Doctor Not Found</h1>
+        <h1 className="text-xl md:text-2xl font-bold text-blue">{t("notFoundTitle")}</h1>
         <p className="mt-2.5 text-black/50">
-          We couldn't find the doctor profile you're looking for. It may have been moved or is no longer available.
+          {t("notFoundText")}
         </p>
       </div>
     );
@@ -118,7 +120,7 @@ export default function DoctorInfo({ params }) {
                 />
               ) : (
                 <div className="w-full h-full bg-white flex items-center justify-center text-black/30 text-sm">
-                  No photo available
+                  {t("noPhoto")}
                 </div>
               )}
             </div>
@@ -127,7 +129,7 @@ export default function DoctorInfo({ params }) {
               className="flex items-center justify-center gap-2 bg-blue text-white font-semibold py-3 rounded-b-xl hover:opacity-90 transition-opacity"
             >
               <EventAvailableIcon fontSize="small" />
-              Book Appointment
+              {t("bookAppointment")}
             </button>
           </div>
 
@@ -162,7 +164,7 @@ export default function DoctorInfo({ params }) {
         {/* Zone 3: calendar-grid schedule */}
         {hasSchedule && (
           <section>
-            <h2 className="text-lg md:text-xl font-bold text-blue mb-4">Weekly Schedule</h2>
+            <h2 className="text-lg md:text-xl font-bold text-blue mb-4">{t("weeklySchedule")}</h2>
             <div className="overflow-x-auto">
               <div className="grid grid-flow-col auto-cols-[160px] gap-3 min-w-max">
                 {scheduleByDay.map(({ day, entries }) => (
@@ -173,7 +175,7 @@ export default function DoctorInfo({ params }) {
                     }`}
                   >
                     <p className={`text-sm font-semibold ${entries.length > 0 ? "text-blue" : "text-black/40"}`}>
-                      {day}
+                      {t(`weekdays.${day}`)}
                     </p>
                     {entries.length > 0 ? (
                       entries.map((e, i) => (
@@ -184,7 +186,7 @@ export default function DoctorInfo({ params }) {
                         </div>
                       ))
                     ) : (
-                      <p className="text-xs text-black/30">Not available</p>
+                      <p className="text-xs text-black/30">{t("notAvailable")}</p>
                     )}
                   </div>
                 ))}
@@ -197,49 +199,49 @@ export default function DoctorInfo({ params }) {
         <section className="grid md:grid-cols-2 gap-x-10 gap-y-8">
           <CredentialSection
             icon={SchoolIcon}
-            title="Medical School"
+            title={t("medicalSchool")}
             items={doctor?.schools}
             render={(ms) => ms?.school}
           />
           <CredentialSection
             icon={WorkspacePremiumIcon}
-            title="Board Certifications"
+            title={t("boardCertifications")}
             items={doctor?.certificates}
             render={(c) => c?.certificate}
           />
           <CredentialSection
             icon={SchoolIcon}
-            title="Trainings"
+            title={t("trainings")}
             items={doctor?.trainings}
-            render={(t) => t?.training}
+            render={(tr) => tr?.training}
           />
           <CredentialSection
             icon={ScienceIcon}
-            title="Interests"
+            title={t("interests")}
             items={doctor?.interests}
             render={(it) => it?.Interest}
           />
           <CredentialSection
             icon={WorkspacePremiumIcon}
-            title="Experience"
+            title={t("experience")}
             items={doctor?.experiences}
             render={(e) => e?.experience}
           />
           <CredentialSection
             icon={WorkspacePremiumIcon}
-            title="Fellowships"
+            title={t("fellowships")}
             items={doctor?.fellowships}
             render={(f) => f?.fellowship}
           />
           <CredentialSection
             icon={ScienceIcon}
-            title="Research"
+            title={t("research")}
             items={doctor?.researches}
             render={(r) => r?.research}
           />
           <CredentialSection
             icon={ArticleIcon}
-            title="Articles"
+            title={t("articles")}
             items={doctor?.article}
             render={(a) => a?.article}
           />

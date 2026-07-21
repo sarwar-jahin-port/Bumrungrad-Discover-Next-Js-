@@ -1,0 +1,34 @@
+{
+  "childPackage": {
+    "heading": "আমাদের প্যাকেজসমূহ",
+    "locationLabel": "অবস্থান:",
+    "viewPackage": "প্যাকেজ দেখুন",
+    "noData": "কোনো তথ্য পাওয়া যায়নি"
+  },
+  "details": {
+    "notFoundTitle": "প্যাকেজ পাওয়া যায়নি",
+    "notFoundText": "আপনি যে প্যাকেজটি খুঁজছেন তা আমরা খুঁজে পাইনি। এটি সরিয়ে ফেলা হতে পারে অথবা আর উপলব্ধ নেই।",
+    "bookNow": "এখনই বুক করুন",
+    "packageId": "প্যাকেজ আইডি: #{id}",
+    "locationLabel": "অবস্থান: ",
+    "availableShifts": "উপলব্ধ শিফট",
+    "inclusions": "প্যাকেজে যা অন্তর্ভুক্ত",
+    "exclusions": "প্যাকেজে যা অন্তর্ভুক্ত নয়",
+    "terms": "শর্তাবলী",
+    "bookingTitle": "প্যাকেজ বুকিং",
+    "packageName": "প্যাকেজের নাম",
+    "enterPackageName": "প্যাকেজের নাম লিখুন",
+    "packagePrice": "প্যাকেজের মূল্য",
+    "enterPackagePrice": "প্যাকেজের মূল্য লিখুন",
+    "patientName": "রোগীর নাম",
+    "enterPatientName": " রোগীর নাম লিখুন",
+    "hnNumber": "HN নম্বর",
+    "enterHnNumber": " HN নম্বর লিখুন",
+    "whatsappNumber": "হোয়াটসঅ্যাপ নম্বর",
+    "enterWhatsappNumber": "হোয়াটসঅ্যাপ নম্বর লিখুন",
+    "email": "ইমেইল",
+    "enterEmail": "ইমেইল লিখুন",
+    "successToast": "আমরা আপনার অনুরোধ পেয়েছি। আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবে!",
+    "errorToast": "কিছু একটা সমস্যা হয়েছে"
+  }
+}

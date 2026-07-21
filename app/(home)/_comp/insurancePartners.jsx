@@ -9,8 +9,10 @@ import claria from "@/public/assets/partners/claria.png";
 import daman from "@/public/assets/partners/daman.png";
 import Image from "next/image";
 import { CheckCircle } from "@mui/icons-material";
+import { getTranslations } from "next-intl/server";
 
-export default function InsurancePartners() {
+export default async function InsurancePartners() {
+  const t = await getTranslations("home.insurance");
   const partners = [
     {
       image: aetnaInsurance,
@@ -46,15 +48,11 @@ export default function InsurancePartners() {
     },
   ];
 
-  const insurances = [
-    "We accept a variety of international health insurance plans, including those from leading providers.",
-    "Our insurance partners streamline the payment process, saving you time and hassle.",
-    "If your insurance provider isn’t listed, don’t worry! Our team is here to help you find the right coverage. Simply make an inquiry today, and we’ll assist you in verifying your insurance options and ensuring you receive the care you need.",
-  ];
+  const insurances = t.raw("points");
   return (
     <div className="mx-5 my-16 md:my-32 md:container md:mx-auto">
       <h5 className="text-2xl md:text-4xl font-semibold text-blue">
-        Insurance Partners
+        {t("heading")}
       </h5>
 
       <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-16 mt-10 md:mt-20">
@@ -71,18 +69,13 @@ export default function InsurancePartners() {
 
         <div className="md:w-1/2">
           <h2 className="text-xl md:text-2xl font-semibold text-blue">
-            Discover your Insurance Options at Bumrungrad International Hospital
+            {t("subheading")}
           </h2>
           <p className="mt-5">
-            We’re proud to work with a diverse range of insurance providers to
-            make accessing medical care straightforward for you. If you’re
-            wondering whether your insurance is covered, simply use our search
-            tool or contact our support team, and we’ll be glad to confirm your
-            provider’s acceptance.
+            {t("intro")}
           </p>
           <h2 className="text-xl md:text2xl font-semibold text-blue mt-5">
-            Why use our insurance partners for your medical treatment at
-            Bumrungrad International Hospital
+            {t("whyHeading")}
           </h2>
           <div className="flex flex-col gap-2.5 mt-5">
             {insurances.map((i, index) => (

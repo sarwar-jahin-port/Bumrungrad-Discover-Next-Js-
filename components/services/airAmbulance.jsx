@@ -10,8 +10,10 @@ import useAuth from "@/helpers/hooks/useAuth";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "../ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 const AirAmbulanceForm = () => {
+    const t = useTranslations("airAmbulance.form");
     const { auth } = useAuth();
     const [loader, setLoader] = useState();
 
@@ -93,7 +95,7 @@ const AirAmbulanceForm = () => {
 
                 if (send_mails?.messageId && send_mail_client?.messageId) {
                     toast.success(
-                        "We have received your request. Our representative will reach you shortly!",
+                        t("successToast"),
                         {
                             position: "top-center",
                             style: { borderRadius: "20px" },
@@ -104,11 +106,11 @@ const AirAmbulanceForm = () => {
                     form.reset();
                 } else {
                     toast.error(
-                        "Something went wrong. Mail not sent. Please try again later.",
+                        t("errorToastMailFailed"),
                     );
                 }
             } else {
-                toast.error("Something went wrong. Please try again later.");
+                toast.error(t("errorToast"));
             }
         } catch (error) {
             setLoader(false);
@@ -123,7 +125,7 @@ const AirAmbulanceForm = () => {
             >
                 <div className='mb-2 flex flex-col gap-6'>
                     <div className=''>
-                        <p className='mb-2 font-semibold text-sm'>Enter Date</p>
+                        <p className='mb-2 font-semibold text-sm'>{t("enterDate")}</p>
                         <TextField
                             type='date'
                             onChange={(e) => setDate(e.target.value)}
@@ -133,7 +135,7 @@ const AirAmbulanceForm = () => {
                     </div>
                     <div className='mt-1'>
                         <p className='mb-1 font-semibold text-sm'>
-                            Attach Your Passport Copy
+                            {t("attachPassport")}
                         </p>
                         <TextField
                             type='file'
@@ -144,7 +146,7 @@ const AirAmbulanceForm = () => {
                     </div>
                     <div className='mt-1'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Upload Case Summary
+                            {t("uploadCaseSummary")}
                         </p>
                         <TextField
                             multiline
@@ -155,7 +157,7 @@ const AirAmbulanceForm = () => {
                     </div>
                     <div className='mt-1'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Write In Brifley
+                            {t("writeInBrief")}
                         </p>
                         <TextField
                             multiline
@@ -191,7 +193,7 @@ const AirAmbulanceForm = () => {
                             fill='black'
                         />
                     ) : (
-                        "Submit"
+                        t("submit")
                     )}
                 </button>
             </form>

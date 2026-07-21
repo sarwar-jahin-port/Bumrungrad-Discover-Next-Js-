@@ -6,53 +6,36 @@ export const metadata = {
 
 import React from "react";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-const REPOSITORY_LINKS = [
-  {
-    title: "About Bumrungrad",
-    description: "History, scale, and clinical innovation at Bumrungrad International Hospital.",
-    href: "/about-bumrungrad",
-  },
-  {
-    title: "Vision & Mission",
-    description: "The hospital's guiding vision and mission in international patient care.",
-    href: "/about-vision-and-misson",
-  },
-  {
-    title: "Factsheet",
-    description: "Operational footprint: bed count, staff numbers, patient volumes, and clinical centers.",
-    href: "/about-factsheet",
-  },
-  {
-    title: "Accreditation",
-    description: "International certifications, awards, and quality accreditations.",
-    href: "/about-accreditation",
-  },
-  {
-    title: "Foundation",
-    description: "Bumrungrad's community and philanthropic foundation work.",
-    href: "/about-foundation",
-  },
+const REPOSITORY_HREFS = [
+  "/about-bumrungrad",
+  "/about-vision-and-misson",
+  "/about-factsheet",
+  "/about-accreditation",
+  "/about-foundation",
 ];
 
-const HospitalInformationPage = () => {
+const HospitalInformationPage = async () => {
+  const t = await getTranslations("healthInfo.hospitalInfo");
+  const links = t.raw("links").map((item, i) => ({ ...item, href: REPOSITORY_HREFS[i] }));
+
   return (
     <div>
       <div className="py-14 md:py-20 bg-blue relative flex justify-center items-center text-center px-5">
         <div className="text-white z-10 max-w-3xl">
           <h1 className="text-2xl md:text-4xl font-bold">
-            Hospital Information Repository
+            {t("heading")}
           </h1>
           <p className="mt-4 text-sm md:text-base text-white/90">
-            Institutional data about Bumrungrad International Hospital's
-            operational footprint, history, and standing.
+            {t("intro")}
           </p>
         </div>
       </div>
 
       <div className="mx-5 md:container md:mx-auto py-10 md:py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {REPOSITORY_LINKS.map((item) => (
+          {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}

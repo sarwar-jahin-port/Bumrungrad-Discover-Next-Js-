@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { CardLoader } from "@/components/ui/cardload"; // Make sure this is correctly implemented
+import { useTranslations } from "next-intl";
 
 const AllBlogs = () => {
+  const t = useTranslations("blogs");
   const [allBlogData, setAllBlogData] = useState([]);
   const [loader, setLoader] = useState(true); // Default to loading state
   const [currentPage, setCurrentPage] = useState(1); // Current page state
@@ -57,21 +59,21 @@ const AllBlogs = () => {
     <div className="p-5 md:p-10 md:container md:mx-auto">
       <div className="">
         <h1 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-          Bumrungrad Health Blogs
+          {t("heading")}
         </h1>
         <form onSubmit={handleSearchSubmit} className="mt-5 flex gap-2 max-w-md">
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search blogs by title..."
+            placeholder={t("searchPlaceholder")}
             className="flex-1 border border-ash/40 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue"
           />
           <button
             type="submit"
             className="px-4 py-2 bg-blue text-white rounded text-sm font-semibold hover:opacity-90"
           >
-            Search
+            {t("search")}
           </button>
           {search && (
             <button
@@ -83,7 +85,7 @@ const AllBlogs = () => {
               }}
               className="px-4 py-2 border border-ash/40 rounded text-sm hover:bg-cream"
             >
-              Clear
+              {t("clear")}
             </button>
           )}
         </form>
@@ -96,7 +98,7 @@ const AllBlogs = () => {
         <CardLoader cardLength={15} gridNumber={3} speed="slow" /> // Skeleton loader
       ) : allBlogData?.length === 0 ? (
         <p className="my-10 text-center text-black/60">
-          No blogs found{search ? ` for "${search}"` : ""}.
+          {search ? t("noBlogsFor", { query: search }) : `${t("noBlogs")}.`}
         </p>
       ) : (
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 my-10">
@@ -126,7 +128,7 @@ const AllBlogs = () => {
                   href={`/blogs/${d?.slug}`}
                   className="px-4 py-2 bg-blue text-white shadow rounded text-sm"
                 >
-                  Read More
+                  {t("readMore")}
                 </Link>
               </div>
             </div>
@@ -141,18 +143,18 @@ const AllBlogs = () => {
             onClick={() => setCurrentPage(currentPage - 1)}
             className="px-4 py-2 bg-blue text-white rounded"
           >
-            Prev
+            {t("prev")}
           </button>
         )}
         <span className="text-sm">
-          Page {currentPage} of {totalPages}
+          {t("pageOf", { current: currentPage, total: totalPages })}
         </span>
         {nextPageUrl && (
           <button
             onClick={() => setCurrentPage(currentPage + 1)}
             className="px-4 py-2 bg-blue text-white rounded"
           >
-            Next
+            {t("next")}
           </button>
         )}
       </div>

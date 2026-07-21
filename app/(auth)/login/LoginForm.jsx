@@ -11,8 +11,10 @@ import useAuth from "@/helpers/hooks/useAuth";
 import toast from "react-hot-toast";
 import { userTokenSet } from "@/helpers/lib/usertoken";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 export default function Login() {
+  const t = useTranslations("auth.login");
   const { setIsAdd } = useAuth();
   const navigate = useRouter();
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -58,7 +60,7 @@ export default function Login() {
         const setTokenOnServer = await userTokenSet(data?.msg?.token);
 
         if (setTokenOnServer.success == "success") {
-          toast.success("Login Successful âœŒï¸", {
+          toast.success(t("successToast"), {
             duration: 5000,
             position: "top-center",
             style: {
@@ -73,7 +75,7 @@ export default function Login() {
         }
 
         if (setTokenOnServer.error == "error") {
-          toast.error("Something went wrong ðŸ˜±ðŸ˜±", {
+          toast.error(t("errorToast"), {
             duration: 5000,
             style: {
               padding: "20px",
@@ -82,7 +84,7 @@ export default function Login() {
           });
         }
       } else {
-        toast.error("Credential didn't match with our record! ðŸ˜±ðŸ˜±", {
+        toast.error(t("credentialErrorToast"), {
           duration: 5000,
           style: {
             padding: "20px",
@@ -92,7 +94,7 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong. Please try again. ðŸ˜±ðŸ˜±", {
+      toast.error(t("retryErrorToast"), {
         duration: 5000,
         style: {
           padding: "20px",
@@ -112,15 +114,15 @@ export default function Login() {
       </div>
       <div className="p-5 md:p-10 md:w-1/2 my-5 md:my-10 mx-5 md:container md:mx-auto shadow shadow-blue rounded relative">
         <h5 className="text-xl md:text-3xl font-semibold text-blue mb-4">
-          Hello Dear!
+          {t("heading")}
         </h5>
         <Divider />
         <div className="mt-4">
           <TextField
             fullWidth
-            label="Enter Email"
+            label={t("enterEmail")}
             name="email"
-            placeholder="Required"
+            placeholder={t("required")}
             onChange={handleInputChange}
             value={formData.email}
             type="email"
@@ -129,9 +131,9 @@ export default function Login() {
         <div className="mt-5 flex relative">
           <TextField
             fullWidth
-            label="Enter Password"
+            label={t("enterPassword")}
             name="password"
-            placeholder="Required"
+            placeholder={t("required")}
             onChange={handleInputChange}
             value={formData.password}
             type={inputType}
@@ -150,13 +152,13 @@ export default function Login() {
             disabled={!isFormValid || loader}
             onClick={handleLogin}
           >
-            {loader ? <Loader className="animate-spin" /> : "Login"}
+            {loader ? <Loader className="animate-spin" /> : t("loginBtn")}
           </button>
         </div>
         <p className="mt-5">
-          New here?{" "}
+          {t("newHere")}{" "}
           <Link href="/register" className="underline text-blue">
-            Please create an account
+            {t("createAccount")}
           </Link>
         </p>
       </div>

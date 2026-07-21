@@ -1,0 +1,86 @@
+{
+  "findDoctor": {
+    "title": "Find A Doctor",
+    "enterDoctorName": "Enter Doctor Name",
+    "selectSpeciality": "Select Speacility",
+    "selectSubSpeciality": "Select Sub Speacility",
+    "advanceSearch": "Advance Search",
+    "moreSearch": "More Serach",
+    "yourPreferences": "Your Preferences",
+    "language": "Language",
+    "day": "Day",
+    "time": "Time",
+    "gender": "Gender",
+    "close": "Close",
+    "clearFilters": "Clear Filters",
+    "filtersLabel": "Filters:",
+    "found": "Found",
+    "doctorWord": "Doctor",
+    "viewProfile": "View Profile",
+    "noPhoto": "No photo available",
+    "noDoctorFound": "No Doctor Found",
+    "viewLess": "View Less",
+    "viewMore": "View More",
+    "weekdays": {
+      "Saturday": "Saturday",
+      "Sunday": "Sunday",
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday"
+    },
+    "languages": {
+      "Thai": "Thai",
+      "English": "English",
+      "Arabic": "Arabic",
+      "Chinese": "Chinese",
+      "Dutch": "Dutch",
+      "French": "French",
+      "German": "German",
+      "Hindi": "Hindi",
+      "Japanese": "Japanese",
+      "Spanish": "Spanish",
+      "Urdo": "Urdu",
+      "Mandarin": "Mandarin",
+      "Punjab": "Punjabi",
+      "Hokkin": "Hokkien",
+      "Hainan": "Hainanese",
+      "Cantonese": "Cantonese"
+    },
+    "times": {
+      "Morning": "Morning",
+      "Evening": "Evening",
+      "Night": "Night"
+    },
+    "genders": {
+      "Male": "Male",
+      "Female": "Female"
+    }
+  },
+  "singleDoctor": {
+    "notFoundTitle": "Doctor Not Found",
+    "notFoundText": "We couldn't find the doctor profile you're looking for. It may have been moved or is no longer available.",
+    "noPhoto": "No photo available",
+    "bookAppointment": "Book Appointment",
+    "weeklySchedule": "Weekly Schedule",
+    "notAvailable": "Not available",
+    "medicalSchool": "Medical School",
+    "boardCertifications": "Board Certifications",
+    "trainings": "Trainings",
+    "interests": "Interests",
+    "experience": "Experience",
+    "fellowships": "Fellowships",
+    "research": "Research",
+    "articles": "Articles",
+    "weekdays": {
+      "Sunday": "Sunday",
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday"
+    }
+  }
+}

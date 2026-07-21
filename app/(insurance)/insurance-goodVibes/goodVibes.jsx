@@ -12,11 +12,13 @@ import {
   AccordionBody,
 } from "@material-tailwind/react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const GoodVibes = () => {
+  const t = useTranslations("insurance.goodVibes");
   const questionsAns = [
     {
-      question: "Virtual Book Good Vibes Magazine",
+      question: t("virtualBook"),
       datas: [
         {
           ans: "",
@@ -28,19 +30,18 @@ const GoodVibes = () => {
       ],
     },
     {
-      question:
-        "Goodvibes : Bed-to-Bed Service :  Free Ambulance service distance within 250 Kilometers ",
+      question: t("ambulanceService"),
       datas: [
         {
           text: "text-2xl text-center text-blue",
-          ans: "Bed-to-Bed Service :  Free Ambulance service distance within 250 Kilometers ",
+          ans: t("ambulanceServiceText"),
           img: AmbulanceImg,
           imgclass: "w-[80%] h-[50%] mx-auto",
         },
       ],
     },
     {
-      question: "Insurance",
+      question: t("insuranceCategory"),
       datas: [
         {
           text: "text-sm text-blue md:ml-8 hover:underline",
@@ -181,7 +182,7 @@ const GoodVibes = () => {
       ],
     },
     {
-      question: "International organization",
+      question: t("internationalOrg"),
       datas: [
         {
           text: "text-sm text-blue md:ml-8 hover:underline",
@@ -234,7 +235,7 @@ const GoodVibes = () => {
       ],
     },
     {
-      question: "International School",
+      question: t("internationalSchool"),
       datas: [
         {
           text: "text-sm text-blue md:ml-8 hover:underline",
@@ -260,7 +261,7 @@ const GoodVibes = () => {
       <div className="h-[20vh] md:h-[30vh] lg:h-[50vh] insurance-goodvibes relative flex justify-center items-center">
         <div className="absolute top-0 h-full w-full bg-black/60"></div>
         <h1 className="uppercase text-xl text-center md:text-2xl lg:text-3xl font-bold text-white z-10">
-          Insurance Good Vibes 2024
+          {t("title")}
         </h1>
       </div>
       <div className="mx-10 my-10">

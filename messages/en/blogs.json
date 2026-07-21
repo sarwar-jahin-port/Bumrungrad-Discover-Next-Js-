@@ -1,0 +1,12 @@
+{
+  "heading": "Bumrungrad Health Blogs",
+  "searchPlaceholder": "Search blogs by title...",
+  "search": "Search",
+  "clear": "Clear",
+  "noBlogs": "No blogs found",
+  "noBlogsFor": "No blogs found for \"{query}\".",
+  "readMore": "Read More",
+  "prev": "Prev",
+  "next": "Next",
+  "pageOf": "Page {current} of {total}"
+}

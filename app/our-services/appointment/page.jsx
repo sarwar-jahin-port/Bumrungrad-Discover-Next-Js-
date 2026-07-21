@@ -27,6 +27,7 @@ import { sendEmails } from "@/helpers/mail/sendMail";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeysWithRemoveKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 const customStyles = {
   day: {
@@ -49,6 +50,8 @@ const customStyles = {
 };
 
 export default function Appointment() {
+  const t = useTranslations("common");
+  const tPage = useTranslations("ourServices.appointment");
   const { auth } = useAuth();
   let doctor1, speacility1;
   if (typeof window !== "undefined") {
@@ -285,7 +288,7 @@ export default function Appointment() {
         localStorage.removeItem("Doctor_specialty");
         // setLoader(false);
       } else {
-       toast.error("Failed to book appointment");
+       toast.error(tPage("failedToast"));
        return
       }
 
@@ -340,7 +343,7 @@ export default function Appointment() {
       setLoader(false);
 
       if (emailResponse.messageId && responseClient.messageId) {
-        toast.success("We have received your request. Our representative will reach you shortly!", {
+        toast.success(t("successToast"), {
           position: "top-center",
           style: { borderRadius: "20px" },
           duration: 5000,
@@ -370,7 +373,7 @@ export default function Appointment() {
     <>
       <div className="md:p-10 my-5 md:my-10 md:container md:mx-auto lg:flex lg:flex-col lg:items-center">
         <h1 className="text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-          Book Appointment
+          {tPage("heading")}
         </h1>
         <div className="my-10 lg:w-11/12">
           {/* top buttons  */}
@@ -416,13 +419,13 @@ export default function Appointment() {
                 <div className="flex flex-col gap-4">
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
-                      Select Speciality
+                      {tPage("selectSpeciality")}
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={specialty}
-                      label="Select Speciality"
+                      label={tPage("selectSpeciality")}
                       onChange={handleChange}
                     >
                       {specialties?.map((s, i) => (
@@ -434,13 +437,13 @@ export default function Appointment() {
                   </FormControl>
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
-                      Select Sub Speciality
+                      {tPage("selectSubSpeciality")}
                     </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={subSpecialty}
-                      label="Select Sub Speacility"
+                      label={tPage("selectSubSpeciality")}
                       onChange={(e) => setSubSpeacility(e.target.value)}
                       disabled={subSpecialties?.length === 0}
                     >
@@ -464,8 +467,8 @@ export default function Appointment() {
                         setActiveChoose(true);
                       }}
                     >
-                      Choose
-                      <span className="hidden md:block">Doctor</span>
+                      {tPage("chooseTab")}
+                      <span className="hidden md:block">{tPage("doctorWord")}</span>
                     </button>
                     <button
                       className={`flex items-center gap-1 px-4 py-2 font-semibold  rounded-full ${
@@ -476,8 +479,8 @@ export default function Appointment() {
                         setActiveChoose(false);
                       }}
                     >
-                      Recommend
-                      <span className="hidden md:block">Doctor</span>
+                      {tPage("recommendTab")}
+                      <span className="hidden md:block">{tPage("doctorWord")}</span>
                     </button>
                   </div>
                   <div>
@@ -485,13 +488,13 @@ export default function Appointment() {
                       <div className="flex flex-col gap-5">
                         <FormControl fullWidth className="mb-5">
                           <InputLabel id="demo-simple-select-label">
-                            Choose Doctor
+                            {tPage("chooseDoctorLabel")}
                           </InputLabel>
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             value={doctor}
-                            label="Choose Doctor"
+                            label={tPage("chooseDoctorLabel")}
                             onChange={(e) => setDoctor(e.target.value)}
                             disabled={doctors?.length === 0}
                           >
@@ -503,7 +506,7 @@ export default function Appointment() {
                           </Select>
                         </FormControl>
                         <TextField
-                          placeholder="Please Describe Your Medical Corcern or Symptoms!"
+                          placeholder={tPage("medicalConcernPlaceholder")}
                           fullWidth
                           multiline
                           rows={6}
@@ -513,7 +516,7 @@ export default function Appointment() {
                     )}
                     {activeRecommend && (
                       <TextField
-                        placeholder="Please Describe Your Medical Corcern or Symptoms!"
+                        placeholder={tPage("medicalConcernPlaceholder")}
                         fullWidth
                         multiline
                         rows={6}
@@ -523,8 +526,8 @@ export default function Appointment() {
                   </div>
                 </div>
                 <p className="text-blue font-semibold py-2.5 text-center">
-                  *Select a Speciality. <br />
-                  *Select a Doctor or Write Symtopms.
+                  {tPage("helpText1")} <br />
+                  {tPage("helpText2")}
                 </p>
                 <div className="flex justify-center">
                   <button
@@ -538,7 +541,7 @@ export default function Appointment() {
                       (doctor === "" && medicalDesc === "") || specialty === ""
                     }
                   >
-                    Next
+                    {tPage("next")}
                   </button>
                 </div>
               </div>
@@ -546,11 +549,11 @@ export default function Appointment() {
             {stepperOpen2 && (
               <div className=" flex flex-col justify-center items-center gap-5 ">
                 <p className="font-semibold text-blue text-xl">
-                  Select Desired Day
+                  {tPage("selectDesiredDay")}
                 </p>
                 <div className="flex flex-col gap-2.5 md:flex-row md:gap-5">
                   <div className="flex flex-col items-center shadow my-2.5">
-                    <p className="font-semibold text-blue">First Date Choice</p>
+                    <p className="font-semibold text-blue">{tPage("firstDateChoice")}</p>
 
                     <DayPicker
                       styles={customStyles}
@@ -562,16 +565,16 @@ export default function Appointment() {
                     />
                     <p className="mb-2.5">
                       <span className="font-semibold text-blue">
-                        *Update Date:
+                        {tPage("updateDate")}
                       </span>
                       {selectedDate
                         ? format(selectedDate, "PP")
-                        : "No date selected"}
+                        : tPage("noDateSelected")}
                     </p>
                   </div>
                   <div className="flex flex-col items-center shadow my-2.5">
                     <p className="font-semibold text-blue">
-                      Second Date Choice
+                      {tPage("secondDateChoice")}
                     </p>
                     <DayPicker
                       styles={customStyles}
@@ -582,46 +585,46 @@ export default function Appointment() {
                     />
                     <p className="mb-2.5">
                       <span className="font-semibold text-blue">
-                        *Update Date:
+                        {tPage("updateDate")}
                       </span>
                       {selectedDate2
                         ? format(selectedDate2, "PP")
-                        : "No date selected"}
+                        : tPage("noDateSelected")}
                     </p>
                   </div>
                 </div>
                 <p className="my-2.5 font-semibold text-blue text-xl">
-                  Select Desired Shift
+                  {tPage("selectDesiredShift")}
                 </p>
                 <div className="lg:w-[770px] max-sm:w-full mx-auto flex flex-col md:flex-row gap-5">
                   <div className="w-full">
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
-                        First Priority Shift
+                        {tPage("firstPriorityShift")}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={shift}
-                        label="First Priority Shift"
+                        label={tPage("firstPriorityShift")}
                         onChange={(e) => setShift(e.target.value)}
                       >
                         <MenuItem value="Morning">
-                          Morning (06:00 am - 12:00 pm)
+                          {tPage("morning")}
                         </MenuItem>
                         <MenuItem value="Evening">
-                          Afternoon (12:00 pm - 06:00 pm)
+                          {tPage("afternoon")}
                         </MenuItem>
                         <MenuItem value="Night">
-                          Night (06:00 pm - 12:00 am)
+                          {tPage("night")}
                         </MenuItem>
                       </Select>
                     </FormControl>
                     <p className="text-sm mt-1.5 text-blue text-right">
-                      *Required
+                      {tPage("required")}
                     </p>
                     <p className="font-semibold my-2.5 text-blue">
-                      First Prefarable Time
+                      {tPage("firstPreferableTime")}
                     </p>
                     <TextField
                       type="time"
@@ -632,31 +635,31 @@ export default function Appointment() {
                   <div className="w-full">
                     <FormControl fullWidth>
                       <InputLabel id="demo-simple-select-label">
-                        Second Priority Shift
+                        {tPage("secondPriorityShift")}
                       </InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={shift2}
-                        label="Second Priority Shift"
+                        label={tPage("secondPriorityShift")}
                         onChange={(e) => setShift2(e.target.value)}
                       >
                         <MenuItem value="Morning">
-                          Morning (06:00 am - 12:00 pm)
+                          {tPage("morning")}
                         </MenuItem>
                         <MenuItem value="Evening">
-                          Afternoon (12:00 pm - 06:00 pm)
+                          {tPage("afternoon")}
                         </MenuItem>
                         <MenuItem value="Night">
-                          Night (06:00 pm - 12:00 am)
+                          {tPage("night")}
                         </MenuItem>
                       </Select>
                     </FormControl>
                     <p className="text-sm mt-1.5 text-blue text-right">
-                      *Required
+                      {tPage("required")}
                     </p>
                     <p className="font-semibold my-2.5 text-blue">
-                      Second Prefarable Time
+                      {tPage("secondPreferableTime")}
                     </p>
                     <TextField
                       type="time"
@@ -666,15 +669,14 @@ export default function Appointment() {
                   </div>
                 </div>
                 <p className="font-semibold text-center mt-5 md:text-xl text-blue">
-                  This is only a tentative booking. Your actual appointment will
-                  be confirmed by email.
+                  {tPage("tentativeNotice")}
                 </p>
                 <div className="flex justify-center gap-2">
                   <button
                     className="max-sm:w-full xl:w-[150px] mt-5 px-4 py-2 rounded font-semibold text-white bg-blue hover:bg-white border border-blue hover:text-blue duration-300 ease-linear"
                     onClick={handleClick2Prev}
                   >
-                    Previous
+                    {tPage("previous")}
                   </button>
                   <button
                     className={`max-sm:w-full xl:w-[150px] mt-5 px-4 py-2 rounded font-semibold bg-blue border border-blue ${
@@ -693,7 +695,7 @@ export default function Appointment() {
                       shift2 === ""
                     }
                   >
-                    Next
+                    {tPage("next")}
                   </button>
                 </div>
               </div>
@@ -711,7 +713,7 @@ export default function Appointment() {
                           : "bg-white text-blue"
                       }`}
                     >
-                      For Yourself
+                      {tPage("forYourself")}
                     </button>
                     <button
                       onClick={() => setActiveYourSelf(!activeYourSelf)}
@@ -721,21 +723,21 @@ export default function Appointment() {
                           : "bg-white text-blue"
                       }`}
                     >
-                      Someone else
+                      {tPage("someoneElse")}
                     </button>
                   </div>
                   {activeYourSelf === false && (
                     <div>
                       <h5 className="my-5 text-lg text-blue font-semibold">
-                        Requestor Information
+                        {tPage("requestorInformation")}
                       </h5>
                       <Divider />
                       <div className="mt-5 grid md:grid-cols-2 gap-4">
                         <div>
-                          <p className="mb-2.5">Enter First Name(Required)</p>
+                          <p className="mb-2.5">{tPage("enterFirstName")}</p>
                           <TextField
                             fullWidth
-                            placeholder="Required"
+                            placeholder={tPage("required")}
                             value={requestorFirstname}
                             onChange={(e) =>
                               setRequestorFirstname(e.target.value)
@@ -743,28 +745,28 @@ export default function Appointment() {
                           />
                         </div>
                         <div>
-                          <p className="mb-2.5">Enter Last Name(Required)</p>
+                          <p className="mb-2.5">{tPage("enterLastName")}</p>
                           <TextField
                             fullWidth
                             value={requestorLastName}
-                            placeholder="Required"
+                            placeholder={tPage("required")}
                             onChange={(e) =>
                               setRequestorLastName(e.target.value)
                             }
                           />
                         </div>
                         <div>
-                          <p className="mb-2.5">Enter Email(Required)</p>
+                          <p className="mb-2.5">{tPage("enterEmail")}</p>
                           <TextField
                             fullWidth
-                            placeholder="Required"
+                            placeholder={tPage("required")}
                             value={requestorEmail}
                             onChange={(e) => setRequestorEmail(e.target.value)}
                           />
                         </div>
                         <div>
                           <p className="mb-2.5">
-                            Enter Phone Number (Required)
+                            {tPage("enterPhoneRequired")}
                           </p>
                           <MuiTelInput
                             defaultCountry="TH"
@@ -774,24 +776,24 @@ export default function Appointment() {
                           />
                         </div>
                         <div>
-                          <p className="mb-2.5">Select Relation (Required)</p>
+                          <p className="mb-2.5">{tPage("selectRelation")}</p>
                           <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">
-                              Select Relation
+                              {tPage("selectRelation")}
                             </InputLabel>
                             <Select
                               labelId="demo-simple-select-label"
                               id="demo-simple-select"
                               value={relation}
-                              label="Select Relation"
+                              label={tPage("selectRelation")}
                               onChange={(e) => setRelation(e.target.value)}
                             >
-                              <MenuItem value="Son">Son</MenuItem>
-                              <MenuItem value="Daughter">Daughter</MenuItem>
-                              <MenuItem value="Father">Father</MenuItem>
-                              <MenuItem value="Mother">Mother</MenuItem>
-                              <MenuItem value="Spouse">Spouse</MenuItem>
-                              <MenuItem value="Other">Other</MenuItem>
+                              <MenuItem value="Son">{tPage("relationSon")}</MenuItem>
+                              <MenuItem value="Daughter">{tPage("relationDaughter")}</MenuItem>
+                              <MenuItem value="Father">{tPage("relationFather")}</MenuItem>
+                              <MenuItem value="Mother">{tPage("relationMother")}</MenuItem>
+                              <MenuItem value="Spouse">{tPage("relationSpouse")}</MenuItem>
+                              <MenuItem value="Other">{tPage("relationOther")}</MenuItem>
                             </Select>
                           </FormControl>
                         </div>
@@ -799,12 +801,11 @@ export default function Appointment() {
                     </div>
                   )}
                   <h5 className=" text-lg text-semibold  mt-5 font-semibold text-blue">
-                    Patient Infromation
+                    {tPage("patientInformation")}
                   </h5>
                   {!activeYourSelf && (
                     <h1 className="text-red font-semibold my-2.5">
-                      * Please update the following fields with required patient
-                      information
+                      {tPage("updateRequiredFields")}
                     </h1>
                   )}
                   <Divider />
@@ -816,7 +817,7 @@ export default function Appointment() {
                         old ? "bg-blue text-white" : "text-blue"
                       }  rounded-full`}
                     >
-                      New Patient
+                      {tPage("newPatient")}
                     </button>
                     <button
                       onClick={() => setOld(!old)}
@@ -824,44 +825,44 @@ export default function Appointment() {
                         !old ? "bg-blue text-white" : "text-blue"
                       } rounded-full`}
                     >
-                      Old Patient
+                      {tPage("oldPatient")}
                     </button>
                   </div>
 
                   {!old && (
                     <div className="mt-5">
-                      <p className="mb-2.5">Enter H.N. Number</p>
+                      <p className="mb-2.5">{tPage("enterHnNumber")}</p>
                       <TextField
                         fullWidth
-                        defaultValue="Don't Remember"
+                        defaultValue={tPage("dontRemember")}
                         onChange={(e) => setHnNumber(e.target.value)}
                       />
                     </div>
                   )}
                   <div className="grid md:grid-cols-2 gap-4 mt-5">
                     <div>
-                      <p className="mb-2.5">Enter First Name(Required)</p>
+                      <p className="mb-2.5">{tPage("enterFirstName")}</p>
                       <TextField
                         onChange={(e) => setfirstname(e.target.value)}
                         fullWidth
-                        placeholder="Required"
+                        placeholder={tPage("required")}
                         defaultValue={firstname}
                       />
                     </div>
                     <div>
                       <div>
-                        <p className="mb-2.5">Enter Last Name(Required)</p>
+                        <p className="mb-2.5">{tPage("enterLastName")}</p>
                         <TextField
                           onChange={(e) => setLastName(e.target.value)}
                           fullWidth
-                          placeholder="Required"
+                          placeholder={tPage("required")}
                           defaultValue={lastName}
                         />
                       </div>
                     </div>
 
                     <FormControl fullWidth>
-                      <p className="mb-2.5">Select Citizenship(Required)</p>
+                      <p className="mb-2.5">{tPage("selectCitizenship")}</p>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -876,29 +877,29 @@ export default function Appointment() {
                       </Select>
                     </FormControl>
                     <FormControl fullWidth>
-                      <p className="mb-2.5">Select Gender(Required)</p>
+                      <p className="mb-2.5">{tPage("selectGender")}</p>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
                         value={gender ? gender : gender}
                         onChange={(e) => setGender(e.target.value)}
                       >
-                        <MenuItem value="Male">Male</MenuItem>
-                        <MenuItem value="Female">Female</MenuItem>
-                        <MenuItem value="Other">Other</MenuItem>
+                        <MenuItem value="Male">{tPage("male")}</MenuItem>
+                        <MenuItem value="Female">{tPage("female")}</MenuItem>
+                        <MenuItem value="Other">{tPage("other")}</MenuItem>
                       </Select>
                     </FormControl>
                     <div>
-                      <p className="mb-2.5">Enter Email(Required)</p>
+                      <p className="mb-2.5">{tPage("enterEmail")}</p>
                       <TextField
                         fullWidth
-                        placeholder="Required"
+                        placeholder={tPage("required")}
                         defaultValue={pataientEmail}
                         onChange={(e) => setPataientEmail(e.target.value)}
                       />
                     </div>
                     <div>
-                      <p className="mb-2.5">Whatsapp Number(Required)</p>
+                      <p className="mb-2.5">{tPage("whatsappNumberRequired")}</p>
                       <MuiTelInput
                         defaultCountry="TH"
                         value={phone ? phone : phone}
@@ -907,7 +908,7 @@ export default function Appointment() {
                       />
                     </div>
                     <div>
-                      <p className="mb-2.5">Enter Date of Birth(Required)</p>
+                      <p className="mb-2.5">{tPage("enterDob")}</p>
                       <TextField
                         fullWidth
                         type="date"
@@ -921,10 +922,10 @@ export default function Appointment() {
                 {/* second card  */}
                 <section className="">
                   <p className="my-5 text-xl text-blue font-semibold">
-                    Where are you from?
+                    {tPage("whereAreYouFrom")}
                   </p>
                   <Divider />
-                  <h5 className="mt-5">Are you in Thailand?</h5>
+                  <h5 className="mt-5">{tPage("areYouInThailand")}</h5>
                   <div className="flex gap-2 mt-2.5 mb-5">
                     <button
                       className={`px-5 py-2 rounded-xl ${
@@ -932,7 +933,7 @@ export default function Appointment() {
                       }`}
                       onClick={() => setYes(true)}
                     >
-                      Yes
+                      {tPage("yes")}
                     </button>
                     <button
                       className={`px-5 py-2 rounded-xl ${
@@ -942,12 +943,12 @@ export default function Appointment() {
                         setYes(false);
                       }}
                     >
-                      No
+                      {tPage("no")}
                     </button>
                   </div>
                   {yes === false && (
                     <FormControl fullWidth>
-                      <p className="mb-2.5">Select Country(Required)</p>
+                      <p className="mb-2.5">{tPage("selectCountry")}</p>
                       <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
@@ -964,10 +965,10 @@ export default function Appointment() {
                     </FormControl>
                   )}
                   <div>
-                    <p className="mb-2.5">Medical Description</p>
+                    <p className="mb-2.5">{tPage("medicalDescription")}</p>
                     <TextField
                       className="capitalize"
-                      placeholder="MEDICAl CORNCERN OR REQUEST(OPTIONAL)"
+                      placeholder={tPage("medicalConcernOptional")}
                       fullWidth
                       multiline
                       rows={5}
@@ -978,15 +979,15 @@ export default function Appointment() {
 
                 {/* third card */}
                 <section className=" flex flex-col gap-4 mt-4">
-                  <p className="text-xl font-semibold text-blue">Documents</p>
+                  <p className="text-xl font-semibold text-blue">{tPage("documents")}</p>
                   <Divider />
                   <p className="font-semibold">
-                    *Choose file or Add drive link
+                    {tPage("chooseFileOrLink")}
                   </p>
 
                   <div>
                     <div>
-                      <p className="mb-2.5">Attach Passport(Required)</p>
+                      <p className="mb-2.5">{tPage("attachPassport")}</p>
                       <TextField
                         type="file"
                         fullWidth
@@ -994,7 +995,7 @@ export default function Appointment() {
                       />
                     </div>
                     <div>
-                      <p className="my-2.5">Medical Report 1(Optional)</p>
+                      <p className="my-2.5">{tPage("medicalReport1")}</p>
                       <TextField
                         type="file"
                         fullWidth
@@ -1002,7 +1003,7 @@ export default function Appointment() {
                       />
                     </div>
                     <div>
-                      <p className="my-2.5">Medical Report 2(Optional)</p>
+                      <p className="my-2.5">{tPage("medicalReport2")}</p>
                       <TextField
                         type="file"
                         fullWidth
@@ -1013,13 +1014,13 @@ export default function Appointment() {
                       <div className="flex flex-col gap-2.5">
                         <TextField
                           fullWidth
-                          placeholder="Add Drive Link 1 (Required)"
+                          placeholder={tPage("addDriveLink1")}
                           value={driveLink1}
                           onChange={(e) => setDriveLink1(e.target.value)}
                         />
                         <TextField
                           fullWidth
-                          placeholder="Add Drive Link 2"
+                          placeholder={tPage("addDriveLink2")}
                           value={driveLink2}
                           onChange={(e) => setDriveLink2(e.target.value)}
                         />
@@ -1033,7 +1034,7 @@ export default function Appointment() {
                     className="mt-5 px-4 py-2 rounded font-semibold text-white bg-blue hover:bg-white border border-blue hover:text-blue duration-300 ease-linear"
                     onClick={handleClick3Prev}
                   >
-                    Previous
+                    {tPage("previous")}
                   </button>
                   <button
                     className={`mt-5 px-4 py-2 rounded font-semibold bg-blue border border-blue ${
@@ -1061,7 +1062,7 @@ export default function Appointment() {
                       (passport === "" && driveLink1 === "")
                     }
                   >
-                    Preview
+                    {tPage("preview")}
                   </button>
                 </div>
               </section>
@@ -1086,22 +1087,22 @@ export default function Appointment() {
                         alt="Bumrungrad International Hospital"
                       />
                       <div className="text-center md:font-semibold text-blue">
-                        <p>Bumrungrad International Hospital</p>
-                        <p>33 Sukhumvit 3, Wattana, Bangkok 10110 Thailand.</p>
+                        <p>{tPage("hospitalName")}</p>
+                        <p>{tPage("hospitalAddress")}</p>
                       </div>
                     </div>
                     <div className="h-0.5 w-full bg-blue"></div>
                     <div className="shadow rounded-xl p-5 text-black">
                       <p className="mb-2.5 md:text-xl font-semibold text-blue">
-                        Appointment For:
+                        {tPage("appointmentFor")}
                       </p>
                       <Divider />
                       <ul className="mt-2.5">
-                        <li>{doctor && <span>Doctor: {doctor}</span>}</li>
+                        <li>{doctor && <span>{tPage("doctorLabel")} {doctor}</span>}</li>
                         <li>
                           {specialty && (
                             <span>
-                              Specialty:
+                              {tPage("specialtyLabel")}
                               {specialty}
                             </span>
                           )}
@@ -1109,7 +1110,7 @@ export default function Appointment() {
                         <li>
                           {subSpecialty && (
                             <span>
-                              Sub Specialty:
+                              {tPage("subSpecialtyLabel")}
                               {subSpecialty}
                             </span>
                           )}
@@ -1117,7 +1118,7 @@ export default function Appointment() {
                         <li>
                           {medicalDesc && (
                             <span>
-                              Medical Description:
+                              {tPage("medicalDescriptionLabel")}
                               {medicalDesc}
                             </span>
                           )}
@@ -1125,18 +1126,18 @@ export default function Appointment() {
                         <li>
                           {requestorEmail && (
                             <span>
-                              Email:
+                              {tPage("emailLabel")}
                               {requestorEmail}
                             </span>
                           )}
                         </li>
-                        <li>{phone2 && <span>Phone: {phone2}</span>}</li>
-                        <li>{relation && <span>Relation: {relation}</span>}</li>
+                        <li>{phone2 && <span>{tPage("phoneLabel")} {phone2}</span>}</li>
+                        <li>{relation && <span>{tPage("relationLabel")} {relation}</span>}</li>
                       </ul>
                     </div>
                     <div className="shadow rounded-xl p-5 text-black">
                       <p className="mb-2.5 md:text-xl font-semibold text-blue">
-                        Appointment Schedule:
+                        {tPage("appointmentSchedule")}
                       </p>
                       <Divider />
                       <ul className="mt-2.5 grid md:grid-cols-2 gap-2">
@@ -1144,7 +1145,7 @@ export default function Appointment() {
                           <li>
                             {selectedDate && (
                               <span>
-                                First Date:
+                                {tPage("firstDate")}
                                 {format(selectedDate, "PP")}
                               </span>
                             )}
@@ -1152,7 +1153,7 @@ export default function Appointment() {
                           <li>
                             {shift && (
                               <span>
-                                First Shift:
+                                {tPage("firstShift")}
                                 {shift}
                               </span>
                             )}
@@ -1160,7 +1161,7 @@ export default function Appointment() {
                           <li>
                             {firstSiftTime && (
                               <span>
-                                First Shift Time:
+                                {tPage("firstShiftTime")}
                                 {firstSiftTime}
                               </span>
                             )}
@@ -1170,7 +1171,7 @@ export default function Appointment() {
                           <li>
                             {selectedDate2 && (
                               <span>
-                                Second Date:
+                                {tPage("secondDate")}
                                 {format(selectedDate2, "PP")}
                               </span>
                             )}
@@ -1178,7 +1179,7 @@ export default function Appointment() {
                           <li>
                             {shift && (
                               <span>
-                                Second Shift:
+                                {tPage("secondShift")}
                                 {shift2}
                               </span>
                             )}
@@ -1186,7 +1187,7 @@ export default function Appointment() {
                           <li>
                             {SecondSiftTime && (
                               <span>
-                                Second Shift Time:
+                                {tPage("secondShiftTime")}
                                 {SecondSiftTime}
                               </span>
                             )}
@@ -1197,14 +1198,14 @@ export default function Appointment() {
                     {activeYourSelf === false && (
                       <div className="shadow rounded-xl p-5 text-black">
                         <p className="mb-2.5 md:text-xl font-semibold text-blue">
-                          Requestor Information:
+                          {tPage("requestorInfoLabel")}
                         </p>
                         <Divider />
                         <ul className="mt-2.5">
                           <li>
                             {requestorFirstname && (
                               <span>
-                                Firstname:
+                                {tPage("firstnameLabel")}
                                 {requestorFirstname}
                               </span>
                             )}
@@ -1212,7 +1213,7 @@ export default function Appointment() {
                           <li>
                             {requestorLastName && (
                               <span>
-                                Lastname:
+                                {tPage("lastnameLabel")}
                                 {requestorLastName}
                               </span>
                             )}
@@ -1220,16 +1221,16 @@ export default function Appointment() {
                           <li>
                             {requestorEmail && (
                               <span>
-                                Email:
+                                {tPage("emailLabel")}
                                 {requestorEmail}
                               </span>
                             )}
                           </li>
-                          <li>{phone2 && <span>Phone: {phone2}</span>}</li>
+                          <li>{phone2 && <span>{tPage("phoneLabel")} {phone2}</span>}</li>
                           <li>
                             {relation && (
                               <span>
-                                Relation:
+                                {tPage("relationLabel")}
                                 {relation}
                               </span>
                             )}
@@ -1239,14 +1240,14 @@ export default function Appointment() {
                     )}
                     <div className="shadow rounded-xl p-5 text-black">
                       <p className="mb-2.5 md:text-xl font-semibold text-blue">
-                        Patient Information
+                        {tPage("patientInfo")}
                       </p>
                       <Divider />
                       <ul className="mt-2.5">
                         <li>
                           {firstname && lastName ? (
                             <span>
-                              Name: {firstname}
+                              {tPage("nameLabel")} {firstname}
                               {lastName}
                             </span>
                           ) : (
@@ -1254,11 +1255,11 @@ export default function Appointment() {
                           )}
                         </li>
 
-                        <li>{dob && <span>DOB: {dob}</span>}</li>
+                        <li>{dob && <span>{tPage("dobLabel")} {dob}</span>}</li>
                         <li>
                           {hnNumber && (
                             <span>
-                              HN Number:
+                              {tPage("hnNumberLabel")}
                               {hnNumber}
                             </span>
                           )}
@@ -1266,26 +1267,26 @@ export default function Appointment() {
                         <li>
                           {pataientEmail && (
                             <span>
-                              Email:
+                              {tPage("emailLabel")}
                               {pataientEmail}
                             </span>
                           )}
                         </li>
-                        <li>{phone && <span>Phone: {phone}</span>}</li>
-                        <li>{gender && <span>Gender: {gender}</span>}</li>
+                        <li>{phone && <span>{tPage("phoneLabel")} {phone}</span>}</li>
+                        <li>{gender && <span>{tPage("genderLabel")} {gender}</span>}</li>
                         <li>
                           {citizenship && (
                             <span>
-                              Citizenship:
+                              {tPage("citizenshipLabel")}
                               {citizenship}
                             </span>
                           )}
                         </li>
-                        <li>{country && <span>Country: {country}</span>}</li>
+                        <li>{country && <span>{tPage("countryLabel")} {country}</span>}</li>
                         <li>
                           {desc && (
                             <span>
-                              Medical Description:
+                              {tPage("medicalDescriptionLabel")}
                               {desc}
                             </span>
                           )}
@@ -1294,7 +1295,7 @@ export default function Appointment() {
                     </div>
                     <div className="shadow rounded-xl p-5 text-black">
                       <p className="mb-2.5 md:text-xl font-semibold text-blue">
-                        Attached Documents
+                        {tPage("attachedDocuments")}
                       </p>
                       <Divider />
                       <ul className="mt-2.5 flex flex-col gap-2 w-full list-decimal ml-5">
@@ -1355,7 +1356,7 @@ export default function Appointment() {
                             color="black"
                           />
                         ) : (
-                          "Book Appointment"
+                          tPage("bookAppointmentBtn")
                         )}
                       </button>
                       <button
@@ -1363,7 +1364,7 @@ export default function Appointment() {
                         onClick={handlePreviewClosePreview}
                         className="mt-6 ml-2 px-4 py-2 bg-red border border-red text-white rounded-md hover:bg-white hover:text-red font-semibold duration-300 ease-linear"
                       >
-                        Close
+                        {tPage("close")}
                       </button>
                     </div>
                   </div>

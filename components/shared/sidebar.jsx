@@ -7,8 +7,10 @@ import telegram from "@/public/assets/Bumrungrad  Hospital_telegram.png";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function SideBar() {
+  const t = useTranslations("sidebar");
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -69,7 +71,7 @@ export default function SideBar() {
               alt="Bumrungrad International Hospital"
               className="h-[40px]"
             />
-            <span className="text-blue font-semibold">Appointment Booking</span>
+            <span className="text-blue font-semibold">{t("appointmentBooking")}</span>
           </a>
           <a
             href="http://wa.me/+66948283651"
@@ -85,7 +87,7 @@ export default function SideBar() {
               className="h-[40px]"
             />
             <span className="text-blue font-semibold">
-              Medical Procedure Booking
+              {t("medicalProcedureBooking")}
             </span>
           </a>
           <a
@@ -102,7 +104,7 @@ export default function SideBar() {
               className="h-[40px]"
             />
             <span className="text-blue font-semibold">
-              Medical Package Booking
+              {t("medicalPackageBooking")}
             </span>
           </a>
           <a
@@ -119,7 +121,7 @@ export default function SideBar() {
               className="h-[40px]"
             />
             <span className="text-blue font-semibold">
-              Talk with Visa Adviser
+              {t("talkWithVisaAdviser")}
             </span>
           </a>
         </Box>

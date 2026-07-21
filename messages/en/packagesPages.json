@@ -1,0 +1,34 @@
+{
+  "childPackage": {
+    "heading": "our packages",
+    "locationLabel": "Location:",
+    "viewPackage": "View Package",
+    "noData": "No Data Found"
+  },
+  "details": {
+    "notFoundTitle": "Package Not Found",
+    "notFoundText": "We couldn't find the package you're looking for. It may have been moved or is no longer available.",
+    "bookNow": "Book Now",
+    "packageId": "Package ID: #{id}",
+    "locationLabel": "Location: ",
+    "availableShifts": "Available Shifts",
+    "inclusions": "Package Inclusions",
+    "exclusions": "Package Exclusions",
+    "terms": "Terms & Conditions",
+    "bookingTitle": "Package Booking",
+    "packageName": "Package Name",
+    "enterPackageName": "Enter Package Name",
+    "packagePrice": "Package Price",
+    "enterPackagePrice": "Enter Package Price",
+    "patientName": "Patient Name",
+    "enterPatientName": " Enter Patient Name",
+    "hnNumber": "HN Number",
+    "enterHnNumber": " Enter HN Number",
+    "whatsappNumber": "Whatsapp Number",
+    "enterWhatsappNumber": "Enter Whatsapp Number",
+    "email": "Email",
+    "enterEmail": "Enter Email",
+    "successToast": "We have received your request. Our representative will reach you shortly!",
+    "errorToast": "Something went wrong"
+  }
+}

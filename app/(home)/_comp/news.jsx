@@ -6,9 +6,11 @@ import Image from 'next/image'
 // import CardLoader from '@/components/ui/cardLoader'
 import { usePathname } from 'next/navigation'
 import { CardLoaders, NewsCardSkeleton } from '@/components/ui/cardload'
+import { useTranslations } from 'next-intl'
 
 
 export default function News() {
+  const t = useTranslations('home.news')
   const path = usePathname()
   const [newsData, setNewsData] = useState()
   const [loader, setLoader] = useState()
@@ -43,7 +45,7 @@ export default function News() {
     <div className='p-5 md:p-10 md:container md:mx-auto'>
       <div className='flex flex-col md:flex-row justify-between md:items-center gap-4'>
         <h2 className='capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue'>
-          Bumrungrad News
+          {t('heading')}
         </h2>
        {
          path === '/news' ? (
@@ -51,11 +53,11 @@ export default function News() {
              type='text'
              value={search}
              onChange={(e) => setSearch(e.target.value)}
-             placeholder='Search news by title...'
+             placeholder={t('searchPlaceholder')}
              className='border border-ash/40 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue md:w-72'
            />
          ) : (
-           <Link href='/news' className='text-blue hover:text-blue-700 px-4 border py-1 hover:bg-blue hover:text-white transition duration-300'>View All</Link>
+           <Link href='/news' className='text-blue hover:text-blue-700 px-4 border py-1 hover:bg-blue hover:text-white transition duration-300'>{t('viewAll')}</Link>
          )
        }
       </div>
@@ -63,7 +65,7 @@ export default function News() {
         <CardLoaders Component={NewsCardSkeleton} cardLength={cardLength} gridNumber={cardNumber} speed='slow' />
       ) : sanitizedNews?.length === 0 ? (
         <p className='my-10 text-center text-black/60'>
-          No news found{search ? ` for "${search}"` : ''}.
+          {search ? t('noNewsFor', { query: search }) : `${t('noNews')}.`}
         </p>
       ) : (
         <div className='grid gap-5 md:grid-cols-2 lg:grid-cols-4 mt-5 md:mt-10'>
@@ -90,7 +92,7 @@ export default function News() {
                 </p>
                 <Link href={`/news/${d?.id}`}>
                   <button className='border border-blue bg-blue hover:bg-white px-2 py-1 rounded hover:text-blue text-white duration-300 ease-linear'>
-                    Read More
+                    {t('readMore')}
                   </button>
                 </Link>
               </div>

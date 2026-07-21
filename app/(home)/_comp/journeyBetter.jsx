@@ -5,8 +5,10 @@ import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
 import Image from "next/image";
 import useAuth from "@/helpers/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function JourneyBetter() {
+  const t = useTranslations("home.journey");
   const {auth} = useAuth();
   const router = useRouter();
 
@@ -35,27 +37,23 @@ export default function JourneyBetter() {
         className="max-sm:w-[300px] md:w-[350px] lg:w-[350px]"
       />
       <h2 className="text-xl md:text-2xl text-center font-semibold text-blue">
-        Your Journey to Health Starts Here at Bumrungrad Hospital Bangkok
+        {t("heading")}
       </h2>
       <p className="text-center">
-        Begin your journey to exceptional healthcare at Bumrungrad Hospital
-        Bangkok. Our top-notch facilities and dedicated team are committed to
-        providing the best care possible, making every step of your healthcare
-        journey seamless and supportive. Let us guide you with our expert
-        services and world-class care.
+        {t("description")}
       </p>
       <div className="flex flex-wrap gap-4 mt-5 justify-center">
         <button onClick={handleAppointment} className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded">
-          Doctor Appoinment
+          {t("doctorAppointment")}
         </button>
         <button onClick={handleHealthScreen} className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded">
-          Health Screening
+          {t("healthScreening")}
         </button>
         <a href="/doctors" className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded">
-          Find Doctor
+          {t("findDoctor")}
         </a>
         <a href="/send-query" className="text-sm px-4 py-2 bg-blue text-white border border-blue hover:bg-cream hover:text-blue md:hover:scale-105 ease-linear duration-300 shadow rounded">
-          Send Querey
+          {t("sendQuery")}
         </a>
       </div>
     </div>

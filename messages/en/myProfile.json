@@ -1,0 +1,16 @@
+{
+  "profileDetails": "Profile Details",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "citizenship": "Citizenship",
+  "country": "Country",
+  "dob": "Date of Birth",
+  "email": "Email",
+  "phone": "Phone",
+  "saveChanges": "Save Changes",
+  "successToast": "Profile updated successfully",
+  "totalAppointments": "Total appointment taken: {count}",
+  "pending": "Pending",
+  "processing": "Processing",
+  "done": "Done"
+}

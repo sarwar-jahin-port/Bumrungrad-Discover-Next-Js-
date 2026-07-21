@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { FaQuoteLeft } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
-const StoryCard = ({ story }) => (
+const StoryCard = ({ story, t }) => (
   <div className="relative p-6 rounded-xl shadow-lg border border-ash/20 bg-white flex flex-col gap-3">
     <FaQuoteLeft className="text-3xl text-blue" />
     <p className="text-sm md:text-base text-black/80">{story.story}</p>
@@ -16,12 +17,13 @@ const StoryCard = ({ story }) => (
     </div>
     <div>
       <p className="font-semibold">{story.patient_name}</p>
-      {story.country && <p className="text-sm text-black/60">From {story.country}</p>}
+      {story.country && <p className="text-sm text-black/60">{t("from")} {story.country}</p>}
     </div>
   </div>
 );
 
 const PatientStories = () => {
+  const t = useTranslations("healthInfo.patientStories");
   const [stories, setStories] = useState([]);
   const [loader, setLoader] = useState(true);
 
@@ -58,17 +60,17 @@ const PatientStories = () => {
       const data = await response.json();
       setSubmitLoader(false);
       if (data.status === 200) {
-        toast.success("Thank you! Your story is pending review and will appear once approved.");
+        toast.success(t("successToast"));
         setPatientName("");
         setCountry("");
         setRating(5);
         setStory("");
       } else {
-        toast.error("Something went wrong. Please try again.");
+        toast.error(t("errorToast"));
       }
     } catch (error) {
       setSubmitLoader(false);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("errorToast"));
     }
   };
 
@@ -76,17 +78,16 @@ const PatientStories = () => {
     <div>
       <div className="py-14 md:py-20 bg-blue relative flex justify-center items-center text-center px-5">
         <div className="text-white z-10 max-w-3xl">
-          <h1 className="text-2xl md:text-4xl font-bold">Patient Stories</h1>
+          <h1 className="text-2xl md:text-4xl font-bold">{t("heading")}</h1>
           <p className="mt-4 text-sm md:text-base text-white/90">
-            Real experiences from patients who traveled for care at Bumrungrad
-            International Hospital through Discover Bangladesh.
+            {t("intro")}
           </p>
         </div>
       </div>
 
       <div className="mx-5 md:container md:mx-auto py-10 md:py-16">
         <h2 className="text-xl md:text-2xl font-bold text-blue mb-6">
-          Stories from Our Patients
+          {t("storiesHeading")}
         </h2>
 
         {loader ? (
@@ -97,26 +98,26 @@ const PatientStories = () => {
           </div>
         ) : stories.length === 0 ? (
           <p className="text-black/60">
-            No patient stories have been published yet — be the first to share yours below.
+            {t("noStories")}
           </p>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {stories.map((s) => (
-              <StoryCard key={s.id} story={s} />
+              <StoryCard key={s.id} story={s} t={t} />
             ))}
           </div>
         )}
 
         <div className="mt-14 md:mt-20 max-w-2xl mx-auto">
           <h2 className="text-xl md:text-2xl font-bold text-blue mb-2">
-            Share Your Story
+            {t("shareHeading")}
           </h2>
           <p className="text-sm text-black/60 mb-6">
-            Submitted stories are reviewed by our team before appearing publicly.
+            {t("shareIntro")}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 rounded-xl border border-ash/30 shadow-lg p-6 bg-white">
             <div>
-              <label className="text-sm font-semibold mb-1 block">Your Name *</label>
+              <label className="text-sm font-semibold mb-1 block">{t("yourName")}</label>
               <input
                 type="text"
                 required
@@ -126,7 +127,7 @@ const PatientStories = () => {
               />
             </div>
             <div>
-              <label className="text-sm font-semibold mb-1 block">Country</label>
+              <label className="text-sm font-semibold mb-1 block">{t("country")}</label>
               <input
                 type="text"
                 value={country}
@@ -135,14 +136,14 @@ const PatientStories = () => {
               />
             </div>
             <div>
-              <label className="text-sm font-semibold mb-1 block">Rating</label>
+              <label className="text-sm font-semibold mb-1 block">{t("rating")}</label>
               <div className="flex gap-1 text-2xl text-[#f7cb2b]">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <button
                     type="button"
                     key={i}
                     onClick={() => setRating(i + 1)}
-                    aria-label={`Rate ${i + 1} out of 5`}
+                    aria-label={t("rateLabel", { n: i + 1 })}
                   >
                     {i < rating ? <AiFillStar /> : <AiOutlineStar />}
                   </button>
@@ -150,7 +151,7 @@ const PatientStories = () => {
               </div>
             </div>
             <div>
-              <label className="text-sm font-semibold mb-1 block">Your Story *</label>
+              <label className="text-sm font-semibold mb-1 block">{t("yourStory")}</label>
               <textarea
                 required
                 rows={5}
@@ -164,7 +165,7 @@ const PatientStories = () => {
               disabled={submitLoader}
               className="px-4 py-2.5 bg-blue text-white rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-60"
             >
-              {submitLoader ? "Submitting..." : "Submit Story"}
+              {submitLoader ? t("submitting") : t("submit")}
             </button>
           </form>
         </div>

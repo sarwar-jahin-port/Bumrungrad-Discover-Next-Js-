@@ -1,0 +1,46 @@
+{
+  "patientStories": {
+    "heading": "Patient Stories",
+    "intro": "Real experiences from patients who traveled for care at Bumrungrad International Hospital through Discover Bangladesh.",
+    "storiesHeading": "Stories from Our Patients",
+    "from": "From",
+    "noStories": "No patient stories have been published yet — be the first to share yours below.",
+    "shareHeading": "Share Your Story",
+    "shareIntro": "Submitted stories are reviewed by our team before appearing publicly.",
+    "yourName": "Your Name *",
+    "country": "Country",
+    "rating": "Rating",
+    "rateLabel": "Rate {n} out of 5",
+    "yourStory": "Your Story *",
+    "submit": "Submit Story",
+    "submitting": "Submitting...",
+    "successToast": "Thank you! Your story is pending review and will appear once approved.",
+    "errorToast": "Something went wrong. Please try again."
+  },
+  "hospitalInfo": {
+    "heading": "Hospital Information Repository",
+    "intro": "Institutional data about Bumrungrad International Hospital's operational footprint, history, and standing.",
+    "links": [
+      {
+        "title": "About Bumrungrad",
+        "description": "History, scale, and clinical innovation at Bumrungrad International Hospital."
+      },
+      {
+        "title": "Vision & Mission",
+        "description": "The hospital's guiding vision and mission in international patient care."
+      },
+      {
+        "title": "Factsheet",
+        "description": "Operational footprint: bed count, staff numbers, patient volumes, and clinical centers."
+      },
+      {
+        "title": "Accreditation",
+        "description": "International certifications, awards, and quality accreditations."
+      },
+      {
+        "title": "Foundation",
+        "description": "Bumrungrad's community and philanthropic foundation work."
+      }
+    ]
+  }
+}

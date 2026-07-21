@@ -9,9 +9,11 @@ import Lottie from "lottie-react";
 import notFoundAnim from "@/public/assets/anim/notfound.json";
 import Image from "next/image";
 import { CardLoaders, ClinicCenterCardSkeleton } from "@/components/ui/cardload";
+import { useTranslations } from "next-intl";
 
 
 export default function ViewAllCenters() {
+  const t = useTranslations("clinicCenters.viewAll");
   const [loader, setLoader] = useState(false);
   const [slides, setSlides] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -104,7 +106,7 @@ export default function ViewAllCenters() {
     
       <div className="flex justify-between items-center">
         <h1 className="capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-          Clinic & Centers: {slides?.length}
+          {t("heading", { count: slides?.length ?? 0 })}
         </h1>
       </div>
       <div className="my-8 flex md:justify-center">
@@ -112,7 +114,7 @@ export default function ViewAllCenters() {
           <TextField
             id="outlined-basic"
             fullWidth
-            placeholder="Search Clinic & Centers"
+            placeholder={t("searchPlaceholder")}
             variant="outlined"
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -176,7 +178,7 @@ export default function ViewAllCenters() {
                       className=" mt-3 bg-white shadow-xl rounded py-1 md:py-2 px-2 md:px-4 font-com text-sm capitalize text-blue font-semibold"
                       target="_blank"
                     >
-                      See More
+                      {t("seeMore")}
                     </Link>
                     <a href={'#'} className="mt-1 hidden text-white px-1 py-1 rounded-full bg-blue">
                       <ArrowOutwardIcon />
@@ -190,7 +192,7 @@ export default function ViewAllCenters() {
             <div className="min-h-[40vh] shadow-xl rounded p-5 mb-2.5">
               <Lottie style={style} animationData={notFoundAnim} loop={true} />
               <p className="text-xl font-semibold text-blue text-center">
-                No Package Found
+                {t("notFound")}
               </p>
             </div>
           )}
@@ -219,7 +221,7 @@ export default function ViewAllCenters() {
               d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
             ></path>
           </svg>
-          Prev
+          {t("prev")}
         </button>
         {minPageNumberLimit >= 1 && (
           <button
@@ -257,7 +259,7 @@ export default function ViewAllCenters() {
           className="flex items-center gap-1 md:gap-2 md:px-6 md:py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button"
         >
-          Next
+          {t("next")}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

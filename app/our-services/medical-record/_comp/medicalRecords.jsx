@@ -10,9 +10,12 @@ import { admin_mails } from "@/constant";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 
 const MedicalRecords = () => {
+  const t = useTranslations("common");
+  const tPage = useTranslations("ourServices.medicalRecords");
   const { auth } = useAuth();
   const userDetails = auth;
   const [loader, setLoader] = useState();
@@ -69,7 +72,7 @@ const MedicalRecords = () => {
         setLoader(false);
 
         if (send_admin_mails.messageId && send_client_mails.messageId) {
-          toast.success("We have received your request. Our representative will reach you shortly!", {
+          toast.success(t("successToast"), {
             position: "top-center",
             style: { borderRadius: "20px" },
             duration: 5000,
@@ -78,7 +81,7 @@ const MedicalRecords = () => {
          navigate.push("/");
         setLoader(false);
         }else{
-          toast.error("Something went wrong - Mail not sent", {
+          toast.error(tPage("errorToast"), {
             position: "top-center",
             duration: 4000,
             style: {
@@ -88,7 +91,7 @@ const MedicalRecords = () => {
         }
       } else {
         setLoader(false);
-        toast.error("Something went wrong", {
+        toast.error(t("errorToast"), {
           position: "top-center",
           duration: 4000,
           style: {
@@ -111,7 +114,7 @@ const MedicalRecords = () => {
     <>
       <div className="md:my-10 md:p-10 mx-5 md:container md:mx-auto   lg:w-1/2  shadow-xl rounded-xl p-5 ">
         <h1 className="text-center capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue">
-          Medical Records
+          {tPage("heading")}
         </h1>
         <form
           onSubmit={addPatient}
@@ -121,7 +124,7 @@ const MedicalRecords = () => {
             <div>
               <p className="mb-2 font-semibold text-sm">
                 {" "}
-                <span className="text-red text-lg">*</span>Enter Your Name
+                <span className="text-red text-lg">*</span>{tPage("enterName")}
               </p>
               <TextField
                 onChange={(e) => setName(e.target.value)}
@@ -131,8 +134,7 @@ const MedicalRecords = () => {
             </div>
             <div className="mt-2">
               <p className="mt-2 font-semibold text-sm">
-                <span className="text-red text-lg">*</span> Attach Your Passport
-                Copy
+                <span className="text-red text-lg">*</span> {tPage("attachPassport")}
               </p>
               <TextField
                 type="file"
@@ -144,14 +146,14 @@ const MedicalRecords = () => {
             <div>
               <p className="mt-2 font-semibold text-sm">
                 {" "}
-                <span className="text-red text-lg">*</span> HN Number
+                <span className="text-red text-lg">*</span> {tPage("hnNumber")}
               </p>
               <TextField onChange={(e) => setHnNum(e.target.value)} fullWidth />
             </div>
             <div>
               <p className="mt-2 font-semibold text-sm">
                 {" "}
-                <span className="text-red text-lg">*</span> Report Details
+                <span className="text-red text-lg">*</span> {tPage("reportDetails")}
               </p>
               <TextField
                 multiline
@@ -167,7 +169,7 @@ const MedicalRecords = () => {
             className={`${loader || !name || !passport || !hnNum || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
           >
            {
-            loader ? <Loader className="animate-spin" stroke={loader ? "black" : "white"} fill={loader ? "black" : "white"} /> : "Submit"
+            loader ? <Loader className="animate-spin" stroke={loader ? "black" : "white"} fill={loader ? "black" : "white"} /> : t("submit")
            }
           </button>
         </form>

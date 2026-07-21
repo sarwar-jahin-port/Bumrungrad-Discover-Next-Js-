@@ -1,0 +1,20 @@
+{
+  "weAccept": {
+    "title": "Insurance",
+    "emptyMessage": "Insurance provider list is being finalized and will appear here shortly."
+  },
+  "goodVibes": {
+    "title": "Insurance Good Vibes 2024",
+    "virtualBook": "Virtual Book Good Vibes Magazine",
+    "ambulanceService": "Goodvibes : Bed-to-Bed Service :  Free Ambulance service distance within 250 Kilometers ",
+    "ambulanceServiceText": "Bed-to-Bed Service :  Free Ambulance service distance within 250 Kilometers ",
+    "insuranceCategory": "Insurance",
+    "internationalOrg": "International organization",
+    "internationalSchool": "International School"
+  },
+  "packagePromotion": {
+    "title": "Insurance Packages and Promotion 2024",
+    "virtualBook": "Virtual Book Medical Assistance Company",
+    "healthFair": "Insurance Health Fair Promotion 2023"
+  }
+}

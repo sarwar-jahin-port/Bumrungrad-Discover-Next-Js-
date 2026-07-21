@@ -28,148 +28,44 @@ import WhatsApp from "@mui/icons-material/WhatsApp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
-const offers = [
-  {
-    offerImage: ENT,
-    offerName: "Ear, Nose and Throat (ENT)",
-    offerDesc:
-      "Specialized care for conditions affecting the ear, nose, and throat.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Cardiology,
-    offerName: "Cardiology",
-    offerDesc:
-      "Expert diagnosis and treatment of heart and vascular conditions.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Cardiothoracic,
-    offerName: "Cardiothoracic and Vascular Surgery",
-    offerDesc: "Surgical treatment for heart and chest-related diseases.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: ColonRectal,
-    offerName: "Colon and Rectal Surgery",
-    offerDesc: "Surgical interventions for conditions of the colon and rectum.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Dentistry,
-    offerName: "Dentistry",
-    offerDesc: "Comprehensive dental care for all ages.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Dermatology,
-    offerName: "Dermatology",
-    offerDesc: "Diagnosis and treatment of skin, hair, and nail disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Endocrinology,
-    offerName: "Endocrinology or Diabetes",
-    offerDesc:
-      "Management of hormonal and metabolic disorders, including diabetes.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: GeneralSurgery,
-    offerName: "General Surgery",
-    offerDesc: "Surgical care for a wide range of medical conditions.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Gynaecology,
-    offerName: "Gynaecology",
-    offerDesc: "Comprehensive care for women’s reproductive health.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Haematology,
-    offerName: "Haematology",
-    offerDesc: "Diagnosis and treatment of blood disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: IVF,
-    offerName: "IVF & Fertility Treatment",
-    offerDesc: "Assistance with fertility issues and reproductive health.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Laboratory,
-    offerName: "Laboratory Services",
-    offerDesc: "Comprehensive lab testing for accurate diagnosis.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: MedicalGenetics,
-    offerName: "Medical Genetics",
-    offerDesc: "Evaluation and management of genetic disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Nephrology,
-    offerName: "Nephrology",
-    offerDesc: "Specialized care for kidney diseases and disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Neurology,
-    offerName: "Neurology or Neurosurgery",
-    offerDesc: "Diagnosis and treatment of nervous system disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Oncology,
-    offerName: "Oncology or Cancer Treatment",
-    offerDesc: "Comprehensive care for cancer patients.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Ophthalmology,
-    offerName: "Ophthalmology",
-    offerDesc: "Expert care for eye diseases and vision problems.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: OrganTransplant,
-    offerName: "Organ Transplant",
-    offerDesc: "Surgical procedures to replace failing organs.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Orthopaedics,
-    offerName: "Orthopaedics and Trauma",
-    offerDesc: "Care for musculoskeletal injuries and disorders.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Paediatrics,
-    offerName: "Paediatrics or Neonatology",
-    offerDesc: "Comprehensive care for infants and children.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: PlasticSurgery,
-    offerName: "Plastic and Reconstructive Surgery",
-    offerDesc:
-      "Surgical and non-surgical procedures for aesthetic and reconstructive needs.",
-    whatsapp: "+66948283651",
-  },
-  {
-    offerImage: Urology,
-    offerName: "Urology",
-    offerDesc: "Care for urinary tract and male reproductive system disorders.",
-    whatsapp: "+66948283651",
-  },
+// Images + whatsapp stay in code; localized name/desc come from messages (same order).
+const OFFER_IMAGES = [
+  ENT,
+  Cardiology,
+  Cardiothoracic,
+  ColonRectal,
+  Dentistry,
+  Dermatology,
+  Endocrinology,
+  GeneralSurgery,
+  Gynaecology,
+  Haematology,
+  IVF,
+  Laboratory,
+  MedicalGenetics,
+  Nephrology,
+  Neurology,
+  Oncology,
+  Ophthalmology,
+  OrganTransplant,
+  Orthopaedics,
+  Paediatrics,
+  PlasticSurgery,
+  Urology,
 ];
+const OFFER_WHATSAPP = "+66948283651";
 
 const SpecificOffer = () => {
+  const t = useTranslations("home.specificOffer");
   const swiperRef = useRef(null);
+  const offers = t.raw("items").map((item, i) => ({
+    offerImage: OFFER_IMAGES[i],
+    offerName: item.name,
+    offerDesc: item.desc,
+    whatsapp: OFFER_WHATSAPP,
+  }));
   const handleWhatsAppClick = (number) => {
     window.open(`https://wa.me/${number}`, "_blank");
   };
@@ -177,7 +73,7 @@ const SpecificOffer = () => {
   return (
     <section className="mx-5 md:container md:mx-auto py-10 md:py-20">
       <h2 className="text-xl md:text-2xl text-center font-semibold text-blue">
-        Preventive Healthcare Check-ups - Your Health, Our Priority!
+        {t("heading")}
       </h2>
       {/* <p className="text-center mt-2.5">
         Explore Bumrungrad International Hospital, where advanced medical
@@ -216,7 +112,7 @@ const SpecificOffer = () => {
                   className="px-4 py-2 bg-blue text-white flex items-center justify-center gap-2 shadow rounded"
                   onClick={() => handleWhatsAppClick(offer.whatsapp)}
                 >
-                  <WhatsApp /> Contact via Whatsapp
+                  <WhatsApp /> {t("contactWhatsapp")}
                 </button>
               </div>
             </SwiperSlide>

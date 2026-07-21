@@ -1,0 +1,86 @@
+{
+  "findDoctor": {
+    "title": "একজন ডাক্তার খুঁজুন",
+    "enterDoctorName": "ডাক্তারের নাম লিখুন",
+    "selectSpeciality": "বিশেষত্ব নির্বাচন করুন",
+    "selectSubSpeciality": "উপ-বিশেষত্ব নির্বাচন করুন",
+    "advanceSearch": "অ্যাডভান্স সার্চ",
+    "moreSearch": "আরও অনুসন্ধান",
+    "yourPreferences": "আপনার পছন্দ",
+    "language": "ভাষা",
+    "day": "দিন",
+    "time": "সময়",
+    "gender": "লিঙ্গ",
+    "close": "বন্ধ করুন",
+    "clearFilters": "ফিল্টার মুছুন",
+    "filtersLabel": "ফিল্টার:",
+    "found": "পাওয়া গেছে",
+    "doctorWord": "ডাক্তার",
+    "viewProfile": "প্রোফাইল দেখুন",
+    "noPhoto": "কোনো ছবি পাওয়া যায়নি",
+    "noDoctorFound": "কোনো ডাক্তার পাওয়া যায়নি",
+    "viewLess": "কম দেখুন",
+    "viewMore": "আরও দেখুন",
+    "weekdays": {
+      "Saturday": "শনিবার",
+      "Sunday": "রবিবার",
+      "Monday": "সোমবার",
+      "Tuesday": "মঙ্গলবার",
+      "Wednesday": "বুধবার",
+      "Thursday": "বৃহস্পতিবার",
+      "Friday": "শুক্রবার"
+    },
+    "languages": {
+      "Thai": "থাই",
+      "English": "ইংরেজি",
+      "Arabic": "আরবি",
+      "Chinese": "চাইনিজ",
+      "Dutch": "ডাচ",
+      "French": "ফরাসি",
+      "German": "জার্মান",
+      "Hindi": "হিন্দি",
+      "Japanese": "জাপানি",
+      "Spanish": "স্প্যানিশ",
+      "Urdo": "উর্দু",
+      "Mandarin": "ম্যান্ডারিন",
+      "Punjab": "পাঞ্জাবি",
+      "Hokkin": "হক্কিয়েন",
+      "Hainan": "হাইনানিজ",
+      "Cantonese": "ক্যান্টনিজ"
+    },
+    "times": {
+      "Morning": "সকাল",
+      "Evening": "সন্ধ্যা",
+      "Night": "রাত"
+    },
+    "genders": {
+      "Male": "পুরুষ",
+      "Female": "নারী"
+    }
+  },
+  "singleDoctor": {
+    "notFoundTitle": "ডাক্তার পাওয়া যায়নি",
+    "notFoundText": "আপনি যে ডাক্তারের প্রোফাইল খুঁজছেন তা আমরা খুঁজে পাইনি। এটি সরিয়ে ফেলা হতে পারে অথবা আর উপলব্ধ নেই।",
+    "noPhoto": "কোনো ছবি পাওয়া যায়নি",
+    "bookAppointment": "অ্যাপয়েন্টমেন্ট বুক করুন",
+    "weeklySchedule": "সাপ্তাহিক সময়সূচী",
+    "notAvailable": "উপলব্ধ নয়",
+    "medicalSchool": "মেডিকেল স্কুল",
+    "boardCertifications": "বোর্ড সার্টিফিকেশন",
+    "trainings": "প্রশিক্ষণ",
+    "interests": "আগ্রহের বিষয়",
+    "experience": "অভিজ্ঞতা",
+    "fellowships": "ফেলোশিপ",
+    "research": "গবেষণা",
+    "articles": "প্রবন্ধ",
+    "weekdays": {
+      "Sunday": "রবিবার",
+      "Monday": "সোমবার",
+      "Tuesday": "মঙ্গলবার",
+      "Wednesday": "বুধবার",
+      "Thursday": "বৃহস্পতিবার",
+      "Friday": "শুক্রবার",
+      "Saturday": "শনিবার"
+    }
+  }
+}

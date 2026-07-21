@@ -15,9 +15,11 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import apoointDoctor from "@/public/assets/appointment doctor.jpg";
 import healthScrenning from "@/public/assets/health Screnning.jpg";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 
 export default function MiddleBar() {
+  const t = useTranslations("home.middlebar");
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -37,7 +39,7 @@ export default function MiddleBar() {
         >
           <SearchIcon sx={{ fontSize: "22px" }} />
           <p className="text-sm text-center flex gap-1 md:font-semibold">
-            Find <span className="hidden md:block">Doctor</span>{" "}
+            {t("find")} <span className="hidden md:block">{t("doctor")}</span>{" "}
           </p>
         </Link>
         <button
@@ -47,7 +49,7 @@ export default function MiddleBar() {
           <EventAvailableIcon sx={{ fontSize: "22px" }} />
           <p className="text-sm text-center flex gap-1 md:font-semibold">
             {" "}
-            <span className="hidden md:block">Book</span> Appointment
+            <span className="hidden md:block">{t("book")}</span> {t("appointment")}
           </p>
         </button>
         <Link
@@ -58,7 +60,7 @@ export default function MiddleBar() {
 
           <p className="text-sm text-center flex gap-1 md:font-semibold">
             {" "}
-            <span className="hidden md:block">Send</span> Query
+            <span className="hidden md:block">{t("send")}</span> {t("query")}
           </p>
         </Link>
         <Link
@@ -67,7 +69,7 @@ export default function MiddleBar() {
         >
           <PersonIcon sx={{ fontSize: "24px" }} />
 
-          <p className="text-sm text-center flex gap-1">Account</p>
+          <p className="text-sm text-center flex gap-1">{t("account")}</p>
         </Link>
       </div>
 
@@ -81,7 +83,7 @@ export default function MiddleBar() {
           <DialogContent className="relative">
             <div className="flex justify-between">
               <h5 className="font-semibold md:text-xl capitalize">
-                Choose appointment type
+                {t("chooseType")}
               </h5>
               <button onClick={handleClose}>
                 <AiFillCloseCircle className="text-2xl md:text-4xl text-red" />
@@ -93,7 +95,7 @@ export default function MiddleBar() {
                   <div className="absolute z-10 top-0 h-[100%] w-full bg-black/20 rounded-lg"></div>
                   <div className="absolute bottom-0 z-30 w-full bg-blue rounded-bl-lg rounded-br-lg">
                     <h2 className="text-white md:font-medium text-sm md:text-xl text-center p-1 md:py-3">
-                      Health <br/> Screnning
+                      {t("healthScreening")}
                     </h2>
                   </div>
 
@@ -113,7 +115,7 @@ export default function MiddleBar() {
                   <div className="absolute z-10 top-0 h-[100%] w-full bg-black/20 rounded-lg"></div>
                   <div className="absolute bottom-0 z-30 w-full bg-blue rounded-bl-lg rounded-br-lg">
                     <h2 className=" md:font-medium text-white text-sm md:text-xl text-center p-1 md:py-3">
-                      Doctor <br/> Schedule
+                      {t("doctorSchedule")}
                     </h2>
                   </div>
                   <Image

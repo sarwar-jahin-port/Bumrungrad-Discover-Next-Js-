@@ -1,0 +1,365 @@
+{
+  "landing": {
+    "formTitle": "Get Free Consultation",
+    "formSubtitle": "Our care team replies within minutes",
+    "fullName": "Full Name *",
+    "whatsapp": "WhatsApp Number *",
+    "medicalConcern": "Medical Concern *",
+    "submit": "Get Free Consultation",
+    "submitting": "Submitting...",
+    "confidential": "Your information stays confidential",
+    "heading": "Your Gateway to Advanced Healthcare",
+    "bullet1": "Comprehensive Patient Care Assistance",
+    "bullet2": "Specialized Ground Repositioning Support",
+    "bullet3": "24/7 Dedicated Care Coordination Network",
+    "doctorAppointment": "Doctor Appoinment",
+    "healthScreening": "Health Screening",
+    "successToast": "Thank you! Our team will reach out to you shortly.",
+    "errorToast": "Something went wrong. Please try again."
+  },
+  "disclaimer": {
+    "fallback": "We are the Official Information & Representative Office for Bumrungrad, helping to coordinate all medical treatments and check-ups for FREE."
+  },
+  "journey": {
+    "heading": "Your Journey to Health Starts Here at Bumrungrad Hospital Bangkok",
+    "description": "Begin your journey to exceptional healthcare at Bumrungrad Hospital Bangkok. Our top-notch facilities and dedicated team are committed to providing the best care possible, making every step of your healthcare journey seamless and supportive. Let us guide you with our expert services and world-class care.",
+    "doctorAppointment": "Doctor Appoinment",
+    "healthScreening": "Health Screening",
+    "findDoctor": "Find Doctor",
+    "sendQuery": "Send Querey"
+  },
+  "mediExpress": {
+    "heading": "Know More About Us",
+    "p1": "DIMS (Discover International Medical Service) is a trusted name in providing seamless medical assistance and facilitation services to individuals seeking world-class healthcare solutions abroad. Our mission is to guide patients through the complexities of medical travel, ensuring access to the best hospitals and doctors across the globe. With our extensive network of medical partners, we specialize in coordinating treatments, consultations, and aftercare for a wide range of medical conditions.",
+    "p2": "Our services include detailed medical consultation planning, appointment scheduling, and visa assistance, making the entire process stress-free and efficient. We also offer personalized care by staying in close communication with our patients throughout their medical journey.",
+    "p3Prefix": "In collaboration with leading hospitals such as Bumrungrad International, we ensure that patients receive the highest standard of healthcare. With international referral offices in ",
+    "p3Countries": "Bahrain, Bangladesh, Cambodia, Chad, China, East Africa, Ethiopia, Hong Kong, Indonesia, Kenya, Kuwait, Laos, Mongolia, Myanmar, Nepal, Pakistan, UAE, and Vietnam— ",
+    "p3Suffix": "we make it convenient for patients worldwide to access the right medical expertise.",
+    "p4": "At DIMS, we are committed to helping you achieve better health outcomes through professional, reliable, and compassionate support. Let us be your partner in health and well-being, ensuring you receive the best care, no matter where you are."
+  },
+  "clinicCenters": {
+    "heading": "Clinic & Centers",
+    "viewAll": "View All",
+    "seeMore": "See More",
+    "items": [
+      {
+        "slug": "neuroscience-center",
+        "name": "Neuroscience Center",
+        "desc": "The brain and nervous system are responsible for our movement, behavior, learning, emotions, heart rate, and body temperature, etc. Therefore, if the nervous system suffers an injury or becomes diseased, it can cause serious, permanent, and even life-threatening problems."
+      },
+      {
+        "slug": "heart-institute",
+        "name": "Heart Institute",
+        "desc": "Thailand’s society is set to become what is referred to as an ‘aging society’ before the end of 2021 due to the increase in its number of elderly people. This brings with it a host of health issues because our bodies deteriorate with age, placing them at greater risk of disease, especially non-communicable diseases (NCDs), such as coronary heart disease, diabetes, and obesity."
+      },
+      {
+        "slug": "diagnostic-center",
+        "name": "Diagnostic Center",
+        "desc": "Diagnostic Center at Bumrungrad International Hospital features some of the most advanced diagnostic and therapeutic modalities available in the world today."
+      },
+      {
+        "slug": "horizon-regional-cancer-center",
+        "name": "Horizon Regional Cancer Center",
+        "desc": "The Horizon Regional Cancer Center at Bumrungrad International Hospital in Bangkok, Thailand provides comprehensive cancer care and treatment by a multidisciplinary team of cancer specialists, including preventionm, diagnosis, treatment, assessment of treatment plan and management of possible complications, emotional support, nutritional care, pain management, and close monitoring of possible recurrence."
+      },
+      {
+        "slug": "colorectal-surgery-center",
+        "name": "Colorectal Surgery Center",
+        "desc": "The Outpatient Surgical Center at Bumrungrad International Hospital in Bangkok, Thailand offers a full range of surgical specialties. In most cases patients can arrange consultations with Thailand's premier surgeons with very little waiting time."
+      },
+      {
+        "slug": "urology-center",
+        "name": "Urology Center",
+        "desc": "The urinary system acts as the body's drainage system. It removes urine, which is excess waste and water, from the body. In addition to being highly important in the elimination of waste and maintaining the balance of body fluids, the urinary system is also responsible for regulating blood pressure, blood volume, and blood pH levels. A dysfunction in the urinary system will severely affect a person’s health and quality of life."
+      },
+      {
+        "slug": "bumrungrad-spine-institute",
+        "name": "Bumrungrad Spine Institute",
+        "desc": "Bumrungrad Spine Institute is prepared to provide a comprehensive range of treatment and care for spine-related matters, with the experience of treating more than 12,000 spine patients in 12 years."
+      }
+    ]
+  },
+  "specificOffer": {
+    "heading": "Preventive Healthcare Check-ups - Your Health, Our Priority!",
+    "contactWhatsapp": "Contact via Whatsapp",
+    "items": [
+      { "name": "Ear, Nose and Throat (ENT)", "desc": "Specialized care for conditions affecting the ear, nose, and throat." },
+      { "name": "Cardiology", "desc": "Expert diagnosis and treatment of heart and vascular conditions." },
+      { "name": "Cardiothoracic and Vascular Surgery", "desc": "Surgical treatment for heart and chest-related diseases." },
+      { "name": "Colon and Rectal Surgery", "desc": "Surgical interventions for conditions of the colon and rectum." },
+      { "name": "Dentistry", "desc": "Comprehensive dental care for all ages." },
+      { "name": "Dermatology", "desc": "Diagnosis and treatment of skin, hair, and nail disorders." },
+      { "name": "Endocrinology or Diabetes", "desc": "Management of hormonal and metabolic disorders, including diabetes." },
+      { "name": "General Surgery", "desc": "Surgical care for a wide range of medical conditions." },
+      { "name": "Gynaecology", "desc": "Comprehensive care for women’s reproductive health." },
+      { "name": "Haematology", "desc": "Diagnosis and treatment of blood disorders." },
+      { "name": "IVF & Fertility Treatment", "desc": "Assistance with fertility issues and reproductive health." },
+      { "name": "Laboratory Services", "desc": "Comprehensive lab testing for accurate diagnosis." },
+      { "name": "Medical Genetics", "desc": "Evaluation and management of genetic disorders." },
+      { "name": "Nephrology", "desc": "Specialized care for kidney diseases and disorders." },
+      { "name": "Neurology or Neurosurgery", "desc": "Diagnosis and treatment of nervous system disorders." },
+      { "name": "Oncology or Cancer Treatment", "desc": "Comprehensive care for cancer patients." },
+      { "name": "Ophthalmology", "desc": "Expert care for eye diseases and vision problems." },
+      { "name": "Organ Transplant", "desc": "Surgical procedures to replace failing organs." },
+      { "name": "Orthopaedics and Trauma", "desc": "Care for musculoskeletal injuries and disorders." },
+      { "name": "Paediatrics or Neonatology", "desc": "Comprehensive care for infants and children." },
+      { "name": "Plastic and Reconstructive Surgery", "desc": "Surgical and non-surgical procedures for aesthetic and reconstructive needs." },
+      { "name": "Urology", "desc": "Care for urinary tract and male reproductive system disorders." }
+    ]
+  },
+  "rightHealthcare": {
+    "heading": "Bumrungrad International Hospital: A World Leader in Comprehensive Medical Services",
+    "p1": "Bumrungrad International Hospital is a renowned medical facility in Bangkok, Thailand, offering world-class healthcare services to patients from around the globe. With a focus on advanced medical technology and a team of highly skilled healthcare professionals, Bumrungrad provides comprehensive care in various specialties, including cardiology, oncology, orthopedics, neurosurgery, pediatrics, women's health, and cosmetic surgery. The hospital is committed to providing the highest quality care, using state-of-the-art technology and following international standards.",
+    "p2": "One of the key factors contributing to Bumrungrad's success is its commitment to international accreditation. The hospital is certified by the Joint Commission International (JCI), a globally recognized healthcare accreditation body. JCI accreditation signifies that Bumrungrad meets the highest standards of quality, safety, and patient care. This certification provides patients with confidence in the quality of care they will receive.",
+    "p3": "Bumrungrad offers a variety of ancillary services to enhance the patient experience. These services include accommodation, transportation, and translation services. The hospital's international patient services team is dedicated to assisting patients from all over the world, ensuring a seamless and stress-free experience.",
+    "cares": [
+      { "desc": "Patients treated each year at Bumrungrad International Hospital." },
+      { "desc": "Overseas patients travel yearly to receive treatment at Bumrungrad International Hospital." },
+      { "desc": "Countries around the world that Bumrungrad International Hospital receives patients from every year." },
+      { "desc": "Specialty centres that provide comprehensive diagnosis and treatment of complex conditions." }
+    ]
+  },
+  "packages": {
+    "heading": "our packages",
+    "viewAll": "View All",
+    "searchPlaceholder": "Search Package",
+    "seePackages": "See Packages",
+    "notFound": "No Package Found",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "services": {
+    "headingDefault": "Our Complete Services for Patients at Bumrungrad International Hospital",
+    "headingPage": "Our Services",
+    "badgePopup": "Quick Request",
+    "badgePage": "Full Form",
+    "badgeWhatsapp": "WhatsApp",
+    "items": {
+      "appointment": {
+        "name": "Schedule Doctor Appointment",
+        "description": "Easily book your Appointment with top doctors at Bumrungrad International Hospital, Thailand. We're here to make sure you get the best care quickly and without any hassle."
+      },
+      "healthScreening": {
+        "name": "Health Screening",
+        "description": "Comprehensive diagnostic and preventive health check-up packages, tailored to your needs and reviewed by our specialist team."
+      },
+      "visa": {
+        "name": "Thailand Visa Processing",
+        "description": "We’re make getting your Thailand visa simple and stress-free. From figuring out what you need to managing the paperwork, our team has you covered. Let us handle the details so you can get excited about your trip!"
+      },
+      "orderMedicine": {
+        "name": "Order Medicine",
+        "description": "Enjoy a simple and efficient way to order your medicine from Thailand. Our service manages the details for you, making sure your medication arrives as expected."
+      },
+      "medicalRecords": {
+        "name": "Medical Records",
+        "description": "We want to support you every step of the way. That’s why we offer a clear and easy-to-understand treatment plan along with a detailed cost estimate for critical care. Our friendly approach ensures you have all the information you need, so you can focus on your health without any added stress."
+      },
+      "telemedicine": {
+        "name": "Telemedicine",
+        "description": "Experience expert medical consultations from Bumrungrad Hospital through our telemedicine service. We make connecting with top doctors easy and accessible from home."
+      },
+      "medicalConsultancy": {
+        "name": "Medical Consultancy",
+        "description": "Specialized evaluation support from our clinical team to help guide your treatment options before you commit to a plan."
+      },
+      "airAmbulance": {
+        "name": "Air Ambulance Service",
+        "description": "We’re here to help in emergencies with fast and reliable air ambulance service. Our experienced team ensures you’re transported safely and comfortably to top hospitals."
+      },
+      "airTicket": {
+        "name": "Air Ticket",
+        "description": "Book your Thailand air ticket booking for treatment effortlessly with us. We offer daily options, competitive pricing, and seamless service, ensuring a smooth, professional, and stress-free experience."
+      },
+      "airportTransfer": {
+        "name": "Airport Transfer Service",
+        "description": "We’re here to make your airport journey as smooth as possible. Our team will handle pick-up and drop-off, so you can relax and enjoy a comfortable ride to your accommodation."
+      },
+      "admission": {
+        "name": "Admission On Arrival",
+        "description": "We’re make your arrival as smooth and stress-free as possible. From quick online pre-registration to personal help from our team, we’re committed to making sure you settle in comfortably and start your care without any hassle."
+      },
+      "accommodation": {
+        "name": "Thai Local Accommodation",
+        "description": "Extended stay hotel and apartment booking near your treatment center. Tell us your dates and we'll arrange comfortable lodging for you and your companions."
+      },
+      "languageInterpreter": {
+        "name": "Language Interpreter",
+        "description": "Our language interpreters are here to make your conversations seamless and stress-free. We ensure accurate and easy communication every time."
+      },
+      "emergencyDesk": {
+        "name": "Emergency Desk",
+        "description": "24/7 emergency support portal. Reach our on-call team immediately for urgent medical coordination and guidance."
+      },
+      "moneyTransfer": {
+        "name": "Transfer Money for Treatment",
+        "description": "We simplify transferring funds for your medical treatment. Our process ensures your money reaches its destination quickly and securely, so you can focus on your care."
+      }
+    }
+  },
+  "onlineConsultation": {
+    "heading": "Schedule an online video consultation at Bumrungrad International Hospital",
+    "subtitle": "World-class medical care is just a click away. Consult Top doctors from home",
+    "items": [
+      { "title": "Cost-Effective", "desc": "Get top-notch medical care without breaking the bank—no need for expensive trips abroad when you can receive quality treatment right here at home." },
+      { "title": "Convenience", "desc": "Skip the hassle of traveling and waiting around. You can access expert healthcare quickly and easily, all from the comfort of your own country." },
+      { "title": "Immediate Connection", "desc": "Say goodbye to long wait times! Connect with specialized doctors right away, so you can get the care you need without delay." },
+      { "title": "Continuity of Care", "desc": "Stay in touch with your doctor throughout your entire healthcare journey, ensuring you’re well taken care of, even after treatment." }
+    ]
+  },
+  "whyUs": {
+    "heading": "Why Choose Discover Bangladesh",
+    "authorized": "Authorized Bumrungrad International Hospital Referral Office | Discover Bangladesh CO. LTD.",
+    "reasons": [
+      { "title": "Global Healthcare Excellence", "desc": "Exceptional medical services trusted by patients from over 190 countries." },
+      { "title": "Over 40 Specialized Departments & Centers", "desc": "Access to specialists across cardiology, oncology, neurology, orthopedics, and more." },
+      { "title": "Advanced Medical Technology & Experienced Doctors", "desc": "Robotic surgery, advanced imaging, and AI-assisted diagnostics, backed by 1,200+ internationally trained doctors." },
+      { "title": "JCI Accreditation", "desc": "The gold standard in global healthcare accreditation, ensuring rigorous patient safety and care quality." },
+      { "title": "International Patient Support", "desc": "Personalized assistance with travel, visas, accommodation, and multilingual interpreters." },
+      { "title": "World-Class Care", "desc": "Expert medical teams and cutting-edge technology within a state-of-the-art facility." }
+    ]
+  },
+  "accreditation": {
+    "heading": "Bumrungrad Accreditation & Awards",
+    "awards": [
+      "No.1 Hospital in Thailand",
+      "Advanced Hospital Accreditation",
+      "World's Best Smart Hospitals",
+      "International Standard of Excellence",
+      "Global Brand Awards"
+    ]
+  },
+  "performance": {
+    "heading": "Our Track Record",
+    "visasApproved": "Successful Medical Visas Approved",
+    "complexCases": "Successful Complex Clinical Events Coordinated"
+  },
+  "testimonial": {
+    "heading": "What our patients say",
+    "from": "From"
+  },
+  "masterForm": {
+    "heading": "Book Your Appointment",
+    "subtitle": "Tell us about your medical needs and preferred schedule, and our international patient coordination team will confirm your appointment with Bumrungrad International Hospital.",
+    "contactInfo": "Your Contact Information",
+    "fullName": "Full Name *",
+    "whatsapp": "WhatsApp Number *",
+    "email": "Email Address *",
+    "countryOrigin": "Country of Origin *",
+    "countryResidence": "Country of Residence *",
+    "patientStatus": "Patient Status *",
+    "newCase": "New Case File Entry",
+    "returningCase": "Returning Case Record",
+    "medicalDetails": "Medical Details",
+    "specialty": "Target Medical Specialty *",
+    "selectSpecialty": "Select a specialty",
+    "physician": "Preferred Physician (optional)",
+    "noPreference": "No preference",
+    "package": "Intended Screening/Diagnostic Package (optional)",
+    "noPackage": "No package selected",
+    "concern": "Medical Concern / Symptoms *",
+    "scheduling": "Scheduling",
+    "primaryDate": "Primary Desired Appointment Date *",
+    "backupDate": "Secondary Backup Appointment Date *",
+    "dob": "Patient Date of Birth *",
+    "documents": "Documents",
+    "passport": "Passport Document Scan *",
+    "clinicalRecords": "Previous Clinical Records *",
+    "chooseFile": "Choose a file...",
+    "submit": "Submit Appointment Request",
+    "submitting": "Submitting...",
+    "successToast": "Your appointment request has been submitted. Our team will contact you shortly.",
+    "errorToast": "Something went wrong. Please try again."
+  },
+  "news": {
+    "heading": "Bumrungrad News",
+    "viewAll": "View All",
+    "searchPlaceholder": "Search news by title...",
+    "readMore": "Read More",
+    "noNews": "No news found",
+    "noNewsFor": "No news found for \"{query}\"."
+  },
+  "insurance": {
+    "heading": "Insurance Partners",
+    "subheading": "Discover your Insurance Options at Bumrungrad International Hospital",
+    "intro": "We’re proud to work with a diverse range of insurance providers to make accessing medical care straightforward for you. If you’re wondering whether your insurance is covered, simply use our search tool or contact our support team, and we’ll be glad to confirm your provider’s acceptance.",
+    "whyHeading": "Why use our insurance partners for your medical treatment at Bumrungrad International Hospital",
+    "points": [
+      "We accept a variety of international health insurance plans, including those from leading providers.",
+      "Our insurance partners streamline the payment process, saving you time and hassle.",
+      "If your insurance provider isn’t listed, don’t worry! Our team is here to help you find the right coverage. Simply make an inquiry today, and we’ll assist you in verifying your insurance options and ensuring you receive the care you need."
+    ]
+  },
+  "faq": {
+    "formTitle": "Get a second medical opinion at Bumrungrad International Hospital",
+    "name": "Enter Name(as on passport)",
+    "email": "Enter Email",
+    "selectGender": "Select Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "selectNationality": "Select Nationality",
+    "phone": "Phone Number",
+    "subject": "Enter Subject",
+    "message": "Enter Message",
+    "submit": "Submit",
+    "requiredField": "This field is required",
+    "successToast": "We have received your request. Our representative will reach you shortly!",
+    "errorToast": "Something went wrong",
+    "helpTitle": "Help & FAQs",
+    "items": [
+      {
+        "question": "How do I make an appointment at Bumrungrad International Hospital?",
+        "answer": "As a Medical Tourism Facilitator, we can help you book an appointment at Bumrungrad International Hospital. Simply contact us, and we’ll handle all the scheduling for you, ensuring that you receive the care you need at a convenient time. Alternatively, appointments can be booked directly through the hospital's website or by contacting their International Patient Services."
+      },
+      {
+        "question": "Where is Bumrungrad Hospital located and what is nearby?",
+        "answer": "Bumrungrad International Hospital is located at 33 Sukhumvit 3 (Soi Nana Nua), Wattana, Bangkok, Thailand. It’s situated in a central area of Bangkok, close to luxury hotels, restaurants, shopping malls, and other services that are convenient for international patients and their families."
+      },
+      {
+        "question": "What is the cost of my treatment at Bumrungrad International Hospital?",
+        "answer": "The cost of your treatment will depend on the medical services you require. As facilitators, we work closely with Bumrungrad to provide a detailed cost estimate based on your medical needs. Contact us, and we’ll arrange a personalized treatment plan with a transparent cost estimate."
+      },
+      {
+        "question": "What is the International Referral Office and what kind of services do they provide?",
+        "answer": "The International Referral Office at Bumrungrad Hospital supports international patients by coordinating appointments, treatments, and travel logistics. They assist with medical inquiries, communication between doctors, and provide follow-up support. As your facilitator, we collaborate with this office to ensure a smooth experience throughout your treatment journey."
+      },
+      {
+        "question": "Will there be someone at Bumrungrad International Hospital who speaks my language?",
+        "answer": "Yes, Bumrungrad has over 200 professional interpreters covering a wide range of languages. You will be assisted in your preferred language throughout your healthcare journey to ensure clear communication at every step."
+      },
+      {
+        "question": "What are the accommodation options near Bumrungrad International Hospital?",
+        "answer": "There are several accommodation options near the hospital, including hotels and serviced apartments. As your Medical Tourism Facilitator, we can help arrange accommodation to suit your needs, ensuring you and your family are comfortable during your stay."
+      },
+      {
+        "question": "How do I pay for my treatment at Bumrungrad International Hospital if I do not have International Health Insurance?",
+        "answer": "If you don’t have international health insurance, payment options include cash, major credit cards, and bank transfers. Bumrungrad also offers financial counseling, and we can assist you in exploring the best payment methods to suit your situation."
+      },
+      {
+        "question": "Does Bumrungrad International Hospital provide transportation services for international patients?",
+        "answer": "Yes, the hospital provides airport pickup services and local transportation for international patients. As your facilitator, we can coordinate these services for you, ensuring a smooth transition from the airport to your accommodation and the hospital."
+      },
+      {
+        "question": "How do I obtain a visa for medical treatment at Bumrungrad International Hospital?",
+        "answer": "We work directly with Bumrungrad to provide a visa support letter for patients traveling for medical treatment. Our team will guide you through the visa application process and help ensure all necessary documents are prepared."
+      },
+      {
+        "question": "How do I get in contact with a Bumrungrad Support Specialist?",
+        "answer": "You can either reach out directly to Bumrungrad’s Support Specialists via their website or phone, or you can contact us, and we will coordinate all communications on your behalf to ensure you receive prompt assistance."
+      }
+    ]
+  },
+  "middlebar": {
+    "find": "Find",
+    "doctor": "Doctor",
+    "book": "Book",
+    "appointment": "Appointment",
+    "send": "Send",
+    "query": "Query",
+    "account": "Account",
+    "chooseType": "Choose appointment type",
+    "healthScreening": "Health Screnning",
+    "doctorSchedule": "Doctor Schedule"
+  }
+}

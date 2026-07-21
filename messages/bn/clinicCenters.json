@@ -1,0 +1,34 @@
+{
+  "viewAll": {
+    "heading": "ক্লিনিক ও সেন্টার: {count}",
+    "searchPlaceholder": "ক্লিনিক ও সেন্টার খুঁজুন",
+    "seeMore": "আরও দেখুন",
+    "notFound": "কোনো প্যাকেজ পাওয়া যায়নি",
+    "prev": "পূর্ববর্তী",
+    "next": "পরবর্তী"
+  },
+  "singleCenter": {
+    "notFoundTitle": "সেন্টার পাওয়া যায়নি",
+    "notFoundText": "আপনি যে ক্লিনিক্যাল সেন্টারটি খুঁজছেন তা আমরা খুঁজে পাইনি। এটি সরিয়ে ফেলা হতে পারে অথবা আর উপলব্ধ নেই।",
+    "noImage": "কোনো ছবি পাওয়া যায়নি",
+    "hoursListed": "সময়সূচী নিচে দেওয়া আছে",
+    "directHotline": "সরাসরি হটলাইন উপলব্ধ",
+    "requestAppointment": "অ্যাপয়েন্টমেন্টের অনুরোধ করুন",
+    "overviewEyebrow": "সংক্ষিপ্ত বিবরণ",
+    "aboutTitle": "এই সেন্টার সম্পর্কে",
+    "aboutEmpty": "এই সেন্টার সম্পর্কে আরও তথ্য শীঘ্রই আসছে।",
+    "scopeEyebrow": "সেবার পরিধি",
+    "whatWeTreatTitle": "আমরা যেসব চিকিৎসা করি",
+    "conditionsEmpty": "এখানে চিকিৎসা করা রোগের তালিকা শীঘ্রই আসছে।",
+    "capabilitiesEyebrow": "সক্ষমতা",
+    "diagnosticsTitle": "রোগনির্ণয় ও চিকিৎসা পদ্ধতি",
+    "diagnosticsEmpty": "এখানে প্রদত্ত রোগনির্ণয় ও চিকিৎসা পদ্ধতির তালিকা শীঘ্রই আসছে।",
+    "getStartedEyebrow": "শুরু করুন",
+    "requestAtCenter": "এই সেন্টারে অ্যাপয়েন্টমেন্টের অনুরোধ করুন",
+    "visitUsEyebrow": "আমাদের সাথে দেখা করুন",
+    "officeContactTitle": "অফিস যোগাযোগের তথ্য",
+    "operationalHours": "কার্যক্রমের সময়",
+    "chatWhatsapp": "হোয়াটসঅ্যাপে চ্যাট করুন",
+    "officeContactEmpty": "সরাসরি অফিস যোগাযোগের তথ্য শীঘ্রই আসছে।"
+  }
+}

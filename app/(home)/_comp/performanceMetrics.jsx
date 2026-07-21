@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { useTranslations } from "next-intl";
 
 const PerformanceMetrics = () => {
+  const t = useTranslations("home.performance");
   const [stats, setStats] = useState({});
   const [loader, setLoader] = useState(true);
 
@@ -20,9 +22,9 @@ const PerformanceMetrics = () => {
   }, []);
 
   const cards = [
-    { label: "Successful Medical Visas Approved", value: stats.stat_visas_approved },
+    { label: t("visasApproved"), value: stats.stat_visas_approved },
     {
-      label: "Successful Complex Clinical Events Coordinated",
+      label: t("complexCases"),
       value: stats.stat_complex_cases_coordinated,
     },
   ];
@@ -34,7 +36,7 @@ const PerformanceMetrics = () => {
   return (
     <div className="mx-5 my-10 md:my-20 md:container md:mx-auto">
       <h5 className="text-center text-2xl md:text-4xl font-semibold text-blue mb-10">
-        Our Track Record
+        {t("heading")}
       </h5>
       <div className="grid md:grid-cols-2 gap-5">
         {cards.map(

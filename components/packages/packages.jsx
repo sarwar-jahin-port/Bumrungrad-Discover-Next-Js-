@@ -8,8 +8,10 @@ import notFoundAnim from '@/public/assets/anim/notfound.json'
 import {CardLoader} from '@/components/ui/cardload'
 import { usePathname } from 'next/navigation'
 import SinglePackage from './singlePackage'
+import { useTranslations } from 'next-intl'
 
 export default function Packages() {
+    const t = useTranslations('home.packages');
     const path = usePathname();
   const [loader, setLoader] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -104,7 +106,7 @@ const cardLength = path === '/packages' ? 15 : 4
     
      <div className='relative'> 
      <h2 className='text-xl font-semibold md:text-2xl lg:text-3xl capitalize text-blue'>
-        our packages
+        {t('heading')}
       </h2>
       {
         path === '/packages' ? <div className='mt-8 flex md:justify-center'>
@@ -113,7 +115,7 @@ const cardLength = path === '/packages' ? 15 : 4
           <TextField
             id='outlined-basic'
             fullWidth
-            placeholder='Search Package'
+            placeholder={t('searchPlaceholder')}
             variant='outlined'
             onChange={(e) => setInputValue(e.target.value)}
           />
@@ -126,7 +128,7 @@ const cardLength = path === '/packages' ? 15 : 4
         </div>
       </div> :  <div className='absolute top-0 right-0'>
         <a href="/packages" className='rounded px-2 md:px-4 py-1 md:py-2 border border-blue text-blue hover:bg-blue hover:text-white duration-300 ease-linear'>
-        View All
+        {t('viewAll')}
         </a>
       </div>
       }
@@ -151,7 +153,7 @@ const cardLength = path === '/packages' ? 15 : 4
                   loop={true}
                 />
                 <p className='text-xl font-semibold text-blue text-center'>
-                  No Package Found
+                  {t('notFound')}
                 </p>
               </div>
             )}
@@ -182,7 +184,7 @@ const cardLength = path === '/packages' ? 15 : 4
               d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
             ></path>
           </svg>
-          Prev
+          {t('prev')}
         </button>
         {minPageNumberLimit >= 1 && (
           <button
@@ -220,7 +222,7 @@ const cardLength = path === '/packages' ? 15 : 4
           className='flex items-center gap-1 md:gap-2 md:px-6 md:py-3 font-sans text-xs font-bold text-center text-gray-900 uppercase align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
           type='button'
         >
-          Next
+          {t('next')}
           <svg
             xmlns='http://www.w3.org/2000/svg'
             fill='none'

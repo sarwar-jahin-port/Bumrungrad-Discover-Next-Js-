@@ -7,8 +7,10 @@ import Loader from "@/components/ui/loader";
 import {countries,natioNalities} from '@/public/data/country'
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 export default function User() {
+    const t = useTranslations("myProfile");
     const router = useRouter()
     const { auth, access_token } = useAuth();
     const [loading, setLoading] = useState(true); // State to track loading
@@ -92,7 +94,7 @@ export default function User() {
                     JSON.stringify(data?.data)
                   )
 
-                toast.success("Profile updated successfully", {
+                toast.success(t("successToast"), {
                     position: "top-center",
                     duration: 4000,
                     style: {
@@ -154,7 +156,7 @@ export default function User() {
                 ) : (
                     <div className='shadow-lg p-3 lg:p-8 rounded-lg shadow-blue-300 relative md:w-1/2 h-fit bg-white'>
                         <h5 className='font-bold text-2xl text-blue-600 mb-4'>
-                            Profile Details
+                            {t("profileDetails")}
                         </h5>
                         <hr className='my-3' />
 
@@ -163,7 +165,7 @@ export default function User() {
                             <div className="w-full">
                                 <label htmlFor='firstName'>
                                     <span className='text-[#6B7280]'>
-                                        First Name
+                                        {t("firstName")}
                                     </span>
                                 </label>
                                 <InputField
@@ -175,7 +177,7 @@ export default function User() {
                             <div className="w-full">
                                 <label htmlFor='lastName'>
                                     <span className='text-[#6B7280]'>
-                                        Last Name
+                                        {t("lastName")}
                                     </span>
                                 </label>
                                 <InputField
@@ -191,7 +193,7 @@ export default function User() {
                         <div className='mb-4'>
                             <label htmlFor='citizenship'>
                                 <span className='text-[#6B7280]'>
-                                    Citizenship
+                                    {t("citizenship")}
                                 </span>
                             </label>
                            
@@ -216,7 +218,7 @@ export default function User() {
                         {/* Country Field */}
                         <div className='mb-4'>
                             <label htmlFor='country'>
-                                <span className='text-[#6B7280]'>Country</span>
+                                <span className='text-[#6B7280]'>{t("country")}</span>
                             </label>
                            
                             <select className="w-full border p-[14px] rounded border-[#D1D5DB]"
@@ -239,7 +241,7 @@ export default function User() {
                         <div className='mb-4'>
                             <label htmlFor='dob'>
                                 <span className='text-[#6B7280]'>
-                                    Date of Birth
+                                    {t("dob")}
                                 </span>
                             </label>
                             <InputField
@@ -257,7 +259,7 @@ export default function User() {
                         {/* Email Field */}
                         <div className='mb-4'>
                             <label htmlFor='email'>
-                                <span className='text-[#6B7280]'>Email</span>
+                                <span className='text-[#6B7280]'>{t("email")}</span>
                             </label>
                             <InputField
                                 fullWidth
@@ -272,7 +274,7 @@ export default function User() {
                         {/* Phone Field */}
                         <div className='mb-4'>
                         <label htmlFor='email'>
-                                <span className='text-[#6B7280]'>Phone</span>
+                                <span className='text-[#6B7280]'>{t("phone")}</span>
                             </label>
                             <InputField
                                 // label='Phone'
@@ -294,14 +296,14 @@ export default function User() {
                             }`}
                             disabled={!isChanged || updateLoading}
                         >
-                            Save Changes {updateLoading ? <Loader fill="white" stroke="white" className='w-5 h-5 animate-spin' /> : null}
+                            {t("saveChanges")} {updateLoading ? <Loader fill="white" stroke="white" className='w-5 h-5 animate-spin' /> : null}
                         </button>
                     </div>
                 )}
 
                 <div className='mt-5 md:w-1/2'>
                     <h5 className='font-semibold text-lg text-blue'>
-                        Total appointment taken: {appointments?.length}
+                        {t("totalAppointments", { count: appointments?.length ?? 0 })}
                     </h5>
                     {loading ? (
                         [1, 2, 3].map((i) => <AppointmentSkeleton key={i} />)
@@ -324,17 +326,17 @@ export default function User() {
                                             <div className='flex items-center gap-2.5'>
                                                 {a?.status === "0" && (
                                                     <p className='mt-3 md:mt-0 w-fit px-2 py-1 bg-blue text-white rounded'>
-                                                        Pending
+                                                        {t("pending")}
                                                     </p>
                                                 )}
                                                 {a?.status === "1" && (
                                                     <p className='mt-3 md:mt-0 w-fit px-2 py-1 border text-white rounded'>
-                                                        Processing
+                                                        {t("processing")}
                                                     </p>
                                                 )}
                                                 {a?.status === "2" && (
                                                     <p className='mt-3 md:mt-0 w-fit px-2 py-1 bg-green text-white rounded'>
-                                                        Done
+                                                        {t("done")}
                                                     </p>
                                                 )}
                                                 <div className='h-4 w-4 bg-blue rounded-full animate-pulse'></div>

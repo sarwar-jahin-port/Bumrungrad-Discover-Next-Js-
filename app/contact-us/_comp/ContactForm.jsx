@@ -10,9 +10,11 @@ import toast from "react-hot-toast";
 import { admin_mails } from "@/constant";
 import { userMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
+import { useTranslations } from "next-intl";
 
 
 export default function ContactForm() {
+    const t = useTranslations("contactUs.form");
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -39,7 +41,7 @@ export default function ContactForm() {
 
             setLoading(false);
             if (response.success == true && sendClientMail.success == true) {
-                toast.success("We have received your request. Our representative will reach you shortly!", {
+                toast.success(t("successToast"), {
                     position: "top-center",
                     style: { borderRadius: "20px" },
                     duration: 5000,
@@ -52,7 +54,7 @@ export default function ContactForm() {
                 });
             }
             if (response.success == false) {
-                toast.error("Something went wrong", {
+                toast.error(t("errorToast"), {
                     position: "top-center",
                     style: { color: "red", padding: "16px" },
                     duration: 3000,
@@ -66,7 +68,7 @@ export default function ContactForm() {
     return (
         <div>
             <h1 className='capitalize text-xl md:text-2xl lg:text-3xl font-bold text-blue'>
-                Contact Us
+                {t("heading")}
             </h1>
             <div className='my-10 md:flex gap-8 items-center'>
                
@@ -75,7 +77,7 @@ export default function ContactForm() {
                     className='flex flex-col gap-4 md:w-1/2 shadow p-5 rounded'
                 >
                     <TextField
-                        label='Enter Name'
+                        label={t("enterName")}
                         variant='outlined'
                         name='user_name'
                         required
@@ -90,7 +92,7 @@ export default function ContactForm() {
                         onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                         }
-                        label='Enter Email'
+                        label={t("enterEmail")}
                         variant='outlined'
                         name='user_email'
                         required
@@ -101,7 +103,7 @@ export default function ContactForm() {
                         onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                         }
-                        label='Enter Phone Number'
+                        label={t("enterPhone")}
                         variant='outlined'
                         name='user_phone'
                         required
@@ -114,7 +116,7 @@ export default function ContactForm() {
                                 message: e.target.value,
                             })
                         }
-                        label='Enter Message'
+                        label={t("enterMessage")}
                         variant='outlined'
                         multiline
                         required
@@ -126,7 +128,7 @@ export default function ContactForm() {
                         className='flex items-center justify-center hover:bg-blue px-4 py-2 text-blue hover:text-white border border-blue font-semibold rounded duration-300 ease-linear'
                         type='submit'
                     >
-                        {loading ? <Loader className="animate-spin" /> : "Submit"}
+                        {loading ? <Loader className="animate-spin" /> : t("submit")}
                     </button>
                 </form>
                 <div className=' md:w-1/2'>

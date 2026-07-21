@@ -6,113 +6,76 @@ export const metadata = {
 
 import React from "react";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function TermsConditions() {
+export default async function TermsConditions() {
+  const t = await getTranslations("termsConditions");
   return (
     <div className="p-5 my-5 md:container md:mx-auto ">
-      <h5 className="text-3xl">Terms and Conditions</h5>
+      <h5 className="text-3xl">{t("heading")}</h5>
       <p className="text-justify mt-4">
-        Thank you for choosing Bumrungrad Discover as your trusted source for
-        healthcare guidance and travel assistance. These Terms and Conditions
-        serve to guide your journey on our website and outline the terms of
-        engagement with our services. By accessing or utilizing our{" "}
+        {t("introBefore")}{" "}
         <Link
           className="font-semibold text-blue underline"
           href="https://discoverinternationalmedicalservice.com/"
         >
-          Bumrungrad International Hospital
+          {t("introLinkText")}
         </Link>{" "}
-        , you affirm your understanding and acceptance of these Terms and
-        Conditions along with our Privacy Policy. Should any aspect of these
-        terms not align with your expectations, we kindly ask that you refrain
-        from using our website or services.
+        {t("introAfter")}
       </p>
-      <h5 className="text-3xl mt-8">Use of Services</h5>
+      <h5 className="text-3xl mt-8">{t("useOfServicesHeading")}</h5>
       <p className="text-justify mt-4">
-        Medical Services: Bumrungrad Discover serves as the official referral
-        office of Bangladesh for Bumrungrad International Hospital. We provide
-        guidance and assistance in accessing the best healthcare{" "}
+        {t("useOfServicesBefore")}{" "}
         <Link
           className="font-semibold text-blue underline"
           href="https://discoverinternationalmedicalservice.com/our-services"
         >
-          Our Service
+          {t("ourServiceLinkText")}
         </Link>{" "}
-        in Thailand, particularly in Bangkok. Travel Assistance: In addition to
-        medical services, we offer travel guides and assistance for visa
-        processing, air tickets, air ambulance services, airport pickups, and
-        accommodations related to healthcare treatment in Bangkok. Appointment
-        Scheduling: We facilitate doctor appointments at Bumrungrad
-        International Hospital and assist in ordering medications and arranging
-        telemedicine consultations.
+        {t("useOfServicesAfter")}
       </p>
-      <h5 className="text-3xl mt-8">User Responsibilities</h5>
+      <h5 className="text-3xl mt-8">{t("userResponsibilitiesHeading")}</h5>
       <p className="text-justify mt-4">
-        Accuracy of Information: You agree to provide accurate and complete
-        information when using our services, particularly when scheduling
-        medical appointments or making travel arrangements. Compliance with
-        Laws: You agree to comply with all applicable laws and regulations when
-        using our website and services, including but not limited to healthcare
-        and travel regulations.
+        {t("userResponsibilitiesText")}
       </p>
-      <h5 className="text-3xl mt-8">Payment and Fees</h5>
+      <h5 className="text-3xl mt-8">{t("paymentHeading")}</h5>
       <p className="text-justify mt-4">
-        Payment Obligations: Some of our services may require payment, and you
-        agree to pay any applicable fees in a timely manner. Currency and
-        Pricing: All prices and fees are listed in US dollars (USD) unless
-        otherwise specified. We reserve the right to change pricing at any time
-        without prior notice. Contact our representative to know the any
+        {t("paymentTextBefore")}
         <Link
           className="font-semibold text-blue underline ml-2"
           href="https://discoverinternationalmedicalservice.com/packages"
         >
-          Packages
+          {t("packagesLinkText")}
         </Link>{" "}
-        price.
+        {t("paymentTextAfter")}
       </p>
-      <h5 className="text-3xl mt-8">Intellectual Property</h5>
+      <h5 className="text-3xl mt-8">{t("ipHeading")}</h5>
       <p className="text-justify mt-4">
-        Ownership: All content and materials on our website, including but not
-        limited to text, images, logos, and trademarks, are the property of
-        Bumrungrad Discover or its licensors and are protected by copyright and
-        other intellectual property laws. Use Restrictions: You may not
-        reproduce, distribute, modify, or otherwise use any content from our
-        website without our prior written consent.
+        {t("ipText")}
       </p>
-      <h5 className="text-3xl mt-8">Limitation of Liability</h5>
+      <h5 className="text-3xl mt-8">{t("liabilityHeading")}</h5>
       <p className="text-justify mt-4">
-        Disclaimer: Bumrungrad Discover provides information and assistance
-        services for healthcare, medical advice and travel purposes only. We do
-        not provide diagnosis or treatment. No Warranty: We make no warranties
-        or representations about the accuracy or reliability of the information
-        provided on our website.
+        {t("liabilityText")}
       </p>
-      <h5 className="text-3xl mt-8">Indemnification</h5>
+      <h5 className="text-3xl mt-8">{t("indemnificationHeading")}</h5>
       <p className="text-justify mt-4">
-        You agree to indemnify and hold Bumrungrad Discover and its affiliates,
-        officers, directors, employees, and agents harmless from any claims,
-        damages, liabilities, and expenses arising out of your use of our
-        website or services.
+        {t("indemnificationText")}
       </p>
-      <h5 className="text-3xl mt-8">Governing Law</h5>
+      <h5 className="text-3xl mt-8">{t("governingLawHeading")}</h5>
       <p className="text-justify mt-4">
-        These Terms and Conditions shall be governed by and construed in
-        accordance with the laws of Bangladesh. Any disputes arising under these
-        terms shall be subject to the exclusive jurisdiction of the courts in
-        Bangladesh.
+        {t("governingLawText")}
       </p>
 
-      <h5 className="text-3xl mt-8">Contact Us</h5>
+      <h5 className="text-3xl mt-8">{t("contactHeading")}</h5>
       <p className="text-justify mt-4">
-        If you have any questions or concerns about these Terms and Conditions,
-        please{" "}
+        {t("contactTextBefore")}{" "}
         <Link
           className="font-semibold text-blue underline ml-2"
           href="https://discoverinternationalmedicalservice.com/contact-us"
         >
-          Contact
+          {t("contactLinkText")}
         </Link>{" "}
-        us at{" "}
+        {t("contactTextAfter")}{" "}
         <span className="text-blue font-bold">
           support@discoverinternationalmedicalservice.com
         </span>

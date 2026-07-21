@@ -1,0 +1,23 @@
+{
+  "landing": {
+    "eyebrow": "24/7 Emergency Transport",
+    "heading": "Air Ambulance Emergency Service",
+    "intro": "Fast, coordinated air ambulance transport to Bumrungrad International Hospital, dispatched through our dedicated Dhaka and Chattogram operation hubs.",
+    "hubsHeading": "Our Emergency Deployment Hubs",
+    "emergencyHub": "Emergency Hub",
+    "districtOperationLine": "{city} District Operation Line",
+    "hubFallback": "Hub details for {city} are being finalized and will appear here shortly.",
+    "requestHeading": "Request Emergency Transport",
+    "requestText": "Fill out the form below with your travel details and a member of our emergency coordination team will reach out to you shortly to confirm your air ambulance transport."
+  },
+  "form": {
+    "enterDate": "Enter Date",
+    "attachPassport": "Attach Your Passport Copy",
+    "uploadCaseSummary": "Upload Case Summary",
+    "writeInBrief": "Write In Brifley",
+    "submit": "Submit",
+    "successToast": "We have received your request. Our representative will reach you shortly!",
+    "errorToastMailFailed": "Something went wrong. Mail not sent. Please try again later.",
+    "errorToast": "Something went wrong. Please try again later."
+  }
+}

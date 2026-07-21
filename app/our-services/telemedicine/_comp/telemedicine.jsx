@@ -10,6 +10,7 @@ import { admin_mails } from "@/constant";
 import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { formatKeys } from "@/helpers/objectKeyFormat";
+import { useTranslations } from "next-intl";
 
 // Builds one selectable slot per schedule row a doctor has, e.g.
 // "Monday - Morning (09:00 - 12:00)". Doctors with no schedule rows
@@ -29,6 +30,8 @@ const buildTimeSlots = (doctor) => {
 };
 
 const TeleMedicine = () => {
+    const t = useTranslations("common");
+    const tPage = useTranslations("ourServices.telemedicine");
     const { auth } = useAuth();
     const [loader, setLoader] = useState(false);
     const [doctors, setDoctors] = useState([]);
@@ -128,7 +131,7 @@ const TeleMedicine = () => {
 
             if (send_mail_on_admin?.messageId && send_client_email?.messageId) {
                 toast.success(
-                    "We have received your request. Our representative will reach you shortly!",
+                    t("successToast"),
                     {
                         position: "top-center",
                         style: { borderRadius: "20px" },
@@ -143,31 +146,31 @@ const TeleMedicine = () => {
             const errorMessage =
                 jsonresponse?.errors &&
                 Object.values(jsonresponse.errors).flat()[0];
-            toast.error(errorMessage || "Something went wrong");
+            toast.error(errorMessage || t("errorToast"));
         }
     };
 
     return (
         <section className='md:container lg:w-1/2 md:mx-auto md:my-20 shadow rounded-xl'>
             <h1 className='text-xl md:text-2xl lg:text-3xl font-semibold text-blue my-5 text-center'>
-                Tele Medicine
+                {tPage("heading")}
             </h1>
             <form onSubmit={handleSubmit} className='px-5 md:px-10 lg:px-16 pb-24'>
                 <Divider className='my-2.5' />
                 <section className='grid md:grid-cols-2 gap-2.5'>
                     <div>
-                        <p className='mb-2 font-semibold text-sm'>Full Name</p>
+                        <p className='mb-2 font-semibold text-sm'>{tPage("fullName")}</p>
                         <TextField
                             type='text'
                             value={fullName}
-                            placeholder='Same As In Passport'
+                            placeholder={tPage("fullNamePlaceholder")}
                             onChange={(e) => setFullName(e.target.value)}
                             fullWidth
                             required
                         />
                     </div>
                     <div>
-                        <p className='mb-2 font-semibold text-sm'>Date of Birth</p>
+                        <p className='mb-2 font-semibold text-sm'>{tPage("dob")}</p>
                         <TextField
                             type='date'
                             value={birthDate}
@@ -178,12 +181,12 @@ const TeleMedicine = () => {
                     </div>
                     <div>
                         <p className='mb-2 font-semibold text-sm'>
-                            Patient Onboarding Verification
+                            {tPage("onboarding")}
                         </p>
                         <div className='flex gap-2' role='radiogroup' aria-label='Patient type'>
                             {[
-                                { value: "new", label: "New Patient" },
-                                { value: "returning", label: "Returning Patient" },
+                                { value: "new", label: tPage("newPatient") },
+                                { value: "returning", label: tPage("returningPatient") },
                             ].map((opt) => (
                                 <button
                                     key={opt.value}
@@ -202,7 +205,7 @@ const TeleMedicine = () => {
                         </div>
                     </div>
                     <div>
-                        <p className='mb-2 font-semibold text-sm'>Target Doctor</p>
+                        <p className='mb-2 font-semibold text-sm'>{tPage("targetDoctor")}</p>
                         <TextField
                             select
                             value={preferredDoctor}
@@ -213,8 +216,8 @@ const TeleMedicine = () => {
                         >
                             <MenuItem value='' disabled>
                                 {doctors.length
-                                    ? "Select a doctor"
-                                    : "No doctors with active schedules"}
+                                    ? tPage("selectDoctor")
+                                    : tPage("noDoctors")}
                             </MenuItem>
                             {doctors.map((d) => (
                                 <MenuItem key={d.id} value={d.name}>
@@ -225,7 +228,7 @@ const TeleMedicine = () => {
                     </div>
                     <div>
                         <p className='mb-2 font-semibold text-sm'>
-                            Preferred Booking Time Slot
+                            {tPage("preferredTimeSlot")}
                         </p>
                         <TextField
                             select
@@ -238,8 +241,8 @@ const TeleMedicine = () => {
                         >
                             <MenuItem value='' disabled>
                                 {preferredDoctor
-                                    ? "Select a time slot"
-                                    : "Select a doctor first"}
+                                    ? tPage("selectTimeSlot")
+                                    : tPage("selectDoctorFirst")}
                             </MenuItem>
                             {timeSlotOptions.map((slot) => (
                                 <MenuItem key={slot.value} value={slot.value}>
@@ -250,10 +253,10 @@ const TeleMedicine = () => {
                     </div>
                     <div>
                         <p className='mb-2 font-semibold text-sm'>
-                            WhatsApp Mobile Number
+                            {tPage("whatsappNumber")}
                         </p>
                         <TextField
-                            placeholder='e.g. +66 12 345 6789'
+                            placeholder={tPage("whatsappPlaceholder")}
                             value={contactDetails}
                             onChange={(e) => setContactDetails(e.target.value)}
                             fullWidth
@@ -262,10 +265,10 @@ const TeleMedicine = () => {
                     </div>
                     <div className='md:col-span-2'>
                         <p className='mb-2 font-semibold text-sm'>
-                            Narrative Medical Concern
+                            {tPage("narrativeConcern")}
                         </p>
                         <TextField
-                            placeholder='Describe your medical concern'
+                            placeholder={tPage("concernPlaceholder")}
                             value={specificConcern}
                             onChange={(e) => setSpecificConcern(e.target.value)}
                             fullWidth
@@ -291,7 +294,7 @@ const TeleMedicine = () => {
                             fill={loader ? "black" : "white"}
                         />
                     ) : (
-                        "Submit"
+                        t("submit")
                     )}
                 </button>
             </form>

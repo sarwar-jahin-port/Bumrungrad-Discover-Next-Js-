@@ -10,8 +10,10 @@ import "./test.css";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import { AiFillStar } from "react-icons/ai";
 import { FaQuoteLeft } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 export default function Testimonial() {
+  const t = useTranslations("home.testimonial");
   const [activeIndex, setActiveIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState(null); // Store the Swiper instance
   const [patientReviews, setPatientReviews] = useState([]);
@@ -40,7 +42,7 @@ export default function Testimonial() {
   return (
     <div className="px-2.5 py-10 mb-10 md:rounded-3xl md:container md:mx-auto">
       <h2 className="text-center text-2xl md:text-4xl font-semibold text-blue capitalize">
-        What our patients say
+        {t("heading")}
       </h2>
       {loader ? (
         <div className="mt-10 h-64 rounded-xl bg-cream animate-pulse" />
@@ -82,7 +84,7 @@ export default function Testimonial() {
                   </div>
                   <div className="text-sm sm:text-base lg:text-lg">
                     <p className="font-semibold">{d.patient_name}</p>
-                    {d.country && <p>From {d.country}</p>}
+                    {d.country && <p>{t("from")} {d.country}</p>}
                   </div>
                 </div>
               </SwiperSlide>

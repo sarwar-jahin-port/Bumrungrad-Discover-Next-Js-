@@ -1,0 +1,34 @@
+{
+  "viewAll": {
+    "heading": "Clinic & Centers: {count}",
+    "searchPlaceholder": "Search Clinic & Centers",
+    "seeMore": "See More",
+    "notFound": "No Package Found",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "singleCenter": {
+    "notFoundTitle": "Center Not Found",
+    "notFoundText": "We couldn't find the clinical center you're looking for. It may have been moved or is no longer available.",
+    "noImage": "No image available",
+    "hoursListed": "Hours listed below",
+    "directHotline": "Direct hotline available",
+    "requestAppointment": "Request an Appointment",
+    "overviewEyebrow": "Overview",
+    "aboutTitle": "About This Center",
+    "aboutEmpty": "More information about this center is coming soon.",
+    "scopeEyebrow": "Scope of Care",
+    "whatWeTreatTitle": "What We Treat",
+    "conditionsEmpty": "The list of conditions treated here is coming soon.",
+    "capabilitiesEyebrow": "Capabilities",
+    "diagnosticsTitle": "Diagnostics & Interventions",
+    "diagnosticsEmpty": "The list of diagnostics and interventions offered here is coming soon.",
+    "getStartedEyebrow": "Get Started",
+    "requestAtCenter": "Request an Appointment at This Center",
+    "visitUsEyebrow": "Visit Us",
+    "officeContactTitle": "Office Contact Details",
+    "operationalHours": "Operational Hours",
+    "chatWhatsapp": "Chat on WhatsApp",
+    "officeContactEmpty": "Direct office contact details are coming soon."
+  }
+}
