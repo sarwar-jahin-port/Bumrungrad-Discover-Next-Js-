@@ -21,7 +21,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import useAuth from "@/helpers/hooks/useAuth";
 import toast, { Toaster } from "react-hot-toast";
-import BookAppointmentModal from "@/components/shared/BookAppointmentModal";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
@@ -36,7 +35,6 @@ const Topbar = () => {
     const t = useTranslations("nav");
     const tHeader = useTranslations("header");
     const [open, setOpen] = useState(false);
-    const [appointmentOpen, setAppointmentOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState({
         status: false,
         index: "",
@@ -195,14 +193,14 @@ const Topbar = () => {
                             />
                         </a>
                     </div>
-                    <button
-                        onClick={() => setAppointmentOpen(true)}
+                    <Link
+                        href='/#book-appointment'
                         className='bg-blue text-white hover:opacity-90 duration-300 ease-linear rounded-full px-3 py-2 md:px-4 flex items-center gap-1.5 text-sm font-semibold whitespace-nowrap focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue'
                         aria-label={tHeader("bookAppointment")}
                     >
                         <CalendarMonthIcon sx={{ fontSize: "20px" }} />
                         <span className='hidden sm:inline'>{tHeader("bookAppointment")}</span>
-                    </button>
+                    </Link>
                     {/* Navbar Button  */}
                     <button
                         className='md:hidden z-50 shrink-0'
@@ -232,10 +230,16 @@ const Topbar = () => {
                         {menuItems.map((mi, i) => (
                             <li key={i} className='group relative'>
                                 <Link
-                                    className='font-semibold whitespace-nowrap'
+                                    className='font-semibold whitespace-nowrap flex items-center gap-0.5'
                                     href={mi?.link ? mi.link : "#"}
                                 >
                                     {t(mi.header)}
+                                    {(mi.childs || mi.megaColumns) && (
+                                        <ExpandMoreIcon
+                                            sx={{ fontSize: "18px" }}
+                                            className='transition-transform duration-200 ease-linear group-hover:rotate-180'
+                                        />
+                                    )}
                                 </Link>
                                 {mi.childs && renderChildDropdown(mi)}
                                 {mi.megaColumns && renderMegaMenu(mi)}
@@ -353,10 +357,6 @@ const Topbar = () => {
                     </ul>
                 )}
             </div>
-            <BookAppointmentModal
-                open={appointmentOpen}
-                onClose={() => setAppointmentOpen(false)}
-            />
         </nav>
     );
 };

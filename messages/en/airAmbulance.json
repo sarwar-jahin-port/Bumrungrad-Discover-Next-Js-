@@ -6,7 +6,7 @@
     "hubsHeading": "Our Emergency Deployment Hubs",
     "emergencyHub": "Emergency Hub",
     "districtOperationLine": "{city} District Operation Line",
-    "hubFallback": "Hub details for {city} are being finalized and will appear here shortly.",
+    "hubsEmpty": "Hub details are being finalized and will appear here shortly.",
     "requestHeading": "Request Emergency Transport",
     "requestText": "Fill out the form below with your travel details and a member of our emergency coordination team will reach out to you shortly to confirm your air ambulance transport."
   },

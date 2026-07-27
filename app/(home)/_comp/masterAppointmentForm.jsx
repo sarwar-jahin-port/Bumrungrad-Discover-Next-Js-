@@ -132,7 +132,7 @@ const MasterAppointmentForm = () => {
   };
 
   return (
-    <div className="mx-5 my-10 md:my-20 md:container md:mx-auto">
+    <div id="book-appointment" className="mx-5 my-10 md:my-20 md:container md:mx-auto scroll-mt-24">
       <h2 className="text-center text-2xl md:text-4xl font-semibold text-blue mb-3">
         {t("heading")}
       </h2>

@@ -6,7 +6,6 @@ import Landing from "./_comp/landing";
 import MediExpress from "./_comp/mediExpress";
 import MiddleBar from "./_comp/middlebar";
 import News from "./_comp/news";
-import OnlineConsultation from "./_comp/onlineConsultation";
 import RightHealthcare from "./_comp/rightHealthcare";
 import Testimonial from "./_comp/testimonial";
 import WhyUs from "./_comp/whyUs";
@@ -39,7 +38,7 @@ export default function Home() {
             </Head>
             <main>
                 <Landing />
-                <Disclaimer />
+                {/* <Disclaimer /> */}
                 <JourneyBetter />
                 <MediExpress />
                 <BookingModal />
@@ -47,8 +46,6 @@ export default function Home() {
                 <SpecificOffer />
                 <RightHealthcare />
                 <Packages />
-                
-                <OnlineConsultation />
                 <WhyUs />
                 <BumrungradAccrediation />
                 <PerformanceMetrics />

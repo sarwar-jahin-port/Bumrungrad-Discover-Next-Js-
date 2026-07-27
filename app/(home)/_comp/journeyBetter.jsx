@@ -28,14 +28,14 @@ export default function JourneyBetter() {
   }
   return (
     <div className="p-4 md:p-8 mx-5 md:container md:mx-auto flex flex-col gap-5 md:gap-10 items-center bg-cream rounded shadow mt-5">
-      <Image
+      {/* <Image
         height={150}
         width={1000}
         src={logo}
         effect="blur"
         alt="Bumrungrad International Hospital"
         className="max-sm:w-[300px] md:w-[350px] lg:w-[350px]"
-      />
+      /> */}
       <h2 className="text-xl md:text-2xl text-center font-semibold text-blue">
         {t("heading")}
       </h2>

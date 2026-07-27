@@ -10,7 +10,6 @@ import teleMedicine from "@/public/assets/service_logo/Bumrungrad  Hospital_tele
 import medicalRecords from "@/public/assets/service_logo/Bumrungrad  Hospital_medical_records.png";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import useAuth from "@/helpers/hooks/useAuth";
 import AirPickup from "../airPickup";
 import moneyTransfer from "@/public/assets/service_logo/bro4.png";
 import languageImage from "@/public/assets/service_logo/bro.png";
@@ -60,7 +59,6 @@ const InteractionBadge = ({ type, t }) => {
 };
 
 export default function Services({ handaleOpen, getData }) {
-  const { auth } = useAuth();
   const t = useTranslations("home.services");
   const path = usePathname();
   const router = useRouter();
@@ -76,11 +74,6 @@ export default function Services({ handaleOpen, getData }) {
       handaleOpen(id);
       getData(s);
       return;
-    }
-
-    // If the user is not authenticated, redirect to login
-    if (!auth) {
-      return router.push("/login");
     }
 
     // Default case: handle opening and data fetching

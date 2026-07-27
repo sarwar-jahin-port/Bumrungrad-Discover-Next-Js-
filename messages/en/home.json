@@ -8,7 +8,12 @@
     "submit": "Get Free Consultation",
     "submitting": "Submitting...",
     "confidential": "Your information stays confidential",
-    "heading": "Your Gateway to Advanced Healthcare",
+    "tagline": "Your Health, Our Priority",
+    "googleRating": "Google rating",
+    "googleReviews": "Google Reviews",
+    "happyPatients": "1,200+ Happy Patients",
+    "headingLine1": "Your Gateway to",
+    "headingLine2": "Advanced Healthcare",
     "bullet1": "Comprehensive Patient Care Assistance",
     "bullet2": "Specialized Ground Repositioning Support",
     "bullet3": "24/7 Dedicated Care Coordination Network",
@@ -196,16 +201,6 @@
         "description": "We simplify transferring funds for your medical treatment. Our process ensures your money reaches its destination quickly and securely, so you can focus on your care."
       }
     }
-  },
-  "onlineConsultation": {
-    "heading": "Schedule an online video consultation at Bumrungrad International Hospital",
-    "subtitle": "World-class medical care is just a click away. Consult Top doctors from home",
-    "items": [
-      { "title": "Cost-Effective", "desc": "Get top-notch medical care without breaking the bank—no need for expensive trips abroad when you can receive quality treatment right here at home." },
-      { "title": "Convenience", "desc": "Skip the hassle of traveling and waiting around. You can access expert healthcare quickly and easily, all from the comfort of your own country." },
-      { "title": "Immediate Connection", "desc": "Say goodbye to long wait times! Connect with specialized doctors right away, so you can get the care you need without delay." },
-      { "title": "Continuity of Care", "desc": "Stay in touch with your doctor throughout your entire healthcare journey, ensuring you’re well taken care of, even after treatment." }
-    ]
   },
   "whyUs": {
     "heading": "Why Choose Discover Bangladesh",

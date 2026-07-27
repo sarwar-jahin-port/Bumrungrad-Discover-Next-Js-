@@ -21,6 +21,7 @@ const MedicalRecords = () => {
   const [loader, setLoader] = useState();
   const [passport, setPassport] = useState("");
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [hnNum, setHnNum] = useState("");
   const [caseSummary, setCaseSummary] = useState("");
   const navigate = useRouter();
@@ -64,11 +65,11 @@ const MedicalRecords = () => {
         const uploadDoc = data?.passport ?  data?.passport : "Link not found"; ;
         
         setLoader(true);
-        const send_admin_mails = await sendEmails(admin_mails,`Medical Records - ${auth?.email}`, comapanyMailBody(formatKeys({name: auth?.firstName, email: auth?.email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
+        const send_admin_mails = await sendEmails(admin_mails,`Medical Records - ${email}`, comapanyMailBody(formatKeys({name: name, email: email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
         setLoader(false);
 
         setLoader(true);
-        const send_client_mails = await sendEmails(auth?.email,`Medical Records`, comapanyMailBody(formatKeys({name: auth?.firstName, email: auth?.email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
+        const send_client_mails = await sendEmails(email,`Medical Records`, comapanyMailBody(formatKeys({name: name, email: email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
         setLoader(false);
 
         if (send_admin_mails.messageId && send_client_mails.messageId) {
@@ -108,6 +109,7 @@ const MedicalRecords = () => {
   useEffect(()=>{
     if(userDetails){
       setName(`${userDetails?.firstName} ${userDetails?.lastName}` || "")
+      setEmail(userDetails?.email || "")
     }
   },[userDetails])
   return (
@@ -130,6 +132,18 @@ const MedicalRecords = () => {
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
                 value={name}
+              />
+            </div>
+            <div className="mt-2">
+              <p className="mb-2 font-semibold text-sm">
+                {" "}
+                <span className="text-red text-lg">*</span>{tPage("enterEmail")}
+              </p>
+              <TextField
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+                fullWidth
+                value={email}
               />
             </div>
             <div className="mt-2">
@@ -164,9 +178,9 @@ const MedicalRecords = () => {
             </div>
           </div>
           <button
-            disabled={loader || !name || !passport || !hnNum || !caseSummary}
+            disabled={loader || !name || !email || !passport || !hnNum || !caseSummary}
             type="submit"
-            className={`${loader || !name || !passport || !hnNum || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
+            className={`${loader || !name || !email || !passport || !hnNum || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
           >
            {
             loader ? <Loader className="animate-spin" stroke={loader ? "black" : "white"} fill={loader ? "black" : "white"} /> : t("submit")

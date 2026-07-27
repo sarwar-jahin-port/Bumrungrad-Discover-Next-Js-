@@ -8,90 +8,82 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PlaceIcon from "@mui/icons-material/Place";
 import { useTranslations } from "next-intl";
 
-const HUB_CITIES = ["Dhaka", "Chattogram"];
-
-const HubCard = ({ city, hub, t }) => (
+const HubCard = ({ hub, t }) => (
   <div className="flex flex-col gap-4 rounded-xl border border-ash/30 shadow-lg p-6 bg-white">
     <div>
       <p className="text-xs font-semibold uppercase tracking-wide text-gold">
         {t("emergencyHub")}
       </p>
       <h3 className="text-xl md:text-2xl font-bold text-blue">
-        {t("districtOperationLine", { city })}
+        {t("districtOperationLine", { city: hub.city })}
       </h3>
     </div>
 
-    {hub ? (
-      <div className="flex flex-col gap-3 text-sm md:text-base">
-        {(hub.office_name || hub.building || hub.floor_map || hub.address) && (
-          <div className="flex items-start gap-3">
-            <PlaceIcon className="text-blue mt-0.5" fontSize="small" />
-            <p>
-              {hub.office_name && <span className="font-semibold">{hub.office_name}. </span>}
-              {[hub.building, hub.floor_map, hub.address].filter(Boolean).join(", ")}
-            </p>
-          </div>
-        )}
+    <div className="flex flex-col gap-3 text-sm md:text-base">
+      {(hub.office_name || hub.building || hub.floor_map || hub.address) && (
+        <div className="flex items-start gap-3">
+          <PlaceIcon className="text-blue mt-0.5" fontSize="small" />
+          <p>
+            {hub.office_name && <span className="font-semibold">{hub.office_name}. </span>}
+            {[hub.building, hub.floor_map, hub.address].filter(Boolean).join(", ")}
+          </p>
+        </div>
+      )}
 
-        {(hub.phone1 || hub.phone2) && (
-          <div className="flex items-start gap-3">
-            <LocalPhoneIcon className="text-blue mt-0.5" fontSize="small" />
-            <p className="flex flex-col">
-              {hub.phone1 && (
-                <a href={`tel:${hub.phone1}`} className="hover:underline">
-                  {hub.phone1}
-                </a>
-              )}
-              {hub.phone2 && (
-                <a href={`tel:${hub.phone2}`} className="hover:underline">
-                  {hub.phone2}
-                </a>
-              )}
-            </p>
-          </div>
-        )}
+      {(hub.phone1 || hub.phone2) && (
+        <div className="flex items-start gap-3">
+          <LocalPhoneIcon className="text-blue mt-0.5" fontSize="small" />
+          <p className="flex flex-col">
+            {hub.phone1 && (
+              <a href={`tel:${hub.phone1}`} className="hover:underline">
+                {hub.phone1}
+              </a>
+            )}
+            {hub.phone2 && (
+              <a href={`tel:${hub.phone2}`} className="hover:underline">
+                {hub.phone2}
+              </a>
+            )}
+          </p>
+        </div>
+      )}
 
-        {hub.whatsapp_hotline && (
-          <div className="flex items-start gap-3">
-            <WhatsAppIcon className="text-green mt-0.5" fontSize="small" />
-            <a
-              href={`https://wa.me/${hub.whatsapp_hotline.replace(/[^0-9]/g, "")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
-              {hub.whatsapp_hotline}
-            </a>
-          </div>
-        )}
+      {hub.whatsapp_hotline && (
+        <div className="flex items-start gap-3">
+          <WhatsAppIcon className="text-green mt-0.5" fontSize="small" />
+          <a
+            href={`https://wa.me/${hub.whatsapp_hotline.replace(/[^0-9]/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            {hub.whatsapp_hotline}
+          </a>
+        </div>
+      )}
 
-        {hub.operational_hours && (
-          <div className="flex items-start gap-3">
-            <AccessTimeIcon className="text-blue mt-0.5" fontSize="small" />
-            <p>{hub.operational_hours}</p>
-          </div>
-        )}
+      {hub.operational_hours && (
+        <div className="flex items-start gap-3">
+          <AccessTimeIcon className="text-blue mt-0.5" fontSize="small" />
+          <p>{hub.operational_hours}</p>
+        </div>
+      )}
 
-        {hub.map_embed_url && (
-          <div className="mt-2 h-[220px] rounded-lg overflow-hidden">
-            <iframe
-              src={hub.map_embed_url}
-              title={`${city} hub map`}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
-        )}
-      </div>
-    ) : (
-      <p className="text-sm text-black/60">
-        {t("hubFallback", { city })}
-      </p>
-    )}
+      {hub.map_embed_url && (
+        <div className="mt-2 h-[220px] rounded-lg overflow-hidden">
+          <iframe
+            src={hub.map_embed_url}
+            title={`${hub.city} hub map`}
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      )}
+    </div>
   </div>
 );
 
@@ -133,14 +125,16 @@ const AirAmbulanceLanding = () => {
 
         {loader ? (
           <div className="grid md:grid-cols-2 gap-6">
-            {HUB_CITIES.map((city) => (
-              <div key={city} className="h-64 rounded-xl bg-cream animate-pulse" />
+            {[0, 1].map((i) => (
+              <div key={i} className="h-64 rounded-xl bg-cream animate-pulse" />
             ))}
           </div>
+        ) : hubs.length === 0 ? (
+          <p className="text-sm text-black/60">{t("hubsEmpty")}</p>
         ) : (
           <div className="grid md:grid-cols-2 gap-6">
-            {HUB_CITIES.map((city) => (
-              <HubCard key={city} city={city} hub={hubs.find((h) => h.city === city)} t={t} />
+            {hubs.map((hub) => (
+              <HubCard key={hub.id} hub={hub} t={t} />
             ))}
           </div>
         )}

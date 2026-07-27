@@ -149,6 +149,7 @@
   "medicalRecords": {
     "heading": "মেডিকেল রেকর্ড",
     "enterName": "আপনার নাম লিখুন",
+    "enterEmail": "আপনার ইমেইল লিখুন",
     "attachPassport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন",
     "hnNumber": "HN নম্বর",
     "reportDetails": "রিপোর্টের বিস্তারিত",

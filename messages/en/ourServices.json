@@ -149,6 +149,7 @@
   "medicalRecords": {
     "heading": "Medical Records",
     "enterName": "Enter Your Name",
+    "enterEmail": "Enter Your Email",
     "attachPassport": "Attach Your Passport Copy",
     "hnNumber": "HN Number",
     "reportDetails": "Report Details",
