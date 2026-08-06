@@ -1,95 +1,151 @@
-﻿"use client";
+"use client";
 
 import React, { useState } from "react";
-import personImg from "@/public/assets/Bumrungrad  Hospital_Abdus Samad.jpg";
-import visaImg from "@/public/assets/service_logo/Bumrungrad  Hospital_visa_processing.png";
-import PersonIcon from "@mui/icons-material/Person";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { FormControl, MenuItem, Select } from "@mui/material";
-import Image from "next/image";
-import { countries } from "@/public/data/country";
-import UnifiedInboundForm from "@/components/shared/UnifiedInboundForm";
+import { Divider, TextField } from "@mui/material";
+import toast from "react-hot-toast";
+import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 const VisaProcessing = () => {
-    const t = useTranslations("ourServices.visaProcessing");
-    const [country, setCountry] = useState("");
+    const t = useTranslations("common");
+    const tPage = useTranslations("ourServices.visaProcessing");
+    const navigate = useRouter();
+    const [loader, setLoader] = useState(false);
+
+    const [fullName, setFullName] = useState("");
+    const [whatsapp, setWhatsapp] = useState("");
+    const [specificConcern, setSpecificConcern] = useState("");
+    const [passport, setPassport] = useState("");
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const form = event.target;
+
+        const formData = new FormData();
+        formData.append("fullName", fullName);
+        formData.append("whatsapp", whatsapp);
+        formData.append("specificConcern", specificConcern);
+        formData.append("passport", passport);
+
+        setLoader(true);
+        try {
+            const token = localStorage.getItem("Access_Token");
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/add/visa/precessing",
+                {
+                    method: "POST",
+                    headers: {
+                        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+                    },
+                    body: formData,
+                },
+            );
+
+            const jsonresponse = await response.json();
+            setLoader(false);
+
+            if (jsonresponse.status === 200) {
+                toast.success(
+                    t("successToast"),
+                    {
+                        position: "top-center",
+                        style: { borderRadius: "20px" },
+                        duration: 5000,
+                    },
+                );
+                form.reset();
+                navigate.push("/");
+            } else {
+                const errorMessage =
+                    jsonresponse?.errors &&
+                    Object.values(jsonresponse.errors).flat()[0];
+                toast.error(errorMessage || t("errorToast"));
+            }
+        } catch (err) {
+            setLoader(false);
+            toast.error(t("errorToast"));
+        }
+    };
 
     return (
-        <>
-            <section className='mx-5 md:container md:mx-auto pb-10'>
-                <h1 className='text-xl md:text-2xl lg:text-3xl font-semibold text-blue my-5 text-center'>
-                    {t("heading")}
-                </h1>
-                {/* second card  */}
-                <section className=''>
-                    <p className='my-5 text-xl text-blue font-semibold'>
-                        {t("whereAreYouFrom")}
-                    </p>
-                    <FormControl fullWidth className='md:!w-1/2'>
-                        <p className='my-2.5'>{t("selectCountry")}</p>
-                        <Select
-                            labelId='demo-simple-select-label'
-                            id='demo-simple-select'
-                            value={country ? country : country}
-                            onChange={(e) => setCountry(e.target.value)}
-                        >
-                            {countries.map((c, i) => (
-                                <MenuItem key={i} value={c}>
-                                    {c}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+        <section className='md:container lg:w-1/2 md:mx-auto md:my-20 shadow rounded-xl'>
+            <h1 className='text-xl md:text-2xl lg:text-3xl font-semibold text-blue my-5 text-center'>
+                {tPage("heading")}
+            </h1>
+            <form onSubmit={handleSubmit} className='px-5 md:px-10 lg:px-16 pb-24'>
+                <Divider className='my-2.5' />
+                <section className='grid md:grid-cols-2 gap-2.5'>
+                    <div>
+                        <p className='mb-2 font-semibold text-sm'>{tPage("fullName")}</p>
+                        <TextField
+                            type='text'
+                            value={fullName}
+                            placeholder={tPage("fullNamePlaceholder")}
+                            onChange={(e) => setFullName(e.target.value)}
+                            fullWidth
+                            required
+                        />
+                    </div>
+                    <div>
+                        <p className='mb-2 font-semibold text-sm'>
+                            {tPage("whatsappNumber")}
+                        </p>
+                        <TextField
+                            placeholder={tPage("whatsappPlaceholder")}
+                            value={whatsapp}
+                            onChange={(e) => setWhatsapp(e.target.value)}
+                            fullWidth
+                            required
+                        />
+                    </div>
+                    <div className='md:col-span-2'>
+                        <p className='mb-2 font-semibold text-sm'>
+                            {tPage("narrativeConcern")}
+                        </p>
+                        <TextField
+                            placeholder={tPage("concernPlaceholder")}
+                            value={specificConcern}
+                            onChange={(e) => setSpecificConcern(e.target.value)}
+                            fullWidth
+                            required
+                            multiline
+                            minRows={4}
+                        />
+                    </div>
+                    <div className='md:col-span-2'>
+                        <p className='mb-2 font-semibold text-sm'>
+                            {tPage("passport")}
+                        </p>
+                        <TextField
+                            type='file'
+                            onChange={(e) => setPassport(e.target.files[0])}
+                            fullWidth
+                            required
+                        />
+                    </div>
                 </section>
-                {country === "Bangladesh" ? (
-                    <section className='flex flex-col justify-center items-center py-5 gap-4 shadow rounded md:w-1/2'>
-                        <div className='mb-2'>
-                            <Image
-                                height={300}
-                                width={500}
-                                src={personImg}
-                                alt='Bumrungrad International Hospital'
-                                className='w-[100px] h-[100px] rounded-full mx-auto my-0'
-                            />
-                        </div>
-                        <div>
-                            <div className='flex items-center gap-2'>
-                                <PersonIcon className='text-blue' />
-                                <p className='text-center text-xl font-semibold'>
-                                    Abdus Samad
-                                </p>
-                            </div>
-
-                            <a
-                                href='http://wa.me/+8801847284867'
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                alt='Bumrungrad Hospital'
-                            >
-                                <div className='flex items-center justify-center gap-2 mt-2'>
-                                    <WhatsAppIcon className='text-green' />
-                                    <p className='text-xl font-semibold'>
-                                        01847284867
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
-                ) : (
-                    country && (
-                        <section className='py-5 md:w-2/3'>
-                            <UnifiedInboundForm
-                                image={visaImg}
-                                imageAlt='Medical Visa Processing'
-                                endpoint='http://127.0.0.1:8000/api/add/visa/precessing'
-                                requireAuth
-                            />
-                        </section>
-                    )
-                )}
-            </section>
-        </>
+                <button
+                    disabled={loader}
+                    type='submit'
+                    className={`mt-6 ${
+                        loader
+                            ? "bg-white text-black border"
+                            : "bg-blue text-white border-blue"
+                    } btn_primary`}
+                >
+                    {loader ? (
+                        <Loader
+                            className='animate-spin'
+                            stroke={loader ? "black" : "white"}
+                            fill={loader ? "black" : "white"}
+                        />
+                    ) : (
+                        t("submit")
+                    )}
+                </button>
+            </form>
+        </section>
     );
 };
 

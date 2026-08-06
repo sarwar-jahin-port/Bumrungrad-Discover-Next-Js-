@@ -165,7 +165,7 @@
         "description": "Experience expert medical consultations from Bumrungrad Hospital through our telemedicine service. We make connecting with top doctors easy and accessible from home."
       },
       "medicalConsultancy": {
-        "name": "Medical Consultancy",
+        "name": "Medical Treatment",
         "description": "Specialized evaluation support from our clinical team to help guide your treatment options before you commit to a plan."
       },
       "airAmbulance": {

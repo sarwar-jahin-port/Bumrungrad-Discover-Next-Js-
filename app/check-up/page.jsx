@@ -4,11 +4,7 @@ import React, { useEffect, useState } from "react";
 import { TextField, FormControl, MenuItem, Select } from "@mui/material";
 import { useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
-import { sendEmails } from "@/helpers/mail/sendMail";
-import { admin_mails } from "@/constant";
 import toast from "react-hot-toast";
-import { comapanyMailBody } from "@/helpers/mail/mailbody";
-import { formatKeys } from "@/helpers/objectKeyFormat";
 import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
 
@@ -155,40 +151,15 @@ export default function CheckUp() {
 
             const data = await response.json();
 
-            const _passport = data?.passport ? data?.passport : "No Passport File Provided";
-            const _other_doc = data?.other_doc ? data?.other_doc : "No Other File Provided";
-
             if (data.status === 200) {
-                // toast.success("Check Up Request Placed");
-
-                setLoader(true);
-                const mailResponse = await sendEmails(
-                    admin_mails,
-                    "Check Up Request Placed",
-                    comapanyMailBody(formatKeys({...fields,passport: _passport, other_doc: _other_doc}), "Check Up Request Placed"),
-                );
-                setLoader(false);
-
-                setLoader(true);
-                const clientMailResponse = await sendEmails(
-                    fields.email,
-                    "Check Up Request Placed",
-                    comapanyMailBody(formatKeys({...fields,passport: _passport, other_doc: _other_doc}), "Check Up Request Placed"),
-                );
-                setLoader(false);
-
-                if (mailResponse.messageId && clientMailResponse.messageId) {
-                    toast.success(t("successToast"), {
-                        duration: 4000,
-                        style: {
-                            padding: "20px",
-                            color: "green",
-                        },
-                    });
-                    navigate.push("/");
-                } else {
-                    toast.error(t("errorToastMailFailed"));
-                }
+                toast.success(t("successToast"), {
+                    duration: 4000,
+                    style: {
+                        padding: "20px",
+                        color: "green",
+                    },
+                });
+                navigate.push("/");
             } else {
                 setLoader(false);
                 toast.error(t("errorToast"));

@@ -1,7 +1,6 @@
 import Head from "next/head";
 import ClinicCenters from "./_comp/clinicalCenter";
 import Disclaimer from "./_comp/disclaimer";
-import JourneyBetter from "./_comp/journeyBetter";
 import Landing from "./_comp/landing";
 import MediExpress from "./_comp/mediExpress";
 import MiddleBar from "./_comp/middlebar";
@@ -39,7 +38,6 @@ export default function Home() {
             <main>
                 <Landing />
                 {/* <Disclaimer /> */}
-                <JourneyBetter />
                 <MediExpress />
                 <BookingModal />
                 <ClinicCenters />

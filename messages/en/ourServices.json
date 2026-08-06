@@ -1,7 +1,9 @@
 {
   "unifiedForm": {
     "fullNamePlaceholder": "Enter your full name",
-    "whatsappPlaceholder": "e.g. +66 12 345 6789"
+    "whatsappPlaceholder": "e.g. +66 12 345 6789",
+    "concernLabel": "Your Concern",
+    "concernPlaceholder": "Tell us what you need help with"
   },
   "airPickup": {
     "appointmentFile": "Patient Appointment File",
@@ -143,15 +145,20 @@
   },
   "visaProcessing": {
     "heading": "Process Your Visa",
-    "whereAreYouFrom": "Where are you from?",
-    "selectCountry": "Select Country(Required)"
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Same As In Passport",
+    "whatsappNumber": "WhatsApp Mobile Number",
+    "whatsappPlaceholder": "e.g. +66 12 345 6789",
+    "narrativeConcern": "Visa Concern",
+    "concernPlaceholder": "Describe your visa concern",
+    "passport": "Attach Your Passport Copy"
   },
   "medicalRecords": {
     "heading": "Medical Records",
     "enterName": "Enter Your Name",
-    "enterEmail": "Enter Your Email",
+    "enterWhatsapp": "Enter Your WhatsApp Number",
     "attachPassport": "Attach Your Passport Copy",
-    "hnNumber": "HN Number",
+    "hnNumber": "HN Number (optional)",
     "reportDetails": "Report Details",
     "errorToast": "Something went wrong - Mail not sent"
   },
@@ -163,15 +170,53 @@
     "onboarding": "Patient Onboarding Verification",
     "newPatient": "New Patient",
     "returningPatient": "Returning Patient",
-    "targetDoctor": "Target Doctor",
-    "selectDoctor": "Select a doctor",
-    "noDoctors": "No doctors with active schedules",
-    "preferredTimeSlot": "Preferred Booking Time Slot",
-    "selectTimeSlot": "Select a time slot",
-    "selectDoctorFirst": "Select a doctor first",
     "whatsappNumber": "WhatsApp Mobile Number",
     "whatsappPlaceholder": "e.g. +66 12 345 6789",
     "narrativeConcern": "Narrative Medical Concern",
-    "concernPlaceholder": "Describe your medical concern"
+    "concernPlaceholder": "Describe your medical concern",
+    "passport": "Attach Your Passport Copy"
+  },
+  "medicalTreatment": {
+    "heading": "Medical Treatment",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Same As In Passport",
+    "dob": "Date of Birth",
+    "onboarding": "Patient Onboarding Verification",
+    "newPatient": "New Patient",
+    "returningPatient": "Returning Patient",
+    "whatsappNumber": "WhatsApp Mobile Number",
+    "whatsappPlaceholder": "e.g. +66 12 345 6789",
+    "narrativeConcern": "Narrative Medical Concern",
+    "concernPlaceholder": "Describe your medical concern",
+    "passport": "Attach Your Passport Copy"
+  },
+  "airTicketPage": {
+    "heading": "Air Ticket Procurement"
+  },
+  "airportTransferPage": {
+    "heading": "Airport Pick & Drop"
+  },
+  "accommodationPage": {
+    "heading": "Hotel or Apartment Booking"
+  },
+  "languageInterpreterPage": {
+    "heading": "Language Interpreter"
+  },
+  "fundTransferPage": {
+    "heading": "Treatment Fund Transfer Support"
+  },
+  "directAdmission": {
+    "heading": "Direct Admission",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Same As In Passport",
+    "dob": "Date of Birth",
+    "onboarding": "Patient Onboarding Verification",
+    "newPatient": "New Patient",
+    "returningPatient": "Returning Patient",
+    "whatsappNumber": "WhatsApp Mobile Number",
+    "whatsappPlaceholder": "e.g. +66 12 345 6789",
+    "narrativeConcern": "Medical Concern",
+    "concernPlaceholder": "Describe your medical concern",
+    "passport": "Attach Your Passport Copy"
   }
 }

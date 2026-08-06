@@ -1,11 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye'
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
-const SinglePackage = async ({p}) => {
-  const t = await getTranslations("home.packages");
+const SinglePackage = ({p}) => {
+  const t = useTranslations("home.packages");
   return (
     <div className="flex flex-col justify-between  gap-2 shadow">
       {

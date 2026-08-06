@@ -1,7 +1,9 @@
 {
   "unifiedForm": {
     "fullNamePlaceholder": "আপনার পূর্ণ নাম লিখুন",
-    "whatsappPlaceholder": "যেমন +66 12 345 6789"
+    "whatsappPlaceholder": "যেমন +66 12 345 6789",
+    "concernLabel": "আপনার সমস্যা",
+    "concernPlaceholder": "আপনার কী সহায়তা প্রয়োজন তা জানান"
   },
   "airPickup": {
     "appointmentFile": "রোগীর অ্যাপয়েন্টমেন্ট ফাইল",
@@ -143,15 +145,20 @@
   },
   "visaProcessing": {
     "heading": "আপনার ভিসা প্রসেস করুন",
-    "whereAreYouFrom": "আপনি কোথা থেকে এসেছেন?",
-    "selectCountry": "দেশ নির্বাচন করুন (আবশ্যক)"
+    "fullName": "পূর্ণ নাম",
+    "fullNamePlaceholder": "পাসপোর্টে যেমন আছে তেমন",
+    "whatsappNumber": "হোয়াটসঅ্যাপ মোবাইল নম্বর",
+    "whatsappPlaceholder": "যেমন +66 12 345 6789",
+    "narrativeConcern": "ভিসা সংক্রান্ত সমস্যা",
+    "concernPlaceholder": "আপনার ভিসা সংক্রান্ত সমস্যা বর্ণনা করুন",
+    "passport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন"
   },
   "medicalRecords": {
     "heading": "মেডিকেল রেকর্ড",
     "enterName": "আপনার নাম লিখুন",
-    "enterEmail": "আপনার ইমেইল লিখুন",
+    "enterWhatsapp": "আপনার হোয়াটসঅ্যাপ নম্বর লিখুন",
     "attachPassport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন",
-    "hnNumber": "HN নম্বর",
+    "hnNumber": "HN নম্বর (ঐচ্ছিক)",
     "reportDetails": "রিপোর্টের বিস্তারিত",
     "errorToast": "কিছু একটা সমস্যা হয়েছে - মেইল পাঠানো যায়নি"
   },
@@ -163,15 +170,53 @@
     "onboarding": "রোগী অনবোর্ডিং যাচাইকরণ",
     "newPatient": "নতুন রোগী",
     "returningPatient": "পুনরাগত রোগী",
-    "targetDoctor": "কাঙ্ক্ষিত ডাক্তার",
-    "selectDoctor": "একজন ডাক্তার নির্বাচন করুন",
-    "noDoctors": "সক্রিয় সময়সূচীসহ কোনো ডাক্তার নেই",
-    "preferredTimeSlot": "পছন্দের বুকিং সময়",
-    "selectTimeSlot": "একটি সময় নির্বাচন করুন",
-    "selectDoctorFirst": "প্রথমে একজন ডাক্তার নির্বাচন করুন",
     "whatsappNumber": "হোয়াটসঅ্যাপ মোবাইল নম্বর",
     "whatsappPlaceholder": "যেমন +66 12 345 6789",
     "narrativeConcern": "বিস্তারিত চিকিৎসা সমস্যা",
-    "concernPlaceholder": "আপনার চিকিৎসা সমস্যা বর্ণনা করুন"
+    "concernPlaceholder": "আপনার চিকিৎসা সমস্যা বর্ণনা করুন",
+    "passport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন"
+  },
+  "medicalTreatment": {
+    "heading": "মেডিকেল ট্রিটমেন্ট",
+    "fullName": "পূর্ণ নাম",
+    "fullNamePlaceholder": "পাসপোর্টে যেমন আছে তেমন",
+    "dob": "জন্ম তারিখ",
+    "onboarding": "রোগী অনবোর্ডিং যাচাইকরণ",
+    "newPatient": "নতুন রোগী",
+    "returningPatient": "পুনরাগত রোগী",
+    "whatsappNumber": "হোয়াটসঅ্যাপ মোবাইল নম্বর",
+    "whatsappPlaceholder": "যেমন +66 12 345 6789",
+    "narrativeConcern": "বিস্তারিত চিকিৎসা সমস্যা",
+    "concernPlaceholder": "আপনার চিকিৎসা সমস্যা বর্ণনা করুন",
+    "passport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন"
+  },
+  "airTicketPage": {
+    "heading": "বিমান টিকিট সংগ্রহ"
+  },
+  "airportTransferPage": {
+    "heading": "বিমানবন্দর পিক ও ড্রপ"
+  },
+  "accommodationPage": {
+    "heading": "হোটেল বা অ্যাপার্টমেন্ট বুকিং"
+  },
+  "languageInterpreterPage": {
+    "heading": "ভাষা দোভাষী"
+  },
+  "fundTransferPage": {
+    "heading": "চিকিৎসা তহবিল স্থানান্তর সহায়তা"
+  },
+  "directAdmission": {
+    "heading": "সরাসরি ভর্তি",
+    "fullName": "পূর্ণ নাম",
+    "fullNamePlaceholder": "পাসপোর্টে যেমন আছে তেমন",
+    "dob": "জন্ম তারিখ",
+    "onboarding": "রোগী অনবোর্ডিং যাচাইকরণ",
+    "newPatient": "নতুন রোগী",
+    "returningPatient": "পুনরাগত রোগী",
+    "whatsappNumber": "হোয়াটসঅ্যাপ মোবাইল নম্বর",
+    "whatsappPlaceholder": "যেমন +66 12 345 6789",
+    "narrativeConcern": "চিকিৎসা সংক্রান্ত সমস্যা",
+    "concernPlaceholder": "আপনার চিকিৎসা সমস্যা বর্ণনা করুন",
+    "passport": "আপনার পাসপোর্টের কপি সংযুক্ত করুন"
   }
 }

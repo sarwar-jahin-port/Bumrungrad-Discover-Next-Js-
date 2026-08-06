@@ -22,6 +22,7 @@ const UnifiedInboundForm = ({
     endpoint,
     fullNameField = "fullName",
     whatsappField = "whatsapp",
+    concernField,
     requireAuth = false,
     onSuccess,
 }) => {
@@ -29,6 +30,7 @@ const UnifiedInboundForm = ({
     const tForm = useTranslations("ourServices.unifiedForm");
     const [fullName, setFullName] = useState("");
     const [whatsapp, setWhatsapp] = useState("");
+    const [concern, setConcern] = useState("");
     const [loader, setLoader] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -48,6 +50,7 @@ const UnifiedInboundForm = ({
                 body: JSON.stringify({
                     [fullNameField]: fullName,
                     [whatsappField]: whatsapp,
+                    ...(concernField ? { [concernField]: concern } : {}),
                 }),
             });
             const data = await response.json();
@@ -63,6 +66,7 @@ const UnifiedInboundForm = ({
                 );
                 setFullName("");
                 setWhatsapp("");
+                setConcern("");
                 onSuccess?.(data);
             } else {
                 const errorMessage =
@@ -76,31 +80,35 @@ const UnifiedInboundForm = ({
         }
     };
 
+    const hasMedia = image || youtubeUrl;
+
     return (
-        <div className='grid md:grid-cols-2 gap-6 items-start'>
-            <div className='flex flex-col gap-3'>
-                {image && (
-                    <div className='relative w-full h-[180px] md:h-[220px] rounded overflow-hidden'>
-                        <Image
-                            src={image}
-                            alt={imageAlt}
-                            fill
-                            className='object-cover'
-                        />
-                    </div>
-                )}
-                {youtubeUrl && (
-                    <div className='relative w-full aspect-video rounded overflow-hidden'>
-                        <iframe
-                            src={youtubeUrl}
-                            title='Explainer video'
-                            className='w-full h-full'
-                            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                            allowFullScreen
-                        />
-                    </div>
-                )}
-            </div>
+        <div className={hasMedia ? 'grid md:grid-cols-2 gap-6 items-start' : ''}>
+            {hasMedia && (
+                <div className='flex flex-col gap-3'>
+                    {image && (
+                        <div className='relative w-full h-[180px] md:h-[220px] rounded overflow-hidden'>
+                            <Image
+                                src={image}
+                                alt={imageAlt}
+                                fill
+                                className='object-cover'
+                            />
+                        </div>
+                    )}
+                    {youtubeUrl && (
+                        <div className='relative w-full aspect-video rounded overflow-hidden'>
+                            <iframe
+                                src={youtubeUrl}
+                                title='Explainer video'
+                                className='w-full h-full'
+                                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                                allowFullScreen
+                            />
+                        </div>
+                    )}
+                </div>
+            )}
 
             <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <div>
@@ -125,6 +133,22 @@ const UnifiedInboundForm = ({
                         required
                     />
                 </div>
+                {concernField && (
+                    <div>
+                        <p className='mb-2 font-semibold text-sm'>
+                            {tForm("concernLabel")}
+                        </p>
+                        <TextField
+                            value={concern}
+                            onChange={(e) => setConcern(e.target.value)}
+                            placeholder={tForm("concernPlaceholder")}
+                            fullWidth
+                            required
+                            multiline
+                            minRows={3}
+                        />
+                    </div>
+                )}
                 <button
                     disabled={loader}
                     type='submit'

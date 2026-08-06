@@ -3,12 +3,10 @@
 import React, { useState } from "react";
 // import emailjs from '@emailjs/browser'
 import contactAnim from "@/public/assets/anim/contact.json";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import { TextField } from "@mui/material";
-import { sendEmails } from "@/helpers/mail/sendMail";
 import toast from "react-hot-toast";
-import { admin_mails } from "@/constant";
-import { userMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
 
@@ -28,19 +26,15 @@ export default function ContactForm() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await sendEmails(
-              admin_mails,
-                `Contact Us - ${formData.email}`,
-                userMailBody(formData, "Contact Us")
-            );
-            const sendClientMail = await sendEmails(
-                formData.email,
-                `Contact Us - ${formData.name}`,
-                userMailBody(formData, "Contact Us")
-            )
-
+            const response = await fetch("http://127.0.0.1:8000/api/add/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
             setLoading(false);
-            if (response.success == true && sendClientMail.success == true) {
+
+            if (data.status === 200) {
                 toast.success(t("successToast"), {
                     position: "top-center",
                     style: { borderRadius: "20px" },
@@ -52,9 +46,10 @@ export default function ContactForm() {
                     phone: "",
                     message: "",
                 });
-            }
-            if (response.success == false) {
-                toast.error(t("errorToast"), {
+            } else {
+                const errorMessage =
+                    data?.errors && Object.values(data.errors).flat()[0];
+                toast.error(errorMessage || t("errorToast"), {
                     position: "top-center",
                     style: { color: "red", padding: "16px" },
                     duration: 3000,
@@ -62,6 +57,7 @@ export default function ContactForm() {
                 });
             }
         } catch (error) {
+            setLoading(false);
             console.error(error);
         }
     };

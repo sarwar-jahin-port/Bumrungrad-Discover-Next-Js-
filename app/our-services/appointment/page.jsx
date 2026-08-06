@@ -21,12 +21,8 @@ import DialogContent from "@mui/material/DialogContent";
 import useAuth from "@/helpers/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { admin_mails } from "@/constant";
 import toast from "react-hot-toast";
-import { sendEmails } from "@/helpers/mail/sendMail";
-import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
-import { formatKeysWithRemoveKeys } from "@/helpers/objectKeyFormat";
 import { useTranslations } from "next-intl";
 
 const customStyles = {
@@ -283,78 +279,22 @@ export default function Appointment() {
    
 
       if (data.status === 200) {
-        // toast.success("Please check your email or spam box!");
-        localStorage.removeItem("doctor_name");
-        localStorage.removeItem("Doctor_specialty");
-        // setLoader(false);
-      } else {
-       toast.error(tPage("failedToast"));
-       return
-      }
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("doctor_name");
+          localStorage.removeItem("Doctor_specialty");
+        }
 
-      // upload image
-      setLoader(true);
-      const uploadImage = data?.passport ? data?.passport : "link not provided";
-      const uploadImage2 =  data?.medicalReport1
-        ? data?.medicalReport1
-        : "link not provided";
-      const uploadImage3 = data?.medicalReport2
-        ? data?.medicalReport2
-        : "link not provided";
-      setLoader(false);
-      // Send email
-
-      setLoader(true);
-      const emailResponse = await sendEmails(
-        admin_mails,
-        "Book Appointment",
-        comapanyMailBody(
-          formatKeysWithRemoveKeys(
-            {
-              ...fields,
-              passport: uploadImage,
-              medicalReport1: uploadImage2,
-              medicalReport2: uploadImage3,
-            },
-            ["user_id"]
-          ),
-          "Book Appointment"
-        )
-      );
-      setLoader(false);
-      setLoader(true);
-
-      const responseClient = await sendEmails(
-        auth?.email,
-        "Book Appointment",
-        comapanyMailBody(
-          formatKeysWithRemoveKeys(
-            {
-              ...fields,
-              passport: uploadImage,
-              medicalReport1: uploadImage2,
-              medicalReport2: uploadImage3,
-            },
-            ["user_id"]
-          ),
-          "Book Appointment"
-        )
-      );
-      setLoader(false);
-
-      if (emailResponse.messageId && responseClient.messageId) {
         toast.success(t("successToast"), {
           position: "top-center",
           style: { borderRadius: "20px" },
           duration: 5000,
         });
 
-        if (typeof window !== "undefined") {
-          localStorage.removeItem("doctor_name");
-          localStorage.removeItem("Doctor_specialty");
-        }
         PreviewsetOpen(false);
         navigate.push("/my-profile");
+      } else {
+       toast.error(tPage("failedToast"));
+       return
       }
     } catch (error) {
       setLoader(false);

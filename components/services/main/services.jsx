@@ -10,13 +10,11 @@ import teleMedicine from "@/public/assets/service_logo/Bumrungrad  Hospital_tele
 import medicalRecords from "@/public/assets/service_logo/Bumrungrad  Hospital_medical_records.png";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import AirPickup from "../airPickup";
 import moneyTransfer from "@/public/assets/service_logo/bro4.png";
 import languageImage from "@/public/assets/service_logo/bro.png";
 import accommodation from "@/public/assets/service_logo/bro2.png";
 import hospitalAdmission from "@/public/assets/service_logo/bro5.png";
 import UnifiedInboundForm from "@/components/shared/UnifiedInboundForm";
-import LangugeInterpreter from "../languge";
 import BoltIcon from "@mui/icons-material/Bolt";
 import ArticleIcon from "@mui/icons-material/Article";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
@@ -171,16 +169,10 @@ const SERVICES = [
   {
     key: "medicalConsultancy",
     // TODO: placeholder icon (reused telemedicine image) — swap for a
-    // dedicated Medical Consultancy asset once one is provided.
+    // dedicated Medical Treatment asset once one is provided.
     img: teleMedicine,
-    form: (
-      <UnifiedInboundForm
-        image={teleMedicine}
-        imageAlt="Medical Consultancy"
-        endpoint="http://127.0.0.1:8000/api/add/medical-consultancy"
-      />
-    ),
-    interactionType: "popup",
+    pageTo: "/our-services/medical-treatment",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
@@ -195,55 +187,37 @@ const SERVICES = [
     key: "airTicket",
     id: 7,
     img: airticket,
-    form: (
-      <UnifiedInboundForm
-        image={airticket}
-        imageAlt="Air Ticket"
-        endpoint="http://127.0.0.1:8000/api/add/air/ticket"
-      />
-    ),
-    interactionType: "popup",
+    pageTo: "/our-services/air-ticket",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
     key: "airportTransfer",
     id: 8,
     img: airpickup,
-    form: <AirPickup />,
-    interactionType: "popup",
+    pageTo: "/our-services/airport-transfer",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
     key: "admission",
     img: hospitalAdmission,
-    form: (
-      <UnifiedInboundForm
-        image={hospitalAdmission}
-        imageAlt="Admission On Arrival"
-        endpoint="http://127.0.0.1:8000/api/add/admission"
-      />
-    ),
-    interactionType: "popup",
+    pageTo: "/our-services/direct-admission",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
     key: "accommodation",
     img: accommodation,
-    form: (
-      <UnifiedInboundForm
-        image={accommodation}
-        imageAlt="Thai Local Accommodation"
-        endpoint="http://127.0.0.1:8000/api/add/lodging-booking"
-      />
-    ),
-    interactionType: "popup",
+    pageTo: "/our-services/accommodation",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
     key: "languageInterpreter",
     img: languageImage,
-    form: <LangugeInterpreter />,
-    interactionType: "popup",
+    pageTo: "/our-services/language-interpreter",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
   {
@@ -264,8 +238,8 @@ const SERVICES = [
   {
     key: "moneyTransfer",
     img: moneyTransfer,
-    pageTo: "http://wa.me/+66948283651",
-    interactionType: "whatsapp",
+    pageTo: "/our-services/fund-transfer",
+    interactionType: "page",
     alt: "Bumrungrad International Hospital",
   },
 ];

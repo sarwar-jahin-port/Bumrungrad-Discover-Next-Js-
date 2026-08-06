@@ -13,7 +13,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 // import Loader from '../../shared/Loader/Loader'
 import { FaArrowUp } from "react-icons/fa";
 import notFoundAnim from "@/public/assets/anim/notfound.json";
-import Lottie from "lottie-react";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -123,6 +124,27 @@ export default function FindDoctor() {
     }
   }, [speacility]);
 
+  // Round-robins doctors across specialties (cardio1, ortho1, neuro1, cardio2, ...)
+  // instead of the backend's raw insertion order, which runs through one
+  // specialty at a time. Only meaningful on the unfiltered/default view —
+  // a specialty-filtered result set is already a single specialty.
+  const interleaveBySpecialty = (list) => {
+    const buckets = new Map();
+    list.forEach((d) => {
+      const key = d?.specialty || "";
+      if (!buckets.has(key)) buckets.set(key, []);
+      buckets.get(key).push(d);
+    });
+    const groups = Array.from(buckets.values());
+    const result = [];
+    for (let i = 0; result.length < list.length; i++) {
+      for (const group of groups) {
+        if (i < group.length) result.push(group[i]);
+      }
+    }
+    return result;
+  };
+
   //get doctors
   useEffect(() => {
     setLoader(true);
@@ -139,7 +161,11 @@ export default function FindDoctor() {
       fetch(finalUrl)
         .then((res) => res.json())
         .then((data) => {
-          setDoctors(data.data);
+          const results = data.data || [];
+          const noSpecialtyFilter = !speacility && !subSpeacility;
+          setDoctors(
+            noSpecialtyFilter ? interleaveBySpecialty(results) : results,
+          );
           setQuery(data.query);
           setLoader(false);
         })

@@ -8,9 +8,9 @@ import toast from "react-hot-toast";
 import Loader from "@/components/ui/loader";
 import { useTranslations } from "next-intl";
 
-const TeleMedicine = () => {
+const DirectAdmission = () => {
     const t = useTranslations("common");
-    const tPage = useTranslations("ourServices.telemedicine");
+    const tPage = useTranslations("ourServices.directAdmission");
     const { auth } = useAuth();
     const [loader, setLoader] = useState(false);
     const navigate = useRouter();
@@ -18,15 +18,15 @@ const TeleMedicine = () => {
     const [fullName, setFullName] = useState("");
     const [birthDate, setBirthDate] = useState("");
     const [patientType, setPatientType] = useState("new");
-    const [specificConcern, setSpecificConcern] = useState("");
-    const [contactDetails, setContactDetails] = useState("");
+    const [medicalConcern, setMedicalConcern] = useState("");
+    const [whatsapp, setWhatsapp] = useState("");
     const [passport, setPassport] = useState("");
 
     useEffect(() => {
         if (auth) {
             setFullName(`${auth?.firstName ?? ""} ${auth?.lastName ?? ""}`.trim());
             setBirthDate(auth?.dob || "");
-            setContactDetails(auth?.phone || "");
+            setWhatsapp(auth?.phone || "");
         }
     }, [auth]);
 
@@ -38,42 +38,43 @@ const TeleMedicine = () => {
         formData.append("fullName", fullName);
         formData.append("birthDate", birthDate);
         formData.append("patientType", patientType);
-        formData.append("specificConcern", specificConcern);
-        formData.append("contactDetails", contactDetails);
+        formData.append("whatsapp", whatsapp);
+        formData.append("medicalConcern", medicalConcern);
         formData.append("passport", passport);
 
         setLoader(true);
-        const token = localStorage.getItem("Access_Token");
-        const response = await fetch(
-            "http://127.0.0.1:8000/api/add/tele/medicine",
-            {
-                method: "POST",
-                headers: {
-                    ...(token ? { Authorization: `Bearer ${token}` } : {}),
-                },
-                body: formData,
-            },
-        );
-
-        const jsonresponse = await response.json();
-        setLoader(false);
-
-        if (jsonresponse.status === 200) {
-            toast.success(
-                t("successToast"),
+        try {
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/add/admission",
                 {
-                    position: "top-center",
-                    style: { borderRadius: "20px" },
-                    duration: 5000,
+                    method: "POST",
+                    body: formData,
                 },
             );
-            form.reset();
-            navigate.push("/");
-        } else {
-            const errorMessage =
-                jsonresponse?.errors &&
-                Object.values(jsonresponse.errors).flat()[0];
-            toast.error(errorMessage || t("errorToast"));
+
+            const jsonresponse = await response.json();
+            setLoader(false);
+
+            if (jsonresponse.status === 200) {
+                toast.success(
+                    t("successToast"),
+                    {
+                        position: "top-center",
+                        style: { borderRadius: "20px" },
+                        duration: 5000,
+                    },
+                );
+                form.reset();
+                navigate.push("/");
+            } else {
+                const errorMessage =
+                    jsonresponse?.errors &&
+                    Object.values(jsonresponse.errors).flat()[0];
+                toast.error(errorMessage || t("errorToast"));
+            }
+        } catch (err) {
+            setLoader(false);
+            toast.error(t("errorToast"));
         }
     };
 
@@ -137,8 +138,8 @@ const TeleMedicine = () => {
                         </p>
                         <TextField
                             placeholder={tPage("whatsappPlaceholder")}
-                            value={contactDetails}
-                            onChange={(e) => setContactDetails(e.target.value)}
+                            value={whatsapp}
+                            onChange={(e) => setWhatsapp(e.target.value)}
                             fullWidth
                             required
                         />
@@ -149,8 +150,8 @@ const TeleMedicine = () => {
                         </p>
                         <TextField
                             placeholder={tPage("concernPlaceholder")}
-                            value={specificConcern}
-                            onChange={(e) => setSpecificConcern(e.target.value)}
+                            value={medicalConcern}
+                            onChange={(e) => setMedicalConcern(e.target.value)}
                             fullWidth
                             required
                             multiline
@@ -193,4 +194,4 @@ const TeleMedicine = () => {
     );
 };
 
-export default TeleMedicine;
+export default DirectAdmission;

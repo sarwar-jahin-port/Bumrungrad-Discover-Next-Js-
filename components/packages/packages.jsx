@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { IoSearchOutline } from 'react-icons/io5'
-import Lottie from 'lottie-react'
+import dynamic from 'next/dynamic'
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 import notFoundAnim from '@/public/assets/anim/notfound.json'
 import {CardLoader} from '@/components/ui/cardload'
 import { usePathname } from 'next/navigation'

@@ -6,11 +6,7 @@ import { FormControl, MenuItem, Select, TextField } from "@mui/material";
 import { natioNalities, countries } from "@/public/data/country";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { sendEmails } from "@/helpers/mail/sendMail";
-import { admin_mails } from "@/constant";
-import { comapanyMailBody, mailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
-import { formatKeys } from "@/helpers/objectKeyFormat";
 import { useTranslations } from "next-intl";
 // import { useNavigate } from 'react-router-dom'
 
@@ -87,27 +83,16 @@ const SendQuery = () => {
       }
 
       if (get_response.status === 200) {
-        const formateObj = formatKeys(fields);
-        setLoader(true);
-        const send_admin_mail = await sendEmails(
-          admin_mails,
-          `Query Request - ${email}`,
-          comapanyMailBody(formateObj, "Query Request")
+        toast.success(
+          t("successToast"),
+          {
+            position: "top-center",
+            style: { borderRadius: "20px" },
+            duration: 5000,
+          }
         );
-        setLoader(false);
-
-        if (send_admin_mail.messageId) {
-          toast.success(
-            t("successToast"),
-            {
-              position: "top-center",
-              style: { borderRadius: "20px" },
-              duration: 5000,
-            }
-          );
-          form.reset();
-          navigate.push("/");
-        }
+        form.reset();
+        navigate.push("/");
       }
     } catch (error) {
       setLoader(false);

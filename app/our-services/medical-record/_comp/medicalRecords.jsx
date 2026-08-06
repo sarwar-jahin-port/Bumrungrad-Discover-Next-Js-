@@ -5,11 +5,7 @@ import { TextField } from "@mui/material";
 import useAuth from "@/helpers/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { sendEmails } from "@/helpers/mail/sendMail";
-import { admin_mails } from "@/constant";
-import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "@/components/ui/loader";
-import { formatKeys } from "@/helpers/objectKeyFormat";
 import { useTranslations } from "next-intl";
 
 
@@ -21,7 +17,7 @@ const MedicalRecords = () => {
   const [loader, setLoader] = useState();
   const [passport, setPassport] = useState("");
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [hnNum, setHnNum] = useState("");
   const [caseSummary, setCaseSummary] = useState("");
   const navigate = useRouter();
@@ -34,6 +30,7 @@ const MedicalRecords = () => {
     const fields = {
       passport,
       name,
+      whatsapp,
       hnNum,
       caseSummary,
     };
@@ -54,42 +51,13 @@ const MedicalRecords = () => {
       const data = await response.json();
 
       if (data.status == 200) {
-        // toast.success("Medical record request sent!", {
-        //   position: "top-center",
-        //   duration: 4000,
-        //   style: {
-        //     color: "green",
-        //   },
-        // });
-
-        const uploadDoc = data?.passport ?  data?.passport : "Link not found"; ;
-        
-        setLoader(true);
-        const send_admin_mails = await sendEmails(admin_mails,`Medical Records - ${email}`, comapanyMailBody(formatKeys({name: name, email: email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
-        setLoader(false);
-
-        setLoader(true);
-        const send_client_mails = await sendEmails(email,`Medical Records`, comapanyMailBody(formatKeys({name: name, email: email, hnNum: hnNum, case_summary: caseSummary, passport: uploadDoc}), "Medical Records"));
-        setLoader(false);
-
-        if (send_admin_mails.messageId && send_client_mails.messageId) {
-          toast.success(t("successToast"), {
-            position: "top-center",
-            style: { borderRadius: "20px" },
-            duration: 5000,
-          });
+        toast.success(t("successToast"), {
+          position: "top-center",
+          style: { borderRadius: "20px" },
+          duration: 5000,
+        });
         form.reset();
-         navigate.push("/");
-        setLoader(false);
-        }else{
-          toast.error(tPage("errorToast"), {
-            position: "top-center",
-            duration: 4000,
-            style: {
-              color: "red",
-            },
-          })
-        }
+        navigate.push("/");
       } else {
         setLoader(false);
         toast.error(t("errorToast"), {
@@ -109,7 +77,7 @@ const MedicalRecords = () => {
   useEffect(()=>{
     if(userDetails){
       setName(`${userDetails?.firstName} ${userDetails?.lastName}` || "")
-      setEmail(userDetails?.email || "")
+      setWhatsapp(userDetails?.phone || "")
     }
   },[userDetails])
   return (
@@ -137,13 +105,12 @@ const MedicalRecords = () => {
             <div className="mt-2">
               <p className="mb-2 font-semibold text-sm">
                 {" "}
-                <span className="text-red text-lg">*</span>{tPage("enterEmail")}
+                <span className="text-red text-lg">*</span>{tPage("enterWhatsapp")}
               </p>
               <TextField
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setWhatsapp(e.target.value)}
                 fullWidth
-                value={email}
+                value={whatsapp}
               />
             </div>
             <div className="mt-2">
@@ -159,8 +126,7 @@ const MedicalRecords = () => {
             </div>
             <div>
               <p className="mt-2 font-semibold text-sm">
-                {" "}
-                <span className="text-red text-lg">*</span> {tPage("hnNumber")}
+                {tPage("hnNumber")}
               </p>
               <TextField onChange={(e) => setHnNum(e.target.value)} fullWidth />
             </div>
@@ -178,9 +144,9 @@ const MedicalRecords = () => {
             </div>
           </div>
           <button
-            disabled={loader || !name || !email || !passport || !hnNum || !caseSummary}
+            disabled={loader || !name || !whatsapp || !passport || !caseSummary}
             type="submit"
-            className={`${loader || !name || !email || !passport || !hnNum || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
+            className={`${loader || !name || !whatsapp || !passport || !caseSummary ? "bg-white text-black border" : "bg-blue text-white"} btn_primary`}
           >
            {
             loader ? <Loader className="animate-spin" stroke={loader ? "black" : "white"} fill={loader ? "black" : "white"} /> : t("submit")
