@@ -65,10 +65,6 @@ const ChildPackageDetails = ({ params }) => {
     }, [auth]);
 
     const handleClickOpen = (data) => {
-        if (!auth) {
-            router.push("/login");
-            return;
-        }
         setOpen(true);
         setPackagePrice(data.price);
         setPackageName(data.title);

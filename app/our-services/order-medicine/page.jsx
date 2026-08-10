@@ -19,7 +19,6 @@ const OrderMedicine = () => {
                     fullNameField='name'
                     whatsappField='phoneNumber'
                     concernField='concern'
-                    requireAuth
                 />
             </div>
             <div className='mt-6'>

@@ -291,7 +291,7 @@ export default function Appointment() {
         });
 
         PreviewsetOpen(false);
-        navigate.push("/my-profile");
+        navigate.push(auth ? "/my-profile" : "/");
       } else {
        toast.error(tPage("failedToast"));
        return

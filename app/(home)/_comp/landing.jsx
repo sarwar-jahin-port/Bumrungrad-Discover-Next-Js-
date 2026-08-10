@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import useAuth from "@/helpers/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import { IoMdCheckmarkCircle } from "react-icons/io";
@@ -29,7 +28,6 @@ const AVATAR_STYLES = [
 const Landing = () => {
   const t = useTranslations("home.landing");
   const BULLET_POINTS = [t("bullet1"), t("bullet2"), t("bullet3")];
-  const { auth } = useAuth();
   const router = useRouter();
   const [heroStat, setHeroStat] = useState("");
 
@@ -50,11 +48,7 @@ const Landing = () => {
   }, []);
 
   function handleAppointment() {
-    if (auth) {
-      router.push("/our-services/appointment");
-    } else {
-      router.push("/login");
-    }
+    router.push("/our-services/appointment");
   }
   function handleHealthScreen() {
     router.push("/check-up");

@@ -6,13 +6,14 @@ import { TextField as InputField, MenuItem, Select } from "@mui/material";
 import Loader from "@/components/ui/loader";
 import {countries,natioNalities} from '@/public/data/country'
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 
 export default function User() {
     const t = useTranslations("myProfile");
     const router = useRouter()
-    const { auth, access_token } = useAuth();
+    const { auth, access_token, loading: authLoading } = useAuth();
     const [loading, setLoading] = useState(true); // State to track loading
     const [error, setError] = useState(null);
     const [appointments, setAppointments] = useState([]);
@@ -145,8 +146,31 @@ export default function User() {
             }
         };
 
-        if (access_token && auth) fetchData();
-    }, [access_token, auth?.id, auth]);
+        if (access_token && auth) {
+            fetchData();
+        } else if (!authLoading) {
+            setLoading(false);
+        }
+    }, [access_token, auth?.id, auth, authLoading]);
+
+    if (!authLoading && !auth) {
+        return (
+            <section className='mx-5 md:container md:mx-auto py-20 text-center'>
+                <h5 className='font-bold text-2xl text-blue-600 mb-4'>
+                    {t("loginRequiredTitle")}
+                </h5>
+                <p className='text-[#6B7280] mb-6'>
+                    {t("loginRequiredBody")}
+                </p>
+                <Link
+                    href='/login'
+                    className='inline-block bg-blue text-white px-6 py-2 rounded-md font-semibold hover:bg-blue/80 transition duration-300'
+                >
+                    {t("loginRequiredCta")}
+                </Link>
+            </section>
+        );
+    }
 
     return (
         <>

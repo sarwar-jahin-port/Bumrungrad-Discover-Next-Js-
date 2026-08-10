@@ -12,5 +12,8 @@
   "totalAppointments": "Total appointment taken: {count}",
   "pending": "Pending",
   "processing": "Processing",
-  "done": "Done"
+  "done": "Done",
+  "loginRequiredTitle": "Log in to view your profile",
+  "loginRequiredBody": "Create an account or log in to see your saved details and appointment history.",
+  "loginRequiredCta": "Go to login"
 }
