@@ -30,7 +30,7 @@ export default function SideBar() {
   return (
     <div>
       <a
-        href={`https://t.me/${encodeURIComponent("+8801847284860")}`}
+        href={`https://t.me/${encodeURIComponent("+66948283651")}`}
         target="_blank"
         rel="noopener noreferrer"
       >

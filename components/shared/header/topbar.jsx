@@ -10,6 +10,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -25,9 +27,12 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
 const SOCIAL_LINKS = {
-    facebook: "https://www.facebook.com/discoverbangladeshbd",
-    youtube: "https://www.youtube.com/@discoverbangladesh",
+    facebook: "https://www.facebook.com/BumrungradByDiscover",
+    instagram: "https://www.instagram.com/bumrungradbydiscover/",
+    youtube: "https://www.youtube.com/@BumrungradByDiscover",
+    linkedin: "https://www.linkedin.com/company/bumrungrad-international-hospital-representative-bangladesh/",
     whatsapp: "https://wa.me/+66948283651",
+    email: "support@bumrungraddiscover.com",
 };
 
 const Topbar = () => {
@@ -165,12 +170,34 @@ const Topbar = () => {
                             />
                         </a>
                         <a
+                            href={SOCIAL_LINKS.instagram}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            aria-label='Instagram'
+                        >
+                            <InstagramIcon
+                                sx={{ fontSize: "24px" }}
+                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                            />
+                        </a>
+                        <a
                             href={SOCIAL_LINKS.youtube}
                             target='_blank'
                             rel='noopener noreferrer'
                             aria-label='YouTube'
                         >
                             <YouTubeIcon
+                                sx={{ fontSize: "24px" }}
+                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                            />
+                        </a>
+                        <a
+                            href={SOCIAL_LINKS.linkedin}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                            aria-label='LinkedIn'
+                        >
+                            <LinkedInIcon
                                 sx={{ fontSize: "24px" }}
                                 className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
                             />
@@ -186,7 +213,7 @@ const Topbar = () => {
                                 className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
                             />
                         </a>
-                        <a href='mailto:support@discoverinternationalmedicalservice.com' aria-label='Email'>
+                        <a href={`mailto:${SOCIAL_LINKS.email}`} aria-label='Email'>
                             <EmailIcon
                                 sx={{ fontSize: "24px" }}
                                 className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'

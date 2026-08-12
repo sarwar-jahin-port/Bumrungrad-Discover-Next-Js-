@@ -12,8 +12,8 @@ import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
 import { useTranslations } from "next-intl";
 
 const DEFAULT_SOCIAL = {
-  footer_facebook_url: "https://www.facebook.com/discoverbangladeshbd",
-  footer_youtube_url: "https://www.youtube.com/@discoverbangladesh",
+  footer_facebook_url: "https://www.facebook.com/BumrungradByDiscover",
+  footer_youtube_url: "https://www.youtube.com/@BumrungradByDiscover",
   footer_whatsapp_url: "https://wa.me/+66948283651",
 };
 
