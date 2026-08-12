@@ -16,6 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
+import telegram from "@/public/assets/Bumrungrad  Hospital_telegram.png";
 import { menuItems } from "./menuItems";
 import { useRouter } from "next/navigation";
 import LoginIcon from "@mui/icons-material/Login";
@@ -26,13 +27,14 @@ import toast, { Toaster } from "react-hot-toast";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useTranslations } from "next-intl";
 
-const SOCIAL_LINKS = {
-    facebook: "https://www.facebook.com/BumrungradByDiscover",
-    instagram: "https://www.instagram.com/bumrungradbydiscover/",
-    youtube: "https://www.youtube.com/@BumrungradByDiscover",
-    linkedin: "https://www.linkedin.com/company/bumrungrad-international-hospital-representative-bangladesh/",
-    whatsapp: "https://wa.me/+66948283651",
-    email: "support@bumrungraddiscover.com",
+const DEFAULT_SOCIAL = {
+    footer_facebook_url: "https://www.facebook.com/BumrungradByDiscover",
+    footer_instagram_url: "https://www.instagram.com/bumrungradbydiscover/",
+    footer_youtube_url: "https://www.youtube.com/@BumrungradByDiscover",
+    footer_linkedin_url: "https://www.linkedin.com/company/bumrungrad-international-hospital-representative-bangladesh/",
+    footer_whatsapp_url: "https://wa.me/+66948283651",
+    footer_telegram_url: "https://t.me/+66948283651",
+    footer_email: "support@bumrungraddiscover.com",
 };
 
 const Topbar = () => {
@@ -40,10 +42,27 @@ const Topbar = () => {
     const t = useTranslations("nav");
     const tHeader = useTranslations("header");
     const [open, setOpen] = useState(false);
+    const [socialLinks, setSocialLinks] = useState(DEFAULT_SOCIAL);
     const [dropdownOpen, setDropdownOpen] = useState({
         status: false,
         index: "",
     });
+
+    useEffect(() => {
+        fetch("http://127.0.0.1:8000/api/get/site-settings")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    setSocialLinks((prev) => ({
+                        ...prev,
+                        ...Object.fromEntries(
+                            Object.entries(data.data).filter(([, value]) => value)
+                        ),
+                    }));
+                }
+            })
+            .catch(() => {});
+    }, []);
     const handleDropdown = (id) => {
         setDropdownOpen({
             status: !dropdownOpen.status,
@@ -158,67 +177,95 @@ const Topbar = () => {
                         <LanguageSwitcher />
                     </div>
                     <div className='hidden sm:flex gap-3 items-center'>
-                        <a
-                            href={SOCIAL_LINKS.facebook}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            aria-label='Facebook'
-                        >
-                            <FacebookIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
-                        <a
-                            href={SOCIAL_LINKS.instagram}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            aria-label='Instagram'
-                        >
-                            <InstagramIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
-                        <a
-                            href={SOCIAL_LINKS.youtube}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            aria-label='YouTube'
-                        >
-                            <YouTubeIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
-                        <a
-                            href={SOCIAL_LINKS.linkedin}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            aria-label='LinkedIn'
-                        >
-                            <LinkedInIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
-                        <a
-                            href={SOCIAL_LINKS.whatsapp}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            aria-label='WhatsApp'
-                        >
-                            <WhatsAppIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
-                        <a href={`mailto:${SOCIAL_LINKS.email}`} aria-label='Email'>
-                            <EmailIcon
-                                sx={{ fontSize: "24px" }}
-                                className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
-                            />
-                        </a>
+                        {socialLinks.footer_facebook_url && (
+                            <a
+                                href={socialLinks.footer_facebook_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='Facebook'
+                            >
+                                <FacebookIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_instagram_url && (
+                            <a
+                                href={socialLinks.footer_instagram_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='Instagram'
+                            >
+                                <InstagramIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_youtube_url && (
+                            <a
+                                href={socialLinks.footer_youtube_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='YouTube'
+                            >
+                                <YouTubeIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_linkedin_url && (
+                            <a
+                                href={socialLinks.footer_linkedin_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='LinkedIn'
+                            >
+                                <LinkedInIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_telegram_url && (
+                            <a
+                                href={socialLinks.footer_telegram_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='Telegram'
+                            >
+                                <Image
+                                    src={telegram}
+                                    alt='Telegram'
+                                    height={24}
+                                    width={24}
+                                    className='h-[24px] w-[24px] hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_whatsapp_url && (
+                            <a
+                                href={socialLinks.footer_whatsapp_url}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                aria-label='WhatsApp'
+                            >
+                                <WhatsAppIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
+                        {socialLinks.footer_email && (
+                            <a href={`mailto:${socialLinks.footer_email}`} aria-label='Email'>
+                                <EmailIcon
+                                    sx={{ fontSize: "24px" }}
+                                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                                />
+                            </a>
+                        )}
                     </div>
                     <Link
                         href='/#book-appointment'

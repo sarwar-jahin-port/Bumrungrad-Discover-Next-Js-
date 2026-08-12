@@ -8,6 +8,10 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailIcon from "@mui/icons-material/Email";
+import telegram from "@/public/assets/Bumrungrad  Hospital_telegram.png";
 import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
 import { useTranslations } from "next-intl";
 
@@ -15,6 +19,10 @@ const DEFAULT_SOCIAL = {
   footer_facebook_url: "https://www.facebook.com/BumrungradByDiscover",
   footer_youtube_url: "https://www.youtube.com/@BumrungradByDiscover",
   footer_whatsapp_url: "https://wa.me/+66948283651",
+  footer_instagram_url: "https://www.instagram.com/bumrungradbydiscover/",
+  footer_linkedin_url: "https://www.linkedin.com/company/bumrungrad-international-hospital-representative-bangladesh/",
+  footer_telegram_url: "https://t.me/+66948283651",
+  footer_email: "support@bumrungraddiscover.com",
 };
 
 // Link targets stay in code; labels resolve from the footer namespace by key.
@@ -146,6 +154,63 @@ export default function BottomBar() {
                   className='focus:outline-none focus:ring-2 focus:ring-blue rounded'
                 >
                   <WhatsAppIcon
+                    sx={{ fontSize: '24px' }}
+                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                  />
+                </a>
+              )}
+              {settings.footer_instagram_url && (
+                <a
+                  href={settings.footer_instagram_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='Instagram'
+                  className='focus:outline-none focus:ring-2 focus:ring-blue rounded'
+                >
+                  <InstagramIcon
+                    sx={{ fontSize: '24px' }}
+                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                  />
+                </a>
+              )}
+              {settings.footer_linkedin_url && (
+                <a
+                  href={settings.footer_linkedin_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='LinkedIn'
+                  className='focus:outline-none focus:ring-2 focus:ring-blue rounded'
+                >
+                  <LinkedInIcon
+                    sx={{ fontSize: '24px' }}
+                    className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
+                  />
+                </a>
+              )}
+              {settings.footer_telegram_url && (
+                <a
+                  href={settings.footer_telegram_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  aria-label='Telegram'
+                  className='focus:outline-none focus:ring-2 focus:ring-blue rounded'
+                >
+                  <Image
+                    src={telegram}
+                    alt='Telegram'
+                    height={24}
+                    width={24}
+                    className='h-[24px] w-[24px] hover:scale-110 duration-300 ease-linear'
+                  />
+                </a>
+              )}
+              {settings.footer_email && (
+                <a
+                  href={`mailto:${settings.footer_email}`}
+                  aria-label='Email'
+                  className='focus:outline-none focus:ring-2 focus:ring-blue rounded'
+                >
+                  <EmailIcon
                     sx={{ fontSize: '24px' }}
                     className='cursor-pointer text-blue hover:scale-110 duration-300 ease-linear'
                   />
