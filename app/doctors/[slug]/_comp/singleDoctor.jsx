@@ -54,7 +54,7 @@ export default function DoctorInfo({ params }) {
 
   useEffect(() => {
     setLoader(true);
-    fetch(`http://127.0.0.1:8000/api/search/doctor/${params.slug}`)
+    fetch(`https://api.discoverinternationalmedicalservice.com/api/search/doctor/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.response?.status === 200) {

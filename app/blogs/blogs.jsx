@@ -21,7 +21,7 @@ const AllBlogs = () => {
   const fetchBlogs = (page, searchTerm) => {
     setLoader(true); // Set loader to true when fetching new data
     const query = searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : "";
-    fetch(`http://127.0.0.1:8000/api/get-all-blogs?page=${page}${query}`)
+    fetch(`https://api.discoverinternationalmedicalservice.com/api/get-all-blogs?page=${page}${query}`)
       .then((res) => res.json())
       .then((resData) => {
         if (resData.status === 200) {

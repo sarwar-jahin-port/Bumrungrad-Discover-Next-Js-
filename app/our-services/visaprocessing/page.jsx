@@ -32,7 +32,7 @@ const VisaProcessing = () => {
         try {
             const token = localStorage.getItem("Access_Token");
             const response = await fetch(
-                "http://127.0.0.1:8000/api/add/visa/precessing",
+                "https://api.discoverinternationalmedicalservice.com/api/add/visa/precessing",
                 {
                     method: "POST",
                     headers: {

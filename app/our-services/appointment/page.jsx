@@ -169,7 +169,7 @@ export default function Appointment() {
   //get speacilities
   useEffect(() => {
     fetch(
-      "http://127.0.0.1:8000/api/get/specialty"
+      "https://api.discoverinternationalmedicalservice.com/api/get/specialty"
     )
       .then((res) => res.json())
       .then((data) => setSpecialities(data?.response?.data));
@@ -178,7 +178,7 @@ export default function Appointment() {
   useEffect(() => {
     if (specialty) {
       fetch(
-        `http://127.0.0.1:8000/api/get/selected/sub/specialty/${specialty}`
+        `https://api.discoverinternationalmedicalservice.com/api/get/selected/sub/specialty/${specialty}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -199,7 +199,7 @@ export default function Appointment() {
       const queryParams = `specialty=${specialty}&sub_specialty=${subSpecialty}`;
       // Create the base URL
       const baseUrl =
-        "http://127.0.0.1:8000/api/search/doctor";
+        "https://api.discoverinternationalmedicalservice.com/api/search/doctor";
       // Create the final URL by appending the query string if it's not empty
       const finalUrl = queryParams ? `${baseUrl}?${queryParams}` : baseUrl;
       // Fetch data from the API
@@ -262,12 +262,17 @@ export default function Appointment() {
         driveLink2,
       };
 
-      // Append all fields to FormData
-      Object.entries(fields).forEach(([key, value]) =>  formData.append(key, value));
+      // Append all fields to FormData, skipping unset ones (e.g. user_id for
+      // anonymous visitors) so FormData doesn't stringify them to "undefined"
+      Object.entries(fields).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          formData.append(key, value);
+        }
+      });
 
       // Send API request
       const apiResponse = await fetch(
-        "http://127.0.0.1:8000/api/add/doctor/appointment",
+        "https://api.discoverinternationalmedicalservice.com/api/add/doctor/appointment",
         {
           method: "POST",
           body: formData,

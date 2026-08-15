@@ -9,7 +9,7 @@ const Disclaimer = () => {
   const [tickerText, setTickerText] = useState(t('fallback'))
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/get/site-settings')
+    fetch('https://api.discoverinternationalmedicalservice.com/api/get/site-settings')
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200 && data.data?.breaking_news_ticker) {

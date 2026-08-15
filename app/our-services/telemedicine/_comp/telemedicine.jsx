@@ -45,7 +45,7 @@ const TeleMedicine = () => {
         setLoader(true);
         const token = localStorage.getItem("Access_Token");
         const response = await fetch(
-            "http://127.0.0.1:8000/api/add/tele/medicine",
+            "https://api.discoverinternationalmedicalservice.com/api/add/tele/medicine",
             {
                 method: "POST",
                 headers: {

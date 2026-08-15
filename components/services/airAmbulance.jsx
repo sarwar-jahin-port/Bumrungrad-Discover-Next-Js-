@@ -4,17 +4,11 @@ import React, { useState } from "react";
 
 import { TextField } from "@mui/material";
 import toast from "react-hot-toast";
-import { sendEmails } from "@/helpers/mail/sendMail";
-import { admin_mails } from "@/constant";
-import useAuth from "@/helpers/hooks/useAuth";
-import { comapanyMailBody } from "@/helpers/mail/mailbody";
 import Loader from "../ui/loader";
-import { formatKeys } from "@/helpers/objectKeyFormat";
 import { useTranslations } from "next-intl";
 
 const AirAmbulanceForm = () => {
     const t = useTranslations("airAmbulance.form");
-    const { auth } = useAuth();
     const [loader, setLoader] = useState();
 
     const [date, setDate] = useState("");
@@ -39,7 +33,7 @@ const AirAmbulanceForm = () => {
         try {
             setLoader(true);
             const response = await fetch(
-                "http://127.0.0.1:8000/api/add/air/ambulance",
+                "https://api.discoverinternationalmedicalservice.com/api/add/air/ambulance",
                 {
                     method: "POST",
                     body: formData,
@@ -50,65 +44,13 @@ const AirAmbulanceForm = () => {
             const data = await response.json();
 
             if (data.status == 200) {
-                setLoader(true);
-                const uploadImage = data?.passport_copy
-                    ? data?.passport_copy
-                    : "No file found";
-                setLoader(false);
-
-                setLoader(true);
-                const send_mails = await sendEmails(
-                    admin_mails,
-                    `Air Ambulance Request`,
-                    comapanyMailBody(
-                        formatKeys({
-                            name: `${auth?.firstName} ${auth?.lastName}`,
-                            email: auth?.email,
-                            date: date,
-                            passport_copy: uploadImage,
-                            summary: caseSummary,
-                            description: briflyDiscusion,
-                        }),
-                        "Air Ambulance Request",
-                    ),
-                );
-                setLoader(false);
-
-                setLoader(true);
-                const send_mail_client = await sendEmails(
-                    auth?.email,
-                    `Air Ambulance Request`,
-                    comapanyMailBody(
-                        formatKeys({
-                            name: `${auth?.firstName} ${auth?.lastName}`,
-                            email: auth?.email,
-                            date: date,
-                            passport_copy: uploadImage,
-                            summary: caseSummary,
-                            description: briflyDiscusion,
-                        }),
-                        "Air Ambulance Request",
-                    ),
-                );
-
-                setLoader(false);
-
-                if (send_mails?.messageId && send_mail_client?.messageId) {
-                    toast.success(
-                        t("successToast"),
-                        {
-                            position: "top-center",
-                            style: { borderRadius: "20px" },
-                            duration: 5000,
-                        },
-                    );
-                    window.location.reload();
-                    form.reset();
-                } else {
-                    toast.error(
-                        t("errorToastMailFailed"),
-                    );
-                }
+                toast.success(t("successToast"), {
+                    position: "top-center",
+                    style: { borderRadius: "20px" },
+                    duration: 5000,
+                });
+                window.location.reload();
+                form.reset();
             } else {
                 toast.error(t("errorToast"));
             }

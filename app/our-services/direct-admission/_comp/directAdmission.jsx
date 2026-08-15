@@ -45,7 +45,7 @@ const DirectAdmission = () => {
         setLoader(true);
         try {
             const response = await fetch(
-                "http://127.0.0.1:8000/api/add/admission",
+                "https://api.discoverinternationalmedicalservice.com/api/add/admission",
                 {
                     method: "POST",
                     body: formData,

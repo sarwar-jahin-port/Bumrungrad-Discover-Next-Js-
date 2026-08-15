@@ -93,7 +93,7 @@ const AirAmbulanceLanding = () => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/get/air/ambulance/hubs")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/air/ambulance/hubs")
       .then((res) => res.json())
       .then((data) => {
         setHubs(data.status === 200 ? data.data : []);

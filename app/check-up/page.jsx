@@ -52,7 +52,7 @@ export default function CheckUp() {
     //get packages
     useEffect(() => {
         fetch(
-            "http://127.0.0.1:8000/api/get/sub/package",
+            "https://api.discoverinternationalmedicalservice.com/api/get/sub/package",
         )
             .then((res) => res.json())
             .then((data) => setPackages(data?.data));
@@ -61,7 +61,7 @@ export default function CheckUp() {
     //get speacilities
     useEffect(() => {
         fetch(
-            "http://127.0.0.1:8000/api/get/specialty",
+            "https://api.discoverinternationalmedicalservice.com/api/get/specialty",
         )
             .then((res) => res.json())
             .then((data) => setSelectDepartment(data?.response?.data));
@@ -85,7 +85,7 @@ export default function CheckUp() {
             const queryParams = `specialty=${specialty}`;
             // Create the base URL
             const baseUrl =
-                "http://127.0.0.1:8000/api/search/doctor";
+                "https://api.discoverinternationalmedicalservice.com/api/search/doctor";
             // Create the final URL by appending the query string if it's not empty
             const finalUrl = queryParams
                 ? `${baseUrl}?${queryParams}`
@@ -142,7 +142,7 @@ export default function CheckUp() {
             // Send POST request
             setLoader(true);
             const response = await fetch(
-                "http://127.0.0.1:8000/api/add/health/check_up",
+                "https://api.discoverinternationalmedicalservice.com/api/add/health/check_up",
                 {
                     method: "POST",
                     body: formData,

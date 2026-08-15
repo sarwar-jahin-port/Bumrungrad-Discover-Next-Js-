@@ -18,7 +18,7 @@ export default function News() {
 
   useEffect(() => {
     setLoader(true)
-    fetch('http://127.0.0.1:8000/api/get/news')
+    fetch('https://api.discoverinternationalmedicalservice.com/api/get/news')
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {

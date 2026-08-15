@@ -60,7 +60,7 @@ export default function SingleCenter({ params }) {
 
   useEffect(() => {
     setLoader(true);
-    fetch(`http://127.0.0.1:8000/api/get/centers/${params.slug}`)
+    fetch(`https://api.discoverinternationalmedicalservice.com/api/get/centers/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.response?.status === 200) {
@@ -228,7 +228,7 @@ export default function SingleCenter({ params }) {
             <UnifiedInboundForm
               image={center?.cover_photo}
               imageAlt={center?.name}
-              endpoint="http://127.0.0.1:8000/api/add/medical-consultancy"
+              endpoint="https://api.discoverinternationalmedicalservice.com/api/add/medical-consultancy"
             />
           </div>
         </section>

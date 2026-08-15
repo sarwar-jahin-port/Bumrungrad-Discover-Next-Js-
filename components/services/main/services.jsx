@@ -229,7 +229,7 @@ const SERVICES = [
       <UnifiedInboundForm
         image={airimg}
         imageAlt="Emergency Desk"
-        endpoint="http://127.0.0.1:8000/api/add/emergency-desk"
+        endpoint="https://api.discoverinternationalmedicalservice.com/api/add/emergency-desk"
       />
     ),
     interactionType: "popup",

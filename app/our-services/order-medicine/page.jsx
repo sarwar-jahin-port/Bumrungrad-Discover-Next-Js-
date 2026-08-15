@@ -15,7 +15,7 @@ const OrderMedicine = () => {
             </h1>
             <div className='mt-5'>
                 <UnifiedInboundForm
-                    endpoint='http://127.0.0.1:8000/api/add/order/medicine'
+                    endpoint='https://api.discoverinternationalmedicalservice.com/api/add/order/medicine'
                     fullNameField='name'
                     whatsappField='phoneNumber'
                     concernField='concern'

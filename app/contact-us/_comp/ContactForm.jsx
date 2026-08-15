@@ -26,7 +26,7 @@ export default function ContactForm() {
         e.preventDefault();
         try {
             setLoading(true);
-            const response = await fetch("http://127.0.0.1:8000/api/add/contact", {
+            const response = await fetch("https://api.discoverinternationalmedicalservice.com/api/add/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

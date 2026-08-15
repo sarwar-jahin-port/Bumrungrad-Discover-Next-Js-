@@ -3,7 +3,7 @@ import SingleCenter from './_comp/singleCenter'
 
 export async function generateMetadata({ params }) {
   // Fetch clinic details or other relevant data
-  const clinic = await fetch(`http://127.0.0.1:8000/api/get/centers/${params.slug}`)
+  const clinic = await fetch(`https://api.discoverinternationalmedicalservice.com/api/get/centers/${params.slug}`)
     .then((res) => res.json())
     .then((data) => data?.response?.data);
 

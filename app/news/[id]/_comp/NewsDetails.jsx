@@ -8,7 +8,7 @@ const NewsDetailsPage = ({ params }) => {
   const [oneNews, setNews] = useState({});
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/get/news/${params.id}`)
+    fetch(`https://api.discoverinternationalmedicalservice.com/api/get/news/${params.id}`)
       .then((res) => res.json())
       .then((data) => {
         setNews(data.data);

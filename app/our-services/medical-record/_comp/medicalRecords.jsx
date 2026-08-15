@@ -40,7 +40,7 @@ const MedicalRecords = () => {
     try {
       setLoader(true);
       const response = await fetch(
-        "http://127.0.0.1:8000/api/add/medical/report",
+        "https://api.discoverinternationalmedicalservice.com/api/add/medical/report",
         {
           method: "POST",
           body: formData,

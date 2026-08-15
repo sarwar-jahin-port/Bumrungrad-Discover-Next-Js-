@@ -79,7 +79,7 @@ export default function User() {
 
             setUpdateLoading(true);
             const response = await fetch(
-                `http://127.0.0.1:8000/api/profile-update/${auth?.id}`,
+                `https://api.discoverinternationalmedicalservice.com/api/profile-update/${auth?.id}`,
                 {
                     method: "POST",
                     body: _formData,
@@ -121,7 +121,7 @@ export default function User() {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `http://127.0.0.1:8000/api/personal/appointment/${auth?.id}`,
+                    `https://api.discoverinternationalmedicalservice.com/api/personal/appointment/${auth?.id}`,
                     {
                         method: "GET",
                         headers: {

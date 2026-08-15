@@ -11,11 +11,7 @@ import { useRouter } from "next/navigation";
 import useAuth from "@/helpers/hooks/useAuth";
 import { IoMdClose } from "react-icons/io";
 import toast from "react-hot-toast";
-import { admin_mails } from "@/constant";
-import { comapanyMailBody } from "@/helpers/mail/mailbody";
-import { sendEmails } from "@/helpers/mail/sendMail";
 import Loader from "@/components/ui/loader";
-import { formatKeys } from "@/helpers/objectKeyFormat";
 import { useTranslations } from "next-intl";
 
 const ListAccordion = ({ title, items, renderItem, defaultOpen = false }) =>
@@ -88,7 +84,7 @@ const ChildPackageDetails = ({ params }) => {
 
         setPostLoader(true);
         const response = await fetch(
-            "http://127.0.0.1:8000/api/add/package/booking",
+            "https://api.discoverinternationalmedicalservice.com/api/add/package/booking",
             {
                 method: "POST",
                 body: formData,
@@ -99,46 +95,12 @@ const ChildPackageDetails = ({ params }) => {
         const data = await response.json();
 
         if (data.status === 200) {
-            setPostLoader(true);
-            const sendEmailsResponse = await sendEmails(
-                admin_mails,
-                "New Package Booking",
-                comapanyMailBody(
-                    formatKeys({
-                        name: `${auth?.firstName} ${auth?.lastName}`,
-                        user_email: auth?.email,
-                        ...fields,
-                    }),
-                    "New Package Booking",
-                ),
-            );
-
-            setPostLoader(false);
-            setPostLoader(true);
-            const sendEmailsResponse2 = await sendEmails(
-                auth?.email,
-                "New Package Booking",
-                comapanyMailBody(
-                   formatKeys({
-                    name: `${auth?.firstName} ${auth?.lastName}`,
-                    user_email: auth?.email,
-                    ...fields,
-                }),
-                    "New Package Booking",
-                ),
-            );
-            setPostLoader(false);
-            if (
-                sendEmailsResponse?.messageId &&
-                sendEmailsResponse2?.messageId
-            ) {
-                toast.success(t("successToast"), {
-                    position: "top-center",
-                    style: { borderRadius: "20px" },
-                    duration: 5000,
-                  });
-                router.push("/");
-            }
+            toast.success(t("successToast"), {
+                position: "top-center",
+                style: { borderRadius: "20px" },
+                duration: 5000,
+            });
+            router.push("/");
         } else {
             setPostLoader(false);
             toast.error(t("errorToast"));
@@ -149,7 +111,7 @@ const ChildPackageDetails = ({ params }) => {
     useEffect(() => {
         setLoader(true);
         fetch(
-            `http://127.0.0.1:8000/api/get/sub/package/${params.slug}`,
+            `https://api.discoverinternationalmedicalservice.com/api/get/sub/package/${params.slug}`,
         )
             .then((res) => res.json())
             .then((data) => {

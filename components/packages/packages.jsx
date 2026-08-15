@@ -24,10 +24,10 @@ export default function Packages() {
 
   useEffect(() => {
     setLoader(true)
-    let url = 'http://127.0.0.1:8000/api/get/package'
+    let url = 'https://api.discoverinternationalmedicalservice.com/api/get/package'
 
     if (searchValue !== '') {
-      url = `http://127.0.0.1:8000/api/search/package/${searchValue}`
+      url = `https://api.discoverinternationalmedicalservice.com/api/search/package/${searchValue}`
     }
 
     fetch(url)

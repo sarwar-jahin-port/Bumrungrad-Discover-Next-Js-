@@ -2,7 +2,7 @@ import React from "react";
 import NewsDetailsPage from "./_comp/NewsDetails";
 
 export async function generateMetadata({ params }) {
-    const _news = await fetch(`http://127.0.0.1:8000/api/get/news/${params?.id}`);
+    const _news = await fetch(`https://api.discoverinternationalmedicalservice.com/api/get/news/${params?.id}`);
     const res = await _news.json();
     const news = res?.data;
 

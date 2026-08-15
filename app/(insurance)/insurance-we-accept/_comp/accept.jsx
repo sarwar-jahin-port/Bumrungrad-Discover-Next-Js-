@@ -13,7 +13,7 @@ const WeAccept = () => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/get/insurance-providers")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/insurance-providers")
       .then((res) => res.json())
       .then((data) => {
         setProviders(data.status === 200 ? data.data : []);

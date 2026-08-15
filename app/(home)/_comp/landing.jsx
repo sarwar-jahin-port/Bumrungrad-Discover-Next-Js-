@@ -37,7 +37,7 @@ const Landing = () => {
   const [submitLoader, setSubmitLoader] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/get/site-settings")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/site-settings")
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
@@ -63,7 +63,7 @@ const Landing = () => {
     formData.append("medical_concern", medicalConcern);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/add/free-consultation", {
+      const response = await fetch("https://api.discoverinternationalmedicalservice.com/api/add/free-consultation", {
         method: "POST",
         body: formData,
       });

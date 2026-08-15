@@ -25,10 +25,10 @@ export default function ViewAllCenters() {
 
   useEffect(() => {
     setLoader(true);
-    let url = "http://127.0.0.1:8000/api/get/centers";
+    let url = "https://api.discoverinternationalmedicalservice.com/api/get/centers";
 
     if (searchValue !== "") {
-      url = `http://127.0.0.1:8000/api/search/center/${searchValue}`;
+      url = `https://api.discoverinternationalmedicalservice.com/api/search/center/${searchValue}`;
     }
     fetch(url)
       .then((res) => res.json())

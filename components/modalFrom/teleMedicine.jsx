@@ -57,7 +57,7 @@ const TeleMedicine = () => {
     formData.append('interpreter', interpreter)
     formData.append('specificConcern', specificConcern)
 
-    fetch('http://127.0.0.1:8000/api/add/tele/medicine', {
+    fetch('https://api.discoverinternationalmedicalservice.com/api/add/tele/medicine', {
       method: 'POST',
       body: formData,
     })

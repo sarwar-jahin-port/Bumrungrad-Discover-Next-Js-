@@ -49,7 +49,7 @@ const Topbar = () => {
     });
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/get/site-settings")
+        fetch("https://api.discoverinternationalmedicalservice.com/api/get/site-settings")
             .then((res) => res.json())
             .then((data) => {
                 if (data.status === 200) {

@@ -62,7 +62,7 @@ const SendQuery = () => {
     try {
       setLoader(true);
       const response = await fetch(
-        "http://127.0.0.1:8000/api/add/question",
+        "https://api.discoverinternationalmedicalservice.com/api/add/question",
         {
           method: "POST",
           body: formData,

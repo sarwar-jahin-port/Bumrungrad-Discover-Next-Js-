@@ -68,7 +68,7 @@ const OrderMedicine = () => {
     formData.append('email', email)
     formData.append('prescription', prescriptionImg)
     formData.append('medicines', JSON.stringify(medicArr))
-    fetch('http://127.0.0.1:8000/api/add/order/medicine', {
+    fetch('https://api.discoverinternationalmedicalservice.com/api/add/order/medicine', {
       method: 'POST',
       body: formData,
     })

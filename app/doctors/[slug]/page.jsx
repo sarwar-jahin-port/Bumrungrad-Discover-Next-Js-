@@ -5,7 +5,7 @@ export async function generateMetadata({ params }) {
 
   // Fetch doctor data based on the slug
   const doctor = await fetch(
-    `http://127.0.0.1:8000/api/search/doctor/${slug}`
+    `https://api.discoverinternationalmedicalservice.com/api/search/doctor/${slug}`
   )
     .then((res) => res.json())
     .then((data) => data?.response?.data);

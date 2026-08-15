@@ -13,7 +13,7 @@ const AccommodationPage = () => {
             </h1>
             <div className='mt-5'>
                 <UnifiedInboundForm
-                    endpoint='http://127.0.0.1:8000/api/add/lodging-booking'
+                    endpoint='https://api.discoverinternationalmedicalservice.com/api/add/lodging-booking'
                     concernField='concern'
                 />
             </div>

@@ -13,7 +13,7 @@ const AirTicketPage = () => {
             </h1>
             <div className='mt-5'>
                 <UnifiedInboundForm
-                    endpoint='http://127.0.0.1:8000/api/add/air/ticket'
+                    endpoint='https://api.discoverinternationalmedicalservice.com/api/add/air/ticket'
                     concernField='concern'
                 />
             </div>

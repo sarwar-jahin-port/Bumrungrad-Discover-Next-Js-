@@ -3,7 +3,7 @@ import BlogDetailsPage from "./_comp/BlogDetails";
 
 export async function generateMetadata({ params }) {
     const _blog = await fetch(
-        `http://127.0.0.1:8000/api/get/blogs/${params?.slug}`,
+        `https://api.discoverinternationalmedicalservice.com/api/get/blogs/${params?.slug}`,
     );
     const res = await _blog.json();
     const blog = res?.data;

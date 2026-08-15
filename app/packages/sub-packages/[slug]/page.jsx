@@ -13,7 +13,7 @@ const ChildPackage = ({params}) => {
 
   useEffect(() => {
     setLoader(true);
-    fetch(`http://127.0.0.1:8000/api/get/sub/packages/${params.slug}`)
+    fetch(`https://api.discoverinternationalmedicalservice.com/api/get/sub/packages/${params.slug}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {

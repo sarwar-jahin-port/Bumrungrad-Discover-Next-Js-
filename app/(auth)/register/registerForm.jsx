@@ -82,7 +82,7 @@ export default function Register() {
         SetErrors(null);
 
         const res = await fetch(
-          "http://127.0.0.1:8000/api/register",
+          "https://api.discoverinternationalmedicalservice.com/api/register",
           {
             method: "POST",
             body: formData,

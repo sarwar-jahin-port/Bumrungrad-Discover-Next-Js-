@@ -56,17 +56,17 @@ const MasterAppointmentForm = () => {
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/get/specialty")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/specialty")
       .then((res) => res.json())
       .then((data) => setSpecialties(data?.response?.data || []))
       .catch(() => {});
 
-    fetch("http://127.0.0.1:8000/api/get/doctors")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data?.response?.data || []))
       .catch(() => {});
 
-    fetch("http://127.0.0.1:8000/api/get/package")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/package")
       .then((res) => res.json())
       .then((data) => setPackages(data?.data || []))
       .catch(() => {});
@@ -98,7 +98,7 @@ const MasterAppointmentForm = () => {
     if (clinicalRecords) formData.append("medicalReport1", clinicalRecords);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/add/doctor/appointment", {
+      const response = await fetch("https://api.discoverinternationalmedicalservice.com/api/add/doctor/appointment", {
         method: "POST",
         body: formData,
       });

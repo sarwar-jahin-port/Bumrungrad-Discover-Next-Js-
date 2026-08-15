@@ -34,7 +34,7 @@ const PatientStories = () => {
   const [submitLoader, setSubmitLoader] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/get/patient-stories")
+    fetch("https://api.discoverinternationalmedicalservice.com/api/get/patient-stories")
       .then((res) => res.json())
       .then((data) => {
         setStories(data.status === 200 ? data.data : []);
@@ -53,7 +53,7 @@ const PatientStories = () => {
     formData.append("story", story);
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/add/patient-story", {
+      const response = await fetch("https://api.discoverinternationalmedicalservice.com/api/add/patient-story", {
         method: "POST",
         body: formData,
       });
