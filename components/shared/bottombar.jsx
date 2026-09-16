@@ -12,7 +12,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import telegram from "@/public/assets/Bumrungrad  Hospital_telegram.png";
-import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
+import logo from "@/public/assets/logo.png";
 import { useTranslations } from "next-intl";
 
 const DEFAULT_SOCIAL = {
@@ -111,7 +111,7 @@ export default function BottomBar() {
             <Image
               src={logo}
               alt='Bumrungrad International Hospital'
-              className='w-[150px]'
+              className='h-16 w-auto'
             />
             {settings.footer_address && (
               <p className='text-sm md:text-right'>{settings.footer_address}</p>

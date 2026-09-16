@@ -15,7 +15,7 @@ import "./style.css";
 import { countries } from "@/public/data/country";
 import { MuiTelInput } from "mui-tel-input";
 import Divider from "@mui/material/Divider";
-import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
+import logo from "@/public/assets/logo.png";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import useAuth from "@/helpers/hooks/useAuth";
@@ -1028,7 +1028,7 @@ export default function Appointment() {
                         height={200}
                         width={200}
                         src={logo}
-                        className="w-[200px]"
+                        className="h-20 w-auto"
                         alt="Bumrungrad International Hospital"
                       />
                       <div className="text-center md:font-semibold text-blue">

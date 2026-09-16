@@ -8,7 +8,153 @@
     "districtOperationLine": "{city} District Operation Line",
     "hubsEmpty": "Hub details are being finalized and will appear here shortly.",
     "requestHeading": "Request Emergency Transport",
-    "requestText": "Fill out the form below with your travel details and a member of our emergency coordination team will reach out to you shortly to confirm your air ambulance transport."
+    "requestText": "Fill out the form below with your travel details and a member of our emergency coordination team will reach out to you shortly to confirm your air ambulance transport.",
+    "heroCtaLabel": "Request Emergency Transport",
+    "office": {
+      "heading": "Our Office: Who We Are",
+      "text": "Discover International Medical Service (DIMS) is the official coordination partner for patients travelling to Bumrungrad International Hospital for emergency and planned medical care. Our emergency hubs manage every step of an air ambulance transfer, from the first phone call to hospital admission, so your family can stay focused on the patient rather than logistics. Every case is coordinated directly with the hospital, so nothing is left to chance.",
+      "ctaLabel": "Contact Our Team",
+      "badgeAvailability": "Available 24/7, every day of the year",
+      "badgeCoordination": "Coordinated directly with the hospital"
+    },
+    "whyUs": {
+      "heading": "Why You Need a Specialist Air Ambulance Provider",
+      "points": [
+        {
+          "title": "Direct Hospital Coordination",
+          "desc": "We work directly with Bumrungrad International Hospital's admissions office, not through a general agency or call centre. Before your flight departs, your bed, the receiving specialist, and the admitting department are already confirmed, so there is no uncertainty waiting for you on arrival in Bangkok."
+        },
+        {
+          "title": "Experienced Emergency Team",
+          "desc": "Our coordinators in Dhaka and Chattogram have managed patient transfers for years and understand exactly what a critical transfer requires. From the first phone call to the moment your family member is handed over to the hospital, one dedicated team manages the ground transport, documentation, and every conversation with the hospital on your behalf."
+        },
+        {
+          "title": "Around-the-Clock Availability",
+          "desc": "A medical emergency does not check the clock, and neither do we. Our emergency hubs are staffed and reachable 24 hours a day, seven days a week, so whenever the need arises, you can speak to a real coordinator immediately rather than leaving a message and waiting."
+        }
+      ]
+    },
+    "included": {
+      "heading": "What's Included in Our Air Ambulance Service",
+      "items": [
+        {
+          "title": "Ground ICU Ambulance",
+          "desc": "Before the flight even begins, your patient is collected from their current hospital in a fully equipped ICU ambulance. Continuous vital sign monitoring, oxygen support, and a trained medical attendant stay with the patient for the entire drive to the airport, so care is never interrupted."
+        },
+        {
+          "title": "Airport & Flight Coordination",
+          "desc": "Airports can be one of the most stressful parts of an emergency transfer, so we handle it entirely. Our team manages tarmac access, boarding clearance, and direct coordination with the medical flight crew, so your family can stay focused on the patient rather than paperwork and logistics."
+        },
+        {
+          "title": "In-Flight Medical Care",
+          "desc": "Once airborne, the patient remains under continuous care from trained medical staff for the full duration of the flight. Vital signs, medication, and any life-support equipment are monitored throughout, with the same level of attentiveness as in a hospital ward."
+        },
+        {
+          "title": "Hospital Handover",
+          "desc": "Arrival in Bangkok is not the end of the journey, it is a carefully managed handover. The receiving team at Bumrungrad International Hospital is briefed in advance and ready to receive the patient directly, so admission and specialist care can begin immediately rather than starting from a blank file."
+        },
+        {
+          "title": "Visa & Documentation Support",
+          "desc": "International travel during a medical emergency comes with paperwork that families are rarely prepared for. We guide you through the required travel documents and visa arrangements for both the patient and any accompanying family members, including urgent processing where the situation calls for it."
+        }
+      ],
+      "ctaLabel": "Request This Service"
+    },
+    "gallery": {
+      "heading": "Our Gallery"
+    },
+    "conditions": {
+      "heading": "Conditions We Commonly Transfer",
+      "items": [
+        {
+          "title": "Cardiac Emergencies",
+          "desc": "Heart attacks, unstable arrhythmias, and cases requiring urgent cardiac surgery are among the most time-critical transfers we manage. Patients are connected directly with Bumrungrad's cardiac specialists so treatment can begin without delay."
+        },
+        {
+          "title": "Stroke & Neurological Emergencies",
+          "desc": "Stroke and other acute neurological events are extremely time-sensitive, where every hour affects the outcome. We prioritise these transfers and coordinate directly with the receiving neurology team before the patient departs."
+        },
+        {
+          "title": "Oncology Cases",
+          "desc": "Patients who need to begin chemotherapy, targeted therapy, or urgent cancer surgery are transferred with their case history already shared with the receiving oncology team, so treatment planning can start as soon as they arrive."
+        },
+        {
+          "title": "Respiratory & Ventilated Patients",
+          "desc": "Critically ill patients on mechanical ventilation are transferred with the same equipment and monitoring they would receive in an ICU. A trained flight medical team manages ventilator settings and oxygen support throughout the journey."
+        },
+        {
+          "title": "Orthopaedic Emergencies",
+          "desc": "Complex fractures, spinal injuries, and other trauma cases that need specialist surgical care are stabilised for transport and monitored closely throughout. The receiving surgical team is briefed before the patient arrives."
+        },
+        {
+          "title": "Gynaecological & Obstetric Emergencies",
+          "desc": "High-risk pregnancies and other conditions that require specialist obstetric care are transferred with appropriate monitoring for both mother and baby, with the receiving specialist ready on arrival."
+        }
+      ]
+    },
+    "howItWorks": {
+      "heading": "How It Works",
+      "steps": [
+        {
+          "title": "Contact Our Team",
+          "desc": "Call or message our emergency hotline and tell us where the patient is and what their condition is. You do not need every detail ready, our coordinators will guide you through what is needed next."
+        },
+        {
+          "title": "Case Assessment",
+          "desc": "Our coordinators review the case with you and, where possible, speak directly with the treating doctor. At the same time, we contact Bumrungrad to confirm the receiving department, specialist, and bed availability."
+        },
+        {
+          "title": "Documentation & Visa",
+          "desc": "While travel arrangements are being finalised, we begin collecting the required documents and start the visa process in parallel, saving valuable time rather than waiting for one step to finish before the next begins."
+        },
+        {
+          "title": "Ground Transfer",
+          "desc": "A fully equipped ICU ambulance collects the patient from their current hospital, with continuous monitoring in place for the entire drive to the airport. The patient never travels unaccompanied."
+        },
+        {
+          "title": "Air Transfer",
+          "desc": "The patient travels to Bangkok with continuous medical care and monitoring throughout the flight, while our coordination team stays in contact with the family for the duration of the journey."
+        },
+        {
+          "title": "Hospital Handover",
+          "desc": "On arrival, our team coordinates a full handover to Bumrungrad International Hospital, where the receiving department is already briefed and ready, so admission and specialist care begin immediately."
+        }
+      ]
+    },
+    "areasWeServe": {
+      "heading": "Areas We Serve",
+      "text": "Our emergency hubs coordinate air ambulance transfers for patients across the region, with dedicated operation lines in each of the cities listed below. Wherever the patient is currently located, get in touch and our team will advise on the fastest and safest route to Bumrungrad International Hospital, including ground transport to the nearest departure point."
+    },
+    "faq": {
+      "heading": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "How quickly can an air ambulance be arranged?",
+          "answer": "Once you contact our team, we begin case assessment immediately. Arrangement time depends on the patient's condition, documentation, and flight availability."
+        },
+        {
+          "question": "Can a family member travel with the patient?",
+          "answer": "Yes, accompanying family members can travel, subject to space and documentation requirements. Our team will advise on this during coordination."
+        },
+        {
+          "question": "Does the patient need a visa before departure?",
+          "answer": "A valid Thailand visa is required. Our team assists with the documentation and, where needed, coordinates on an urgent basis."
+        },
+        {
+          "question": "What happens on arrival at Bumrungrad Hospital?",
+          "answer": "Our team ensures the receiving department is briefed in advance, so admission and specialist care begin as soon as the patient arrives."
+        },
+        {
+          "question": "Is the initial consultation free?",
+          "answer": "Yes, reaching out to discuss your case and next steps does not commit you to anything."
+        }
+      ]
+    },
+    "finalCta": {
+      "heading": "Ready to Speak to Our Team?",
+      "text": "Our emergency coordinators are available around the clock, every day of the year. Reach out now and a member of our team will walk you through every step of the transfer, from the first call to hospital admission in Bangkok.",
+      "buttonLabel": "Request Emergency Transport"
+    }
   },
   "form": {
     "enterDate": "Enter Date",

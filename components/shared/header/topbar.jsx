@@ -15,7 +15,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import logo from "@/public/assets/Bumrungrad  Hospital_nav_logo.png";
+import logo from "@/public/assets/logo.png";
 import telegram from "@/public/assets/Bumrungrad  Hospital_telegram.png";
 import { menuItems } from "./menuItems";
 import { useRouter } from "next/navigation";
@@ -165,7 +165,7 @@ const Topbar = () => {
                     <Image
                         src={logo}
                         alt='Bumrungrad International Hospital'
-                        className='w-[140px] md:w-[180px]'
+                        className='h-14 md:h-16 w-auto'
                         width={200}
                         height={200}
                         priority
