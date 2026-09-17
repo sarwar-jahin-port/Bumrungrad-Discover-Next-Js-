@@ -3,12 +3,12 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import img1 from "@/public/assets/medi-express-02.jpg";
-import img2 from "@/public/assets/about_bumrungrad/Bumrungrad_AboutUS.jpg";
-import img3 from "@/public/assets/about_bumrungrad/Bumrungrad_room.jpg";
-import img4 from "@/public/assets/about_bumrungrad/Bumrungrad_specialties-2022.jpg";
-import img5 from "@/public/assets/hero-placeholder.jpg";
-import img6 from "@/public/assets/online-treatment-02.jpg";
+import img1 from "@/public/assets/aim-ambulance/use this.jpeg";
+import img2 from "@/public/assets/aim-ambulance/20260628_183950.jpg.jpeg";
+import img3 from "@/public/assets/aim-ambulance/20260628_183829.jpg.jpeg";
+import img4 from "@/public/assets/aim-ambulance/20260628_183855(1).jpg.jpeg";
+import img5 from "@/public/assets/aim-ambulance/20260728_132102.jpg.jpeg";
+import img6 from "@/public/assets/aim-ambulance/Gemini_Generated_Image_xg86p5xg86p5xg86.png";
 
 const IMAGES = [img1, img2, img3, img4, img5, img6];
 

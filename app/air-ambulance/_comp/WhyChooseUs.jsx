@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { IoMdCheckmarkCircle } from "react-icons/io";
-import whyImg from "@/public/assets/Medical-Visa.webp";
+import whyImg from "@/public/assets/aim-ambulance/20260628_183855(1).jpg.jpeg";
 
 const WhyChooseUs = () => {
   const t = useTranslations("airAmbulance.landing.whyUs");

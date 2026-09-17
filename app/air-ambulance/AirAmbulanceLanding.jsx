@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import AirAmbulanceForm from "@/components/services/airAmbulance";
 import { useTranslations } from "next-intl";
-import heroImg from "@/public/assets/medi-express-02.jpg";
+import heroImg from "@/public/assets/aim-ambulance/use this.jpeg";
 import OfficeSection from "./_comp/OfficeSection";
 import WhyChooseUs from "./_comp/WhyChooseUs";
 import WhatsIncluded from "./_comp/WhatsIncluded";

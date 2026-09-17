@@ -3,11 +3,11 @@
 import React from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import img1 from "@/public/assets/Medical-Report.webp";
-import img2 from "@/public/assets/Bumrungrad-International-Hospital-Bangladesh-Office.webp";
-import img3 from "@/public/assets/Banner.webp";
-import img4 from "@/public/assets/Our-Mission-Your-Healthcare-Journey-Made-Easy-scaled.webp";
-import img5 from "@/public/assets/CHECK-UP_014.webp";
+import img1 from "@/public/assets/aim-ambulance/20260628_183829.jpg.jpeg";
+import img2 from "@/public/assets/aim-ambulance/20260728_132102.jpg.jpeg";
+import img3 from "@/public/assets/aim-ambulance/ChatGPT Image Jul 14, 2026, 03_44_57 PM.png";
+import img4 from "@/public/assets/aim-ambulance/20260728_132103.jpg.jpeg";
+import img5 from "@/public/assets/aim-ambulance/ChatGPT Image Jul 14, 2026, 03_47_59 PM.png";
 
 const IMAGES = [img1, img2, img3, img4, img5];
 

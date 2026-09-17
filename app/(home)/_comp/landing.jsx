@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
-import heroBg from "@/public/assets/hero-doctors.png";
+import heroBg from "@/public/assets/aim-ambulance/Front Image.png";
 
 const AVATAR_STYLES = [
   "bg-blue",
@@ -102,7 +102,7 @@ const Landing = () => {
           fill
           priority
           sizes="45vw"
-          className="object-cover object-[72%_35%]"
+          className="object-cover object-[40%_55%]"
         />
         <div
           className="pointer-events-none absolute inset-0"
@@ -123,10 +123,12 @@ const Landing = () => {
               {t("tagline")}
             </p>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-semibold leading-[1.2] tracking-tight text-gray-900">
-              <span className="block text-gray-600 font-medium">{t("headingLine1")}</span>
-              <span className="block text-blue">{t("headingLine2")}</span>
+            <h1 className="text-3xl sm:text-4xl lg:text-[2.65rem] font-semibold leading-[1.45] tracking-tight text-blue">
+              {t("headingLine1")}
             </h1>
+            <p className="text-sm md:text-base font-medium text-gray-600 -mt-2">
+              {t("headingLine2")}
+            </p>
 
             <div className="inline-flex w-fit items-center gap-4 self-start rounded-2xl border border-gray-100 bg-white/70 backdrop-blur-md px-4 py-3 shadow-[0_8px_30px_-14px_rgba(15,23,42,0.25)]">
               <div className="flex -space-x-3" role="img" aria-label={t("googleReviews")}>

@@ -8,7 +8,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsIcon from "@mui/icons-material/Directions";
-import officeImg from "@/public/assets/A-Commitment-to-Patient-Care-scaled.webp";
+import officeImg from "@/public/assets/aim-ambulance/20260628_183950.jpg.jpeg";
 
 const HubCard = ({ hub, t }) => {
   const fullAddress = [hub.office_name, hub.building, hub.floor_map, hub.address]
