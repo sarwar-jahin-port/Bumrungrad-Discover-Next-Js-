@@ -1,11 +1,12 @@
 ﻿'use client'
 
 import React, { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import TextField from '@mui/material/TextField'
 import { IoSearchOutline } from 'react-icons/io5'
-import dynamic from 'next/dynamic'
-const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 import notFoundAnim from '@/public/assets/anim/notfound.json'
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 import {CardLoader} from '@/components/ui/cardload'
 import { usePathname } from 'next/navigation'
 import SinglePackage from './singlePackage'

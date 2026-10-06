@@ -14,6 +14,7 @@ import { getLocale, getMessages } from "next-intl/server";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://www.discoverinternationalmedicalservice.com"),
   name: "google-site-verification",
   content: "PU4nfwAVdJydAS9wNWWC49A3jXjM5wUP1hYxciG43hQ",
   title: "Bumrungrad Hospital for International Patient",
