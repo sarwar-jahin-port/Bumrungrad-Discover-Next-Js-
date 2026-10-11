@@ -5,7 +5,6 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import PersonIcon from "@mui/icons-material/Person";
 import Link from "next/link";
 
 import Dialog from "@mui/material/Dialog";
@@ -62,14 +61,6 @@ export default function MiddleBar() {
             {" "}
             <span className="hidden md:block">{t("send")}</span> {t("query")}
           </p>
-        </Link>
-        <Link
-          href="/my-profile"
-          className="md:hidden flex flex-col md:flex-row  gap-1 md:gap-2 px-4 py-2.5 md:px-8 md:py-5 hover:bg-white items-center duration-300 ease-linear cursor-pointer text-blue md:text-white"
-        >
-          <PersonIcon sx={{ fontSize: "24px" }} />
-
-          <p className="text-sm text-center flex gap-1">{t("account")}</p>
         </Link>
       </div>
 
